@@ -4,6 +4,14 @@ class UsersController < ApplicationController
   # GET /users or /users.json
   def index
     @users = User.all
+    @teams_api = []
+    
+    for user in @users
+      if user.team_id
+        team = Team.find(user.team_id)
+        @teams_api.push(team.api)
+      end
+    end
   end
 
   # GET /users/1 or /users/1.json
@@ -65,6 +73,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :email, :team)
+      params.require(:user).permit(:name, :email, :team_id)
     end
 end

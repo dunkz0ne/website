@@ -13,11 +13,11 @@
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+    <% @users.each_with_index do |user, i| %>
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= user.team %></td>
+        <td><img src="https://cdn.nba.com/logos/nba/<%= @teams_api[i] %>/primary/L/logo.svg" /></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

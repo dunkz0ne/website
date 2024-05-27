@@ -2,10 +2,10 @@
 
 one:
   name: MyString
-  email: MyString
-  team_id: 1
+  color: MyString
+  api: 1
 
 two:
   name: MyString
-  email: MyString
-  team_id: 1
+  color: MyString
+  api: 1
