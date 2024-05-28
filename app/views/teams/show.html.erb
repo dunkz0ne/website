@@ -1,19 +1,38 @@
 <p id="notice"><%= notice %></p>
 
+
+<img style="width: 3rem;" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
+
 <p>
   <strong>Name:</strong>
   <%= @team.name %>
 </p>
 
-<p>
-  <strong>Color:</strong>
-  <%= @team.color %>
-</p>
+NBA Champions: <%= @nba_won %> <br />
+Conference Champions: <%= @conference_won %> <br />
+Division Champions: <%= @division_won %> <br />
 
-<p>
-  <strong>Api:</strong>
-  <%= @team.api %>
-</p>
+<h2>Hall of fame</h2>
+<% @hof_players.each do |player| %>
+<div>
+  <img style="width: 5rem;" src="https://cdn.nba.com/headshots/nba/latest/1040x760/<%= player[:id] %>.png" onerror="this.src='https://cdn.nba.com/headshots/nba/latest/1040x760/fallback.png';"/>
+  <p>
+    <strong>Name:</strong>
+    <%= player[:name] %>
+  </p>
+</div>
+<% end %>
+
+<h2>Roster</h2>
+<% @roster.each do |player| %>
+<div>
+  <img style="width: 5rem;" src="https://cdn.nba.com/headshots/nba/latest/1040x760/<%= player[:id] %>.png" onerror="this.src='https://cdn.nba.com/headshots/nba/latest/1040x760/fallback.png';"/>
+  <p>
+    <strong>Name:</strong>
+    <%= player[:name] %>
+  </p>
+</div>
+<% end %>
 
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>
