@@ -1,1 +1,12 @@
 <h1>CIAO BELLI</h1>
+
+        <div class="col-sm">
+          <%= form_tag('/auth/facebook', method: 'post') do %>
+            <button class="btn btn-primary" type="submit">Sign In</button>
+            <a class="btn btn-danger" style="color: white;" href="/session/destroy">Sign Out</a>
+          <% end %>    
+        </div>
+
+          
+
+<%= notice %>

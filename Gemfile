@@ -24,6 +24,11 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'color'
 
+gem 'omniauth-facebook'
+gem 'omniauth-rails_csrf_protection'
+gem 'figaro'
+
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
