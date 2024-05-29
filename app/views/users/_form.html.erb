@@ -11,15 +11,10 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <%= form.hidden_field :email, value: params[:email] %>
+  <%= form.hidden_field :id, value: params[:id] %>
+  <%= form.hidden_field :name, value: params[:name] %>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
 
   <div class="field">
     <%= form.label :team_id %>
