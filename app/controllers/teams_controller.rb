@@ -14,7 +14,7 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
 
-    url = URI.parse('http://localhost:5001/api/teams/'+@team.api.to_s)
+    url = URI.parse("http://localhost:5001/api/teams/#{@team.api.to_s}")
     response = Net::HTTP.get_response(url)
 
     team_data = JSON.parse(response.body)
@@ -26,7 +26,7 @@ class TeamsController < ApplicationController
     @hof_players = team_data['resultSets'][6]['rowSet'] # ["PLAYERID", "PLAYER", "POSITION", "JERSEY", "SEASONSWITHTEAM", "YEAR"]
     @hof_players = @hof_players.map { |player| {id: player[0], name: player[1], position: player[2], season_with_team: player[4], year: player[5]} }
 
-    url = URI.parse('http://localhost:5001/api/teams/'+@team.api.to_s+'/roster')
+    url = URI.parse("http://localhost:5001/api/teams/#{@team.api.to_s}/roster")
     response = Net::HTTP.get_response(url)
 
     team_data = JSON.parse(response.body)
