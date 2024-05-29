@@ -1,38 +1,77 @@
+
+
+<section id="TeamSection" style="background-color: <%= @team.color %>;">
 <p id="notice"><%= notice %></p>
 
 
-<img style="width: 3rem;" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
+    <div class="container">
+        <div class="row introTeam">
+            <div class="col-4">
+                <img id="logoTeam" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
+            </div>
+            <div class="col-8">
+                <div class="row">
+                    <div id="nameTeam"><%= @team.name %></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-2">
+                        <div id="nbaChampionships">
+                            <%= image_tag('trophy.png', id: 'imageTeam') %>
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <div id="nbaChampionships">
+                            <div class="introSub"><%= @nba_won %> x NBA Champions</div>
+                            <div class="introSub"><%= @conference_won %> x Conference Champions</div>
+                            <div class="introSub"><%= @division_won %> x Division Champions</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @team.name %>
-</p>
+        <div class="row">
+            <div class="teamTitle">Roster</div>
+        </div>
 
-NBA Champions: <%= @nba_won %> <br />
-Conference Champions: <%= @conference_won %> <br />
-Division Champions: <%= @division_won %> <br />
+        <div class="row">
+            <div class="cardList">
+                <% @roster.each do |player| %>
+                    <%= link_to player_url(player[:id]) do %> 
+                        <div class="playerCard" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).lighten_by(80).html %>">
+                            <img style="width: 9rem;" src="https://cdn.nba.com/headshots/nba/latest/1040x760/<%= player[:id] %>.png" onerror="this.src='https://cdn.nba.com/headshots/nba/latest/1040x760/fallback.png';"/>
+                            <div class="playerName">
+                                <%= player[:name] %>
+                            </div>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
 
-<h2>Hall of fame</h2>
-<% @hof_players.each do |player| %>
-<div>
-  <img style="width: 5rem;" src="https://cdn.nba.com/headshots/nba/latest/1040x760/<%= player[:id] %>.png" onerror="this.src='https://cdn.nba.com/headshots/nba/latest/1040x760/fallback.png';"/>
-  <p>
-    <strong>Name:</strong>
-    <%= player[:name] %>
-  </p>
-</div>
-<% end %>
+        <div class="row ">
+            <div class="teamTitle">Hall of fame</div>
+        </div>
 
-<h2>Roster</h2>
-<% @roster.each do |player| %>
-<div>
-  <img style="width: 5rem;" src="https://cdn.nba.com/headshots/nba/latest/1040x760/<%= player[:id] %>.png" onerror="this.src='https://cdn.nba.com/headshots/nba/latest/1040x760/fallback.png';"/>
-  <p>
-    <strong>Name:</strong>
-    <%= player[:name] %>
-  </p>
-</div>
-<% end %>
+        <div class="row hofTeam">
+            <div class="cardList">
+                <% @hof_players.each do |player| %>
+                    <%= link_to player_url(player[:id]) do %>
+                        <div class="playerCard" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).lighten_by(80).html %>">
+                            <img style="width: 9rem;" src="https://cdn.nba.com/headshots/nba/latest/1040x760/<%= player[:id] %>.png" onerror="this.src='https://cdn.nba.com/headshots/nba/latest/1040x760/fallback.png';"/>
+                            <div class="playerName">
+                                <%= player[:name] %>
+                            </div>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+        
+
+        <%= link_to 'Edit', edit_team_path(@team) %> |
+        <%= link_to 'Back', teams_path %>
+    </div>
+    
+</section>

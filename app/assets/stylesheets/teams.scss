@@ -1,3 +1,72 @@
 // Place all the styles related to the teams controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+body{
+    color: rgb(242, 236, 236) !important;
+}
+
+a, a:link, a:visited, a:hover, a:active, a:focus {
+    text-decoration: none !important;
+    background-color: transparent !important;
+    color: rgb(242, 236, 236) !important;
+}
+
+#logoTeam{
+    width: 20rem;
+}
+
+#nameTeam{
+    margin-top: 5vh;
+    font-size: 4.5rem;
+    text-align: center;
+}
+
+.introTeam{
+    border-bottom: 5px solid;
+    padding-bottom: 8vh;
+    text-align: center;
+}
+
+.introSub{
+    text-align: left;
+    font-size: 2rem;
+}
+
+#subStats{
+    text-align: center;
+}
+
+#nbaChampionships{
+    font-size: 3rem;
+}
+
+#imageTeam{
+    width: 7rem;
+}
+
+.teamTitle{
+    font-size: 3rem;
+    margin-top: 6vh !important;
+    margin-bottom: 2vh !important;
+    text-align: center;
+}
+
+.cardList{
+    border-bottom: 5px solid;
+    padding-bottom: 8vh;
+    display: ruby;
+}
+
+.playerCard{
+    margin: 2vh;
+    text-align: center;
+    width: 20vh;
+    padding: 2vh;
+    border-radius: 40px;
+}
+
+.playerName{
+    margin-top: 2vh;
+    font-size: 1.2rem;
+}

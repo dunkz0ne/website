@@ -1,0 +1,34 @@
+
+<div>
+    <img style="width: 9rem;" src="https://cdn.nba.com/headshots/nba/latest/1040x760/<%= @player %>.png" onerror="this.src='https://cdn.nba.com/headshots/nba/latest/1040x760/fallback.png';"/>
+    <%= @player_data[:display_first_last] %>
+</div>
+
+<% @seasons.each do  |season| %>
+<div>
+    <%= season[:season_id] %> |
+    <%= season[:team_abbreviation] %> |
+    <%= season[:player_age] %> |
+    <%= season[:gp] %> |
+    <%= season[:gs] %> |
+    <%= season[:min] %> |
+    <%= season[:fgm] %> |
+    <%= season[:fga] %> |
+    <%= season[:fg_pct] %> |
+    <%= season[:fg3m] %> |
+    <%= season[:fg3a] %> |
+    <%= season[:fg3_pct] %> |
+    <%= season[:ftm] %> |
+    <%= season[:fta] %> |
+    <%= season[:ft_pct] %> |
+    <%= season[:oreb] %> |
+    <%= season[:dreb] %> |
+    <%= season[:reb] %> |
+    <%= season[:ast] %> |
+    <%= season[:stl] %> |
+    <%= season[:blk] %> |
+    <%= season[:tov] %> |
+    <%= season[:pf] %> |
+    <%= season[:pts] %>
+</div>
+<% end %>
