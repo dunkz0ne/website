@@ -43,3 +43,5 @@ teams = [
 teams.each do |team|
     Team.create(name: team[:name], color: team[:color], api: team[:api])
 end
+
+User.create(name: "Gieri", email: "gieri@gmail.com", team_id: 14)
