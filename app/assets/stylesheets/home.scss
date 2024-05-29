@@ -1,0 +1,84 @@
+#homePage{
+    height: 100vh;
+}
+#Navbar{
+    margin-top: -2vh;
+    border-bottom: 2px solid white;
+    margin-bottom: 8vh;
+}
+
+#navbarNav{
+    justify-content: center !important;
+}
+
+.navItems{
+    align-items: center;
+}
+
+.nav-item{
+    margin: 0 2vh 0 2vh;
+    text-align: center;
+}
+
+.nav-icon{
+    margin-bottom: 1vh;
+    font-size: 2rem;
+}
+
+.nav-link{
+    font-family: "Russo One", sans-serif !important;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.5rem;
+}
+
+.nav-item:hover{
+    transition: all 0.1s ease;
+    border-bottom: 3px solid white;
+}
+
+.nav-link.active{
+    border-bottom: 3px solid white;
+}
+
+#logoTeamNav{
+    margin: 0 2vh 0 2vh;
+    width: 10rem;
+}
+
+.notifySection{
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    padding: 1vh 1vh 1vh 1vh;
+}
+
+.boxSection{
+    border: 2px solid;
+    border-radius: 40px;
+    text-align: center;
+    width: 60vh;
+    padding-bottom: 5vh;
+}
+
+.sectionTitle{
+    margin-left: 2vh;
+    font-size: 1.75rem;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.boxTitle{
+    padding: 3vh 0 2vh 0;
+    border-bottom: 2px solid;
+    margin-bottom: 2vh;
+}
+
+#matchDets{
+    color: black !important;
+}
+
+.matchDetails{
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 2vh;
+}

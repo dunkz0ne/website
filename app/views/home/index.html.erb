@@ -1,1 +1,113 @@
-<h1>CIAO BELLI</h1>
+<p id="notice"><%= notice %></p>
+
+<div id="homePage" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
+    <div id="Navbar">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: <%= @team.color %>;">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav navItems">
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-people-group"></i>
+                        <%= active_link_to 'Team', '/teams/1', active: :exclusive, class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-basketball"></i>
+                        <%= active_link_to 'Matches', '/matches', active: :exclusive, class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-newspaper"></i>
+                        <%= active_link_to 'News', '/news', active: :exclusive, class: 'nav-link' %>                
+                    </li>
+
+                    <li>
+                        <%= active_link_to( root_path, active: :exclusive, class: 'nav-link') do %>
+                        <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
+                        <% end %>                
+                    </li>
+
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-trophy"></i>
+                        <%= active_link_to 'League', '/league', active: :exclusive, class: 'nav-link' %>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-cart-shopping"></i>
+                        <%= active_link_to 'Shop', '/shop', active: :exclusive, class: 'nav-link' %>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <%= active_link_to 'Profile', '/profile', active: :exclusive, class: 'nav-link' %>  
+                    </li>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="boxSection" style="background-color: <%= @team.color %>;">
+                    <div class="container-fluid" style="padding: 0;">
+                        <div class="row">
+                            <div class="col">
+                                <div class="boxTitle">
+                                    <span class="sectionTitle">Featured Match</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="align-items: center;">
+                            <div class="col">
+                                <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
+                                <div class="teamName"><%= @team.name %></div>
+                            </div>
+                            <div class="col">
+                                <div class="matchInfo">
+                                    <div class="matchTime">19:30</div>
+                                    <div class="matchDate">TODAY</div>
+                                    <div class="timeLeftMatch">04:23:12</div>
+                                    <div class="matchDetails">
+                                        <%= active_link_to 'Details', '/matchDetails', active: :exclusive, class: 'matchDetails', id:'matchDets' %>                
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
+                                <div class="teamName"><%= @team.name %></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="boxSection" style="background-color: <%= @team.color %>;">
+                    <div class="container-fluid" style="padding: 0;">
+                        <div class="row">
+                            <div class="col">
+                                <div class="boxTitle">
+                                    <span class="sectionTitle">Latest News</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="align-items: center;">
+                            <div class="col">
+                                <div class="newsArticle">
+                                    <%= image_tag('news.png', id: 'imageTeam') %>
+                                    <span class="articleTitle">Jontay Porter to Bulls?</span>
+                                    <div class="authorInfo">Federico Gerardi - 15/03/24</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
