@@ -1,11 +1,16 @@
-<h2>CIAO BELLI</h2>
-
-<div class="col-sm">
-    <%= form_tag('/auth/facebook', method: 'post') do %>
-        <button class="btn btn-primary" type="submit">Sign In</button>
-        <a class="btn btn-danger" style="color: white;" href="/session/destroy">Sign Out</a>
-    <% end %>    
-</div>
-          
-
-<%= notice %>
+<body style="background-color: black;">
+    <div>  
+        <div class="col-sm">
+            <div>
+                <%= image_tag('Logo.png', id: 'imageNBAlogo') %>
+            </div>
+            <div>
+                <h1>The #1 <span class="red">N</span><span class="blue">B</span><span class="orange">A</span> community</h1>
+            </div>
+            <div class="container">
+                <button id="joinButton">Join us</button>
+            </div>   
+        </div>
+        <%= notice %>
+    </div> 
+</body>

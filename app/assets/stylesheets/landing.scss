@@ -1,0 +1,44 @@
+body {
+    text-align: center;
+}
+
+.red {
+    color: red;
+  }
+  
+  .blue {
+    color: blue;
+  }
+  
+  .orange {
+    color: orange;
+  }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Allinea gli elementi all'inizio del contenitore */
+  }
+  
+  #joinButton {
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: black;
+    border: 2px solid white; /* Imposta il bordo a 2px e il colore a bianco */
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #joinButton:hover {
+    background-color: #0056b3;
+  }
+
+.join_button{
+    margin: 1vh 2vh 0 2vh;
+    text-align: center;
+    border: white;
+    display: grid;
+    border-radius: 30;
+}
