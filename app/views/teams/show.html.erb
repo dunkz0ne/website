@@ -15,7 +15,7 @@
                 <ul class="navbar-nav navItems">
                     <li class="nav-item">
                         <i class="nav-icon fa-solid fa-people-group"></i>
-                        <%= active_link_to 'Team', '/teams/1', active: :exclusive, class: 'nav-link' %>
+                        <%= active_link_to 'Team', "/teams/#{@team.id}", active: :exclusive, class: 'nav-link' %>
                     </li>
                     <li class="nav-item">
                         <i class="nav-icon fa-solid fa-basketball"></i>
@@ -27,7 +27,7 @@
                     </li>
 
                     <li>
-                        <%= active_link_to( root_path, active: :exclusive, class: 'nav-link') do %>
+                        <%= active_link_to(dashboard_path) do %>
                         <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
                         <% end %>                
                     </li>
