@@ -17,10 +17,11 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(id: user_params[:id], name: user_params[:name], email: user_params[:email], team_id: user_params[:team_id])
+    session[:user_id] = @user.id
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
+        format.html { redirect_to dashboard_path, notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
