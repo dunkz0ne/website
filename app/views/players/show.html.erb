@@ -1,34 +1,169 @@
 
-<div>
-    <img style="width: 9rem;" src="https://cdn.nba.com/headshots/nba/latest/1040x760/<%= @player %>.png" onerror="this.src='https://cdn.nba.com/headshots/nba/latest/1040x760/fallback.png';"/>
-    <%= @player_data[:display_first_last] %>
+<div id="playerStatsPage" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
+    <div id="Navbar">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: <%= @team.color %>;">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav navItems">
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-people-group"></i>
+                        <%= active_link_to 'Team', "/teams/#{@team.id}", active: :exclusive, class: 'navElement' %>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-basketball"></i>
+                        <%= active_link_to 'Matches', '/matches', active: :exclusive, class: 'navElement' %>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-newspaper"></i>
+                        <%= active_link_to 'News', '/news', active: :exclusive, class: 'navElement' %>                
+                    </li>
+
+                    <li>
+                        <%= active_link_to(dashboard_path) do %>
+                        <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
+                        <% end %>                
+                    </li>
+
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-trophy"></i>
+                        <%= active_link_to 'League', '/league', active: :exclusive, class: 'navElement' %>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-cart-shopping"></i>
+                        <%= active_link_to 'Shop', '/shop', active: :exclusive, class: 'navElement' %>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <%= active_link_to 'Profile', '/profile', active: :exclusive, class: 'navElement' %>  
+                    </li>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+    <div id="playerStats">
+        <div class="container playerSection" style="background-color: <%= @team.color %>;">
+            <div class="row">
+                <div class="col">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col" style="text-align: center;">
+                                <div>
+                                    <img class="playerPic" src="https://cdn.nba.com/headshots/nba/latest/1040x760/<%= @player %>.png" onerror="this.src='https://cdn.nba.com/headshots/nba/latest/1040x760/fallback.png';"/>
+                                </div>
+                            </div>
+                            <div class="col" style="display: flex;">
+                                <div class="container genSection">
+                                    <div class="row" style="margin-bottom: 4vh;">
+                                        <div class="col">
+                                            <div class="playerNameStats">
+                                                <%= @player_data[:display_first_last] %>
+                                            </div>
+                                            <div class="playerPosition">
+                                                <%= @player_data[:team_name]%> |
+                                                #<%= @player_data[:jersey]%> |
+                                                <%= @player_data[:position]%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="align-items:center;">
+                                        <div class="col colData">
+                                            <div><%= image_tag('flag_au.png', class: 'flagCountry') %></div>
+                                            <div><%= @player_data[:country]%></div>
+                                        </div>
+                                        <div class="col colDataSet" style="text-align: center;">
+                                            <span class="dataSet"><%= @player_data[:height].gsub('-', "'") + '"' %></span>
+                                            <span> FT</span>
+                                            <div class="dataSetSub">HEIGHT</div>
+                                        </div>
+                                        <div class="col colDataSet" style="text-align: center;">
+                                            <span class="dataSet"><%= @player_data[:weight]%></span>
+                                            <span> LBs</span>
+                                            <div class="dataSetSub">WEIGHT</div>
+                                        </div>
+                                        <div class="col colDataSet" style="text-align: center;">
+                                            <span class="dataSet"><%= ((Time.zone.now - @player_data[:birthdate].to_time) / 1.year.seconds).floor %></span>
+                                            <span> YRs</span>
+                                            <div class="dataSetSub">AGE</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col colDataSet" style="text-align: center;">
+                                            <span class="dataSet"><%= @player_data[:season_exp]%></span>
+                                            <span> YRs</span>
+                                            <div class="dataSetSub">EXPERIENCE</div>
+                                        </div>
+                                        <div class="col colDataSet" style="text-align: center;">
+                                            <span class="dataSet"><%= @player_data[:birthdate].to_date%></span>
+                                            <div class="dataSetSub">BIRTHDATE</div>
+                                        </div>
+                                        <div class="col colDataSet" style="text-align: center;">
+                                            <% if @player_data[:draft_year] == "Undrafted" %>
+                                            <span class="dataSet">Undrafted</span>
+                                            <% else %>
+                                            <span class="dataSet"><%= @player_data[:draft_year] %></span>
+                                            <span class="dataSet"><%= @player_data[:draft_round] %></span>
+                                            <span class="dataSet"><%= @player_data[:draft_number] %></span>
+                                            <% end %>
+                                            <div class="dataSetSub">DRAFT</div>
+                                        </div>
+                                        <div class="col colDataSet" style="text-align: center;">
+                                            <span class="dataSet"><%= @player_data[:school]%></span>
+                                            <div class="dataSetSub">ATTENDED</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+
+        <% @seasons.each do  |season| %>
+        <div>
+            <%= season[:season_id] %> |
+            <%= season[:team_abbreviation] %> |
+            <%= season[:player_age] %> |
+            <%= season[:gp] %> |
+            <%= season[:gs] %> |
+            <%= season[:min] %> |
+            <%= season[:fgm] %> |
+            <%= season[:fga] %> |
+            <%= season[:fg_pct] %> |
+            <%= season[:fg3m] %> |
+            <%= season[:fg3a] %> |
+            <%= season[:fg3_pct] %> |
+            <%= season[:ftm] %> |
+            <%= season[:fta] %> |
+            <%= season[:ft_pct] %> |
+            <%= season[:oreb] %> |
+            <%= season[:dreb] %> |
+            <%= season[:reb] %> |
+            <%= season[:ast] %> |
+            <%= season[:stl] %> |
+            <%= season[:blk] %> |
+            <%= season[:tov] %> |
+            <%= season[:pf] %> |
+            <%= season[:pts] %>
+        </div>
+        <% end %>
+    </div>
+
+
+
 </div>
 
-<% @seasons.each do  |season| %>
-<div>
-    <%= season[:season_id] %> |
-    <%= season[:team_abbreviation] %> |
-    <%= season[:player_age] %> |
-    <%= season[:gp] %> |
-    <%= season[:gs] %> |
-    <%= season[:min] %> |
-    <%= season[:fgm] %> |
-    <%= season[:fga] %> |
-    <%= season[:fg_pct] %> |
-    <%= season[:fg3m] %> |
-    <%= season[:fg3a] %> |
-    <%= season[:fg3_pct] %> |
-    <%= season[:ftm] %> |
-    <%= season[:fta] %> |
-    <%= season[:ft_pct] %> |
-    <%= season[:oreb] %> |
-    <%= season[:dreb] %> |
-    <%= season[:reb] %> |
-    <%= season[:ast] %> |
-    <%= season[:stl] %> |
-    <%= season[:blk] %> |
-    <%= season[:tov] %> |
-    <%= season[:pf] %> |
-    <%= season[:pts] %>
-</div>
-<% end %>
+
+

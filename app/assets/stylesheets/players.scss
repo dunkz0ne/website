@@ -1,0 +1,54 @@
+.playerSection{
+    border-radius: 40px;
+    border: 2px solid;
+    padding: 5vh;
+    width: 70% !important;
+}
+
+.playerPic{
+    width: 23rem;
+    @media (max-width:640px) {
+        width: 15rem;
+        
+    }
+}
+
+.playerNameStats{
+    font-size: 3rem;
+
+    @media (max-width:640px) {
+        font-size: 2rem;
+    }
+}
+
+.playerPosition{
+    font-size: 1.25rem !important;
+}
+
+.genSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.flagCountry{
+    width: 5rem;
+}
+
+.colData{
+    padding: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    border: 2px solid;
+}
+
+.colDataSet{
+    border: 2px solid;
+    padding: 2vh;
+}
+
+.dataSet{
+    font-size: 1rem;
+}

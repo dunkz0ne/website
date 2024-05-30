@@ -1,5 +1,9 @@
 class PlayersController < ApplicationController
   def show
+
+    @user = User.find(session[:user_id]) if session[:user_id]
+    @team = Team.where(id: @user.team_id).first if @user
+
     @player = params[:id]
 
     url = URI.parse("http://localhost:5001/api/players/#{@player}/profile")
