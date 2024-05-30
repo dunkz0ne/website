@@ -26,6 +26,11 @@ gem 'color' # For colorizing cards
 
 gem 'active_link_to' # For active links
 
+gem 'omniauth-facebook'
+gem 'omniauth-rails_csrf_protection'
+gem 'figaro'
+
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

@@ -86,7 +86,7 @@
         <div class="row">
             <div class="cardList">
                 <% @roster.each do |player| %>
-                    <%= link_to player_url(player[:id]) do %> 
+                    <%= link_to player_url(player[:id]), class: "playerLink" do %>
                         <div class="playerCard" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).lighten_by(80).html %>">
                             <img style="width: 9rem;" src="https://cdn.nba.com/headshots/nba/latest/1040x760/<%= player[:id] %>.png" onerror="this.src='https://cdn.nba.com/headshots/nba/latest/1040x760/fallback.png';"/>
                             <div class="playerName">
@@ -105,7 +105,7 @@
         <div class="row hofTeam">
             <div class="cardList">
                 <% @hof_players.each do |player| %>
-                    <%= link_to player_url(player[:id]) do %>
+                    <%= link_to player_url(player[:id]), class: "playerLink"  do %>
                         <div class="playerCard" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).lighten_by(80).html %>">
                             <img style="width: 9rem;" src="https://cdn.nba.com/headshots/nba/latest/1040x760/<%= player[:id] %>.png" onerror="this.src='https://cdn.nba.com/headshots/nba/latest/1040x760/fallback.png';"/>
                             <div class="playerName">
