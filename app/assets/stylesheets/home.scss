@@ -1,6 +1,7 @@
 #homePage{
-    height: 100vh;
+    height: 170vh;
 }
+
 #Navbar{
     margin-top: -2vh;
     border-bottom: 2px solid white;
@@ -53,12 +54,19 @@
     padding: 1vh 1vh 1vh 1vh;
 }
 
-.boxSection{
+.infoContainerRow{
+    @media (max-width:990px) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.matchSection, .articleSection, .merchSection, .pastMatches{
     border: 2px solid;
     border-radius: 40px;
     text-align: center;
-    width: 60vh;
-    padding-bottom: 5vh;
+    padding-bottom: 4vh;
+    width: 100%;
 }
 
 .sectionTitle{
@@ -70,15 +78,133 @@
 .boxTitle{
     padding: 3vh 0 2vh 0;
     border-bottom: 2px solid;
-    margin-bottom: 2vh;
+    margin-bottom: 1vh;
 }
 
 #matchDets{
     color: black !important;
 }
 
-.matchDetails{
+.matchDetails, .newsDetails{
     border-radius: 10px;
     background-color: white;
     margin-top: 2vh;
 }
+
+.teamName{
+
+    @media (max-width: 768px) {
+        font-size: 0.7rem;
+        
+    }
+
+}
+
+#imageArticle, .imageHighlights{
+    width: 8rem;
+}
+
+.imageHighlights{
+    @media (max-width: 980px) and (min-width: 768px) {
+            width: 6rem;
+        }
+}
+
+.newsArticle{
+    padding: 2vh 0 2vh 0;
+    border-bottom: 2px solid;
+}
+
+.newsDetails{
+    width: 9vh;
+}
+
+.merchSection{
+    padding-top: 4vh;
+    margin-top: 6vh;
+
+    @media (max-width: 980px) {
+        margin-bottom: 5vh;
+    }
+}
+
+.merchShop{
+    color: black;
+    border-radius: 20px;
+    font-size: 4rem;
+    padding: 1rem;
+    background-color: white;
+}
+
+// #rowBreak{
+//     @media (max-width: 768px) {
+//         flex-direction: column ;
+//         flex-wrap: nowrap ;
+//     }
+// }
+
+.pastMatches{
+    margin-top: 5vh;
+    padding: 2vh;
+}
+
+.logoTeam, .logoTeamPast{
+    width: 6rem;
+}
+
+.logoTeamPast{
+    @media (max-width: 576px) {
+        width: 4rem;
+    }
+}
+
+.matchPoints{
+    font-size: 1.75rem;
+}
+
+.pastMatchContainer{
+    border: 2px solid;
+    padding: 2vh;
+    border-radius: 20px;
+}
+
+#highlightsTitle{
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+.firstTeam{
+    text-align: right;
+    @media (max-width:768px) {
+        text-align: center;
+    }
+}
+
+.secondTeam{
+    text-align: left;
+    border-right: 2px solid;
+    @media (max-width:980px) {
+        text-align: center;
+        border: none;
+    }
+}
+
+.highlightsImage{
+    @media (max-width:568px) {
+        margin-top: 2vh !important;
+    }
+}
+
+.highlightsTitle{
+    font-size: 1.5rem;
+    @media (max-width:768px) {
+        margin-top: 1vh;
+        font-size: 1rem;
+        text-align: center;
+    }
+    @media (max-width:980px) and (min-width:768px){
+        font-size: 1rem;
+    }
+}
+
