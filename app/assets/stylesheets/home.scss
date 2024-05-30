@@ -1,0 +1,210 @@
+#homePage{
+    height: 170vh;
+}
+
+#Navbar{
+    margin-top: -2vh;
+    border-bottom: 2px solid white;
+    margin-bottom: 8vh;
+}
+
+#navbarNav{
+    justify-content: center !important;
+}
+
+.navItems{
+    align-items: center;
+}
+
+.nav-item{
+    margin: 0 2vh 0 2vh;
+    text-align: center;
+}
+
+.nav-icon{
+    margin-bottom: 1vh;
+    font-size: 2rem;
+}
+
+.nav-link{
+    font-family: "Russo One", sans-serif !important;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.5rem;
+}
+
+.nav-item:hover{
+    transition: all 0.1s ease;
+    border-bottom: 3px solid white;
+}
+
+.nav-link.active{
+    border-bottom: 3px solid white;
+}
+
+#logoTeamNav{
+    margin: 0 2vh 0 2vh;
+    width: 10rem;
+}
+
+.notifySection{
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    padding: 1vh 1vh 1vh 1vh;
+}
+
+.infoContainerRow{
+    @media (max-width:990px) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.matchSection, .articleSection, .merchSection, .pastMatches{
+    border: 2px solid;
+    border-radius: 40px;
+    text-align: center;
+    padding-bottom: 4vh;
+    width: 100%;
+}
+
+.sectionTitle{
+    margin-left: 2vh;
+    font-size: 1.75rem;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.boxTitle{
+    padding: 3vh 0 2vh 0;
+    border-bottom: 2px solid;
+    margin-bottom: 1vh;
+}
+
+#matchDets{
+    color: black !important;
+}
+
+.matchDetails, .newsDetails{
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 2vh;
+}
+
+.teamName{
+
+    @media (max-width: 768px) {
+        font-size: 0.7rem;
+        
+    }
+
+}
+
+#imageArticle, .imageHighlights{
+    width: 8rem;
+}
+
+.imageHighlights{
+    @media (max-width: 980px) and (min-width: 768px) {
+            width: 6rem;
+        }
+}
+
+.newsArticle{
+    padding: 2vh 0 2vh 0;
+    border-bottom: 2px solid;
+}
+
+.newsDetails{
+    width: 9vh;
+}
+
+.merchSection{
+    padding-top: 4vh;
+    margin-top: 6vh;
+
+    @media (max-width: 980px) {
+        margin-bottom: 5vh;
+    }
+}
+
+.merchShop{
+    color: black;
+    border-radius: 20px;
+    font-size: 4rem;
+    padding: 1rem;
+    background-color: white;
+}
+
+// #rowBreak{
+//     @media (max-width: 768px) {
+//         flex-direction: column ;
+//         flex-wrap: nowrap ;
+//     }
+// }
+
+.pastMatches{
+    margin-top: 5vh;
+    padding: 2vh;
+}
+
+.logoTeam, .logoTeamPast{
+    width: 6rem;
+}
+
+.logoTeamPast{
+    @media (max-width: 576px) {
+        width: 4rem;
+    }
+}
+
+.matchPoints{
+    font-size: 1.75rem;
+}
+
+.pastMatchContainer{
+    border: 2px solid;
+    padding: 2vh;
+    border-radius: 20px;
+}
+
+#highlightsTitle{
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+.firstTeam{
+    text-align: right;
+    @media (max-width:768px) {
+        text-align: center;
+    }
+}
+
+.secondTeam{
+    text-align: left;
+    border-right: 2px solid;
+    @media (max-width:980px) {
+        text-align: center;
+        border: none;
+    }
+}
+
+.highlightsImage{
+    @media (max-width:568px) {
+        margin-top: 2vh !important;
+    }
+}
+
+.highlightsTitle{
+    font-size: 1.5rem;
+    @media (max-width:768px) {
+        margin-top: 1vh;
+        font-size: 1rem;
+        text-align: center;
+    }
+    @media (max-width:980px) and (min-width:768px){
+        font-size: 1rem;
+    }
+}
+
