@@ -17,8 +17,9 @@
 }
 
 .nav-item{
-    margin: 0 2vh 0 2vh;
+    margin: 1vh 2vh 0 2vh;
     text-align: center;
+    display: grid;
 }
 
 .nav-icon{
@@ -26,19 +27,24 @@
     font-size: 2rem;
 }
 
-.nav-link{
+.navElement{
+    padding-bottom: 1vh;
+    text-decoration: none;
     font-family: "Russo One", sans-serif !important;
     font-weight: 400;
     font-style: normal;
     font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.654);
 }
 
-.nav-item:hover{
+.navElement:hover{
     transition: all 0.1s ease;
+    color: white !important;
     border-bottom: 3px solid white;
 }
 
-.nav-link.active{
+.navElement.active{
+    color: white !important;
     border-bottom: 3px solid white;
 }
 
@@ -82,6 +88,7 @@
 }
 
 #matchDets{
+    text-decoration: none;
     color: black !important;
 }
 
