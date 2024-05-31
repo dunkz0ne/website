@@ -14,8 +14,33 @@
     -webkit-box-shadow: inset 0 0 15px #ffffff; /* White shadow */
     background-color: <%= @team.color %>; /* Team color */
 }
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 20px 0 6px <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;
+}
 </style>
 
+<script>
+  document.querySelectorAll('.statsTableTitle a').forEach(link => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      document.querySelectorAll('.statsTableTitle a').forEach(l => l.classList.remove('activeStatTitle'));
+
+      link.classList.add('activeStatTitle');
+
+      window.location.href = link.href;
+    });
+  });
+</script>
 
 <div id="playerStatsPage" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
     <div id="Navbar">
@@ -111,8 +136,7 @@
                                         </div>
                                         <div class="col colDataSet">
                                             <span class="dataSet"><%= ((Time.zone.now - @player_data[:birthdate].to_time) / 1.year.seconds).floor %></span>
-                                            <span> YRs</span>
-                                            <div class="dataSetSub">PLAYER AGE</div>
+                                            <div class="dataSetSub">AGE</div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -164,66 +188,21 @@
                             <div class="col-1" style="position: sticky; left: 0; background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
                                 <div class="statsTableTitle">Seasons</div>
                             </div>
-                            <div class="col">
-                                <div class="statsTableTitle">Team</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">GP</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">Min</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">PTS</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">FGM</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">FGA</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">FG%</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">3PM</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">3PA</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">3P%</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">FTM</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">FTA</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">FT%</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">OREB</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">DREB</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">REB</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">AST</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">STL</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">BLK</div>
-                            </div>
-                            <div class="col">
-                                <div class="statsTableTitle">TOV</div>
-                            </div>
+
+                            <% headers = {
+                                team_abbreviation: 'Team', gp: 'GP', min: 'Min',
+                                pts: 'PTS', fgm: 'FGM', fga: 'FGA', fg_pct: 'FG%', fg3m: '3PM', fg3a: '3PA',
+                                fg3_pct: '3P%', ftm: 'FTM', fta: 'FTA', ft_pct: 'FT%', oreb: 'OREB',
+                                dreb: 'DREB', reb: 'REB', ast: 'AST', stl: 'STL', blk: 'BLK', tov: 'TOV'
+                            } %>
+
+                            <% headers.each do |key, value| %>
+                                <div class="col">
+                                        <%= link_to value, player_path(@player, sort_by: key, order: @current_order == 'asc' ? 'desc' : 'asc'), class: (@current_sort_by == key.to_s ? 'activeStatTitle' : 'linkStatTitle'), style: "text-decoration: none;" %>
+                                    
+                                </div>
+                            <% end %>
+                            
                         </div>
                         <% @seasons.each do |season| %>
                         <div class="row" style="padding:0.5vh; text-align: center; display: flex; min-width: 1500px;">

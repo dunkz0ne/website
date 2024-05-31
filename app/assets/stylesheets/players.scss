@@ -81,6 +81,16 @@
 }
 
 .statsTableTitle{
+    cursor: pointer;
     font-size: 1.3rem;
     min-width: 100%;
+}
+
+.linkStatTitle{
+    color: white;
+    cursor: pointer;
+}
+
+.activeStatTitle{
+    color: yellow;
 }
