@@ -8,7 +8,8 @@ class SessionController < ApplicationController
       @current_user = user.id
       redirect_to root_path
     else
-      redirect_to new_user_path(id: auth.uid, name: auth.info.name, email: auth.info.email)
+      session["devise.facebook_data"] = request.env["omniauth.auth"]
+      redirect_to new_user_path
     end
   end
 

@@ -16,8 +16,7 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
-    @user = User.new(id: user_params[:id], name: user_params[:name], email: user_params[:email], team_id: user_params[:team_id])
-
+    @user = User.new(id: session["devise.facebook_data"]["uid"], name: session["devise.facebook_data"]["info"]["name"],email: session["devise.facebook_data"]["info"]["email"], team_id: user_params[:team_id])
     respond_to do |format|
       if @user.save
         format.html { redirect_to user_url(@user), notice: "User was successfully created." }
