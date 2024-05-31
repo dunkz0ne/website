@@ -93,7 +93,7 @@
             <div class="teamTitle">Roster</div>
         </div>
 
-        <div class="row">
+        <div class="row" style="justify-content: center;">
             <div class="cardList">
                 <% @roster.each do |player| %>
                     <%= link_to player_url(player[:id]), class: "playerLink" do %>
@@ -108,11 +108,11 @@
             </div>
         </div>
 
-        <div class="row ">
+        <div class="row">
             <div class="teamTitle">Hall of fame</div>
         </div>
 
-        <div class="row hofTeam">
+        <div class="row hofTeam" style="justify-content: center;">
             <div class="cardList">
                 <% @hof_players.each do |player| %>
                     <%= link_to player_url(player[:id]), class: "playerLink"  do %>
