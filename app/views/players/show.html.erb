@@ -42,6 +42,32 @@
   });
 </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const infoIcon = document.querySelector('.fa-circle-info');
+
+  if (infoIcon) {
+    infoIcon.addEventListener('click', () => {
+      const infoSectionContainer = document.querySelector('.infoSectionContainer');
+
+      if (infoSectionContainer) {
+        // Toggle the visibility of the .infoSectionContainer element
+        if (infoSectionContainer.style.display === 'none' || infoSectionContainer.style.display === '') {
+          infoSectionContainer.style.display = 'block';
+        } else {
+          infoSectionContainer.style.display = 'none';
+        }
+      } else {
+        console.error('.infoSectionContainer not found');
+      }
+    });
+  } else {
+    console.error('.fa-circle-info not found');
+  }
+});
+
+</script>
+
 <div id="playerStatsPage" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
     <div id="Navbar">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: <%= @team.color %>;">
@@ -176,9 +202,9 @@
         <div class="container statsContainer" style="background-color: <%= @team.color %>; min-width: 90%; overflow-x: auto;">
             <div class="row">
                 <div class="col" style="padding: 0;">
-                <div class="boxTitle" style="text-align: center; padding: 0vh 0 1vh 0">
-                    <span class="sectionTitle">Stats</span>
-                </div>
+                    <div class="boxTitle" style="text-align: center; padding: 0vh 0 1vh 0">
+                        <span class="sectionTitle">Stats</span>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -230,6 +256,107 @@
                         </div>
                         <% end %>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <i class="fa-solid fa-circle-info" style="font-size: 2rem; margin: 2vh 0 0 3vh; cursor:pointer;"></i>
+                </div>
+            </div>
+            <div class="row" style="margin: 3vh 0 0 3vh;">
+                <div class="col">
+                    <div class="container-fluid infoSectionContainer">
+                        <div class="row" >
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">GP:</span>
+                                    <span style="font-size: 0.8rem;">Games Played</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">Min:</span>
+                                    <span style="font-size: 0.8rem;">Minutes Played</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">PTS:</span>
+                                    <span style="font-size: 0.8rem;">Points</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">FGM:</span>
+                                    <span style="font-size: 0.8rem;">Field Goals Made</span>
+                                </div>                                                     
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">FGA:</span>
+                                    <span style="font-size: 0.8rem;">Field Goals Attempted</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">FG%:</span>
+                                    <span style="font-size: 0.8rem;">Field Goal Percentage</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">3PM:</span>
+                                    <span style="font-size: 0.8rem;">3-Point Field Goals Made</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">3PA:</span>
+                                    <span style="font-size: 0.8rem;">3-Point Field Goals Attempted</span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">3P%:</span>
+                                    <span style="font-size: 0.8rem;">3-Point Field Goal Percentage</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">FTM:</span>
+                                    <span style="font-size: 0.8rem;">Free Throws Made</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">FTA:</span>
+                                    <span style="font-size: 0.8rem;">Free Throws Attempted</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">FT%:</span>
+                                    <span style="font-size: 0.8rem;">Free Throw Percentage</span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">OREB:</span>
+                                    <span style="font-size: 0.8rem;">Offensive Rebounds</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">DREB:</span>
+                                    <span style="font-size: 0.8rem;">Defensive Rebounds</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">REB:</span>
+                                    <span style="font-size: 0.8rem;">Total Rebounds</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">AST:</span>
+                                    <span style="font-size: 0.8rem;">Assists</span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2" >
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">STL:</span>
+                                    <span style="font-size: 0.8rem;">Steals</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">BLK:</span>
+                                    <span style="font-size: 0.8rem;">Blocks</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">TOV:</span>
+                                    <span style="font-size: 0.8rem;">Turnovers</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
