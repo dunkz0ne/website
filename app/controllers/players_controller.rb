@@ -1,5 +1,9 @@
 class PlayersController < ApplicationController
   def show
+
+    @user = User.find(session[:user_id]) if session[:user_id]
+    @team = Team.where(id: @user.team_id).first if @user
+
     @player = params[:id]
 
     url = URI.parse("http://localhost:5001/api/players/#{@player}/profile")
@@ -14,6 +18,14 @@ class PlayersController < ApplicationController
 
     seasons_data = JSON.parse(response.body) # ["PLAYER_ID", "SEASON_ID", "LEAGUE_ID", "TEAM_ID", "TEAM_ABBREVIATION", "PLAYER_AGE", "GP", "GS", "MIN", "FGM", "FGA", "FG_PCT", "FG3M", "FG3A", "FG3_PCT", "FTM", "FTA", "FT_PCT", "OREB", "DREB", "REB", "AST", "STL", "BLK", "TOV", "PF", "PTS"]
     @seasons = seasons_data['resultSets'][0]['rowSet'].map { |player| {season_id: player[1], league_id: player[2], team_id: player[3], team_abbreviation: player[4], player_age: player[5], gp: player[6], gs: player[7], min: player[8], fgm: player[9], fga: player[10], fg_pct: player[11], fg3m: player[12], fg3a: player[13], fg3_pct: player[14], ftm: player[15], fta: player[16], ft_pct: player[17], oreb: player[18], dreb: player[19], reb: player[20], ast: player[21], stl: player[22], blk: player[23], tov: player[24], pf: player[25], pts: player[26]} }
+
+    if params[:sort_by]
+      @seasons = @seasons.sort_by { |season| season[params[:sort_by].to_sym] }
+      @seasons.reverse! if params[:order] == 'desc'
+    end
+
+    @current_sort_by = params[:sort_by]
+    @current_order = params[:order]
 
   end
 end

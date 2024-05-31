@@ -1,0 +1,101 @@
+#playerStats{
+    padding-bottom: 10vh;
+}
+
+.rowBreak{
+    @media (max-width:990px) {
+        flex-direction: column;
+    }
+}
+
+.playerSection{
+    border-radius: 20px;
+    border: 2px solid;
+    padding: 5vh;
+}
+
+.playerPic{
+    width: 23rem;
+    @media (max-width:640px) {
+        width: 15rem;
+        
+    }
+}
+
+.playerNameStats{
+    font-size: 3rem;
+
+    @media (max-width:640px) {
+        font-size: 2rem;
+    }
+}
+
+.playerPosition{
+    font-size: 1.25rem !important;
+}
+
+.genSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.flagCountry{
+    width: 5rem;
+}
+
+.colDataSet{
+    border: 2px solid;
+    padding: 2vh;
+    text-align: center;
+}
+
+.dataSet{
+    font-size: 1.25rem;
+    @media (max-width:600px) {
+        font-size: 1rem;
+    }
+}
+
+.statsContainer{
+    margin-top: 10vh;
+    border-radius: 20px;
+    border: 2px solid;
+    padding: 2vh 5vh 2vh 5vh;
+}
+
+.innerStatsContainer{
+    margin-top: 1vh;
+    border-radius: 20px;
+    border: 2px solid;
+    padding: 2vh 5vh 2vh 5vh;
+}
+
+.titleRow{
+    border-bottom: 2px solid;
+    margin-bottom: 2vh;
+}
+
+.statDataPoint{
+    font-size: 0.9rem;
+}
+
+.statsTableTitle{
+    cursor: pointer;
+    font-size: 1.3rem;
+    min-width: 100%;
+}
+
+.linkStatTitle{
+    color: white;
+    cursor: pointer;
+}
+
+.activeStatTitle{
+    color: yellow;
+}
+
+.infoSectionContainer {
+    display: none;
+    /* Hide the element by default */
+}
