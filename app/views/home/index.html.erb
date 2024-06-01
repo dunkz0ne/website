@@ -2,9 +2,12 @@
 
         <div class="col-sm">
           <%= form_tag('/auth/facebook', method: 'post') do %>
-            <button class="btn btn-primary" type="submit">Sign In</button>
-            <a class="btn btn-danger" style="color: white;" href="/session/destroy">Sign Out</a>
-          <% end %>    
+            <% if not session[:user_id].nil? %>
+              <a class="btn btn-danger" style="color: white;" href="/session/destroy">Sign Out</a>
+            <% else %>
+              <button class="btn btn-primary" type="submit">Login In with Facebook</button>
+            <% end %>
+          <% end %>
         </div>
 
 
