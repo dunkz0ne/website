@@ -11,10 +11,10 @@
     </div>
   <% end %>
 
-  <%= form.hidden_field :email, value: params[:email] %>
-  <%= form.hidden_field :id, value: params[:id] %>
-  <%= form.hidden_field :name, value: params[:name] %>
-
+  <%= form.hidden_field :email, value: session["devise.facebook_data"]["info"]["email"] %>
+  <%= form.hidden_field :id, value: session["devise.facebook_data"]["uid"]  %>
+  <%= form.hidden_field :name, value: session["devise.facebook_data"]["info"]["name"] %>
+  <%= form.hidden_field :password, value: Devise.friendly_token[0, 20] %>
 
   <div class="field">
     <%= form.label :team_id %>
@@ -22,6 +22,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Sign up"%>
   </div>
+
 <% end %>

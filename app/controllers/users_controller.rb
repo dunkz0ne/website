@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :configure_sign_up_params, only: [:create]
 
   #GET /users/1 or /users/1.json
   def show
@@ -16,7 +17,8 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
-    @user = User.new(id: session["devise.facebook_data"]["uid"], name: session["devise.facebook_data"]["info"]["name"],email: session["devise.facebook_data"]["info"]["email"], team_id: user_params[:team_id])
+    @user = User.new(id: session["devise.facebook_data"]["uid"], name: session["devise.facebook_data"]["info"]["name"],email: session["devise.facebook_data"]["info"]["email"], team_id: team_id)
+    #@user = User.new(id: id, name: name, email: email, password: password, team_id: team_id)
     respond_to do |format|
       if @user.save
         format.html { redirect_to user_url(@user), notice: "User was successfully created." }
@@ -59,6 +61,11 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:id ,:name, :email, :team_id)
+      params.require(:user).permit(:id ,:name, :email, :password, :team_id)
+    end
+
+    def configure_sign_up_params
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:team_id, :id, :email, :password])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:team_id])
     end
 end
