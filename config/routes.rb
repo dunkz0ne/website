@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users
   resources :teams
   resources :players
+  resources :matches
 
   get '/auth/facebook/callback' => 'session#create'
   get '/auth/failure' => 'session#fail'
