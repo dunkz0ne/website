@@ -79,5 +79,28 @@ class MatchesController < ApplicationController
   end
 
   def show
+    @match = params[:id]
+
+    url = URI.parse("http://localhost:5001/api/matches/#{@match}")
+    response = Net::HTTP.get_response(url)
+
+    match_data = JSON.parse(response.body)
+
+    match_summary = match_data['resultSets'][0]['rowSet'][0]
+    @match_summary = {game_date: match_summary[0], game_sequence: match_summary[1], game_id: match_summary[2], game_status_id: match_summary[3], game_status_text: match_summary[4], gamecode: match_summary[5], home_team_id: match_summary[6], visitor_team_id: match_summary[7], season: match_summary[8], live_period: match_summary[9], broadcaster: match_summary[11]}
+
+    match_officials = match_data['resultSets'][2]['rowSet'][0]
+    @match_officials = match_officials.map { |official| {first_name: official[1], last_name: official[2], jersey_number: official[3]} }
+
+    match_linescore = match_data['resultSets'][4]['rowSet'][0] # ["GAME_DATE_EST", "GAME_SEQUENCE", "GAME_ID", "TEAM_ID", "TEAM_ABBREVIATION", "TEAM_CITY_NAME", "TEAM_NICKNAME", "TEAM_WINS_LOSSES", "PTS_QTR1", "PTS_QTR2", "PTS_QTR3", "PTS_QTR4", "PTS_OT1", "PTS_OT2", "PTS_OT3", "PTS_OT4", "PTS_OT5", "PTS_OT6", "PTS_OT7", "PTS_OT8", "PTS_OT9", "PTS_OT10", "PTS"]
+    match_linescore = match_linescore.map { |team| {team_id: team[3], team_abbreviation: team[4], team_city_name: team[5], team_nickname: team[6], team_wins_losses: team[7], pts_qtr1: team[8], pts_qtr2: team[9], pts_qtr3: team[10], pts_qtr4: team[11], pts_ot1: team[12], pts_ot2: team[13], pts_ot3: team[14], pts_ot4: team[15], pts_ot5: team[16], pts_ot6: team[17], pts_ot7: team[18], pts_ot8: team[19], pts_ot9: team[20], pts_ot10: team[21], pts: team[22]} }
+
+    @match_linescore_home = match_linescore[0]
+    @match_linescore_away = match_linescore[1]
+
+
+    match_last_meeting = match_data['resultSets'][5]['rowSet'][0] # ["GAME_ID", "LAST_GAME_ID", "LAST_GAME_DATE_EST", "LAST_GAME_HOME_TEAM_ID", "LAST_GAME_HOME_TEAM_CITY", "LAST_GAME_HOME_TEAM_NAME", "LAST_GAME_HOME_TEAM_ABBREVIATION", "LAST_GAME_HOME_TEAM_POINTS", "LAST_GAME_VISITOR_TEAM_ID", "LAST_GAME_VISITOR_TEAM_CITY", "LAST_GAME_VISITOR_TEAM_NAME", "LAST_GAME_VISITOR_TEAM_CITY1", "LAST_GAME_VISITOR_TEAM_POINTS"]
+    @match_last_meeting = {game_id: match_last_meeting[0], last_game_id: match_last_meeting[1], last_game_date_est: match_last_meeting[2], last_game_home_team_id: match_last_meeting[3], last_game_home_team_city: match_last_meeting[4], last_game_home_team_name: match_last_meeting[5], last_game_home_team_abbreviation: match_last_meeting[6], last_game_home_team_points: match_last_meeting[7], last_game_visitor_team_id: match_last_meeting[8], last_game_visitor_team_city: match_last_meeting[9], last_game_visitor_team_name: match_last_meeting[10], last_game_visitor_team_city1: match_last_meeting[11], last_game_visitor_team_points: match_last_meeting[12]}
+
   end
 end
