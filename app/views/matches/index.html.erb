@@ -3,8 +3,10 @@
     <h2>Playoffs</h2>
     <% @playoffs_schedule.each do |game| %>
         <div style="text-align: center;">
-            <h3><img width="100px" src="https://cdn.nba.com/logos/nba/<%= game[:home_team].api %>/primary/L/logo.svg" /> <%= game[:home_team].name %> <%= game[:home_points] %> - <%= game[:away_points] %> <%= game[:away_team].name %> <img width="100px" src="https://cdn.nba.com/logos/nba/<%= game[:away_team].api %>/primary/L/logo.svg" /></h3>
-            <p style="text-align: center;"><%= game[:game_date] %></p>
+            <%= link_to match_path(id: game[:game_id]) do %>
+                <h3><img width="100px" src="https://cdn.nba.com/logos/nba/<%= game[:home_team].api %>/primary/L/logo.svg" /> <%= game[:home_team].name %> <%= game[:home_points] %> - <%= game[:away_points] %> <%= game[:away_team].name %> <img width="100px" src="https://cdn.nba.com/logos/nba/<%= game[:away_team].api %>/primary/L/logo.svg" /></h3>
+                <p style="text-align: center;"><%= game[:game_date] %></p>
+            <% end %>
         </div>
     <% end %>
 
