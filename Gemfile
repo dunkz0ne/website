@@ -62,5 +62,8 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# Features related to authentication
-gem "devise"
+# Use Redis for caching
+gem 'redis-rails'
+
+# Use Active Record session store
+gem 'activerecord-session_store'

@@ -1,27 +1,21 @@
 class SessionController < ApplicationController
   def create
-    # auth = request.env['omniauth.auth']
-    # user = User.from_omniauth(auth)
-    # if not user.nil?
-    #   session[:user_id] = user.id
-    #   flash[:notice] = 'Logged in!'
-    #   @current_user = user.id
-    #   redirect_to root_path
-    # else
-    #   session["devise.facebook_data"] = request.env["omniauth.auth"]
-    #   redirect_to new_user_path
-    # end
+    auth = request.env['omniauth.auth']
 
-    @user = User.from_omniauth(request.env["omniauth.auth"])
-
-    if @user.persisted?
-      sign_in_and_redirect @user, event: :authentication
-      flash[:notice] = 'Logged in!'
+    # Check if a user exists with the given omniauth data
+    if User.exists_with_omniauth?(auth)
+      user = User.find_by(provider: auth.provider, id: auth.uid)
+      session[:user_id] = user.id
+      redirect_to root_path, notice: 'Logged in!'
     else
-      session["devise.facebook_data"] = request.env["omniauth.auth"]
+      session[:auth_info] = {
+        provider: auth.provider,
+        uid: auth.uid,
+        name: auth.info.name,
+        email: auth.info.email
+      }
       redirect_to new_user_path
     end
-
   end
 
   def destroy
