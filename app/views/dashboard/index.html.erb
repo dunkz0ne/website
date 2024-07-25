@@ -81,22 +81,21 @@
                                     </div>
                                     <div class="row" style="align-items: center;">
                                         <div class="col">
-                                            <img class="logoTeam" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
-                                            <div class="teamName"><%= @team.name %></div>
+                                            <img class="logoTeam" src="https://cdn.nba.com/logos/nba/<%= @matches_schedule[0][:home_team].api %>/primary/L/logo.svg" />
+                                            <div class="teamName"><%= @matches_schedule[0][:home_team].name %></div>
                                         </div>
                                         <div class="col">
                                             <div class="matchInfo">
-                                                <div class="matchTime">19:30</div>
-                                                <div class="matchDate">TODAY</div>
-                                                <div class="timeLeftMatch">04:23:12</div>
+                                                <div class="matchDateTime"><%= @matches_schedule[0][:game_date] %></div>
+                                                <div class="matchPoints"><%= @matches_schedule[0][:home_points] %> - <%= @matches_schedule[0][:away_points] %></div>
                                                 <div class="matchDetails">
-                                                    <%= active_link_to 'Details', '/matchDetails', active: :exclusive, class: 'matchDetails', id:'matchDets' %>                
+                                                    <%= link_to 'Details', match_path(id: @matches_schedule[0][:game_id]), active: :exclusive, class: 'matchDetails', id:'matchDets' %>                
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <img class="logoTeam" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
-                                            <div class="teamName"><%= @team.name %></div>
+                                            <img class="logoTeam" src="https://cdn.nba.com/logos/nba/<%= @matches_schedule[0][:away_team].api %>/primary/L/logo.svg" />
+                                            <div class="teamName"><%= @matches_schedule[0][:away_team].name %></div>
                                         </div>
                                     </div>
                                 </div>
