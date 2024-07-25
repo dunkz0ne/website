@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'home#index'
-  get '/dashboard/' => 'dashboard#index'
+  get '/user/dashboard/' => 'dashboard#index'
 
   resources :users
   resources :teams

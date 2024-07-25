@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to root_path, notice: "User was successfully created." }
+        format.html { redirect_to user_dashboard_path, notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     @user = User.find_by(provider: session[:auth_info][:provider], id: session[:auth_info][:uid  ])
     respond_to do |format|
       if @user.update(team_id: user_params[:team_id])
-        format.html { redirect_to root_path, notice: "User was successfully updated." }
+        format.html { redirect_to user_dashboard_path, notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }

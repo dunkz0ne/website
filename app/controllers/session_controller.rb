@@ -8,7 +8,7 @@ class SessionController < ApplicationController
       session[:user_id] = user.id
       flash[:notice] = 'Logged in!'
       @current_user = user.id
-      redirect_to dashboard_path
+      redirect_to user_dashboard_path
     else
       session[:user_id] = auth.uid
       session[:auth_info] = {
