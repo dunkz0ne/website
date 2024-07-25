@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :teams
   resources :players
   resources :matches
+  resources :league
 
   get '/auth/facebook/callback' => 'session#create'
   get '/auth/failure' => 'session#fail'
