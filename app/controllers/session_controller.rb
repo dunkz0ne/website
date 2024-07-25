@@ -9,6 +9,7 @@ class SessionController < ApplicationController
       flash[:notice] = 'Logged in!'
       redirect_to root_path
     else
+      session[:user_id] = auth.uid
       session[:auth_info] = {
         provider: auth.provider,
         uid: auth.uid,
@@ -21,6 +22,7 @@ class SessionController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    session[:auth_info] = nil
     flash[:notice] = 'Logged out!'
     redirect_to root_path
   end
