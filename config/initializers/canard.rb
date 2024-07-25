@@ -2,7 +2,7 @@
 Canard::Abilities.for(:journalist) do
   can :create, Article
   can [:update, :destroy], Article do |article, user|
-    article.user_id == user.id
+    article.journalist_id == user.id
   end
 end
 
