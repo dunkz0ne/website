@@ -88,9 +88,11 @@
                                             <div class="matchInfo">
                                                 <div class="matchDateTime"><%= @matches_schedule[0][:game_date] %></div>
                                                 <div class="matchPoints"><%= @matches_schedule[0][:home_points] %> - <%= @matches_schedule[0][:away_points] %></div>
-                                                <div class="matchDetails">
-                                                    <%= link_to 'Details', match_path(id: @matches_schedule[0][:game_id]), active: :exclusive, class: 'matchDetails', id:'matchDets' %>                
+                                                <%= link_to  match_path(id: @matches_schedule[0][:game_id]) do %>
+                                                <div class="matchDetails" id="matchDets">
+                                                    Details               
                                                 </div>
+                                                <% end %>
                                             </div>
                                         </div>
                                         <div class="col">
@@ -102,36 +104,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-5">
                         <div class="col" style="justify-content: center; display:flex;">
-                            <div class="merchSection" style="background-color: <%= @team.color %>;">
-                                <div class="container-fluid" style="padding: 0;">
-                                    <div class="row" style="align-items: center;">
-                                        <div class="col">
-                                            <%= image_tag('shirt.png', id: 'imageTeam') %>
-                                        </div>
-                                        <div class="col">
-                                            <div class="matchInfo">
-                                                <div class="matchTime">Chicago Bulls Icon Edition 2022/2023</div>
-                                                <div class="matchDetails">
-                                                    <%= active_link_to 'Details', '/matchDetails', active: :exclusive, class: 'matchDetails', id:'matchDets' %>                
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <i class="merchShop fa-solid fa-cart-shopping"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                
-            </div>
-            <div class="col" style="justify-content: center; display:flex; align-items:center;">
-                <div class="articleSection" style="background-color: <%= @team.color %>;">
+                            <div class="articleSection" style="background-color: <%= @team.color %>;">
                     <div class="container-fluid" style="padding: 0;">
                         <div class="row">
                             <div class="col">
@@ -201,83 +176,60 @@
                         </div>
                     </div>
                 </div>
+                        </div>
+                    </div>
+
+                </div>
+                
             </div>
-        </div>
-        <div class="row infoContainerMatchesRow">
-            <div class="col" style="justify-content: center; display:flex;">
-                <div class="pastMatches" style="background-color: <%= @team.color %>;">
-                    <div class="container-fluid" style="padding: 0;">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="boxTitle">
-                                    <i class="sectionTitle fa-solid fa-calendar-days"></i>
-                                    <span class="sectionTitle">Past Matches</span>
-                                    <i class="sectionTitle fa-solid fa-calendar-days"></i>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div id="highlightsTitle" class="boxTitle">
-                                    <i class="sectionTitle nav-icon fa-solid fa-basketball"></i>
-                                    <span class="sectionTitle">Highlights</span>
-                                    <i class="sectionTitle nav-icon fa-solid fa-basketball"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="align-items: center;">
-                            <div class="col" style="margin: 4vh;">
-                                <div class="container pastMatchContainer" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
-                                    <div id="rowBreak" class="row" style="align-items: center;">
-                                        <div class="col-md-2 col-sm-4 col-3 firstTeam">
-                                            <img class="logoTeamPast" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
-                                        </div>
-                                        <div class="col-md-2 col-sm-4 col-6" style="text-align: center;">
-                                            <div class="matchScore">
-                                                <div class="matchPoints">110:106</div>
-                                                <div class="matchDate">19/04/2024</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2 col-sm-4 col-3 secondTeam">
-                                            <img class="logoTeamPast" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
-                                        </div>
-                                        <div class="col-md-3 col-sm-12 col-12 highlightsImage">
-                                                <%= image_tag('news.png', class: 'imageHighlights') %>
-                                        </div>
-                                        <div class="col-md-3 col-sm-12 col-12 highlightsText" style="align-content: center; text-align:left;">
-                                            <div class="highlightsTitle">Chicago Bulls - LA Lakers Highlights</div>
+            <div class="col" style="justify-content: center; display:flex; align-items:center;">
+                <div class="row infoContainerMatchesRow">
+                    <div class="col" style="justify-content: center; display:flex;">
+                        <div class="pastMatches" style="background-color: <%= @team.color %>;">
+                            <div class="container-fluid" style="padding: 0;">
+                                <div class="row">
+                                    <div class="">
+                                        <div class="boxTitle">
+                                            <i class="sectionTitle fa-solid fa-calendar-days"></i>
+                                            <span class="sectionTitle">Past Matches</span>
+                                            <i class="sectionTitle fa-solid fa-calendar-days"></i>
                                         </div>
                                     </div>
+                                    
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row" style="align-items: center;">
-                            <div class="col" style="margin: 4vh;">
-                                <div class="container pastMatchContainer" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
-                                    <div id="rowBreak" class="row" style="align-items: center;">
-                                        <div class="col-md-2 col-sm-4 col-3 firstTeam">
-                                            <img class="logoTeamPast" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
-                                        </div>
-                                        <div class="col-md-2 col-sm-4 col-6" style="text-align: center;">
-                                            <div class="matchScore">
-                                                <div class="matchPoints">110:106</div>
-                                                <div class="matchDate">19/04/2024</div>
+                                <% @matches_schedule[1..2].each do |match|  %>
+                                    <div class="row" style="align-items: center;">
+                                        <div class="col" style="margin: 4vh;">
+                                            <div class="container pastMatchContainer" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
+                                                <%= link_to match_path(id: match[:game_id]) do %>
+                                                <div class="matchDate"><%= match[:game_date] %></div>
+                                                <div id="rowBreak" class="row" style="align-items: center;">
+                                                    <div class="col firstTeam">
+                                                        <img class="logoTeamPast" src="https://cdn.nba.com/logos/nba/<%= match[:home_team].api %>/primary/L/logo.svg" />
+                                                    </div>
+                                                    <div class="col" style="text-align: center;">
+                                                        <div class="matchScore">
+                                                            <div class="matchPoints"><%= match[:home_points] %>:<%= match[:away_points] %></div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <img class="logoTeamPast" src="https://cdn.nba.com/logos/nba/<%= match[:away_team].api %>/primary/L/logo.svg" />
+                                                    </div>
+                                                    
+                                                </div>
+                                            <% end %>
                                             </div>
                                         </div>
-                                        <div class="col-md-2 col-sm-4 col-3 secondTeam">
-                                            <img class="logoTeamPast" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
-                                        </div>
-                                        <div class="col-md-3 col-sm-12 col-12 highlightsImage">
-                                                <%= image_tag('news.png', class: 'imageHighlights') %>
-                                        </div>
-                                        <div class="col-md-3 col-sm-12 col-12 highlightsText" style="align-content: center; text-align:left;">
-                                            <div class="highlightsTitle">Chicago Bulls - LA Lakers Highlights</div>
-                                        </div>
                                     </div>
-                                </div>
+                                <% end %>
                             </div>
                         </div>
                     </div>
                 </div>
+                        
             </div>
         </div>
+       
     </div>
 </div>
