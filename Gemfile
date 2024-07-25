@@ -22,11 +22,15 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'color'
+gem 'color' # For colorizing cards
+
+gem 'active_link_to' # For active links
 
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 gem 'figaro'
+
+gem 'countries'
 
 
 # Use Active Storage variant

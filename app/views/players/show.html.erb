@@ -1,34 +1,370 @@
+<style>
+.innerStatsContainer::-webkit-scrollbar {
+    width: 10px; /* Increase the width of the scrollbar */
+}
 
-<div>
-    <img style="width: 9rem;" src="https://cdn.nba.com/headshots/nba/latest/1040x760/<%= @player %>.png" onerror="this.src='https://cdn.nba.com/headshots/nba/latest/1040x760/fallback.png';"/>
-    <%= @player_data[:display_first_last] %>
+.innerStatsContainer::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+    border-radius: 10px;
+    background-color: transparent; /* Make the track transparent */
+}
+
+.innerStatsContainer::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    -webkit-box-shadow: inset 0 0 15px #ffffff; /* White shadow */
+    background-color: <%= @team.color %>; /* Team color */
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 20px 0 6px <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;
+}
+</style>
+
+<script>
+  document.querySelectorAll('.statsTableTitle a').forEach(link => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      document.querySelectorAll('.statsTableTitle a').forEach(l => l.classList.remove('activeStatTitle'));
+
+      link.classList.add('activeStatTitle');
+
+      window.location.href = link.href;
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const infoIcon = document.querySelector('.fa-circle-info');
+
+  if (infoIcon) {
+    infoIcon.addEventListener('click', () => {
+      const infoSectionContainer = document.querySelector('.infoSectionContainer');
+
+      if (infoSectionContainer) {
+        // Toggle the visibility of the .infoSectionContainer element
+        if (infoSectionContainer.style.display === 'none' || infoSectionContainer.style.display === '') {
+          infoSectionContainer.style.display = 'block';
+        } else {
+          infoSectionContainer.style.display = 'none';
+        }
+      } else {
+        console.error('.infoSectionContainer not found');
+      }
+    });
+  } else {
+    console.error('.fa-circle-info not found');
+  }
+});
+
+</script>
+
+<div id="playerStatsPage" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
+    <div id="Navbar">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: <%= @team.color %>;">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav navItems">
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-people-group"></i>
+                        <%= active_link_to 'Team', "/teams/#{@team.id}", active: :exclusive, class: 'navElement' %>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-basketball"></i>
+                        <%= active_link_to 'Matches', '/matches', active: :exclusive, class: 'navElement' %>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-newspaper"></i>
+                        <%= active_link_to 'News', '/news', active: :exclusive, class: 'navElement' %>                
+                    </li>
+
+                    <li>
+                        <%= active_link_to(dashboard_path) do %>
+                        <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
+                        <% end %>                
+                    </li>
+
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-trophy"></i>
+                        <%= active_link_to 'League', '/league', active: :exclusive, class: 'navElement' %>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-cart-shopping"></i>
+                        <%= active_link_to 'Shop', '/shop', active: :exclusive, class: 'navElement' %>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <%= active_link_to 'Profile', '/profile', active: :exclusive, class: 'navElement' %>  
+                    </li>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+    <div id="playerStats">
+        <div class="container playerSection" style="background-color: <%= @team.color %>;">
+            <div class="row">
+                <div class="col">
+                    <div class="container-fluid">
+                        <div class="row rowBreak" style="align-items: center;">
+                            <div class="col" style="text-align: center;">
+                                <div>
+                                    <img class="playerPic" src="https://cdn.nba.com/headshots/nba/latest/1040x760/<%= @player %>.png" onerror="this.src='https://cdn.nba.com/headshots/nba/latest/1040x760/fallback.png';"/>
+                                </div>
+                            </div>
+                            <div class="col" style="display: flex;">
+                                <div class="container genSection">
+                                    <div class="row" style="margin-bottom: 4vh;">
+                                        <div class="col" style="padding: 0;">
+                                            <div class="playerNameStats">
+                                                <%= @player_data[:display_first_last] %>
+                                            </div>
+                                            <div class="playerPosition">
+                                                <%= @player_data[:team_name]%> |
+                                                #<%= @player_data[:jersey]%> |
+                                                <%= @player_data[:position]%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="align-items:center;">
+                                        <div class="col colDataSet" >
+                                            <% country = ISO3166::Country.find_country_by_any_name(@player_data[:country]) %>
+                                            <% flag_emoji = country.emoji_flag %>
+                                            <div class="dataSet"><%= flag_emoji %></div>
+                                            <div><%= @player_data[:country] %></div>
+                                        </div>
+                                        <div class="col colDataSet">
+                                            <span class="dataSet"><%= @player_data[:height].gsub('-', "'") + '"' %></span>
+                                            <span> FT</span>
+                                            <div class="dataSetSub">HEIGHT</div>
+                                        </div>
+                                        <div class="col colDataSet">
+                                            <span class="dataSet"><%= @player_data[:weight]%></span>
+                                            <span> LBs</span>
+                                            <div class="dataSetSub">WEIGHT</div>
+                                        </div>
+                                        <div class="col colDataSet">
+                                            <span class="dataSet"><%= ((Time.zone.now - @player_data[:birthdate].to_time) / 1.year.seconds).floor %></span>
+                                            <div class="dataSetSub">AGE</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col colDataSet">
+                                            <span class="dataSet"><%= @player_data[:season_exp]%></span>
+                                            <span> YRs</span>
+                                            <div class="dataSetSub">EXPERIENCE</div>
+                                        </div>
+                                        <div class="col colDataSet">
+                                            <span class="dataSet"><%= @player_data[:birthdate].to_date%></span>
+                                            <div class="dataSetSub">BIRTHDATE</div>
+                                        </div>
+                                        <div class="col colDataSet">
+                                            <% if @player_data[:draft_year] == "Undrafted" %>
+                                            <span class="dataSet">Undrafted</span>
+                                            <% else %>
+                                            <span class="dataSet"><%= @player_data[:draft_year] %></span>
+                                            <span class="dataSet">R<%= @player_data[:draft_round] %></span>
+                                            <span class="dataSet">P<%= @player_data[:draft_number] %></span>
+                                            <% end %>
+                                            <div class="dataSetSub">DRAFT</div>
+                                        </div>
+                                        <div class="col colDataSet">
+                                            <span class="dataSet"><%= @player_data[:school]%></span>
+                                            <div class="dataSetSub">ATTENDED</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container statsContainer" style="background-color: <%= @team.color %>; min-width: 90%; overflow-x: auto;">
+            <div class="row">
+                <div class="col" style="padding: 0;">
+                    <div class="boxTitle" style="text-align: center; padding: 0vh 0 1vh 0">
+                        <span class="sectionTitle">Stats</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" style="padding: 1vh 3vh 1vh 3vh;">
+                    <div class="container innerStatsContainer" style="text-align:center; padding: 1vh 1.5vh 1vh 0vh; background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>; min-width: 100%; overflow-x: auto; white-space: nowrap;">
+                        <div class="row titleRow" style="display: flex; min-width: 1500px;">
+                            <div class="col-1" style="position: sticky; left: 0; background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
+                                <div class="statsTableTitle">Seasons</div>
+                            </div>
+
+                            <% headers = {
+                                team_abbreviation: 'Team', gp: 'GP', min: 'Min',
+                                pts: 'PTS', fgm: 'FGM', fga: 'FGA', fg_pct: 'FG%', fg3m: '3PM', fg3a: '3PA',
+                                fg3_pct: '3P%', ftm: 'FTM', fta: 'FTA', ft_pct: 'FT%', oreb: 'OREB',
+                                dreb: 'DREB', reb: 'REB', ast: 'AST', stl: 'STL', blk: 'BLK', tov: 'TOV'
+                            } %>
+
+                            <% headers.each do |key, value| %>
+                                <div class="col">
+                                        <%= link_to value, player_path(@player, sort_by: key, order: @current_order == 'asc' ? 'desc' : 'asc'), class: (@current_sort_by == key.to_s ? 'activeStatTitle' : 'linkStatTitle'), style: "text-decoration: none;" %>
+                                    
+                                </div>
+                            <% end %>
+                            
+                        </div>
+                        <% @seasons.each do |season| %>
+                        <div class="row" style="padding:0.5vh; text-align: center; display: flex; min-width: 1500px;">
+                            <div class="col-1" style="position: sticky; left: 0; background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;"><span><%= season[:season_id] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:team_abbreviation] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:gp] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:min] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:pts] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:fgm] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:fga] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:fg_pct] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:fg3m] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:fg3a] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:fg3_pct] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:ftm] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:fta] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:ft_pct] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:oreb] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:dreb] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:reb] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:ast] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:stl] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:blk] %></span></div>
+                            <div class="col statDataPointCol"><span class="statDataPoint"><%= season[:tov] %></span></div>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <i class="fa-solid fa-circle-info" style="font-size: 2rem; margin: 2vh 0 0 3vh; cursor:pointer;"></i>
+                </div>
+            </div>
+            <div class="row" style="margin: 3vh 0 0 3vh;">
+                <div class="col">
+                    <div class="container-fluid infoSectionContainer">
+                        <div class="row" >
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">GP:</span>
+                                    <span style="font-size: 0.8rem;">Games Played</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">Min:</span>
+                                    <span style="font-size: 0.8rem;">Minutes Played</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">PTS:</span>
+                                    <span style="font-size: 0.8rem;">Points</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">FGM:</span>
+                                    <span style="font-size: 0.8rem;">Field Goals Made</span>
+                                </div>                                                     
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">FGA:</span>
+                                    <span style="font-size: 0.8rem;">Field Goals Attempted</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">FG%:</span>
+                                    <span style="font-size: 0.8rem;">Field Goal Percentage</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">3PM:</span>
+                                    <span style="font-size: 0.8rem;">3-Point Field Goals Made</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">3PA:</span>
+                                    <span style="font-size: 0.8rem;">3-Point Field Goals Attempted</span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">3P%:</span>
+                                    <span style="font-size: 0.8rem;">3-Point Field Goal Percentage</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">FTM:</span>
+                                    <span style="font-size: 0.8rem;">Free Throws Made</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">FTA:</span>
+                                    <span style="font-size: 0.8rem;">Free Throws Attempted</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">FT%:</span>
+                                    <span style="font-size: 0.8rem;">Free Throw Percentage</span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">OREB:</span>
+                                    <span style="font-size: 0.8rem;">Offensive Rebounds</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">DREB:</span>
+                                    <span style="font-size: 0.8rem;">Defensive Rebounds</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">REB:</span>
+                                    <span style="font-size: 0.8rem;">Total Rebounds</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">AST:</span>
+                                    <span style="font-size: 0.8rem;">Assists</span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2" >
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">STL:</span>
+                                    <span style="font-size: 0.8rem;">Steals</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">BLK:</span>
+                                    <span style="font-size: 0.8rem;">Blocks</span>
+                                </div>
+                                <div class="infoText">
+                                    <span style="font-size: 1rem;">TOV:</span>
+                                    <span style="font-size: 0.8rem;">Turnovers</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </div>
 
-<% @seasons.each do  |season| %>
-<div>
-    <%= season[:season_id] %> |
-    <%= season[:team_abbreviation] %> |
-    <%= season[:player_age] %> |
-    <%= season[:gp] %> |
-    <%= season[:gs] %> |
-    <%= season[:min] %> |
-    <%= season[:fgm] %> |
-    <%= season[:fga] %> |
-    <%= season[:fg_pct] %> |
-    <%= season[:fg3m] %> |
-    <%= season[:fg3a] %> |
-    <%= season[:fg3_pct] %> |
-    <%= season[:ftm] %> |
-    <%= season[:fta] %> |
-    <%= season[:ft_pct] %> |
-    <%= season[:oreb] %> |
-    <%= season[:dreb] %> |
-    <%= season[:reb] %> |
-    <%= season[:ast] %> |
-    <%= season[:stl] %> |
-    <%= season[:blk] %> |
-    <%= season[:tov] %> |
-    <%= season[:pf] %> |
-    <%= season[:pts] %>
-</div>
-<% end %>
+
+
