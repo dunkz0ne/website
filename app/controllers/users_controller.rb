@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   #GET /users/1 or /users/1.json
   def show
-    @user = User.find_by(provider: session[:auth_info][:provider], id: session[:auth_info][:uid  ])
+    @user
   end
 
   def new
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find_by(provider: session[:auth_info][:provider], id: session[:auth_info][:uid  ])
+    @user
   end
 
   # POST /users or /users.json

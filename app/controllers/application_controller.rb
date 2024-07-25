@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
 
     protected
     def current_user
-      @current_user = User.find(session[:user_id]) if session[:user_id]
-      if @current_user.nil?
+      @user = User.find_by(id: session[:user_id])
+      if @user.nil?
         redirect_to root_path
       end
     end
