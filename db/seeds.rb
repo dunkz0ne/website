@@ -39,4 +39,10 @@ teams.each do |team|
     Team.create(name: team[:name], color: team[:color], api: team[:api])
 end
 
-User.create(name: "Gieri", email: "gieri@gmail.com", team_id: 14)
+user1 = User.create(name: "Cristian Apo", email: "ciao@gmail.com", team_id: 5, provider: "facebook")
+user1.type = "Journalist"
+
+user2 = Journalist.create(name: "Cristian Apo", email: "ciaooo@gmai.com", team_id: 5, provider: "facebook")
+
+# Create articles
+Article.create(title: 'Breaking News: Local Team Wins!', content: 'In an unexpected turn of events, the Red Dragons have won the championship!', journalist_id: user1.id)

@@ -14,7 +14,7 @@
 </style>
 
 
-<section id="TeamSection" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %> ;">    
+<section id="TeamSection" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %> ;">
     <div id="Navbar">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: <%= @team.color %>;">
             <div class="container-fluid">
@@ -33,13 +33,13 @@
                     </li>
                     <li class="nav-item">
                         <i class="nav-icon fa-solid fa-newspaper"></i>
-                        <%= active_link_to 'News', '/news', active: :exclusive, class: 'navElement' %>                
+                        <%= active_link_to 'News', '/news', active: :exclusive, class: 'navElement' %>
                     </li>
 
                     <li>
-                        <%= active_link_to(dashboard_path) do %>
+                        <%= active_link_to(user_dashboard_path) do %>
                         <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
-                        <% end %>                
+                        <% end %>
                     </li>
 
                     <li class="nav-item">
@@ -54,7 +54,7 @@
                     </li>
                     <li class="nav-item">
                         <i class="nav-icon fa-solid fa-user"></i>
-                        <%= active_link_to 'Profile', '/profile', active: :exclusive, class: 'navElement' %>  
+                        <%= active_link_to 'Profile', '/profile', active: :exclusive, class: 'navElement' %>
                     </li>
                     </li>
                 </ul>
@@ -127,10 +127,7 @@
             </div>
         </div>
 
-
-
-        <%= link_to 'Edit', edit_team_path(@team) %> |
-        <%= link_to 'Back', teams_path %>
+        <%= link_to 'Back', user_dashboard_path %>
     </div>
 
 </section>

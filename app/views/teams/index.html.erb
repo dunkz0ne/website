@@ -21,9 +21,8 @@
         <td><%= team.color %></td>
         <td><%= team.api %></td>
         <td><%= link_to 'Show', team %></td>
-        <td><%= link_to 'Edit', edit_team_path(team) %></td>
-        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
+  <%= link_to 'Back', user_dashboard_path %>
 </table>
