@@ -88,7 +88,7 @@
                                             <div class="matchInfo">
                                                 <div class="matchDateTime"><%= @matches_schedule[0][:game_date] %></div>
                                                 <div class="matchPoints"><%= @matches_schedule[0][:home_points] %> - <%= @matches_schedule[0][:away_points] %></div>
-                                                <%= link_to  match_path(id: @matches_schedule[0][:game_id]) do %>
+                                                <%= link_to  match_path(id: @matches_schedule[0][:game_id]), class: "matchLink" do %>
                                                 <div class="matchDetails" id="matchDets">
                                                     Details               
                                                 </div>
@@ -201,7 +201,7 @@
                                     <div class="row" style="align-items: center;">
                                         <div class="col" style="margin: 4vh;">
                                             <div class="container pastMatchContainer" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
-                                                <%= link_to match_path(id: match[:game_id]) do %>
+                                                <%= link_to match_path(id: match[:game_id]), class: "matchLink" do %>
                                                 <div class="matchDate"><%= match[:game_date] %></div>
                                                 <div id="rowBreak" class="row" style="align-items: center;">
                                                     <div class="col firstTeam">

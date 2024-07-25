@@ -20,25 +20,6 @@ body {
     font-style: normal;
 }
 
-a, a:link, a:visited, a:hover, a:active, a:focus {
-    color: inherit !important;        // Eredita il colore del testo del genitore, con !important per garantire l'applicazione
-    text-decoration: none !important; // Rimuove qualsiasi decorazione del testo, come underline
-    font-weight: normal !important;   // Ripristina il peso del font
-    font-style: normal !important;    // Ripristina lo stile del font
-    font-size: inherit !important;    // Eredita la dimensione del font dal genitore
-    line-height: inherit !important;  // Eredita l'altezza della linea dal genitore
-    background: none !important;      // Rimuove qualsiasi sfondo
-    border: none !important;          // Rimuove qualsiasi bordo
-    padding: 0 !important;            // Rimuove qualsiasi padding
-    margin: 0 !important;             // Rimuove qualsiasi margine
-    outline: none !important;         // Rimuove l'outline
-    cursor: pointer !important;       // Assicura che il cursore rimanga una mano su hover
-    transition: none !important;      // Rimuove qualsiasi transizione
-  }
-  
-  a::before, a::after {
-    content: '' !important;           // Rimuove qualsiasi contenuto aggiunto tramite pseudo-elementi
-    display: none !important;         // Nasconde pseudo-elementi aggiuntivi
-  }
+
   
   

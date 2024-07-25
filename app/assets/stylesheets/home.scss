@@ -219,3 +219,23 @@
     }
 }
 
+.matchLink, .matchLink:link, .matchLink:visited, .matchLink:hover, .matchLink:active, .matchLink:focus {
+    color: inherit !important;
+    text-decoration: none !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    outline: none !important;
+    cursor: pointer !important;
+    transition: none !important;
+}
+
+.matchLink::before, .matchLink::after {
+    content: '' !important;
+    display: none !important;
+}
