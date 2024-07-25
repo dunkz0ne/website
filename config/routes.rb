@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  root 'home#index'
-  get '/user/dashboard/' => 'dashboard#index'
-
   resources :users
   resources :teams
   resources :players
   resources :matches
+
+  root 'home#index'
+  get '/user/dashboard/' => 'dashboard#index'
 
   get '/auth/facebook/callback' => 'session#create'
   get '/auth/failure' => 'session#fail'
