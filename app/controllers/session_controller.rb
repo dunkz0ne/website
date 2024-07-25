@@ -6,7 +6,8 @@ class SessionController < ApplicationController
     if User.exists_with_omniauth?(auth)
       user = User.find_by(provider: auth.provider, id: auth.uid)
       session[:user_id] = user.id
-      redirect_to root_path, notice: 'Logged in!'
+      flash[:notice] = 'Logged in!'
+      redirect_to root_path
     else
       session[:auth_info] = {
         provider: auth.provider,
