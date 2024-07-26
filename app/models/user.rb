@@ -4,6 +4,7 @@ class User < ApplicationRecord
   validate :team_must_exist
 
   has_one :team
+  has_one_attached :photo
 
   # Check if a user exists with the given omniauth data
   def self.exists_with_omniauth?(auth_info)
@@ -11,13 +12,15 @@ class User < ApplicationRecord
   end
 
   # Find or create a user with the given omniauth data
-  def self.find_or_create_from_omniauth(auth_info, team_id)
+  def self.find_or_create_from_omniauth(auth_info, team_id, bio, photo)
     where(id: auth_info[:uid]).first_or_create do |user|
         user.provider = auth_info[:provider]
         user.id = auth_info[:uid]
         user.name = auth_info[:name]
         user.email = auth_info[:email]
         user.team_id = team_id
+        user.bio = bio
+        user.photo.attach(photo)
         user.save!
     end
   end

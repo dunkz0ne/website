@@ -3,7 +3,9 @@ class UsersController < ApplicationController
 
   #GET /users/1 or /users/1.json
   def show
-    @user = User.find_by(provider: session[:auth_info][:provider], id: session[:auth_info][:uid  ])
+    @user = params[:id].blank? ? User.find_by(id: session[:user_id]) : User.find(params[:id])
+    @team = Team.find(@user.team_id)
+    # @user = User.find_by(provider: session[:auth_info][:provider], id: session[:auth_info][:uid])
   end
 
   def new
@@ -23,6 +25,8 @@ class UsersController < ApplicationController
 
     # Recupera il team selezionato
     team_id = user_params[:team_id]
+    bio = user_params[:bio]
+    photo = user_params[:photo]
 
     if team_id.blank?
       redirect_to new_user_path, alert: 'You must select a team.'
@@ -30,7 +34,7 @@ class UsersController < ApplicationController
     end
 
     # Crea l'utente con le informazioni di autenticazione e il team selezionato
-    @user = User.find_or_create_from_omniauth(auth_info, team_id)
+    @user = User.find_or_create_from_omniauth(auth_info, team_id, bio, photo)
 
     respond_to do |format|
       if @user.save
@@ -78,6 +82,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:team_id)
+      params.require(:user).permit(:team_id, :bio, :photo)
     end
 end

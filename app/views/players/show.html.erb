@@ -108,7 +108,7 @@
                     </li>
                     <li class="nav-item">
                         <i class="nav-icon fa-solid fa-user"></i>
-                        <%= active_link_to 'Profile', '/profile', active: :exclusive, class: 'navElement' %>  
+                        <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>  
                     </li>
                     </li>
                 </ul>
