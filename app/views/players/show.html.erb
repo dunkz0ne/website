@@ -103,7 +103,7 @@
                     </li>
                     <li class="nav-item">
                         <i class="nav-icon fa-solid fa-cart-shopping"></i>
-                        <%= active_link_to 'Shop', '/shop', active: :exclusive, class: 'navElement' %>
+                        <%= active_link_to 'Shop', "https://www.nbastore.eu/en/#{@team.name.downcase.gsub(' ', '-')}", active: :exclusive, class: 'navElement' %>
                     </li>
                     </li>
                     <li class="nav-item">
