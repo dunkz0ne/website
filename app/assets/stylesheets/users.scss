@@ -1,3 +1,62 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+#profilePage{
+    padding-bottom: 10vh;
+}
+
+.rowBreak{
+    @media (max-width:990px) {
+        flex-direction: column;
+    }
+}
+
+.profileSection{
+    border-radius: 20px;
+    border: 2px solid;
+    padding: 5vh;
+}
+
+.profilePic-container {
+    width: 23rem; 
+    height: 23rem;
+    overflow: hidden; 
+    border-radius: 100%; 
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    @media (max-width:640px) {
+        width: 15rem;
+        
+    }
+}
+
+.profilePic{
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;     
+}
+
+.profileName{
+    font-size: 3rem;
+
+    @media (max-width:640px) {
+        font-size: 2rem;
+    }
+}
+
+.profileBio{
+    font-size: 1.25rem !important;
+}
+
+.genSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.editProfile {
+    margin-top: 2vh;
+}
