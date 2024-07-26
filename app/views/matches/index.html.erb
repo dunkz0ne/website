@@ -10,7 +10,9 @@
         </div>
     <% end %>
 
-    <h2>Regular Season</h2>
+    <% if @n_playoffs < params[:number].to_i %>
+        <h2>Regular Season</h2>
+    <% end %>
     <% @regular_schedule.each do |game| %>
         <div style="text-align: center;">
             <%= link_to match_path(id: game[:game_id]) do %>
@@ -18,5 +20,9 @@
             <p style="text-align: center;"><%= game[:game_date] %></p>
             <% end %>
         </div>
+    <% end %>
+
+    <%= link_to matches_url(number: (params[:number].to_i + 3) ) do %>
+    <button>Show more</button>
     <% end %>
 </div>
