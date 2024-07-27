@@ -43,4 +43,4 @@ user1 = User.create!(name: "Cristian Apo", email: "ciao@gmail.com", team_id: 5, 
 
 user2 = Journalist.create!(name: "Cristian Apo", email: "ciaooo@gmai.com", team_id: 5, provider: "facebook")
 
-article = user1.articles.create!(title: "Article 1", content: "Content 1")
+article = user2.articles.create!(title: "Article 1", content: "Content 1")

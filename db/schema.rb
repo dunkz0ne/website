@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_26_154112) do
+ActiveRecord::Schema.define(version: 2024_07_27_151651) do
 
   create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "releases", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.integer "user_id", null: false
@@ -44,9 +52,10 @@ ActiveRecord::Schema.define(version: 2024_07_26_154112) do
     t.string "provider"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "roles_mask"
+    t.string "type"
   end
 
   add_foreign_key "articles", "users"
+  add_foreign_key "releases", "users"
   add_foreign_key "users", "teams"
 end

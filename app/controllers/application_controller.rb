@@ -1,11 +1,12 @@
 class ApplicationController < ActionController::Base
-  before_action :current_user,  only: %i[show edit update destroy ]
+  helper_method :current_user
 
   def current_user
-    @user = User.find_by(id: session[:user_id])
-    if @user.nil?
-      redirect_to root_path
-    end
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def authenticate_user!
+    redirect_to root_path, notice: 'You need to sign in first.' unless current_user
   end
 
 end

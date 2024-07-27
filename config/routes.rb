@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :journalists
   resources :articles
+  resources :releases
 
   get '/user/dashboard/' => 'dashboard#index'
 

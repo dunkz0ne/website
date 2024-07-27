@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  before_action :authenticate_user!
   #GET /users/1 or /users/1.json
   def show
     @user

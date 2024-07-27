@@ -1,4 +1,6 @@
 class JournalistsController < ApplicationController
+  
+  before_action :authenticate_user!
 
   def index
     @journalist = Journalist.all

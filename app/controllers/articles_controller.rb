@@ -1,6 +1,9 @@
 # app/controllers/articles_controller.rb
 class ArticlesController < ApplicationController
 
+  before_action :authenticate_user!
+  before_action :authorize_journalist, only: [:new, :create]
+
   def index
     @article = Article.all
   end
@@ -48,6 +51,12 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :content)
+  end
+
+  def authorize_journalist
+    unless current_user.is_a?(Journalist)
+      redirect_to root_path, alert: 'You are not authorized to perform this action.'
+    end
   end
 
 end
