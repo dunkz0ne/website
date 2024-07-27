@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find_by(provider: session[:auth_info][:provider], id: session[:auth_info][:uid  ])
+    @user = User.find_by(id: session[:user_id])
   end
 
   # POST /users or /users.json
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
-    @user = User.find_by(provider: session[:auth_info][:provider], id: session[:auth_info][:uid  ])
+    @user = User.find_by(id: session[:user_id])
     respond_to do |format|
       if @user.update(team_id: user_params[:team_id])
         format.html { redirect_to root_path, notice: "User was successfully updated." }
