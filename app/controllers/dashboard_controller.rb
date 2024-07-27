@@ -39,9 +39,9 @@ class DashboardController < ApplicationController
             game[:game_date] = DateTime.parse(match_data['resultSets'][0]['rowSet'][0][0]).strftime('%B %d, %Y - %H:%M')
         end
 
-        if @matches_schedule.length >= 3
+        if @matches_schedule.length >= 4
 
-            @matches_schedule = @matches_schedule[0..2]
+            @matches_schedule = @matches_schedule[0..3]
 
         else
 

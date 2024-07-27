@@ -155,8 +155,9 @@
 // }
 
 .pastMatches{
-    margin-top: 5vh;
-    padding: 2vh;
+    @media (max-width: 991px) {
+        margin-top: 5vh;
+    }
 }
 
 .logoTeam, .logoTeamPast{

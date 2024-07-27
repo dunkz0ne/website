@@ -197,7 +197,7 @@
                                     </div>
                                     
                                 </div>
-                                <% @matches_schedule[1..2].each do |match|  %>
+                                <% @matches_schedule[1..].each do |match|  %>
                                     <div class="row" style="align-items: center;">
                                         <div class="col" style="margin: 4vh;">
                                             <div class="container pastMatchContainer" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
