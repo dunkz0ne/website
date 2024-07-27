@@ -51,12 +51,22 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(id: session[:user_id])
     respond_to do |format|
-      if @user.update(team_id: user_params[:team_id])
-        format.html { redirect_to root_path, notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
+      if user_params[:photo].present?
+        if @user.update(team_id: user_params[:team_id], bio: user_params[:bio], photo: user_params[:photo])
+          format.html { redirect_to user_path(@user), notice: "User was successfully updated." }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        if @user.update(team_id: user_params[:team_id], bio: user_params[:bio])
+          format.html { redirect_to user_path(@user), notice: "User was successfully updated." }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

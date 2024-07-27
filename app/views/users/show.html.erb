@@ -83,7 +83,24 @@
                         <%= @user.bio %>
                       </div>
                       <div class="editProfile">
-                        <%= link_to 'Edit Profile', edit_user_path(@user), class: 'btn btn-light' %>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editModal">
+                          Edit Profile
+                        </button>
+
+                        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true" >
+                          <div class="modal-dialog">
+                            <div class="modal-content" style="background-color: <%= @team.color %>;">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Profile</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <%= render 'form', user: @user %>
+                              </div>
+                              
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     
