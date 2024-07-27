@@ -26,6 +26,10 @@ class User < ApplicationRecord
     end
   end
 
+  def become_journalist!
+    self.update(type: 'Journalist')
+  end
+
 
   private
   def team_must_exist

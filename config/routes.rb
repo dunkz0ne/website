@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :articles
   resources :releases
 
+  get 'become_journalist', to: 'users#become_journalist'
+
   get '/user/dashboard/' => 'dashboard#index'
 
   get '/auth/facebook/callback' => 'session#create'

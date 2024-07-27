@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
+
   before_action :authenticate_user!
+  #before_action :authorize_promotion, only: [:become_journalist]
+
   #GET /users/1 or /users/1.json
   def show
     @user
@@ -33,6 +36,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        session[:user_created] = true
         format.html { redirect_to user_dashboard_path, notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
@@ -70,6 +74,19 @@ class UsersController < ApplicationController
   def validate_team_id
     team_exists = Team.exists?(id: params[:team_id])
     render json: { valid: team_exists }
+  end
+
+  def become_journalist
+    current_user.become_journalist!
+    redirect_to root_path, notice: 'You are now a journalist.'
+  end
+
+  private
+
+  def authorize_promotion
+    unless current_user.can_become_journalist? # Define this method in User model as needed
+      redirect_to root_path, alert: 'You are not authorized to perform this action.'
+    end
   end
 
   private

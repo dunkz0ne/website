@@ -55,7 +55,7 @@ class ArticlesController < ApplicationController
 
   def authorize_journalist
     unless current_user.is_a?(Journalist)
-      redirect_to root_path, alert: 'You are not authorized to perform this action.'
+      redirect_to user_dashboard_path, alert: 'You are not authorized to perform this action.'
     end
   end
 
