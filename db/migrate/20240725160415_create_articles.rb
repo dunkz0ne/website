@@ -3,9 +3,9 @@ class CreateArticles < ActiveRecord::Migration[6.1]
     create_table :articles do |t|
       t.string :title
       t.text :content
-      t.integer :journalist_id, :null => false
+      t.integer :user_id, :null => false
 
-      t.foreign_key :journalists, column: :journalist_id, primary_key: :id
+      t.foreign_key :users, column: :user_id, primary_key: :id
 
       t.timestamps
     end

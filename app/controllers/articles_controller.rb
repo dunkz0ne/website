@@ -1,26 +1,32 @@
 # app/controllers/articles_controller.rb
 class ArticlesController < ApplicationController
-  before_action :check_user, only: %i[edit create update destroy]
 
   def index
-    @articles = Article.accessible_by(current_ability)
+    @article = Article.all
   end
 
   def show
+    @article = Article.find(params[:id])
   end
 
   def new
-    @article = current_user.articles.build
+    @article = Article.new
   end
 
   def create
-    @article = current_user.articles.build(article_params)
-    if @article.save
-      redirect_to @article, notice: 'Article was successfully created.'
+    @user = User.find(session[:user_id]) if session[:user_id]
+    if @user.nil?
+      @article = @user.articles.new(article_params)
+      if @article.save
+        redirect_to @article, notice: 'Article was successfully created.'
+      else
+        render :new
+      end
     else
-      render :new
+      redirect_to articles_path, notice: 'You are not authorized to create an article.'
     end
   end
+
 
   def edit
   end
@@ -44,10 +50,4 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, :content)
   end
 
-  def check_user
-    @article = Article.find_by(journalist_id: session[:user_id])
-    if @current_user.nil?
-      redirect_to user_dashboard_path, notice: 'You cannot create/edit/update or destroy an article.'
-    end
-  end
 end

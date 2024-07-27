@@ -32,10 +32,7 @@ gem 'figaro'
 
 gem 'countries'
 
-gem 'canard'
-
-gem 'cancancan'
-
+gem 'canard', '~> 0.6.2.pre'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

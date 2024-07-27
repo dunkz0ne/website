@@ -5,15 +5,15 @@ Rails.application.routes.draw do
   resources :players
   resources :matches
 
-  resources :journalists do
-    resources :articles
-  end
+  resources :journalists
+  resources :articles
 
-  root 'home#index'
   get '/user/dashboard/' => 'dashboard#index'
 
   get '/auth/facebook/callback' => 'session#create'
   get '/auth/failure' => 'session#fail'
   get '/session/destroy' => 'session#destroy'
+
+  root 'home#index'
 
 end
