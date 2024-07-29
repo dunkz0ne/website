@@ -4,6 +4,11 @@ class User < ApplicationRecord
   validate :team_must_exist
 
   has_one :team
+  has_many :articles, foreign_key: 'user_id'
+  has_many :releases, foreign_key: 'user_id'
+
+  self.inheritance_column = :type
+  
   has_one_attached :photo
 
   # Check if a user exists with the given omniauth data
@@ -23,6 +28,10 @@ class User < ApplicationRecord
         user.photo.attach(photo)
         user.save!
     end
+  end
+
+  def become_journalist!
+    self.update(type: 'Journalist')
   end
 
 

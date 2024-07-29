@@ -1,11 +1,16 @@
 <h2>CIAO BELLI</h2>
 
 <div class="col-sm">
+
+    <%= link_to 'Become a Journalist', become_journalist_path, method: :patch, class: 'btn btn-primary' %>
+
     <%= form_tag('/auth/facebook', method: 'post') do %>
         <button class="btn btn-primary" type="submit">Sign In</button>
         <a class="btn btn-danger" style="color: white;" href="/session/destroy">Sign Out</a>
-    <% end %>    
+    <% end %>
+
+
 </div>
-          
+
 
 <%= notice %>

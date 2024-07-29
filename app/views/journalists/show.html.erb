@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @journalist.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @journalist.email %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @journalist.team_id %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@journalist) %> |
+<%= link_to 'Home'%>

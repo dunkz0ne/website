@@ -87,13 +87,13 @@
                     </li>
                     <li class="nav-item">
                         <i class="nav-icon fa-solid fa-newspaper"></i>
-                        <%= active_link_to 'News', '/news', active: :exclusive, class: 'navElement' %>                
+                        <%= active_link_to 'News', '/news', active: :exclusive, class: 'navElement' %>
                     </li>
 
                     <li>
-                        <%= active_link_to(dashboard_path) do %>
+                        <%= active_link_to(user_dashboard_path) do %>
                         <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
-                        <% end %>                
+                        <% end %>
                     </li>
 
                     <li class="nav-item">
@@ -191,7 +191,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -225,10 +225,10 @@
                             <% headers.each do |key, value| %>
                                 <div class="col">
                                         <%= link_to value, player_path(@player, sort_by: key, order: @current_order == 'asc' ? 'desc' : 'asc'), class: (@current_sort_by == key.to_s ? 'activeStatTitle' : 'linkStatTitle'), style: "text-decoration: none;" %>
-                                    
+
                                 </div>
                             <% end %>
-                            
+
                         </div>
                         <% @seasons.each do |season| %>
                         <div class="row" style="padding:0.5vh; text-align: center; display: flex; min-width: 1500px;">
@@ -283,7 +283,7 @@
                                 <div class="infoText">
                                     <span style="font-size: 1rem;">FGM:</span>
                                     <span style="font-size: 0.8rem;">Field Goals Made</span>
-                                </div>                                                     
+                                </div>
                             </div>
                             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                 <div class="infoText">
@@ -353,10 +353,10 @@
                                     <span style="font-size: 0.8rem;">Turnovers</span>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -365,6 +365,3 @@
 
 
 </div>
-
-
-

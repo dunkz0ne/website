@@ -34,12 +34,12 @@
                     </li>
                     <li class="nav-item">
                         <i class="nav-icon fa-solid fa-newspaper"></i>
-                        <%= active_link_to 'News', '/news', active: :exclusive, class: 'navElement' %>                
+                        <%= active_link_to 'News', '/news', active: :exclusive, class: 'navElement' %>
                     </li>
                     <li>
-                        <%= active_link_to(dashboard_path) do %>
+                        <%= active_link_to(user_dashboard_path) do %>
                         <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
-                        <% end %>                
+                        <% end %>
                     </li>
 
                     <li class="nav-item">
@@ -128,7 +128,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -169,7 +169,7 @@
                         <div class="row" style="align-items: center;">
                             <div class="col" style="display: flex; justify-content:center;">
                                 <div class="newsDetails">
-                                        <%= active_link_to 'More', '/news', active: :exclusive, class: 'matchDetails', id:'matchDets' %>                
+                                        <%= active_link_to 'More', '/news', active: :exclusive, class: 'matchDetails', id:'matchDets' %>
                                 </div>
                             </div>
                         </div>

@@ -1,0 +1,2 @@
+class TeamManager < User
+end
