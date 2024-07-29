@@ -27,6 +27,8 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @team = Team.find(@article.user.team_id)
+    @is_saved = Save.where(user_id: session[:user_id], article_id: @article.id).first
   end
 
   def new
@@ -57,6 +59,22 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     redirect_to articles_url, notice: 'Article was successfully destroyed.'
+  end
+
+  def save 
+    @user = User.find(session[:user_id]) if session[:user_id]
+    @article = Article.find(params[:id])
+    @save = Save.new(user_id: @user.id, article_id: @article.id)
+    @save.save
+    redirect_to article_path(@article)
+  end
+
+  def unsave
+    @user = User.find(session[:user_id]) if session[:user_id]
+    @article = Article.find(params[:id])
+    @save = Save.where(user_id: @user.id, article_id: @article.id).first
+    @save.destroy
+    redirect_to article_path(@article)
   end
 
   private
