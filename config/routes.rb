@@ -7,8 +7,16 @@ Rails.application.routes.draw do
   resources :league
 
   resources :journalists
-  resources :articles
+
+  resources :articles do
+    member do
+      get 'save'
+      get 'unsave'
+    end
+  end
+
   resources :releases
+
 
   get 'become_journalist', to: 'users#become_journalist'
 

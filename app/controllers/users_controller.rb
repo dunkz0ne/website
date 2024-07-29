@@ -15,6 +15,12 @@ class UsersController < ApplicationController
     if @user.type == 'TeamManager'
       @releases = Release.where(user_id: @user.id).order(created_at: :desc)
     end
+
+    if @user.id == session[:user_id]
+      @saved = Save.where(user_id: session[:user_id])
+      @saved_articles = Article.where(id: @saved.pluck(:article_id))
+    end
+
   end
 
   def new

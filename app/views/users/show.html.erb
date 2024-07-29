@@ -161,7 +161,24 @@
 
     <% end %>
   <% end %>
-  </div>
 
+  <% if @saved_articles.length > 0 %>
+    <div id="savedList" class="container mt-5">
+      <h1>Saved Articles</h1>
+      <% @saved_articles.each do |article| %>
+        <div class="card" style="border-radius: 20px; margin-top: 2rem; margin-bottom: 2rem;">
+            <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
+                <h5 class="card-title"><%= article.title %></h5>
+                <p class="card-text"><%= article.content %></p>
+                <p class="card-text">by <%= link_to article.user.name, user_path(article.user), style: 'color: white;' %></p>
+                <p class="card-text"><%= article.created_at %></p>
+                <%= link_to 'Read More', article_path(article), class: "btn btn-light" %>
+            </div>
+        </div>
+
+      <% end %>
+    </div>
+  <% end %>
+  </div>
 </div>
 
