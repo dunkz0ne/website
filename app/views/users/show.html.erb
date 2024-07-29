@@ -36,7 +36,7 @@
                     <%= active_link_to 'News', '/news', active: :exclusive, class: 'navElement' %>                
                 </li>
                 <li>
-                    <%= active_link_to(dashboard_path) do %>
+                    <%= active_link_to(user_dashboard_path) do %>
                     <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
                     <% end %>                
                 </li>
