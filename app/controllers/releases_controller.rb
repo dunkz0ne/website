@@ -1,6 +1,7 @@
 class ReleasesController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_team_manager, only: [:new, :create]
+  before_action :authorize_owner, only: [:edit, :update, :destroy]
 
   def index
     @article = Release.all
@@ -12,6 +13,9 @@ class ReleasesController < ApplicationController
 
   def new
     @release = Release.new
+  end
+
+  def edit
   end
 
   def create
@@ -32,6 +36,13 @@ class ReleasesController < ApplicationController
   def authorize_team_manager
     unless current_user.is_a?(TeamManager)
       redirect_to root_path, alert: 'You are not authorized to perform this action.'
+    end
+  end
+
+  def authorize_owner
+    @release = Release.find(params[:id])
+    unless current_user.id == @release.user_id
+      redirect_to release_path, alert: 'You are not authorized to perform this action.'
     end
   end
 end

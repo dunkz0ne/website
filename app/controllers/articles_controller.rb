@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
 
   before_action :authenticate_user!
   before_action :authorize_journalist, only: [:new, :create]
+  before_action :authorize_owner, only: [:edit, :update, :destroy]
 
   def index
     @article = Article.all
@@ -17,16 +18,11 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @user = User.find(session[:user_id]) if session[:user_id]
-    if @user.nil?
-      @article = @user.articles.new(article_params)
-      if @article.save
-        redirect_to @article, notice: 'Article was successfully created.'
-      else
-        render :new
-      end
+    @article = current_user.articles.new(article_params)
+    if @article.save
+      redirect_to @article, notice: 'Article was successfully created.'
     else
-      redirect_to articles_path, notice: 'You are not authorized to create an article.'
+      render :new
     end
   end
 
@@ -56,6 +52,13 @@ class ArticlesController < ApplicationController
   def authorize_journalist
     unless current_user.is_a?(Journalist)
       redirect_to user_dashboard_path, alert: 'You are not authorized to perform this action.'
+    end
+  end
+
+  def authorize_owner
+    @article = Article.find(params[:id])
+    unless @article.user_id == current_user.id
+      redirect_to articles_path, alert: 'You are not authorized to perform this action.'
     end
   end
 

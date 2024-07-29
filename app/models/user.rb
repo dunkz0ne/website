@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   has_one :team
   has_many :articles, foreign_key: 'user_id'
-  has_many :official_releases, foreign_key: 'user_id'
+  has_many :releases, foreign_key: 'user_id'
 
   self.inheritance_column = :type
 

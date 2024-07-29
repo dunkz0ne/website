@@ -43,4 +43,8 @@ user1 = User.create!(name: "Cristian Apo", email: "ciao@gmail.com", team_id: 5, 
 
 user2 = Journalist.create!(name: "Cristian Apo", email: "ciaooo@gmai.com", team_id: 5, provider: "facebook")
 
+user3 = TeamManager.create!(name: "Cristian Apo", email: "ciaooooo@gmail.com", team_id: 5, provider: "facebook")
+
 article = user2.articles.create!(title: "Article 1", content: "Content 1")
+
+release = user3.releases.create!(title: "Release 1", content: "Content 1")
