@@ -6,7 +6,23 @@ class ArticlesController < ApplicationController
   before_action :authorize_owner, only: [:edit, :update, :destroy]
 
   def index
-    @article = Article.all
+    @user = User.find(session[:user_id])
+    @team = Team.find(@user.team_id)
+
+    @team_journalist = Journalist.where(team_id: @team.id)
+    @articles = Article.where(user_id: @team_journalist.ids)
+
+    @articles.each do |article|
+      article.user = User.find(article.user_id)
+    end
+
+    @team_manager = TeamManager.where(team_id: @user.team_id)
+    @releases = Release.where(user_id: @team_manager.ids)
+
+    @releases.each do |release|
+      release.user = User.find(release.user_id)
+    end
+
   end
 
   def show
