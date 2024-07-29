@@ -7,7 +7,14 @@ class UsersController < ApplicationController
   def show
     @user = params[:id].blank? ? User.find_by(id: session[:user_id]) : User.find(params[:id])
     @team = Team.find(@user.team_id)
-    # @user = User.find_by(provider: session[:auth_info][:provider], id: session[:auth_info][:uid])
+
+    if @user.type == 'Journalist'
+      @articles = Article.where(user_id: @user.id).order(created_at: :desc)
+    end
+
+    if @user.type == 'TeamManager'
+      @releases = Release.where(user_id: @user.id).order(created_at: :desc)
+    end
   end
 
   def new
