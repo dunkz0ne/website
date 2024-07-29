@@ -105,76 +105,135 @@
                     </div>
                     <div class="row mt-5">
                         <div class="col" style="justify-content: center; display:flex;">
+                            <% if @user.type != "Journalist" %>
                             <div class="articleSection" style="background-color: <%= @team.color %>;">
-                    <div class="container-fluid" style="padding: 0;">
-                        <div class="row">
-                            <div class="col">
-                                <div class="boxTitle">
-                                    <span class="sectionTitle">Latest News</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="align-items: center;">
-                            <div class="col">
-                                <div class="newsArticle">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <%= image_tag('news.png', id: 'imageArticle') %>
-                                            </div>
-                                            <div class="col-8" style="align-content: center; text-align:left;">
-                                                <div class="articleTitle">Jontay Porter to Bulls?</div>
-                                                <div class="authorInfo">Federico Gerardi - 15/03/24</div>
+                                <div class="container-fluid" style="padding: 0;">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="boxTitle">
+                                                <span class="sectionTitle">Latest News</span>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row" style="align-items: center;">
+                                        <div class="col">
+                                            <div class="newsArticle">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <%= image_tag('news.png', id: 'imageArticle') %>
+                                                        </div>
+                                                        <div class="col-8" style="align-content: center; text-align:left;">
+                                                            <div class="articleTitle">Jontay Porter to Bulls?</div>
+                                                            <div class="authorInfo">Federico Gerardi - 15/03/24</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="align-items: center;">
-                            <div class="col">
-                                <div class="newsArticle">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <%= image_tag('news.png', id: 'imageArticle') %>
                                             </div>
-                                            <div class="col-8" style="align-content: center; text-align:left;">
-                                                <div class="articleTitle">Jontay Porter to Bulls?</div>
-                                                <div class="authorInfo">Federico Gerardi - 15/03/24</div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="align-items: center;">
+                                        <div class="col">
+                                            <div class="newsArticle">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <%= image_tag('news.png', id: 'imageArticle') %>
+                                                        </div>
+                                                        <div class="col-8" style="align-content: center; text-align:left;">
+                                                            <div class="articleTitle">Jontay Porter to Bulls?</div>
+                                                            <div class="authorInfo">Federico Gerardi - 15/03/24</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="align-items: center;">
+                                        <div class="col">
+                                            <div class="newsArticle">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <%= image_tag('news.png', id: 'imageArticle') %>
+                                                        </div>
+                                                        <div class="col-8" style="align-content: center; text-align:left;">
+                                                            <div class="articleTitle">Jontay Porter to Bulls?</div>
+                                                            <div class="authorInfo">Federico Gerardi - 15/03/24</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="align-items: center;">
+                                        <div class="col" style="display: flex; justify-content:center;">
+                                            <div class="newsDetails">
+                                                <%= active_link_to 'More', '/news', active: :exclusive, class: 'matchDetails', id:'matchDets' %>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row" style="align-items: center;">
-                            <div class="col">
-                                <div class="newsArticle">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <%= image_tag('news.png', id: 'imageArticle') %>
+                            <% elsif @user.type == "Journalist" %>
+                            <div class="articleSection" style="background-color: <%= @team.color %>;">
+                                <div class="container-fluid" style="padding: 0;">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="boxTitle">
+                                                <span class="sectionTitle">The Job</span>
                                             </div>
-                                            <div class="col-8" style="align-content: center; text-align:left;">
-                                                <div class="articleTitle">Jontay Porter to Bulls?</div>
-                                                <div class="authorInfo">Federico Gerardi - 15/03/24</div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="align-items: center;">
+                                        <div class="col">
+                                            <div class="newsArticle">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-8" style="align-content: center; text-align:left;">
+                                                            <div class="articleTitle">Drafts</div>
+
+                                                            <div class="drafts">
+                                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#draftModal">
+                                                                    Drafts
+                                                                </button>
+
+                                                                <div class="modal fade" id="draftModal" tabindex="-1" aria-labelledby="draftModalLabel" aria-hidden="true" >
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content" style="background-color: <%= @team.color %>;">
+                                                                            <div class="modal-header">
+                                                                                <h1 class="modal-title fs-5" id="draftModalLabel">Your Drafts</h1>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <% @drafts.each do |draft| %>
+                                                                                    <div class="row" style="justify-content: center; align-items:center;">
+                                                                                        <div class="col-8">
+                                                                                            <h5><%= draft.title %></h5>
+                                                                                            <p><%= draft.content %></p>
+                                                                                        </div>
+                                                                                        <div class="col-4" style="text-align: center;">
+                                                                                            <%= link_to 'Edit', edit_article_path(draft), class: "btn btn-light" %>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <hr>
+                                                                                <% end %>
+                                                                            </div>
+                                                                        
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row" style="align-items: center;">
-                            <div class="col" style="display: flex; justify-content:center;">
-                                <div class="newsDetails">
-                                        <%= active_link_to 'More', '/news', active: :exclusive, class: 'matchDetails', id:'matchDets' %>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            <% end %>
                         </div>
                     </div>
 

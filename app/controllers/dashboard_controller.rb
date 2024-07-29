@@ -68,5 +68,9 @@ class DashboardController < ApplicationController
             game[:game_date] = DateTime.parse(match_data['resultSets'][0]['rowSet'][0][0]).strftime('%B %d, %Y - %H:%M')
         end
 
+        if @user.type == "Journalist"
+            @drafts = Article.where(user_id: @user.id, draft: true)
+        end
+
     end
 end

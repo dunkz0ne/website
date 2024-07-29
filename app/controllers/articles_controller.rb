@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
     @team = Team.find(@user.team_id)
 
     @team_journalist = Journalist.where(team_id: @team.id)
-    @articles = Article.where(user_id: @team_journalist.ids)
+    @articles = Article.where(user_id: @team_journalist.ids, draft: false)
 
     @articles.each do |article|
       article.user = User.find(article.user_id)
@@ -80,7 +80,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content)
+    params.require(:article).permit(:title, :content, :draft)
   end
 
   def authorize_journalist
