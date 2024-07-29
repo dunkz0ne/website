@@ -12,11 +12,25 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :team_id %>
-    <%= form.number_field :team_id %>
+    <%= form.label :photo %>
+    <%= form.file_field :photo, class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="field">
+    <%= form.label :bio %>
+    <%= form.text_field :bio, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :team_id %>
+    <%= form.select :team_id, options_from_collection_for_select(Team.all, :id, :name), class: "form-select" %>
+  </div>
+
+  
+<hr>
+  
+
+  <div class="actions" style="text-align: right;">
+    <%= form.submit class: "btn btn-light" %>
   </div>
 <% end %>

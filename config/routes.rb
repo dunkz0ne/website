@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :teams
   resources :players
   resources :matches
+  resources :league
 
   resources :journalists
   resources :articles

@@ -14,33 +14,19 @@ class MatchesController < ApplicationController
 
         @playoffs_schedule = []
 
-        playoffs_data.each do |game|
-            if game[:matchup].include?('@')
-                team_list = game[:matchup].split(' @ ')
-                home_team = team_list[1]
-                away_team = team_list[0]
-            else
-                team_list = game[:matchup].split(' vs. ')
-                home_team = team_list[0]
-                away_team = team_list[1]
-            end
+
+    @matches_schedule = []
+
 
             @playoffs_schedule.push({ home_team: home_team, away_team: away_team, game_date: game[:game_date], game_id: game[:game_id], wl: game[:wl], home_points: nil, away_points: nil })
         end
 
 
-        @playoffs_schedule.each do |game|
-            url = URI.parse("http://localhost:5001/api/matches/#{game[:game_id]}")
-            response = Net::HTTP.get_response(url)
+        @matches_schedule.push({ home_team: home_team, away_team: away_team, game_date: game[:game_date], game_id: game[:game_id], wl: game[:wl], home_points: nil, away_points: nil })
+    end
 
-            match_data = JSON.parse(response.body)
-            game[:home_team] = Team.where(api: match_data['resultSets'][0]['rowSet'][0][6]).first
-            game[:away_team] = Team.where(api: match_data['resultSets'][0]['rowSet'][0][7]).first
-            game[:home_points] = match_data['resultSets'][5]['rowSet'][0][22]
-            game[:away_points] = match_data['resultSets'][5]['rowSet'][1][22]
-        end
+    @n_playoffs = @matches_schedule.length
 
-        # REGULAR SEASON
 
         url = URI.parse("http://localhost:5001/api/teams/#{@team.api}/schedule/regular")
         response = Net::HTTP.get_response(url)
@@ -51,30 +37,36 @@ class MatchesController < ApplicationController
 
         @regular_schedule = []
 
-        regular_data.each do |game|
-            if game[:matchup].include?('@')
-                team_list = game[:matchup].split(' @ ')
-                home_team = team_list[1]
-                away_team = team_list[0]
-            else
-                team_list = game[:matchup].split(' vs. ')
-                home_team = team_list[0]
-                away_team = team_list[1]
-            end
+
 
             @regular_schedule.push({ home_team: home_team, away_team: away_team, game_date: game[:game_date], game_id: game[:game_id], wl: game[:wl], home_points: nil, away_points: nil })
         end
 
 
-        @regular_schedule.each do |game|
-            url = URI.parse("http://localhost:5001/api/matches/#{game[:game_id]}")
-            response = Net::HTTP.get_response(url)
+        @matches_schedule.push({ home_team: home_team, away_team: away_team, game_date: game[:game_date], game_id: game[:game_id], wl: game[:wl], home_points: nil, away_points: nil })
+    end
 
-            match_data = JSON.parse(response.body)
-            game[:home_team] = Team.where(api: match_data['resultSets'][0]['rowSet'][0][6]).first
-            game[:away_team] = Team.where(api: match_data['resultSets'][0]['rowSet'][0][7]).first
-            game[:home_points] = match_data['resultSets'][5]['rowSet'][0][22]
-            game[:away_points] = match_data['resultSets'][5]['rowSet'][1][22]
+    @playoffs_schedule = []
+    @regular_schedule = []
+
+    @matches_schedule.each_with_index do |game, index|
+        if index > params[:number].to_i - 1
+            break
+        end
+
+        url = URI.parse("http://localhost:5001/api/matches/#{game[:game_id]}")
+        response = Net::HTTP.get_response(url)
+
+        match_data = JSON.parse(response.body)
+        game[:home_team] = Team.where(api: match_data['resultSets'][0]['rowSet'][0][6]).first
+        game[:away_team] = Team.where(api: match_data['resultSets'][0]['rowSet'][0][7]).first
+        game[:home_points] = match_data['resultSets'][5]['rowSet'][0][22]
+        game[:away_points] = match_data['resultSets'][5]['rowSet'][1][22]
+
+        if index < @n_playoffs
+            @playoffs_schedule.push(game)
+        else
+            @regular_schedule.push(game)
         end
 
     end
