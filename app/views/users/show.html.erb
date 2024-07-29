@@ -33,7 +33,7 @@
                 </li>
                 <li class="nav-item">
                     <i class="nav-icon fa-solid fa-newspaper"></i>
-                    <%= active_link_to 'News', '/news', active: :exclusive, class: 'navElement' %>                
+                    <%= active_link_to 'News', articles_url, active: :exclusive, class: 'navElement' %>                
                 </li>
                 <li>
                     <%= active_link_to(user_dashboard_path) do %>
@@ -84,6 +84,7 @@
                       <div class="profileBio">
                         <%= @user.bio %>
                       </div>
+                      <% if session[:user_id] == @user.id %>
                       <div class="editProfile">
                         <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editModal">
                           Edit Profile
@@ -104,6 +105,7 @@
                           </div>
                         </div>
                       </div>
+                      <% end %>
                     </div>
                     
                   </div>

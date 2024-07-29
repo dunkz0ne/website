@@ -1,4 +1,93 @@
-<h1>Articles#index</h1>
-<p>Find me in app/views/articles/index.html.erb</p>
+<style>
+    body {
+        background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;
+    }
+</style>
 
-<%= notice %>
+<div id="Navbar">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: <%= @team.color %>;">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav navItems">
+                <li class="nav-item">
+                    <i class="nav-icon fa-solid fa-people-group"></i>
+                    <%= active_link_to 'Team', "/teams/#{@team.id}", active: :exclusive, class: 'navElement' %>
+                </li>
+                <li class="nav-item">
+                    <i class="nav-icon fa-solid fa-basketball"></i>
+                    <%= active_link_to 'Matches', matches_url(number: 3), active: :exclusive, class: 'navElement' %>
+                </li>
+                <li class="nav-item">
+                    <i class="nav-icon fa-solid fa-newspaper"></i>
+                    <%= active_link_to 'News', articles_url, active: :exclusive, class: 'navElement' %>
+                </li>
+                <li>
+                    <%= active_link_to(user_dashboard_path) do %>
+                    <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
+                    <% end %>
+                </li>
+
+                <li class="nav-item">
+                    <i class="nav-icon fa-solid fa-trophy"></i>
+                    <%= active_link_to 'League', '/league', active: :exclusive, class: 'navElement' %>
+                </li>
+                </li>
+                <li class="nav-item">
+                    <i class="nav-icon fa-solid fa-cart-shopping"></i>
+                    <%= active_link_to 'Shop', "https://www.nbastore.eu/en/#{@team.name.downcase.gsub(' ', '-')}", active: :exclusive, class: 'navElement' %>
+                </li>
+                </li>
+                <li class="nav-item">
+                    <i class="nav-icon fa-solid fa-user"></i>
+                    <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>  
+                </li>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+    <h1>Feed</h1>
+    <div class="row">
+        <div class="col">
+            <h3 style="text-align: center;" >Articles</h3>
+            <% @articles.each do |article| %>
+                <div class="card" style="border-radius: 20px; margin: 2rem;">
+                    <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
+                        <h5 class="card-title"><%= article.title %></h5>
+                        <p class="card-text"><%= article.content %></p>
+                        <p class="card-text">by <%= link_to article.user.name, user_path(article.user), style: 'color: white;' %></p>
+                        <p class="card-text"><%= article.created_at %></p>
+                        <%= link_to 'Read More', article_path(article), class: "btn btn-light" %>
+                    </div>
+                </div>
+
+            <% end %>
+        </div>
+
+        <div class="col">
+            <h3 style="text-align: center;">Team Release</h3>
+            <% @releases.each do |release| %>
+                <div class="card" style="border-radius: 20px; margin: 2rem;">
+                    <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
+                        <h5 class="card-title"><%= release.title %></h5>
+                        <p class="card-text"><%= release.content %></p>
+                        <p class="card-text">by <%= link_to release.user.name, user_path(release.user), style: 'color: white;' %> | <%= @team.name %> ✅ </p>
+                        <p class="card-text"><%= release.created_at %></p>
+                        <%= link_to 'Read More', release_path(release), class: "btn btn-light" %>
+                    </div>
+                </div>
+
+            <% end %>
+        </div>
+    </div>
+    
+</div>
+
+
+
