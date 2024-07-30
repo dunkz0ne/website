@@ -99,6 +99,11 @@
                           Edit Profile
                         </button>
 
+                        <% if not @user.type? %>
+                          <%= link_to 'Become a Journalist', new_journalist_request_path, class: "btn btn-light" %>
+                        <% end %>
+                        
+
                         <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true" >
                           <div class="modal-dialog">
                             <div class="modal-content" style="background-color: <%= @team.color %>;">
@@ -114,6 +119,8 @@
                           </div>
                         </div>
                       </div>
+
+                      
                       <% end %>
                     </div>
                     

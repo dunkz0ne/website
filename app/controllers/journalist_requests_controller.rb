@@ -4,7 +4,7 @@ class JournalistRequestsController < ApplicationController
   before_action :authenticate_admin!, only: [:index, :approve, :reject]
 
   def new
-    if current_user.type == 'User'
+    if not current_user.type?
       @journalist_request = JournalistRequest.new
     else
       redirect_to user_dashboard_path, notice: "Non puoi fare richieste da giornalista."
@@ -12,7 +12,7 @@ class JournalistRequestsController < ApplicationController
   end
 
   def create
-    if current_user.type == 'User'
+    if not current_user.type?
       @journalist_request = JournalistRequest.new(journalist_request_params)
       @journalist_request.user = current_user
 
