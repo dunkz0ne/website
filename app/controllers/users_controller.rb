@@ -117,8 +117,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:team_id, :bio, :photo)
