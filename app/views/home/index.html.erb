@@ -1,16 +1,25 @@
-<h2>CIAO BELLI</h2>
+<h2 class="text-center my-4">CIAO BELLI</h2>
 
-<div class="col-sm">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 text-center">
 
-    <%= link_to 'Become a Journalist', become_journalist_path, method: :patch, class: 'btn btn-primary' %>
+      <% if notice.present? %>
+        <div class="alert alert-info">
+          <%= notice %>
+        </div>
+      <% end %>
 
-    <%= form_tag('/auth/facebook', method: 'post') do %>
-        <button class="btn btn-primary" type="submit">Sign In</button>
-        <a class="btn btn-danger" style="color: white;" href="/session/destroy">Sign Out</a>
-    <% end %>
+      <div class="btn-group my-3">
+        <%= link_to 'Become a Journalist', become_journalist_path, method: :patch, class: 'btn btn-primary' %>
+        <%= link_to 'Become an Admin', become_admin_path, method: :patch, class: 'btn btn-secondary' %>
+      </div>
 
+      <%= form_tag('/auth/facebook', method: 'post', class: 'my-3') do %>
+        <button class="btn btn-primary" type="submit">Sign In with Facebook</button>
+      <% end %>
 
+      <a class="btn btn-danger my-3" style="color: white;" href="/session/destroy">Sign Out</a>
+    </div>
+  </div>
 </div>
-
-
-<%= notice %>

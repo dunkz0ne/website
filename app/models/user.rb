@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :releases, foreign_key: 'user_id'
 
   self.inheritance_column = :type
-  
+
   has_one_attached :photo
 
   # Check if a user exists with the given omniauth data
@@ -34,6 +34,13 @@ class User < ApplicationRecord
     self.update(type: 'Journalist')
   end
 
+  def become_team_manager!
+    self.update(type: 'TeamManager')
+  end
+
+  def become_admin!
+    self.update(type: 'Admin')
+  end
 
   private
   def team_must_exist
