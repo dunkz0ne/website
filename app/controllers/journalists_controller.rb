@@ -8,7 +8,7 @@ class JournalistsController < ApplicationController
 
   def show
     if User.find_by(id: session[:user_id]).type == "journalist"
-      @journalist = Journalist.find_by(journalist_id: session[:user_id])
+      @journalist = Journalist.find_by(id: session[:user_id])
     else
       redirect_to user_dashboard_path
     end
@@ -55,8 +55,8 @@ class JournalistsController < ApplicationController
   end
 
   private
-      # Only allow a list of trusted parameters through.
-      def journalist_params
-        params.require(:journalist).permit(:team_id, :bio, :photo)
-      end
+    # Only allow a list of trusted parameters through.
+    def journalist_params
+      params.require(:journalist).permit(:team_id, :bio, :photo)
+    end
 end
