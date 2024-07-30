@@ -4,11 +4,11 @@ class UsersController < ApplicationController
 
   #GET /users/1 or /users/1.json
   def show
-    @user = params[:id].blank? ? User.find_by(id: session[:user_id]) : User.find(params[:id])
+    @user = User.find(params[:id])
     @team = Team.find(@user.team_id)
 
     if @user.type == 'Journalist'
-      @articles = Article.where(user_id: @user.id).order(created_at: :desc)
+      @articles = Article.where(user_id: @user.id, draft: false).order(created_at: :desc)
     end
 
     if @user.type == 'TeamManager'
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       @journalist_requests = JournalistRequest.all
     end
 
-    if @user.id == session[:user_id]
+    if @user.id.to_i == session[:user_id].to_i
       @saved = Save.where(user_id: session[:user_id])
       @saved_articles = Article.where(id: @saved.pluck(:article_id))
     end
@@ -122,6 +122,8 @@ class UsersController < ApplicationController
   end
 
   private
+
+
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:team_id, :bio, :photo)

@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2024_07_30_152525) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -40,13 +41,8 @@ ActiveRecord::Schema.define(version: 2024_07_30_152525) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "articles", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.integer "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+# Could not dump table "articles" because of following StandardError
+#   Unknown type 'bool' for column 'draft'
 
   create_table "journalist_requests", force: :cascade do |t|
     t.integer "user_id", null: false

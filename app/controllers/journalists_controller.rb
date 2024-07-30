@@ -1,5 +1,5 @@
 class JournalistsController < ApplicationController
-
+  
   before_action :authenticate_user!
 
   def index
@@ -33,7 +33,7 @@ class JournalistsController < ApplicationController
   end
 
   def update
-    @journalist = Journalist.find_by(id: session[:user_id])
+    @journalist = Journalist.find_by(journalist_id: session[:user_id])
     respond_to do |format|
       if @journalist.update(journalist_params)
         format.html { redirect_to @journalist, notice: "Journalist was successfully updated." }
@@ -59,4 +59,5 @@ class JournalistsController < ApplicationController
     def journalist_params
       params.require(:journalist).permit(:team_id, :bio, :photo)
     end
+
 end

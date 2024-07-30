@@ -68,74 +68,75 @@ journalists_articles = [
   {
     journalist: 'Andrea De Luca',
     articles: [
-      { title: 'La rinascita degli Atlanta Hawks', content: 'Gli Atlanta Hawks stanno mostrando un grande potenziale nella stagione attuale. Esploriamo le chiavi del loro successo.' },
-      { title: 'Trae Young: Il leader degli Hawks', content: 'Una panoramica sull\'influenza di Trae Young nel gioco degli Hawks e il suo impatto sulla squadra.' }
+      { title: 'La rinascita degli Atlanta Hawks', content: 'Gli Atlanta Hawks stanno mostrando un grande potenziale nella stagione attuale. Esploriamo le chiavi del loro successo.', draft: false },
+      { title: 'Trae Young: Il leader degli Hawks', content: 'Una panoramica sull\'influenza di Trae Young nel gioco degli Hawks e il suo impatto sulla squadra.', draft: false }
     ]
   },
   {
     journalist: 'Valentina Mariani',
     articles: [
-      { title: 'Il ritorno dei Boston Celtics', content: 'Un\'analisi su come i Celtics stanno cercando di tornare tra le squadre top della NBA.' },
-      { title: 'Jayson Tatum: Una stella nascente', content: 'Esploriamo la crescita e l\'impatto di Jayson Tatum sui Boston Celtics.' }
+      { title: 'Il ritorno dei Boston Celtics', content: 'Un\'analisi su come i Celtics stanno cercando di tornare tra le squadre top della NBA.', draft: false },
+      { title: 'Jayson Tatum: Una stella nascente', content: 'Esploriamo la crescita e l\'impatto di Jayson Tatum sui Boston Celtics.', draft: false }
     ]
   },
   {
     journalist: 'Roberto Conti',
     articles: [
-      { title: 'Brooklyn Nets: Una potenza in crescita', content: 'Con stelle come Kevin Durant e Kyrie Irving, i Nets stanno costruendo una squadra formidabile.' },
-      { title: 'La strategia offensiva dei Nets', content: 'Come i Brooklyn Nets stanno dominando con il loro gioco offensivo.' }
+      { title: 'Brooklyn Nets: Una potenza in crescita', content: 'Con stelle come Kevin Durant e Kyrie Irving, i Nets stanno costruendo una squadra formidabile.', draft: false },
+      { title: 'La strategia offensiva dei Nets', content: 'Come i Brooklyn Nets stanno dominando con il loro gioco offensivo.', draft: false }
     ]
   },
   {
     journalist: 'Chiara Galli',
     articles: [
-      { title: 'La metamorfosi dei Charlotte Hornets', content: 'Un\'analisi delle recenti modifiche e del progresso dei Charlotte Hornets.' },
-      { title: 'LaMelo Ball: Il futuro degli Hornets', content: 'Il giovane LaMelo Ball sta emergendo come una delle stelle del futuro per Charlotte.' }
+      { title: 'La metamorfosi dei Charlotte Hornets', content: 'Un\'analisi delle recenti modifiche e del progresso dei Charlotte Hornets.', draft: false },
+      { title: 'LaMelo Ball: Il futuro degli Hornets', content: 'Il giovane LaMelo Ball sta emergendo come una delle stelle del futuro per Charlotte.', draft: false }
     ]
   },
   {
     journalist: 'Matteo Ricci',
     articles: [
-      { title: 'Chicago Bulls: Ritorno alla gloria?', content: 'Un\'analisi dei Chicago Bulls e delle loro possibilità di ritornare ai vertici.' },
-      { title: 'La crescita di Zach LaVine', content: 'Esploriamo il ruolo chiave di Zach LaVine e la sua crescita come giocatore.' }
+      { title: 'Chicago Bulls: Ritorno alla gloria?', content: 'Un\'analisi dei Chicago Bulls e delle loro possibilità di ritornare ai vertici.', draft: false },
+      { title: 'La crescita di Zach LaVine', content: 'Esploriamo il ruolo chiave di Zach LaVine e la sua crescita come giocatore.', draft: false }
     ]
   },
   {
     journalist: 'Laura Lombardi',
     articles: [
-      { title: 'Cleveland Cavaliers: Una nuova era', content: 'Con giovani talenti e nuove strategie, i Cavaliers stanno cercando di costruire una nuova era di successo.' },
-      { title: 'Il contributo di Darius Garland', content: 'Darius Garland sta emergendo come uno dei giocatori chiave per i Cleveland Cavaliers.' }
+      { title: 'Cleveland Cavaliers: Una nuova era', content: 'Con giovani talenti e nuove strategie, i Cavaliers stanno cercando di costruire una nuova era di successo.', draft: false },
+      { title: 'Il contributo di Darius Garland', content: 'Darius Garland sta emergendo come uno dei giocatori chiave per i Cleveland Cavaliers.', draft: false }
     ]
   },
   {
     journalist: 'Stefano Ferrari',
     articles: [
-      { title: 'Dallas Mavericks: Luka Dončić e il suo impatto', content: 'L\'incredibile impatto di Luka Dončić sui Dallas Mavericks e le loro prospettive future.' },
-      { title: 'Strategie difensive dei Mavericks', content: 'Un\'analisi di come i Mavericks stanno migliorando la loro difesa.' }
+      { title: 'Dallas Mavericks: Luka Dončić e il suo impatto', content: 'L\'incredibile impatto di Luka Dončić sui Dallas Mavericks e le loro prospettive future.', draft: false },
+      { title: 'Strategie difensive dei Mavericks', content: 'Un\'analisi di come i Mavericks stanno migliorando la loro difesa.', draft: false }
     ]
   },
   {
     journalist: 'Francesca Greco',
     articles: [
-      { title: 'Denver Nuggets: La forza del collettivo', content: 'Esploriamo come i Nuggets stiano costruendo una squadra forte grazie al gioco di squadra.' },
-      { title: 'Nikola Jokić: Il pilastro dei Nuggets', content: 'L\'importanza di Nikola Jokić per i Denver Nuggets e il suo ruolo di leader.' }
+      { title: 'Denver Nuggets: La forza del collettivo', content: 'Esploriamo come i Nuggets stiano costruendo una squadra forte grazie al gioco di squadra.', draft: false },
+      { title: 'Nikola Jokić: Il pilastro dei Nuggets', content: 'L\'importanza di Nikola Jokić per i Denver Nuggets e il suo ruolo di leader.', draft: false }
     ]
   },
   {
     journalist: 'Paolo Rinaldi',
     articles: [
-      { title: 'Detroit Pistons: Costruire per il futuro', content: 'I Pistons stanno cercando di costruire una squadra per il futuro con giovani talenti promettenti.' },
-      { title: 'Il ruolo di Cade Cunningham', content: 'Cade Cunningham sta emergendo come un giocatore chiave per il futuro dei Pistons.' }
+      { title: 'Detroit Pistons: Costruire per il futuro', content: 'I Pistons stanno cercando di costruire una squadra per il futuro con giovani talenti promettenti.', draft: false },
+      { title: 'Il ruolo di Cade Cunningham', content: 'Cade Cunningham sta emergendo come un giocatore chiave per il futuro dei Pistons.', draft: false }
     ]
   },
   {
     journalist: 'Silvia Russo',
     articles: [
-      { title: 'Golden State Warriors: Un ritorno dominante', content: 'I Warriors stanno ritornando al loro livello di gioco dominante. Analizziamo i motivi.' },
-      { title: 'Steph Curry: Il cuore dei Warriors', content: 'Steph Curry continua a essere il fulcro dell\'offensiva dei Warriors con prestazioni straordinarie.' }
+      { title: 'Golden State Warriors: Un ritorno dominante', content: 'I Warriors stanno ritornando al loro livello di gioco dominante. Analizziamo i motivi.', draft: false },
+      { title: 'Steph Curry: Il cuore dei Warriors', content: 'Steph Curry continua a essere il fulcro dell\'offensiva dei Warriors con prestazioni straordinarie.', draft: false }
     ]
   }
 ]
+
 
 team_managers = [
   { name: 'Giovanni Bernardi', email: 'giovanni.bernardi@team.com', team_id: 1, provider: 'linkedin' },
@@ -239,7 +240,7 @@ end
 journalists_articles.each do |journalist_articles|
     journalist = Journalist.find_by(name: journalist_articles[:journalist])
     journalist_articles[:articles].each do |article|
-        journalist.articles.create(title: article[:title], content: article[:content])
+        journalist.articles.create(title: article[:title], content: article[:content], draft: article[:draft])
     end
 end
 
