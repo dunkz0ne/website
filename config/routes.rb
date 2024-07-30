@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     member do
       get 'save'
       get 'unsave'
+      get 'delete'
     end
   end
 

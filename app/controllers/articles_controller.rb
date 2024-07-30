@@ -3,14 +3,14 @@ class ArticlesController < ApplicationController
 
   before_action :authenticate_user!
   before_action :authorize_journalist, only: [:new, :create]
-  before_action :authorize_owner, only: [:edit, :update, :destroy]
+  before_action :authorize_owner, only: [:edit, :update, :delete]
 
   def index
     @user = User.find(session[:user_id])
     @team = Team.find(@user.team_id)
 
     @team_journalist = Journalist.where(team_id: @team.id)
-    @articles = Article.where(user_id: @team_journalist.ids, draft: false)
+    @articles = Article.where(user_id: @team_journalist.ids, draft: false).order(created_at: :desc)
 
     @articles.each do |article|
       article.user = User.find(article.user_id)
@@ -57,6 +57,10 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+  end
+
+  def delete
+    @article = Article.find(params[:id])
     @article.destroy
     redirect_to articles_url, notice: 'Article was successfully destroyed.'
   end

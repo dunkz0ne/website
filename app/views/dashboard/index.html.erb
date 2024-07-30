@@ -199,6 +199,8 @@
                                                                     Drafts
                                                                 </button>
 
+                                                                <%= link_to 'New Article', new_article_path, class: "btn btn-light" %>
+
                                                                 <div class="modal fade" id="draftModal" tabindex="-1" aria-labelledby="draftModalLabel" aria-hidden="true" >
                                                                     <div class="modal-dialog">
                                                                         <div class="modal-content" style="background-color: <%= @team.color %>;">
@@ -215,7 +217,7 @@
                                                                                         </div>
                                                                                         <div class="col-4" style="text-align: center;">
                                                                                             <%= link_to 'Edit', edit_article_path(draft), class: "btn btn-light" %>
-                                                                                            <%= link_to 'X', article_path(draft), method: :delete, class: "btn btn-light" %>
+                                                                                            <%= link_to 'X', delete_article_path(draft), data: { confirm: 'Are you sure?' }, class: "btn btn-light" %>
                                                                                         </div>
                                                                                     </div>
                                                                                     <hr>

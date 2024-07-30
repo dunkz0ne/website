@@ -64,6 +64,10 @@
                         <p class="card-text">by <%= link_to article.user.name, user_path(article.user), style: 'color: white;' %></p>
                         <p class="card-text"><%= article.created_at %></p>
                         <%= link_to 'Read More', article_path(article), class: "btn btn-light" %>
+                        <% if article.user.id == session[:user_id].to_i %>
+                            <%= link_to 'Edit', edit_article_path(article), class: "btn btn-light" %>
+                            <%= link_to 'Delete', delete_article_path(article), class: "btn btn-light" %>
+                        <% end %>
                     </div>
                 </div>
 
