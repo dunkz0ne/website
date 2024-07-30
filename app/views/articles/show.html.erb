@@ -51,7 +51,7 @@
     </nav>
   </div>
 
-<% if ( @article.draft and @article.user_id == session[:user_id].to_i ) or not @article.draft %>
+<% if (( @article.draft.to_i == 1 and @article.user_id == session[:user_id].to_i ) or ( @article.draft.to_i == 0 )) %>
 
 <h1><%= @article.title %></h1>
 <p><%= @article.content %></p>
