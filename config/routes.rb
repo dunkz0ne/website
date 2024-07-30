@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   resources :admin
 
   resources :articles do
+    resources :comments, only: [:create] do
+      member do
+        get 'delete'
+      end
+    end
     member do
       get 'save'
       get 'unsave'

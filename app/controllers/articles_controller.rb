@@ -29,6 +29,11 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @team = Team.find(@article.user.team_id)
     @is_saved = Save.where(user_id: session[:user_id], article_id: @article.id).first
+
+    @comments = Comment.where(article_id: @article.id).order(created_at: :desc)
+    @comments.each do |comment|
+      comment.user = User.find(comment.user_id)
+    end
   end
 
   def new
