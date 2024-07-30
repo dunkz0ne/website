@@ -1,5 +1,5 @@
 class JournalistsController < ApplicationController
-
+  
   before_action :authenticate_user!
 
   def index
@@ -8,7 +8,7 @@ class JournalistsController < ApplicationController
 
   def show
     if User.find_by(id: session[:user_id]).type == "journalist"
-      @journalist = Journalist.find_by(id: session[:user_id])
+      @journalist = Journalist.find_by(journalist_id: session[:user_id])
     else
       redirect_to user_dashboard_path
     end
@@ -33,7 +33,7 @@ class JournalistsController < ApplicationController
   end
 
   def update
-    @journalist = Journalist.find_by(id: session[:user_id])
+    @journalist = Journalist.find_by(journalist_id: session[:user_id])
     respond_to do |format|
       if @journalist.update(journalist_params)
         format.html { redirect_to @journalist, notice: "Journalist was successfully updated." }
@@ -53,10 +53,4 @@ class JournalistsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  private
-    # Only allow a list of trusted parameters through.
-    def journalist_params
-      params.require(:journalist).permit(:team_id, :bio, :photo)
-    end
 end

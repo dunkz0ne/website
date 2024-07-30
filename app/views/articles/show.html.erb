@@ -51,14 +51,23 @@
     </nav>
   </div>
 
+<% if ( @article.draft and @article.user_id == session[:user_id].to_i ) or not @article.draft %>
 
 <h1><%= @article.title %></h1>
 <p><%= @article.content %></p>
 <p><%= @article.created_at %></p>
 
+<% if @article.user.id == session[:user_id].to_i %>
+    <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-light" %>
+    <%= link_to 'Delete', delete_article_path(@article), class: "btn btn-light" %>
+<% end %>
 
 <% if @is_saved %>
 <%= link_to 'Unsave', unsave_article_path(@article) %>
 <% else %>
 <%= link_to 'Save', save_article_path(@article) %>
+<% end %>
+
+<% else %>
+<h1>Article not found</h1>
 <% end %>

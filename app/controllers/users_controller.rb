@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @team = Team.find(@user.team_id)
 
     if @user.type == 'Journalist'
-      @articles = Article.where(user_id: @user.id).order(created_at: :desc)
+      @articles = Article.where(user_id: @user.id, draft: false).order(created_at: :desc)
     end
 
     if @user.type == 'TeamManager'
@@ -117,6 +117,8 @@ class UsersController < ApplicationController
   end
 
   private
+
+
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:team_id, :bio, :photo)
