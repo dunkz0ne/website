@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_29_230402) do
+
+ActiveRecord::Schema.define(version: 2024_07_30_152525) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +43,13 @@ ActiveRecord::Schema.define(version: 2024_07_29_230402) do
 
 # Could not dump table "articles" because of following StandardError
 #   Unknown type 'bool' for column 'draft'
+
+  create_table "journalist_requests", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_journalist_requests_on_user_id"
+  end
 
   create_table "releases", force: :cascade do |t|
     t.string "title"
@@ -91,6 +99,7 @@ ActiveRecord::Schema.define(version: 2024_07_29_230402) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "articles", "users"
+  add_foreign_key "journalist_requests", "users"
   add_foreign_key "releases", "users"
   add_foreign_key "saves", "articles"
   add_foreign_key "saves", "users"

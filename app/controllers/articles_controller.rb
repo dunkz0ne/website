@@ -65,7 +65,7 @@ class ArticlesController < ApplicationController
     redirect_to articles_url, notice: 'Article was successfully destroyed.'
   end
 
-  def save 
+  def save
     @user = User.find(session[:user_id]) if session[:user_id]
     @article = Article.find(params[:id])
     @save = Save.new(user_id: @user.id, article_id: @article.id)
@@ -88,14 +88,14 @@ class ArticlesController < ApplicationController
   end
 
   def authorize_journalist
-    unless current_user.is_a?(Journalist)
+    unless current_user.is_a?(Journalist) || current_user.is_a?(Admin)
       redirect_to user_dashboard_path, alert: 'You are not authorized to perform this action.'
     end
   end
 
   def authorize_owner
     @article = Article.find(params[:id])
-    unless @article.user_id == current_user.id
+    unless @article.user_id == current_user.id || current_user.is_a?(Admin)
       redirect_to articles_path, alert: 'You are not authorized to perform this action.'
     end
   end

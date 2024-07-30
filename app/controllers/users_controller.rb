@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
-  #before_action :authorize_promotion, only: [:become_journalist]
 
   #GET /users/1 or /users/1.json
   def show
@@ -14,6 +13,10 @@ class UsersController < ApplicationController
 
     if @user.type == 'TeamManager'
       @releases = Release.where(user_id: @user.id).order(created_at: :desc)
+    end
+
+    if @user.type == 'Admin'
+      @journalist_requests = JournalistRequest.all
     end
 
     if @user.id.to_i == session[:user_id].to_i
@@ -108,12 +111,14 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: 'You are now a journalist.'
   end
 
-  private
+  def become_team_manager
+    current_user.become_team_manager!
+    redirect_to root_path, notice: 'You are now a team manager.'
+  end
 
-  def authorize_promotion
-    unless current_user.can_become_journalist? # Define this method in User model as needed
-      redirect_to root_path, alert: 'You are not authorized to perform this action.'
-    end
+  def become_admin
+    current_user.become_admin!
+    redirect_to root_path, notice: 'You are now an admin.'
   end
 
   private

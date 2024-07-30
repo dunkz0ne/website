@@ -1,0 +1,2 @@
+module JournalistRequestsHelper
+end

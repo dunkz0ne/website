@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :league
 
   resources :journalists
+  resources :admin
 
   resources :articles do
     member do
@@ -18,8 +19,16 @@ Rails.application.routes.draw do
 
   resources :releases
 
+  resources :journalist_requests, only: [:new, :create, :index] do
+    member do
+      post 'approve'
+      delete 'reject'
+    end
+  end
 
   get 'become_journalist', to: 'users#become_journalist'
+  get 'become_team_manager', to: 'users#become_team_manager'
+  get 'become_admin', to: 'users#become_admin'
 
   get '/user/dashboard/' => 'dashboard#index'
 

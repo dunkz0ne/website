@@ -53,4 +53,11 @@ class JournalistsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    # Only allow a list of trusted parameters through.
+    def journalist_params
+      params.require(:journalist).permit(:team_id, :bio, :photo)
+    end
+
 end
