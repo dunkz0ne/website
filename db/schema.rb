@@ -89,8 +89,8 @@ ActiveRecord::Schema.define(version: 2024_07_29_142101) do
     t.string "provider"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "bio"
     t.string "type"
+    t.string "bio"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
