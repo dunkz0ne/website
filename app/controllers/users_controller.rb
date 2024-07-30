@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   #GET /users/1 or /users/1.json
   def show
-    @user = params[:id].blank? ? User.find_by(id: session[:user_id]) : User.find(params[:id])
+    @user = User.find(params[:id])
     @team = Team.find(@user.team_id)
 
     if @user.type == 'Journalist'
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       @releases = Release.where(user_id: @user.id).order(created_at: :desc)
     end
 
-    if @user.id == session[:user_id]
+    if @user.id.to_i == session[:user_id].to_i
       @saved = Save.where(user_id: session[:user_id])
       @saved_articles = Article.where(id: @saved.pluck(:article_id))
     end

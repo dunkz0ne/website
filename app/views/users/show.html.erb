@@ -93,7 +93,7 @@
                       <div class="profileBio">
                         <%= @user.bio %>
                       </div>
-                      <% if session[:user_id] == @user.id %>
+                      <% if session[:user_id].to_i == @user.id.to_i %>
                       <div class="editProfile">
                         <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editModal">
                           Edit Profile
