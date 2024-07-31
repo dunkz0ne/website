@@ -33,12 +33,12 @@
                 </li>
                 <li class="nav-item">
                     <i class="nav-icon fa-solid fa-newspaper"></i>
-                    <%= active_link_to 'News', articles_url, active: :exclusive, class: 'navElement' %>                
+                    <%= active_link_to 'News', articles_url, active: :exclusive, class: 'navElement' %>
                 </li>
                 <li>
                     <%= active_link_to(user_dashboard_path) do %>
                     <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
-                    <% end %>                
+                    <% end %>
                 </li>
 
                 <li class="nav-item">
@@ -53,7 +53,7 @@
                 </li>
                 <li class="nav-item">
                     <i class="nav-icon fa-solid fa-user"></i>
-                    <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>  
+                    <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>
                 </li>
                 </li>
             </ul>
@@ -87,7 +87,7 @@
                       </div>
                       <% if @user.type? %>
                       <div class="profileType">
-                        <%= @user.type %>  <i class="fa-solid fa-check"></i> 
+                        <%= @user.type %>  <i class="fa-solid fa-check"></i>
                       </div>
                       <% end %>
                       <div class="profileBio">
@@ -102,7 +102,7 @@
                         <% if not @user.type? %>
                           <%= link_to 'Become a Journalist', new_journalist_request_path, class: "btn btn-light" %>
                         <% end %>
-                        
+
 
                         <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true" >
                           <div class="modal-dialog">
@@ -114,22 +114,22 @@
                               <div class="modal-body">
                                 <%= render 'form', user: @user %>
                               </div>
-                              
+
                             </div>
                           </div>
                         </div>
                       </div>
 
-                      
+
                       <% end %>
                     </div>
-                    
+
                   </div>
                 </div>
               </div>
             </div>
 
-            
+
           </div>
         </div>
       </div>
@@ -169,6 +169,50 @@
     <% end %>
   <% end %>
 
+  <% if @user.type == "Admin" %>
+  <div class="container mt-5" id="releaseList">
+    <h1>Users</h1>
+    <%= form_with url: user_path, method: :get, local: true do |form| %>
+      <div class="field">
+        <%= form.label :search, "Cerca utente:" %>
+        <%= form.text_field :search, value: params[:search] %>
+      </div>
+      <%= form.submit "Cerca" %>
+    <% end %>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nome Utente</th>
+          <th>Email</th>
+          <th>Strikes</th>
+          <th>Azioni</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @users.present? %>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.strikes %></td>
+              <td>
+                <%= button_to 'Incrementa Strikes', increment_strikes_user_path(user), method: :post, class: 'btn btn-success' %>
+                <%= button_to 'Decrementa Strikes', decrement_strikes_user_path(user), method: :post, class: 'btn btn-danger' %>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="4">Nessun utente trovato</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+
   <div class="container mt-5">
     <h1>Comments</h1>
     <% @comments.each do |comment| %>
@@ -180,12 +224,9 @@
               <p class="card-text">on <%= link_to comment.article.title, article_path(comment.article) %></p>
           </div>
       </div>
-
     <% end %>
-
-  
-
   </div>
+
   <% if @saved_articles %>
     <div id="savedList" class="container mt-5">
       <h1>Saved Articles</h1>
@@ -199,27 +240,26 @@
                 <%= link_to 'Read More', article_path(article), class: "btn btn-light" %>
             </div>
         </div>
-
       <% end %>
     </div>
   <% end %>
-  </div>
 
-  ;<% if @saved_comments %>
-  <div class="container mt-5">
-    <h1>Saved Comments</h1>
-    <% @saved_comments.each do |comment| %>
-      <div class="card" style="border-radius: 20px; margin-top: 2rem; margin-bottom: 2rem;">
-          <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
-              <p class="card-text"><%= comment.content %></p>
-              <p class="card-text"><%= comment.created_at %></p>
-              <p class="card-text">by <%= link_to comment.user.name, user_path(comment.user) %></p>
-              <p class="card-text">Likes: <%= comment.likes.length %></p>
-              <p class="card-text">on <%= link_to comment.article.title, article_path(comment.article) %></p>
-          </div>
-      </div>
-      <% end %>
-  </div>
+
+  <% if @saved_comments %>
+    <div class="container mt-5">
+      <h1>Saved Comments</h1>
+      <% @saved_comments.each do |comment| %>
+        <div class="card" style="border-radius: 20px; margin-top: 2rem; margin-bottom: 2rem;">
+            <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
+                <p class="card-text"><%= comment.content %></p>
+                <p class="card-text"><%= comment.created_at %></p>
+                <p class="card-text">by <%= link_to comment.user.name, user_path(comment.user) %></p>
+                <p class="card-text">Likes: <%= comment.likes.length %></p>
+                <p class="card-text">on <%= link_to comment.article.title, article_path(comment.article) %></p>
+            </div>
+        </div>
+        <% end %>
+    </div>
   <% end %>
-</div>
 
+</div>

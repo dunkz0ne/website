@@ -35,6 +35,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users do
+    member do
+      post :increment_strikes
+      post :decrement_strikes
+    end
+  end
+
   get 'become_journalist', to: 'users#become_journalist'
   get 'become_team_manager', to: 'users#become_team_manager'
   get 'become_admin', to: 'users#become_admin'

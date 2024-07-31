@@ -1,9 +1,13 @@
 class User < ApplicationRecord
 
+  # Validations
   validates :team_id, presence: true
   validate :team_must_exist
+  validates :strikes, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 3 }
 
+  # Relationships
   has_one :team
+  has_one_attached :photo
   has_many :articles, foreign_key: 'user_id'
   has_many :releases, foreign_key: 'user_id'
   has_many :comments, foreign_key: 'user_id'
@@ -11,9 +15,8 @@ class User < ApplicationRecord
   has_many :likes, foreign_key: 'user_id'
   has_many :save_comments, foreign_key: 'user_id'
 
+  # Set the inheritance column to type
   self.inheritance_column = :type
-
-  has_one_attached :photo
 
   # Check if a user exists with the given omniauth data
   def self.exists_with_omniauth?(auth_info)
@@ -47,10 +50,19 @@ class User < ApplicationRecord
   end
 
   private
-  def team_must_exist
-    unless Team.exists?(self.team_id)
-      errors.add(:team_id, "must be a valid team ID")
+
+    # Method to validate the team ID
+    def team_must_exist
+      unless Team.exists?(self.team_id)
+        errors.add(:team_id, "must be a valid team ID")
+      end
     end
-  end
+
+    # Method to ban a user if necessary
+    def ban_if_necessary
+      if strikes >= 3
+        update(banned: true) # Ban the user
+      end
+    end
 
 end

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :ensure_admin!, only: [:increment_strikes, :decrement_strikes]
 
   #GET /users/1 or /users/1.json
   def show
@@ -17,15 +18,21 @@ class UsersController < ApplicationController
 
     if @user.type == 'Admin'
       @journalist_requests = JournalistRequest.all
+      @users = if params[:search].present?
+        User.where('name LIKE ?', "%#{params[:search]}%")
+      else
+        User.all
+      end
     end
+
 
     @comments = Comment.where(user_id: @user.id).order(created_at: :desc)
 
     @comments.each do |comment|
       comment.article = Article.find(comment.article_id)
     end
-    
-    
+
+
 
     if @user.id.to_i == session[:user_id].to_i
       @saved = SaveComment.where(user_id: @user.id)
@@ -135,11 +142,40 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: 'You are now an admin.'
   end
 
+  # Method to increment the strikes of a user
+  def increment_strikes
+    @user = User.find_by(id: params[:id])
+    if @user.strikes >=0
+      @user.increment!(:strikes)
+    end
+    redirect_to user_path(@current_user), notice: 'Strikes incrementati con successo.'
+  rescue => e
+    redirect_to user_path(@current_user), alert: e.message
+  end
+
+  # Method to decrement the strikes of a user
+  def decrement_strikes
+    @user = User.find(params[:id])
+    if @user.strikes > 0
+      @user.decrement!(:strikes)
+    else
+      raise "Gli strikes sono già a zero."
+    end
+    redirect_to user_path(@current_user), notice: 'Strikes decrementati con successo.'
+  rescue => e
+    redirect_to user_path(@current_user), alert: e.message
+  end
+
   private
-
-
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:team_id, :bio, :photo)
+    end
+
+    # Method to ensure that the user is an admin
+    def ensure_admin!
+      unless @current_user.type == 'Admin'
+        redirect_to root_path, alert: 'Non sei autorizzato ad accedere a questa pagina.'
+      end
     end
 end

@@ -34,6 +34,10 @@ gem 'countries'
 
 gem 'canard', '~> 0.6.2.pre'
 
+group :development do
+  gem 'rails-erd'
+end
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
