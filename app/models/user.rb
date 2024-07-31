@@ -6,6 +6,10 @@ class User < ApplicationRecord
   has_one :team
   has_many :articles, foreign_key: 'user_id'
   has_many :releases, foreign_key: 'user_id'
+  has_many :comments, foreign_key: 'user_id'
+  has_many :saves, foreign_key: 'user_id'
+  has_many :likes, foreign_key: 'user_id'
+  has_many :save_comments, foreign_key: 'user_id'
 
   self.inheritance_column = :type
 

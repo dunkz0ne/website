@@ -68,6 +68,23 @@
 <%= link_to 'Save', save_article_path(@article) %>
 <% end %>
 
+<%= form_with(model: [ @article, @article.comments.build ], local: true) do |form| %>
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content, rows: 4 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Add comment' %>
+  </div>
+<% end %>
+
+<div id="comments">
+  <% @article.comments.where(parent_id: nil).each do |comment| %>
+    <%= render_comment(comment, @article) %>
+  <% end %>
+</div>
+
 <% else %>
 <h1>Article not found</h1>
 <% end %>
