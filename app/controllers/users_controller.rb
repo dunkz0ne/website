@@ -19,6 +19,12 @@ class UsersController < ApplicationController
       @journalist_requests = JournalistRequest.all
     end
 
+    @comments = Comment.where(user_id: @user.id).order(created_at: :desc)
+
+    @comments.each do |comment|
+      comment.article = Article.find(comment.article_id)
+    end
+
     if @user.id.to_i == session[:user_id].to_i
       @saved = Save.where(user_id: session[:user_id])
       @saved_articles = Article.where(id: @saved.pluck(:article_id))

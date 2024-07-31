@@ -2,7 +2,7 @@ module CommentsHelper
   def render_comment(comment, article, level = 0)
     content_tag(:div, class: 'comment', style: "margin-left: #{level * 20}px") do
       concat(content_tag(:p, comment.content))
-      concat(content_tag(:p, "by #{comment.user.name}"))
+      concat(link_to(comment.user.name, user_path(comment.user)))
       concat(content_tag(:p, "on #{comment.created_at.strftime('%b %d, %Y %H:%M')}"))
       concat(content_tag(:p, "Likes: #{comment.likes.length}"))
 
