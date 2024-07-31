@@ -24,8 +24,16 @@ class UsersController < ApplicationController
     @comments.each do |comment|
       comment.article = Article.find(comment.article_id)
     end
+    
+    
 
     if @user.id.to_i == session[:user_id].to_i
+      @saved = SaveComment.where(user_id: @user.id)
+      @saved_comments = Comment.where(id: @saved.pluck(:comment_id))
+      @saved_comments.each do |saved_comment|
+        saved_comment.article = Article.find(saved_comment.article_id)
+        saved_comment.user = User.find(saved_comment.user_id)
+      end
       @saved = Save.where(user_id: session[:user_id])
       @saved_articles = Article.where(id: @saved.pluck(:article_id))
     end

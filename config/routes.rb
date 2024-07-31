@@ -15,6 +15,8 @@ Rails.application.routes.draw do
         get 'like'
         get 'unlike'
         get 'delete'
+        get 'save'
+        get 'unsave'
       end
     end
     member do

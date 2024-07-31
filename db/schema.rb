@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_31_144112) do
+ActiveRecord::Schema.define(version: 2024_07_31_155202) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -79,6 +79,15 @@ ActiveRecord::Schema.define(version: 2024_07_31_144112) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "save_comments", force: :cascade do |t|
+    t.integer "comment_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["comment_id"], name: "index_save_comments_on_comment_id"
+    t.index ["user_id"], name: "index_save_comments_on_user_id"
+  end
+
   create_table "saves", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "article_id", null: false
@@ -123,6 +132,8 @@ ActiveRecord::Schema.define(version: 2024_07_31_144112) do
   add_foreign_key "comments", "users"
   add_foreign_key "journalist_requests", "users"
   add_foreign_key "releases", "users"
+  add_foreign_key "save_comments", "comments"
+  add_foreign_key "save_comments", "users"
   add_foreign_key "saves", "articles"
   add_foreign_key "saves", "users"
   add_foreign_key "users", "teams"

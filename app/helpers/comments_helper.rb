@@ -12,6 +12,12 @@ module CommentsHelper
         concat(link_to('Like', like_article_comment_path(id: comment.id, article_id: article.id), class: "btn btn-light"))
       end
 
+      if comment.save_comments.find_by(user_id: current_user.id)
+        concat(link_to('Unsave', unsave_article_comment_path(id: comment.id, article_id: article.id), class: "btn btn-light"))
+      else
+        concat(link_to('Save', save_article_comment_path(id: comment.id, article_id: article.id), class: "btn btn-light"))
+      end
+
       if current_user == comment.user
         concat(link_to('Delete', delete_article_comment_path(id: comment.id, article_id: article.id), class: "btn btn-light"))
       end
