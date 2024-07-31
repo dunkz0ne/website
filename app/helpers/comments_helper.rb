@@ -3,6 +3,14 @@ module CommentsHelper
     content_tag(:div, class: 'comment', style: "margin-left: #{level * 20}px") do
       concat(content_tag(:p, comment.content))
       concat(content_tag(:p, "by #{comment.user.name}"))
+      concat(content_tag(:p, "on #{comment.created_at.strftime('%b %d, %Y %H:%M')}"))
+      concat(content_tag(:p, "Likes: #{comment.likes.length}"))
+
+      if comment.likes.find_by(user_id: current_user.id)
+        concat(link_to('Unlike', unlike_article_comment_path(id: comment.id, article_id: article.id), class: "btn btn-light"))
+      else
+        concat(link_to('Like', like_article_comment_path(id: comment.id, article_id: article.id), class: "btn btn-light"))
+      end
 
       if current_user == comment.user
         concat(link_to('Delete', delete_article_comment_path(id: comment.id, article_id: article.id), class: "btn btn-light"))

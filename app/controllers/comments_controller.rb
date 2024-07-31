@@ -12,6 +12,20 @@ class CommentsController < ApplicationController
     end
   end
 
+  def like
+    @comment = Comment.find(params[:id])
+    @like = Like.new(comment_id: @comment.id, user_id: current_user.id)
+    @like.save
+    redirect_to article_path(id: @comment.article_id), notice: 'Liked comment'
+    
+  end
+
+  def unlike
+    @like = Like.find_by(comment_id: params[:id], user: current_user)
+    @like.destroy
+    redirect_to @like.comment.article
+  end
+
   def delete
     @comment = Comment.find(params[:id])
     @comment.destroy

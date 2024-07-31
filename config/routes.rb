@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments, only: [:create] do
       member do
+        get 'like'
+        get 'unlike'
         get 'delete'
       end
     end
