@@ -199,6 +199,7 @@
               <td>
                 <%= button_to 'Incrementa Strikes', increment_strikes_user_path(user), method: :post, class: 'btn btn-success' %>
                 <%= button_to 'Decrementa Strikes', decrement_strikes_user_path(user), method: :post, class: 'btn btn-danger' %>
+                <%= button_to 'Delete User', delete_user_path(user), method: :post, class: 'btn btn-danger' %>
               </td>
             </tr>
           <% end %>

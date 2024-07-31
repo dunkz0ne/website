@@ -111,14 +111,14 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1 or /users/1.json
   def destroy
-    @user.destroy
+  end
 
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
-    end
+  # DELETE /users/1 or /users/1.json
+  def delete
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to user_path(@current_user), notice: 'User deleted.'
   end
 
   # Only allow a list of trusted parameters through.
