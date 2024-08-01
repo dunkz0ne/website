@@ -115,17 +115,23 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <% @articles.each do |article| %>
                                     <div class="row" style="align-items: center;">
                                         <div class="col">
                                             <div class="newsArticle">
                                                 <div class="container">
                                                     <div class="row">
                                                         <div class="col-4">
-                                                            <%= image_tag('news.png', id: 'imageArticle') %>
+                                                            <% if article.image.attached? %>
+                                                                <%= image_tag article.image, id: 'imageArticle' %>
+                                                            <% else %>
+                                                                <img src="https://via.placeholder.com/150" id="imageArticle" />
+                                                            <% end %>
+
                                                         </div>
                                                         <div class="col-8" style="align-content: center; text-align:left;">
-                                                            <div class="articleTitle">Jontay Porter to Bulls?</div>
-                                                            <div class="authorInfo">Federico Gerardi - 15/03/24</div>
+                                                            <div class="articleTitle"><%= link_to article.title, article_path(article), style: "color: white;" %></div>
+                                                            <div class="authorInfo"><%= link_to article.user.name, user_path(article.user), style: "color: white;" %> - <%= article.created_at %></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -133,44 +139,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row" style="align-items: center;">
-                                        <div class="col">
-                                            <div class="newsArticle">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-4">
-                                                            <%= image_tag('news.png', id: 'imageArticle') %>
-                                                        </div>
-                                                        <div class="col-8" style="align-content: center; text-align:left;">
-                                                            <div class="articleTitle">Jontay Porter to Bulls?</div>
-                                                            <div class="authorInfo">Federico Gerardi - 15/03/24</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="align-items: center;">
-                                        <div class="col">
-                                            <div class="newsArticle">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-4">
-                                                            <%= image_tag('news.png', id: 'imageArticle') %>
-                                                        </div>
-                                                        <div class="col-8" style="align-content: center; text-align:left;">
-                                                            <div class="articleTitle">Jontay Porter to Bulls?</div>
-                                                            <div class="authorInfo">Federico Gerardi - 15/03/24</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <% end %>
                                     <div class="row" style="align-items: center;">
                                         <div class="col" style="display: flex; justify-content:center;">
                                             <div class="newsDetails">
-                                                <%= active_link_to 'More', '/news', active: :exclusive, class: 'matchDetails', id:'matchDets' %>
+                                                <%= active_link_to 'More', articles_path , active: :exclusive, class: 'matchDetails', id:'matchDets' %>
                                             </div>
                                         </div>
                                     </div>

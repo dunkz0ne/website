@@ -54,10 +54,15 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    if @article.update(article_params)
-      redirect_to @article, notice: 'Article was successfully updated.'
+    if article_params[:image].present?
+      if @article.update(article_params)
+        redirect_to @article, notice: 'Article was successfully updated.'
+      else
+        render :edit
+      end
     else
-      render :edit
+      @article.update(article_params.except(:image))
+      redirect_to @article, notice: 'Article was successfully updated.'
     end
   end
 
@@ -89,7 +94,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :draft)
+    params.require(:article).permit(:title, :content, :draft, :image)
   end
 
   def authorize_journalist
