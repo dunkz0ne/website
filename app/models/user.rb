@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :saves, foreign_key: 'user_id'
   has_many :likes, foreign_key: 'user_id'
   has_many :save_comments, foreign_key: 'user_id'
+  has_many :banned_users, foreign_key: 'user_id'
+  has_many :banned_users_as_admin, class_name: 'BannedUser', foreign_key: 'admin_id'
 
   # Set the inheritance column to type
   self.inheritance_column = :type
@@ -47,6 +49,14 @@ class User < ApplicationRecord
 
   def become_admin!
     self.update(type: 'Admin')
+  end
+
+  def ban!(by_admin:, from: Time.now, to: nil, reason: '')
+    self.banned_users.create!(admin: by_admin, banned_from: from, banned_to: to)
+  end
+
+  def banned?
+    banned_users.where('banned_from <= ? AND (banned_to IS NULL OR banned_to >= ?)', Time.now, Time.now).exists?
   end
 
   private

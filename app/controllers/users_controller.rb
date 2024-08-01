@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!
   before_action :ensure_admin!, only: [:increment_strikes, :decrement_strikes]
+  helper_method :banned?
 
   #GET /users/1 or /users/1.json
   def show
@@ -145,7 +146,10 @@ class UsersController < ApplicationController
   # Method to increment the strikes of a user
   def increment_strikes
     @user = User.find_by(id: params[:id])
-    if @user.strikes >=0
+    # If the user has 3 strikes, he will be banned
+    if @user.strikes == 3
+      @user.ban!(by_admin: @current_user)
+    else
       @user.increment!(:strikes)
     end
     redirect_to user_path(@current_user), notice: 'Strikes incrementati con successo.'

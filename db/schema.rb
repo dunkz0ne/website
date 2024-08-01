@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_31_214616) do
+ActiveRecord::Schema.define(version: 2024_08_01_104049) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +42,17 @@ ActiveRecord::Schema.define(version: 2024_07_31_214616) do
 
 # Could not dump table "articles" because of following StandardError
 #   Unknown type 'bool' for column 'draft'
+
+  create_table "banned_users", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "banned_from"
+    t.datetime "banned_to"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "admin_id", null: false
+    t.index ["admin_id"], name: "index_banned_users_on_admin_id"
+    t.index ["user_id"], name: "index_banned_users_on_user_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -124,12 +135,13 @@ ActiveRecord::Schema.define(version: 2024_07_31_214616) do
     t.string "bio"
     t.string "type"
     t.integer "strikes", default: 0, null: false
-    t.boolean "banned", default: false, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "articles", "users"
+  add_foreign_key "banned_users", "users"
+  add_foreign_key "banned_users", "users", column: "admin_id"
   add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"
   add_foreign_key "journalist_requests", "users"

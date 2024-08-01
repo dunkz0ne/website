@@ -170,63 +170,51 @@
   <% end %>
 
   <% if @user.type == "Admin" %>
-  <div class="container mt-5" id="releaseList">
-    <h1>Users</h1>
-    <%= form_with url: user_path, method: :get, local: true do |form| %>
-      <div class="field">
-        <%= form.label :search, "Cerca utente:" %>
-        <%= form.text_field :search, value: params[:search] %>
-      </div>
-      <%= form.submit "Cerca" %>
-    <% end %>
+    <div class="container mt-5" id="releaseList">
+      <h1>Users</h1>
+      <%= form_with url: user_path, method: :get, local: true do |form| %>
+        <div class="field">
+          <%= form.label :search, "Cerca utente:" %>
+          <%= form.text_field :search, value: params[:search] %>
+        </div>
+        <%= form.submit "Cerca" %>
+      <% end %>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Nome Utente</th>
-          <th>Email</th>
-          <th>Strikes</th>
-          <th>Azioni</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% if @users.present? %>
-          <% @users.each do |user| %>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome Utente</th>
+            <th>Email</th>
+            <th>Strikes</th>
+            <th>Bannato</th>
+            <th>Azioni</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @users.present? %>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.strikes %></td>
+                <td><%= user.banned? ? 'Sì' : 'No' %></td>
+                <td>
+                  <%= button_to 'Incrementa Strikes', increment_strikes_user_path(user), method: :post, class: 'btn btn-success' %>
+                  <%= button_to 'Decrementa Strikes', decrement_strikes_user_path(user), method: :post, class: 'btn btn-danger' %>
+                  <%= button_to 'Delete User', delete_user_path(user), method: :post, class: 'btn btn-danger' %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
             <tr>
-              <td><%= user.name %></td>
-              <td><%= user.email %></td>
-              <td><%= user.strikes %></td>
-              <td>
-                <%= button_to 'Incrementa Strikes', increment_strikes_user_path(user), method: :post, class: 'btn btn-success' %>
-                <%= button_to 'Decrementa Strikes', decrement_strikes_user_path(user), method: :post, class: 'btn btn-danger' %>
-                <%= button_to 'Delete User', delete_user_path(user), method: :post, class: 'btn btn-danger' %>
-              </td>
+              <td colspan="5">Nessun utente trovato</td>
             </tr>
           <% end %>
-        <% else %>
-          <tr>
-            <td colspan="4">Nessun utente trovato</td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-<% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
 
-
-  <div class="container mt-5">
-    <h1>Comments</h1>
-    <% @comments.each do |comment| %>
-      <div class="card" style="border-radius: 20px; margin-top: 2rem; margin-bottom: 2rem;">
-          <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
-              <p class="card-text"><%= comment.content %></p>
-              <p class="card-text"><%= comment.created_at %></p>
-              <p class="card-text">Likes: <%= comment.likes.length %></p>
-              <p class="card-text">on <%= link_to comment.article.title, article_path(comment.article) %></p>
-          </div>
-      </div>
-    <% end %>
-  </div>
 
   <% if @saved_articles %>
     <div id="savedList" class="container mt-5">
