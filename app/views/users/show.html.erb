@@ -172,46 +172,33 @@
   <% if @user.type == "Admin" %>
     <div class="container mt-5" id="releaseList">
       <h1>Users</h1>
-      <%= form_with url: user_path, method: :get, local: true do |form| %>
-        <div class="field">
-          <%= form.label :search, "Cerca utente:" %>
-          <%= form.text_field :search, value: params[:search] %>
-        </div>
-        <%= form.submit "Cerca" %>
-      <% end %>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Nome Utente</th>
-            <th>Email</th>
-            <th>Strikes</th>
-            <th>Bannato</th>
-            <th>Azioni</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% if @users.present? %>
+      <%= form_with url: update_users_user_path, method: :post, id: 'update_users_form' do %>
+        <h1>Gestione Strikes Utenti</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Nome Utente</th>
+              <th>Strikes</th>
+              <th>Azione</th>
+            </tr>
+          </thead>
+          <tbody>
             <% @users.each do |user| %>
               <tr>
                 <td><%= user.name %></td>
-                <td><%= user.email %></td>
-                <td><%= user.strikes %></td>
-                <td><%= user.banned? ? 'Sì' : 'No' %></td>
                 <td>
-                  <%= button_to 'Incrementa Strikes', increment_strikes_user_path(user), method: :post, class: 'btn btn-success' %>
-                  <%= button_to 'Decrementa Strikes', decrement_strikes_user_path(user), method: :post, class: 'btn btn-danger' %>
-                  <%= button_to 'Delete User', delete_user_path(user), method: :post, class: 'btn btn-danger' %>
+                <input type="number" id="user_<%= user.id %>_strikes" name="users[<%= user.id %>][strikes]" value="<%= user.strikes %>" min="0">
+                </td>
+                <td>
+                <button type="button" class="increment-strikes" data-user-id="<%= user.id %>">+</button>
+                <button type="button" class="decrement-strikes" data-user-id="<%= user.id %>">-</button>
                 </td>
               </tr>
             <% end %>
-          <% else %>
-            <tr>
-              <td colspan="5">Nessun utente trovato</td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+        <%= submit_tag 'Update Users', class: 'btn btn-primary' %>
+      <% end %>
     </div>
   <% end %>
 

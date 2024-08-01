@@ -170,6 +170,14 @@ class UsersController < ApplicationController
     redirect_to user_path(@current_user), alert: e.message
   end
 
+  def update_users
+    users_params.each do |user_id, user_params|
+      user = User.find(user_id)
+      user.update(user_params)
+    end
+    redirect_to edit_strikes_admins_path, notice: 'Strikes aggiornati con successo!'
+  end
+
   private
     # Only allow a list of trusted parameters through.
     def user_params

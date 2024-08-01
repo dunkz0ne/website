@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       post :increment_strikes
       post :decrement_strikes
       post :delete
+      post :update_users
     end
   end
 
