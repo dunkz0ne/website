@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @team = Team.find(@user.team_id)
+    @current_user_team = Team.find(current_user.team_id)
 
     if @user.type == 'Journalist'
       @articles = Article.where(user_id: @user.id, draft: false).order(created_at: :desc)

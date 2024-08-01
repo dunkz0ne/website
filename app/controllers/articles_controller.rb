@@ -23,11 +23,19 @@ class ArticlesController < ApplicationController
       release.user = User.find(release.user_id)
     end
 
+    @other_articles = Article.where(draft: false).order(created_at: :desc).limit(5)
+    @other_articles_teams = []
+    @other_articles.each do |article|
+      article.user = User.find(article.user_id)
+      @other_articles_teams << Team.find(article.user.team_id)
+    end
+
   end
 
   def show
     @article = Article.find(params[:id])
     @team = Team.find(@article.user.team_id)
+    @current_user_team = Team.find(current_user.team_id) 
     @is_saved = Save.where(user_id: session[:user_id], article_id: @article.id).first
 
     @comments = Comment.where(article_id: @article.id).order(created_at: :desc)
