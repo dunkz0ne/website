@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       post :delete
       post :ban_users
       post :delete_articles
+      get 'admin_dashboard'
     end
   end
 

@@ -169,9 +169,9 @@ class UsersController < ApplicationController
     else
       @user.increment!(:strikes)
     end
-    redirect_to user_path(@current_user), notice: 'Strikes incremented.'
+    redirect_to admin_dashboard_user_path(@current_user), notice: 'Strikes incremented.'
   rescue => e
-    redirect_to user_path(@current_user), alert: e.message
+    redirect_to admin_dashboard_user_path(@current_user), alert: e.message
   end
 
   # Method to decrement the strikes of a user
@@ -182,9 +182,9 @@ class UsersController < ApplicationController
     else
       raise "Strikes cannot be negative."
     end
-    redirect_to user_path(@current_user), notice: 'Strikes decremented.'
+    redirect_to admin_dashboard_user_path(@current_user), notice: 'Strikes decremented.'
   rescue => e
-    redirect_to user_path(@current_user), alert: e.message
+    redirect_to admin_dashboard_user_path(@current_user), alert: e.message
   end
 
   # Method to ban a user
@@ -204,7 +204,7 @@ class UsersController < ApplicationController
       flash[:alert] = "No users selected for banning."
     end
 
-    redirect_to user_path(@current_user), notice: 'Users banned.'
+    redirect_to admin_dashboard_user_path(@current_user), notice: 'Users banned.'
   end
 
   def delete_articles
@@ -219,7 +219,38 @@ class UsersController < ApplicationController
     else
       flash[:alert] = "No articles selected for deletion."
     end
-    redirect_to user_path(@current_user), notice: 'Articles Deleted.'
+    redirect_to admin_dashboard_user_path(@current_user), notice: 'Articles Deleted.'
+  end
+
+  def admin_dashboard
+    @user = User.find_by(id: session[:user_id])
+    @team = Team.find(@user.team_id)
+    if @user.type == 'Admin'
+
+      @journalist_requests = if params[:search_request].present?
+        JournalistRequest.joins(:user).where('users.name LIKE ?', "%#{params[:search_request]}%")
+      else
+        JournalistRequest.all
+      end
+
+      @comments = if params[:search_comments].present?
+        Comment.joins(:user).where('users.name LIKE ?', "%#{params[:search_comments]}%")
+      else
+        Comment.all
+      end
+
+      @articles = if params[:search_articles].present?
+        Article.joins(:user).where('users.name LIKE ?', "%#{params[:search_articles]}%")
+      else
+        Article.all
+      end
+
+      @users = if params[:search_users].present?
+        User.where('name LIKE ?', "%#{params[:search_users]}%")
+      else
+        User.all
+      end
+    end
   end
 
   private
