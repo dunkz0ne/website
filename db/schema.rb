@@ -44,14 +44,14 @@ ActiveRecord::Schema.define(version: 2024_08_01_104049) do
 #   Unknown type 'bool' for column 'draft'
 
   create_table "banned_users", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.string "user_email", null: false
     t.datetime "banned_from"
     t.datetime "banned_to"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "admin_id", null: false
     t.index ["admin_id"], name: "index_banned_users_on_admin_id"
-    t.index ["user_id"], name: "index_banned_users_on_user_id"
+    t.index ["user_email"], name: "index_banned_users_on_user_email"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -140,7 +140,6 @@ ActiveRecord::Schema.define(version: 2024_08_01_104049) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "articles", "users"
-  add_foreign_key "banned_users", "users"
   add_foreign_key "banned_users", "users", column: "admin_id"
   add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"

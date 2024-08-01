@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :players
   resources :matches
   resources :league
-
   resources :journalists
   resources :admin
 
@@ -37,10 +36,11 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      post :increment_strikes
-      post :decrement_strikes
+      get :increment_strikes
+      get :decrement_strikes
       post :delete
-      post :update_users
+      post :ban_users
+      post :delete_articles
     end
   end
 
