@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :articles, foreign_key: 'user_id'
   has_many :releases, foreign_key: 'user_id'
   has_many :comments, foreign_key: 'user_id'
-  has_many :saves, foreign_key: 'user_id'
+  has_many :saves, class_name: 'Save', foreign_key: 'user_id'
   has_many :likes, foreign_key: 'user_id'
   has_many :save_comments, foreign_key: 'user_id'
   has_many :banned_users, foreign_key: :user_email, primary_key: :email

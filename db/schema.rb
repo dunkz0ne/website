@@ -40,8 +40,15 @@ ActiveRecord::Schema.define(version: 2024_08_01_104049) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-# Could not dump table "articles" because of following StandardError
-#   Unknown type 'bool' for column 'draft'
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "draft"
+    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
 
   create_table "banned_users", force: :cascade do |t|
     t.string "user_email", null: false
