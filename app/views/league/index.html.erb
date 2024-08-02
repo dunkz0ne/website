@@ -1,11 +1,287 @@
-<h1>Standings</h1>
+<style>
+.innerStatsContainer::-webkit-scrollbar {
+    width: 10px; /* Increase the width of the scrollbar */
+}
 
-<% @standings.each do |team| %>
-<h4><%= team[:team_name] %>: <%= team[:wins] %>/<%= team[:losses] %> = <%= team[:win_pct] %> - <%= team[:str_current_streak] %></h4>
-<% end %>
+.innerStatsContainer::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+    border-radius: 10px;
+    background-color: transparent; /* Make the track transparent */
+}
 
-<h1>Top Players</h1>
+.innerStatsContainer::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    -webkit-box-shadow: inset 0 0 15px #ffffff; /* White shadow */
+    background-color: <%= @team.color %>; /* Team color */
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
 
-<% @leaders.each do |player| %>
-<h4><%= player[:player] %>: <%= player[:team] %></h4>
-<% end %>
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 20px 0 6px <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;
+}
+</style>
+
+
+<div id="leaguePage" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const conferenceSelect = document.getElementById('conferenceSelect');
+            const rows = document.querySelectorAll('.standingContentTextRow');
+
+            conferenceSelect.addEventListener('change', function() {
+                const selectedConference = conferenceSelect.value;
+                let relativeIndex = 1;
+
+                rows.forEach(row => {
+                    if (row.getAttribute('data-conference') === selectedConference) {
+                        row.style.display = 'flex';
+                        row.querySelector('.indexContentText').textContent = relativeIndex;
+                        
+                        if (relativeIndex <= 6) {
+                            row.classList.add('first-six');
+                        } else if (relativeIndex >= 7 && relativeIndex <= 10) {
+                            row.classList.add('seven-to-ten');
+                        }
+                        
+                        relativeIndex++;
+                    } else if (selectedConference === 'all') {
+                        row.style.display = 'flex';
+                        row.querySelector('.indexContentText').textContent = relativeIndex;
+                        row.classList.remove('first-six');
+                        row.classList.remove('seven-to-ten');
+                        relativeIndex++;
+
+
+                    } else{
+                        row.style.display = 'none';
+                    }
+                });
+            });
+
+            // Trigger change event to filter teams on page load
+            conferenceSelect.dispatchEvent(new Event('change'));
+        });
+    </script>
+
+    <div id="Navbar">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: <%= @team.color %>;">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav navItems">
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-people-group"></i>
+                        <%= active_link_to 'Team', "/teams/#{@team.id}", active: :exclusive, class: 'navElement' %>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-basketball"></i>
+                        <%= active_link_to 'Matches', matches_url(number: 3), active: :exclusive, class: 'navElement' %>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-newspaper"></i>
+                        <%= active_link_to 'News', articles_url, active: :exclusive, class: 'navElement' %>
+                    </li>
+                    <li>
+                        <%= active_link_to(user_dashboard_path) do %>
+                        <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
+                        <% end %>
+                    </li>
+
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-trophy"></i>
+                        <%= active_link_to 'League', '/league', active: :exclusive, class: 'navElement' %>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-cart-shopping"></i>
+                        <%= active_link_to 'Shop', "https://www.nbastore.eu/en/#{@team.name.downcase.gsub(' ', '-')}", active: :exclusive, class: 'navElement' %>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>  
+                    </li>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container standingContainer">
+        <div class="row standingContainerRow" >
+            <div class="col" style="justify-content: center; display:flex;">
+                <div class="container" style="display: flex; flex-direction:column; justify-content: space-between; min-width: 90%; overflow-x: auto">
+                    <div class="row">
+                        <div class="col" style="justify-content: center; display:flex;">
+                            <div class="standingsSection" style="background-color: <%= @team.color %>;">
+                                <div class="container-fluid" style="padding: 0;  min-width: 100%; overflow-x: auto; white-space: nowrap;">
+                                    <div class="row" style="align-items: center;">
+                                        <div class="col">
+                                            <div class="container">
+                                                <div class="row" style="align-items: center;">
+                                                    <div class="col-5">
+                                                        <select id="conferenceSelect" class="form-select" style="width: 25vh;">
+                                                            <option value="eastern">Eastern Conference</option>
+                                                            <option value="western">Western Conference</option>
+                                                            <option value="all">All</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-7" style="text-align: left;">
+                                                        <div id="standingsTitle" class="boxTitle">
+                                                            <span class="sectionTitle"">Standings</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row" style="min-width: 1275px; border-top: 2px solid white">
+                                        <div class="col" style="display: flex; justify-content: center;">
+                                            <div class="standingsContent" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
+                                                <div class="container-fluid" style="padding: 1.3vh;">
+                                                    <div class="row titleRow">
+                                                        <div class="col-1">
+                                                            <span class="standingTableTitle">#</span>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <span class="standingTableTitle">Team</span>
+                                                        </div>
+                                                        <div class="col-1">
+                                                            <span class="standingTableTitle">P</span>
+                                                        </div>
+                                                        <div class="col-1">
+                                                            <span class="standingTableTitle">W</span>
+                                                        </div>
+                                                        <div class="col-1">
+                                                            <span class="standingTableTitle">L</span>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <span class="standingTableTitle">Streak</span>
+                                                        </div>
+                                                        <div class="col-1">
+                                                            <span class="standingTableTitle">PCT</span>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <% @standings.each_with_index do |team, index| %>
+                                                        <% full_team_name = team[:team_city] + ' ' + team[:team_name] %>
+                                                        <% conference = team[:conference] == 'East' ? 'eastern' : 'western' %>
+                                                        <% if @team.name == full_team_name %>
+                                                            <div class="row standingContentTextRow yourTeam" data-conference="<%= conference %>">
+                                                        <% else %>
+                                                            <div class="row standingContentTextRow" data-conference="<%= conference %>">
+                                                        <% end %>
+                                                                <div class="col-1"><span class="standingContentText indexContentText"></span></div>
+                                                                <div class="col-4" style="text-align: left;"><span class="standingContentText"><%= team[:team_city] %> <%= team[:team_name] %> </span></div>
+                                                                <div class="col-1" style="text-align: center;"><span class="standingContentText"><%= team[:wins] + team[:losses] %> </span></div>
+                                                                <div class="col-1" style="text-align: center;"><span class="standingContentText"><%= team[:wins] %> </span></div>
+                                                                <div class="col-1" style="text-align: center;"><span class="standingContentText"><%= team[:losses] %> </span></div>
+                                                                <% streak = team[:current_streak].abs > 5 ? 5 : team[:current_streak].abs %>
+                                                                <% if team[:current_streak] > 0 %>
+                                                                    <div class="col-2" style="text-align: left;">
+                                                                        <% streak.times { %><span class="winIcon">W</span><% } %>
+                                                                    </div>
+                                                                <% elsif team[:current_streak] < 0 %>
+                                                                    <div class="col-2" style="text-align: left;">
+                                                                        <% streak.times { %><span class="lossIcon">L</span><% } %>
+                                                                    </div>
+                                                                <% else %>
+                                                                    <div class="col-2" style="text-align: left;">
+                                                                        0
+                                                                    </div>
+                                                                <% end %>
+                                                                <div class="col-1" style="text-align: center;"><span class="standingContentText"><%= team[:win_pct] %> </span></div>
+                                                            </div>
+                                                    <% end %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="tpSection" style="background-color: <%= @team.color %>;">
+                                <div class="container-fluid" style="padding: 0;  min-width: 100%; overflow-x: auto; white-space: nowrap;">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div id="topPlayerTitle" class="boxTitle">
+                                                <span class="sectionTitle">Top Players</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="min-width: 1275px; border-top: 2px solid white; flex-direction:row;">
+                                        <div class="col" style="display: flex; justify-content: center;">
+                                            <div class="tpContent" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
+                                                <div class="container-fluid" style="padding: 1.3vh;"  >
+                                                    <div class="row titleRow" style="flex-direction: row;">
+                                                        <div class="col-1 col-sm-1">
+                                                            <span class="standingTableTitle">#</span>
+                                                        </div>
+                                                        <div class="col-4 col-sm-4">
+                                                            <span class="standingTableTitle">Name</span>
+                                                        </div>
+                                                        <div class="col-1">
+                                                            <span class="standingTableTitle">Team</span>
+                                                        </div>
+                                                        <div class="col-1">
+                                                            <span class="standingTableTitle">PTS</span>
+                                                        </div>
+                                                        <div class="col-1">
+                                                            <span class="standingTableTitle">GP</span>
+                                                        </div>
+                                                        <div class="col-1">
+                                                            <span class="standingTableTitle">AST</span>
+                                                        </div>
+                                                        <div class="col-1">
+                                                            <span class="standingTableTitle">STL</span>
+                                                        </div>
+                                                        <div class="col-1">
+                                                            <span class="standingTableTitle">BLK</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <% @leaders.take(15).each_with_index do |player, index| %>
+                                                        <% if @team.name.titleize.include?(player[:team].titleize) %>
+                                                            <div class="row playerContentTextRow" style="align-items: center; border: 1px solid white; flex-direction:row;">
+                                                        <% else %>
+                                                            <div class="row playerContentTextRow" style="align-items: center; flex-direction:row;">
+                                                        <% end %>
+                                                                <div class="col-1"><span class="playerContentText"><%= index + 1 %></span></div>
+                                                                <div class="col-4" style="text-align: left;"><span class="playerContentText"><%= player[:player] %> </span></div>
+                                                                <div class="col-1" style="text-align: center;"><span class="playerContentText"><%= player[:team] %> </span></div>
+                                                                <div class="col-1" style="text-align: center;"><span class="playerContentText"><%= player[:pts] %> </span></div>
+                                                                <div class="col-1" style="text-align: center;"><span class="playerContentText"><%= player[:gp] %> </span></div>
+                                                                <div class="col-1" style="text-align: center;"><span class="playerContentText"><%= player[:ast] %> </span></div>
+                                                                <div class="col-1" style="text-align: center;"><span class="playerContentText"><%= player[:stl] %> </span></div>
+                                                                <div class="col-1" style="text-align: center;"><span class="playerContentText"><%= player[:blk] %> </span></div>
+                                                            </div>
+                                                    <% end %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
