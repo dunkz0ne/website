@@ -9,6 +9,10 @@ class ReleasesController < ApplicationController
 
   def show
     @article = Release.find(params[:id])
+    @author = User.find(@article.user_id)
+    @user = User.find(@article.user_id)
+    @current_user_team = Team.find(@current_user.team_id)
+    @team = Team.find(@author.team_id)
   end
 
   def new
@@ -18,6 +22,14 @@ class ReleasesController < ApplicationController
   def edit
   end
 
+  def update
+    if @release.update(release_params)
+      redirect_to @release, notice: 'Release was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
   def create
     @release = current_user.releases.build(release_params)
     if @release.save
@@ -25,6 +37,12 @@ class ReleasesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def delete
+    @release = Release.find(params[:id])
+    @release.destroy
+    redirect_to articles_path, notice: 'Release was successfully deleted.'
   end
 
   private

@@ -71,11 +71,17 @@
                                 <p class="card-text"><%= article.created_at.strftime("%B %d, %Y at %I:%M %p") %></p>
                             </div>
                         </div>
-                        <div class="row">
-                            <%= link_to 'Read More', article_path(article), class: "btn btn-light mt-4" %>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <%= link_to 'Read More', article_path(article), class: "btn btn-light mt-2 w-100" %>
+                            </div>
                             <% if article.user.id == session[:user_id].to_i %>
-                                <%= link_to 'Edit', edit_article_path(article), class: "btn btn-light mt-2" %>
-                                <%= link_to 'Delete', delete_article_path(article), class: "btn btn-light mt-2" %>
+                            <div class="col">
+                                <%= link_to 'Edit', edit_article_path(article), class: "btn btn-light mt-2 w-100" %>
+                            </div>
+                            <div class="col">
+                                <%= link_to 'Delete', delete_article_path(article), class: "btn btn-light mt-2 w-100" %>
+                            </div>
                             <% end %>
                         </div>
                         
@@ -94,7 +100,19 @@
                         <p class="card-text"><%= release.content %></p>
                         <p class="card-text">by <%= link_to release.user.name, user_path(release.user), style: 'color: white;' %> | <%= @team.name %> ✅ </p>
                         <p class="card-text"><%= release.created_at %></p>
-                        <%= link_to 'Read More', release_path(release), class: "btn btn-light" %>
+                        <div class="row">
+                            <div class="col">
+                                <%= link_to 'Read More', release_path(release), class: "btn btn-light mt-2 w-100" %>
+                            </div>
+                            <% if release.user.id == session[:user_id].to_i %>
+                            <div class="col">
+                                <%= link_to 'Edit', edit_release_path(release), class: "btn btn-light mt-2 w-100" %>
+                            </div>
+                            <div class="col">
+                                <%= link_to 'Delete', delete_release_path(release), class: "btn btn-light mt-2 w-100" %>
+                            </div>
+                            <% end %>
+                        </div>
                     </div>
                 </div>
 

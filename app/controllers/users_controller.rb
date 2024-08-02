@@ -161,6 +161,11 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: 'You are now an admin.'
   end
 
+  def become_team_manager
+    current_user.become_team_manager!
+    redirect_to root_path, notice: 'You are now a team manager.'
+  end
+
   # Method to increment the strikes of a user
   def increment_strikes
     @user = User.find_by(id: params[:id])

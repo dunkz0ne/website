@@ -13,6 +13,7 @@
       <div class="btn-group my-3">
         <%= link_to 'Become a Journalist', become_journalist_path, method: :patch, class: 'btn btn-primary' %>
         <%= link_to 'Become an Admin', become_admin_path, method: :patch, class: 'btn btn-secondary' %>
+        <%= link_to 'Become a Team Manager', become_team_manager_path, class: 'btn btn-dark' %>
       </div>
 
       <%= form_tag('/auth/facebook', method: 'post', class: 'my-3') do %>

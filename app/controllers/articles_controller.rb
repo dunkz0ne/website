@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
     end
 
     @team_manager = TeamManager.where(team_id: @user.team_id)
-    @releases = Release.where(user_id: @team_manager.ids)
+    @releases = Release.where(user_id: @team_manager.ids).order(created_at: :desc)
 
     @releases.each do |release|
       release.user = User.find(release.user_id)
