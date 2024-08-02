@@ -14,6 +14,7 @@ class TeamsController < ApplicationController
   # GET /teams/1 or /teams/1.json
   def show
     @team = Team.find(params[:id])
+    @current_user_team = Team.find(current_user.team_id)
 
     url = URI.parse("http://localhost:5001/api/teams/#{@team.api.to_s}")
     response = Net::HTTP.get_response(url)

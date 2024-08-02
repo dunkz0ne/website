@@ -72,5 +72,12 @@ class DashboardController < ApplicationController
             @drafts = Article.where(user_id: @user.id, draft: true)
         end
 
+        @team_journalist = Journalist.where(team_id: @team.id)
+        @articles = Article.where(user_id: @team_journalist.ids, draft: false).order(created_at: :desc)
+
+        @articles.each do |article|
+            article.user = User.find(article.user_id)
+        end
+
     end
 end

@@ -5,7 +5,7 @@
 </style>
 
   <div id="Navbar">
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: <%= @team.color %>;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: <%= @current_user_team.color %>;">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -14,7 +14,7 @@
             <ul class="navbar-nav navItems">
                 <li class="nav-item">
                     <i class="nav-icon fa-solid fa-people-group"></i>
-                    <%= active_link_to 'Team', "/teams/#{@team.id}", active: :exclusive, class: 'navElement' %>
+                    <%= active_link_to 'Team', "/teams/#{@current_user_team.id}", active: :exclusive, class: 'navElement' %>
                 </li>
                 <li class="nav-item">
                     <i class="nav-icon fa-solid fa-basketball"></i>
@@ -26,7 +26,7 @@
                 </li>
                 <li>
                     <%= active_link_to(user_dashboard_path) do %>
-                    <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
+                    <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @current_user_team.api %>/primary/L/logo.svg" />
                     <% end %>                
                 </li>
 
@@ -37,7 +37,7 @@
                 </li>
                 <li class="nav-item">
                     <i class="nav-icon fa-solid fa-cart-shopping"></i>
-                    <%= active_link_to 'Shop', "https://www.nbastore.eu/en/#{@team.name.downcase.gsub(' ', '-')}", active: :exclusive, class: 'navElement' %>
+                    <%= active_link_to 'Shop', "https://www.nbastore.eu/en/#{@current_user_team.name.downcase.gsub(' ', '-')}", active: :exclusive, class: 'navElement' %>
                 </li>
                 </li>
                 <li class="nav-item">
@@ -53,6 +53,9 @@
 
 <% if (( @article.draft.to_i == 1 and @article.user_id == session[:user_id].to_i ) or ( @article.draft.to_i == 0 )) %>
 
+<% if @article.image.attached? %>
+<%= image_tag @article.image %>
+<% end %>
 <h1><%= @article.title %></h1>
 <p><%= @article.content %></p>
 <p><%= @article.created_at %></p>
