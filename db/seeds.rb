@@ -259,12 +259,26 @@ end
 
 # Creazione di un utente generico
 u = User.create!(name: 'Silvia Russo', email: 'silvia.russo@worldnews.com', team_id: 10, provider: 'github')
+u1 = User.first();
 
 certificate_path = Rails.root.join('db','Among-Us-Logo.png')
 
 if File.exist?(certificate_path)
   journalist_request = JournalistRequest.create!(
     user: u,
+    certificate: {
+      io: File.open(certificate_path),
+      filename: 'certificate.pdf',
+      content_type: 'application/pdf'
+    }
+  )
+else
+  puts "File certificate.pdf non trovato in db"
+end
+
+if File.exist?(certificate_path)
+  journalist_request = JournalistRequest.create!(
+    user: u1,
     certificate: {
       io: File.open(certificate_path),
       filename: 'certificate.pdf',

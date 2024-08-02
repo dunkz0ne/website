@@ -33,7 +33,7 @@
                 </li>
                 <li class="nav-item">
                     <i class="nav-icon fa-solid fa-newspaper"></i>
-                    <%= active_link_to 'News', articles_url, active: :exclusive, class: 'navElement' %>                
+                    <%= active_link_to 'News', articles_url, active: :exclusive, class: 'navElement' %>
                 </li>
                 <li>
                     <%= active_link_to(user_dashboard_path) do %>
@@ -53,7 +53,7 @@
                 </li>
                 <li class="nav-item">
                     <i class="nav-icon fa-solid fa-user"></i>
-                    <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>  
+                    <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>
                 </li>
                 </li>
             </ul>
@@ -87,10 +87,10 @@
                       </div>
                       <% if @user.type? %>
                       <div class="profileType">
-                        <%= @user.type %>  <i class="fa-solid fa-check"></i> 
+                        <%= @user.type %>  <i class="fa-solid fa-check"></i>
                       </div>
                       <% end %>
-                      <div class="profileBio">
+                      <div class="profileBio mt-2">
                         <%= @user.bio %>
                       </div>
                       <% if session[:user_id].to_i == @user.id.to_i %>
@@ -102,7 +102,11 @@
                         <% if not @user.type? %>
                           <%= link_to 'Become a Journalist', new_journalist_request_path, class: "btn btn-light" %>
                         <% end %>
-                        
+
+                        <% if @user.type == 'Admin' %>
+                          <%= link_to 'Admin Dashboard', admin_dashboard_user_path, class: "btn btn-light" %>
+                        <% end %>
+
 
                         <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true" >
                           <div class="modal-dialog">
@@ -114,22 +118,22 @@
                               <div class="modal-body">
                                 <%= render 'form', user: @user %>
                               </div>
-                              
+
                             </div>
                           </div>
                         </div>
                       </div>
 
-                      
+
                       <% end %>
                     </div>
-                    
+
                   </div>
                 </div>
               </div>
             </div>
 
-            
+
           </div>
         </div>
       </div>
@@ -185,23 +189,6 @@
     <% end %>
   <% end %>
 
-  <div class="container mt-5">
-    <h1>Comments</h1>
-    <% @comments.each do |comment| %>
-      <div class="card" style="border-radius: 20px; margin-top: 2rem; margin-bottom: 2rem;">
-          <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
-              <p class="card-text"><%= comment.content %></p>
-              <p class="card-text"><%= comment.created_at %></p>
-              <p class="card-text">Likes: <%= comment.likes.length %></p>
-              <p class="card-text">on <%= link_to comment.article.title, article_path(comment.article) %></p>
-          </div>
-      </div>
-
-    <% end %>
-
-  
-
-  </div>
   <% if @saved_articles %>
     <div id="savedList" class="container mt-5">
       <h1>Saved Articles</h1>
@@ -215,11 +202,10 @@
                 <%= link_to 'Read More', article_path(article), class: "btn btn-light" %>
             </div>
         </div>
-
       <% end %>
     </div>
   <% end %>
-  </div>
+
 
   <% if @saved_comments %>
   <div class="container mt-5">
@@ -237,5 +223,5 @@
       <% end %>
   </div>
   <% end %>
-</div>
 
+</div>

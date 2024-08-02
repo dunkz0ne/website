@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :ensure_admin!, only: [:increment_strikes, :decrement_strikes]
+  helper_method :banned?
 
   #GET /users/1 or /users/1.json
   def show
@@ -17,16 +19,39 @@ class UsersController < ApplicationController
     end
 
     if @user.type == 'Admin'
-      @journalist_requests = JournalistRequest.all
-    end
 
-    @comments = Comment.where(user_id: @user.id).order(created_at: :desc)
+      @journalist_requests = if params[:search_request].present?
+        JournalistRequest.joins(:user).where('users.name LIKE ?', "%#{params[:search_request]}%")
+      else
+        JournalistRequest.all
+      end
 
-    @comments.each do |comment|
-      comment.article = Article.find(comment.article_id)
+      @comments = if params[:search_comments].present?
+        Comment.joins(:user).where('users.name LIKE ?', "%#{params[:search_comments]}%")
+      else
+        Comment.all
+      end
+
+      @articles = if params[:search_articles].present?
+        Article.joins(:user).where('users.name LIKE ?', "%#{params[:search_articles]}%")
+      else
+        Article.all
+      end
+
+      @users = if params[:search_users].present?
+        User.where('name LIKE ?', "%#{params[:search_users]}%")
+      else
+        User.all
+      end
+
+    else
+
+      @comments = Comment.where(user_id: @user.id).order(created_at: :desc)
+
+      @comments.each do |comment|
+        comment.article = Article.find(comment.article_id)
+      end
     end
-    
-    
 
     if @user.id.to_i == session[:user_id].to_i
       @saved = SaveComment.where(user_id: @user.id)
@@ -105,14 +130,14 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1 or /users/1.json
   def destroy
-    @user.destroy
+  end
 
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
-    end
+  # DELETE /users/1 or /users/1.json
+  def delete
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to user_path(@current_user), notice: 'User deleted.'
   end
 
   # Only allow a list of trusted parameters through.
@@ -136,11 +161,109 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: 'You are now an admin.'
   end
 
+  # Method to increment the strikes of a user
+  def increment_strikes
+    @user = User.find_by(id: params[:id])
+    # If the user has 3 strikes, he will be banned
+    if @user.strikes == 3
+      @user.ban!(by_admin: @current_user)
+    else
+      @user.increment!(:strikes)
+    end
+    redirect_to admin_dashboard_user_path(@current_user), notice: 'Strikes incremented.'
+  rescue => e
+    redirect_to admin_dashboard_user_path(@current_user), alert: e.message
+  end
+
+  # Method to decrement the strikes of a user
+  def decrement_strikes
+    @user = User.find(params[:id])
+    if @user.strikes > 0
+      @user.decrement!(:strikes)
+    else
+      raise "Strikes cannot be negative."
+    end
+    redirect_to admin_dashboard_user_path(@current_user), notice: 'Strikes decremented.'
+  rescue => e
+    redirect_to admin_dashboard_user_path(@current_user), alert: e.message
+  end
+
+  # Method to ban a user
+  def ban_users
+    user_ids = params[:user_ids]
+    reason = params[:reason]
+    from = params[:from].present? ? Time.parse(params[:from]) : Time.now
+    to = params[:to].present? ? Time.parse(params[:to]) : nil
+
+    if user_ids.present?
+      users = User.where(id: user_ids)
+      users.each do |user|
+        user.ban!(by_admin: @current_user, from: from, to: to, reason: reason)
+      end
+      flash[:notice] = "Selected users have been banned."
+    else
+      flash[:alert] = "No users selected for banning."
+    end
+
+    redirect_to admin_dashboard_user_path(@current_user), notice: 'Users banned.'
+  end
+
+  def delete_articles
+    article_ids = params[:article_ids]
+
+    if article_ids.present?
+      articles = Article.where(id: article_ids)
+      articles.each do |article|
+      article.delete
+      end
+      flash[:notice] = "Selected articles have been deleted."
+    else
+      flash[:alert] = "No articles selected for deletion."
+    end
+    redirect_to admin_dashboard_user_path(@current_user), notice: 'Articles Deleted.'
+  end
+
+  def admin_dashboard
+    @user = User.find_by(id: session[:user_id])
+    @team = Team.find(@user.team_id)
+    if @user.type == 'Admin'
+
+      @journalist_requests = if params[:search_request].present?
+        JournalistRequest.joins(:user).where('users.name LIKE ?', "%#{params[:search_request]}%")
+      else
+        JournalistRequest.all
+      end
+
+      @comments = if params[:search_comments].present?
+        Comment.joins(:user).where('users.name LIKE ?', "%#{params[:search_comments]}%")
+      else
+        Comment.all
+      end
+
+      @articles = if params[:search_articles].present?
+        Article.joins(:user).where('users.name LIKE ?', "%#{params[:search_articles]}%")
+      else
+        Article.all
+      end
+
+      @users = if params[:search_users].present?
+        User.where('name LIKE ?', "%#{params[:search_users]}%")
+      else
+        User.all
+      end
+    end
+  end
+
   private
-
-
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:team_id, :bio, :photo)
+      params.require(:user).permit(:team_id, :bio, :photo, :search_users, :search_articles)
+    end
+
+    # Method to ensure that the user is an admin
+    def ensure_admin!
+      unless @current_user.type == 'Admin'
+        redirect_to root_path, alert: 'Non sei autorizzato ad accedere a questa pagina.'
+      end
     end
 end
