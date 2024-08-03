@@ -10,7 +10,6 @@ When("I submit the registration form") do
   expect(page).to have_current_path(new_user_path)
 
   @team = Team.first
-  Rails.logger.debug "Team: #{@team.inspect}"
 
   select @team.name, from: 'user_team_id'
   fill_in 'user_bio', with: 'I am a test'
@@ -38,8 +37,6 @@ Given("I am logged in with Facebook") do
   # Visit the sign in path
   visit auth_facebook_callback_path
 
-  puts "Current path: #{current_path}"
-
   if page.has_button?('Create User')
     click_button('Create User')
   end
@@ -52,9 +49,4 @@ end
 
 Then("print the current path") do
   puts "Current path: #{current_path}"
-end
-
-Given("I am on the dashboard page") do
-  visit user_dashboard_path
-  expect(page).to have_current_path(user_dashboard_path)
 end
