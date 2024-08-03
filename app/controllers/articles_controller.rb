@@ -45,10 +45,17 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @user = User.find(session[:user_id])
+    @team = Team.find(@user.team_id)
   end
 
   def create
     @article = current_user.articles.new(article_params)
+
+    if params[:article][:image].blank?
+      @article.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'nbaLogo.jpg')), filename: 'nbaLogo.jpg', content_type: 'image/jpeg')
+    end
+    
     if @article.save
       redirect_to @article, notice: 'Article was successfully created.'
     else
@@ -58,18 +65,22 @@ class ArticlesController < ApplicationController
 
 
   def edit
+    @user = User.find(session[:user_id])
+    @team = Team.find(@user.team_id)
+
   end
 
   def update
-    if article_params[:image].present?
-      if @article.update(article_params)
-        redirect_to @article, notice: 'Article was successfully updated.'
-      else
-        render :edit
-      end
-    else
-      @article.update(article_params.except(:image))
+    @article = Article.find(params[:id])
+
+    if params[:article][:image].blank? && !@article.image.attached?
+      @article.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'nbaLogo.jpg')), filename: 'nbaLogo.jpg', content_type: 'image/jpeg')
+    end
+
+    if @article.update(article_params)
       redirect_to @article, notice: 'Article was successfully updated.'
+    else
+      render :edit
     end
   end
 
