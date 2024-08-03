@@ -4,6 +4,11 @@ class BannedUser < ApplicationRecord
   validates :user_email, presence: true
   validates :banned_from, presence: true
 
+  def self.cleanup_expired_bans
+    Rails.logger.info "Starting cleanup of expired bans at #{Time.now}"
+    where('banned_to < ?', Time.now).destroy_all
+  end
+
   def self.ban_user!(user, by_admin:, from: Time.now, to: nil, reason: '')
     raise "Only admins can ban users" unless by_admin.is_a?(Admin)
 

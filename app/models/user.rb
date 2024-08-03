@@ -52,7 +52,15 @@ class User < ApplicationRecord
   end
 
   def ban!(by_admin:, from: Time.now, to: nil, reason: '')
-    BannedUser.ban_user!(self, by_admin: by_admin, from: from, to: to, reason: reason)
+    # For testing
+    to ||= from + 5.seconds
+    banned_user = BannedUser.find_by(user_email: self.email)
+
+    if banned_user
+      banned_user.update(banned_to: to)
+    else
+      BannedUser.ban_user!(self, by_admin: by_admin, from: from, to: to, reason: reason)
+    end
   end
 
   def banned?

@@ -30,6 +30,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 gem 'figaro'
 
+gem 'whenever', require: false
+
 gem 'countries'
 
 gem 'canard', '~> 0.6.2.pre'
