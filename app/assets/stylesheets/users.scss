@@ -5,6 +5,10 @@
     padding-bottom: 10vh;
 }
 
+.adminButtonActions{
+    margin: 1vh;
+}
+
 .rowBreak{
     @media (max-width:990px) {
         flex-direction: column;

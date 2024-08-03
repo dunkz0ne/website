@@ -1,6 +1,6 @@
 <style>
   body, table, th, td, tr {
-    background-color: <%= @team.color %> !important;
+    background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;
     color: white !important;
   }
 
@@ -63,7 +63,7 @@
       <div class="form-group d-flex align-items-center mb-3">
         <%= form.label :search_users, "Search User:", class: "mr-2" %>
         <%= form.text_field :search_users, value: params[:search_users], class: "form-control mr-2", placeholder: "Enter username"%>
-        <%= form.submit "Cerca", class: "btn btn-primary" %>
+        <%= form.submit "Search", class: "btn btn-primary" %>
       </div>
     <% end %>
     <%= form_with url: ban_users_user_path, method: :post, local: true do |form| %>
@@ -207,12 +207,12 @@
               <td><%= request.user.email%></td>
               <td><%= truncate(request.user.bio, length: 100) %></td>
               <td><%= request.user.strikes %></td>
-              <td>
+              <td style="display: flex;">
                 <%= form_with(url: approve_journalist_request_path(request), method: :post, local: true) do %>
-                  <%= submit_tag 'Approva', class: 'btn btn-success' %>
+                  <%= submit_tag 'Approve', class: 'btn btn-success adminButtonActions' %>
                 <% end %>
                 <%= form_with(url: reject_journalist_request_path(request), method: :delete, local: true) do %>
-                  <%= submit_tag 'Rifiuta', class: 'btn btn-danger' %>
+                  <%= submit_tag 'Reject', class: 'btn btn-danger adminButtonActions' %>
                 <% end %>
               </td>
             </tr>

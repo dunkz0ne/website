@@ -66,7 +66,11 @@
     <div class="container infoContainer">
         <div class="row infoContainerRow" >
             <div class="col" style="justify-content: center; display:flex;">
-                <div class="container" style="display: flex; flex-direction:column; justify-content: space-between;">
+                <% if @user.type == "Journalist" %>
+                    <div class="container" style="display: flex; flex-direction:column; justify-content: start; ">
+                <% else %>
+                    <div class="container" style="display: flex; flex-direction:column; justify-content: space-between;">
+                <% end %>
                     <div class="row">
                         <div class="col" style="justify-content: center; display:flex;">
                             <div class="matchSection" style="background-color: <%= @team.color %>;">
@@ -155,52 +159,50 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="boxTitle">
-                                                <span class="sectionTitle">The Job</span>
+                                                <span class="sectionTitle">Post an article!</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row" style="align-items: center;">
                                         <div class="col">
-                                            <div class="newsArticle">
+                                            <div class="newsArticleJournalist">
                                                 <div class="container">
                                                     <div class="row">
-                                                        <div class="col-8" style="align-content: center; text-align:left;">
-                                                            <div class="articleTitle">Drafts</div>
-
-                                                            <div class="drafts">
-                                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#draftModal">
-                                                                    Drafts
-                                                                </button>
-
-                                                                <%= link_to 'New Article', new_article_path, class: "btn btn-light" %>
-
-                                                                <div class="modal fade" id="draftModal" tabindex="-1" aria-labelledby="draftModalLabel" aria-hidden="true" >
-                                                                    <div class="modal-dialog">
-                                                                        <div class="modal-content" style="background-color: <%= @team.color %>;">
-                                                                            <div class="modal-header">
-                                                                                <h1 class="modal-title fs-5" id="draftModalLabel">Your Drafts</h1>
-                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                            </div>
-                                                                            <div class="modal-body">
-                                                                                <% @drafts.each do |draft| %>
-                                                                                    <div class="row" style="justify-content: center; align-items:center;">
-                                                                                        <div class="col-8">
-                                                                                            <h5><%= draft.title %></h5>
-                                                                                            <p><%= draft.content %></p>
-                                                                                        </div>
-                                                                                        <div class="col-4" style="text-align: center;">
-                                                                                            <%= link_to 'Edit', edit_article_path(draft), class: "btn btn-light" %>
-                                                                                            <%= link_to 'X', delete_article_path(draft), data: { confirm: 'Are you sure?' }, class: "btn btn-light" %>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <hr>
-                                                                                <% end %>
-                                                                            </div>
-                                                                        
+                                                        <div class="col-12">
+                                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#draftModal" style="margin-bottom: 2vh; width:30vh;">
+                                                                Drafts
+                                                            </button>
+                                                            <div class="modal fade" id="draftModal" tabindex="-1" aria-labelledby="draftModalLabel" aria-hidden="true" >
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content" style="background-color: <%= @team.color %>;">
+                                                                        <div class="modal-header">
+                                                                            <h1 class="modal-title fs-5" id="draftModalLabel">Your Drafts</h1>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
+                                                                        <div class="modal-body">
+                                                                            <% @drafts.each do |draft| %>
+                                                                                <div class="row" style="justify-content: center; align-items:center;">
+                                                                                    <div class="col-8">
+                                                                                        <h5><%= draft.title %></h5>
+                                                                                        <p><%= draft.content %></p>
+                                                                                    </div>
+                                                                                    <div class="col-4" style="text-align: center;">
+                                                                                        <%= link_to 'Edit', edit_article_path(draft), class: "btn btn-light" %>
+                                                                                        <%= link_to 'X', delete_article_path(draft), data: { confirm: 'Are you sure?' }, class: "btn btn-light" %>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <hr>
+                                                                            <% end %>
+                                                                        </div>
+                                                                    
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <%= link_to 'New Article', new_article_path, class: "btn btn-light", style: "width:30vh;" %>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -216,10 +218,10 @@
                 </div>
                 
             </div>
-            <div class="col" style="justify-content: center; display:flex; align-items:center;">
+            <div class="col" style="justify-content: center; display:flex;">
                 <div class="row infoContainerMatchesRow">
                     <div class="col" style="justify-content: center; display:flex;">
-                        <div class="pastMatches" style="background-color: <%= @team.color %>;">
+                        <div class="pastMatches" id="pastMatchesSection" style="background-color: <%= @team.color %>;">
                             <div class="container-fluid" style="padding: 0;">
                                 <div class="row">
                                     <div class="">
@@ -231,9 +233,9 @@
                                     </div>
                                     
                                 </div>
-                                <% @matches_schedule[1..].each do |match|  %>
+                                <% @matches_schedule.take(3).each do |match, index|  %>
                                     <div class="row" style="align-items: center;">
-                                        <div class="col" style="margin: 4vh;">
+                                        <div class="col" style="margin: 5vh 3vh 1vh 3vh;">
                                             <div class="container pastMatchContainer" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
                                                 <%= link_to match_path(id: match[:game_id]), class: "matchLink" do %>
                                                 <div class="matchDate"><%= match[:game_date] %></div>
@@ -257,6 +259,13 @@
                                         </div>
                                     </div>
                                 <% end %>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="newsDetails">
+                                            <%= active_link_to 'More', matches_url(number: 3) , active: :exclusive, class: 'matchDetails', id:'matchDets' %>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
