@@ -251,7 +251,7 @@ end
 team_manager_releases.each do |team_manager_releases|
     team_manager = TeamManager.find_by(name: team_manager_releases[:team_manager])
     team_manager_releases[:releases].each do |release|
-        team_manager.releases.create(title: release[:title], content: release[:content])
+        team_manager.releases.create(title: release[:title], content: release[:content], team_id: team_manager.team_id)
     end
 end
 

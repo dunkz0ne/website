@@ -105,7 +105,7 @@
                     </div>
                     <div class="row mt-5">
                         <div class="col" style="justify-content: center; display:flex;">
-                            <% if @user.type == "" %>
+                            <% if @user.type != "Journalist" or @user.type != "TeamManager" %>
                             <div class="articleSection" style="background-color: <%= @team.color %>;">
                                 <div class="container-fluid" style="padding: 0;">
                                     <div class="row">

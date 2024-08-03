@@ -36,7 +36,8 @@ class ReleasesController < ApplicationController
   end
 
   def create
-    @release = current_user.releases.build(release_params)
+    release_params_with_team_id = release_params.merge(team_id: current_user.team_id)
+    @release = current_user.releases.build(release_params_with_team_id)
     if @release.save
       redirect_to @release, notice: 'Release was successfully created.'
     else
