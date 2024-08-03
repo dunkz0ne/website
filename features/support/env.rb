@@ -32,6 +32,7 @@ ActionController::Base.allow_rescue = false
 
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
+
 # begin
 #   DatabaseCleaner.strategy = :transaction
 # rescue NameError
@@ -52,6 +53,21 @@ ActionController::Base.allow_rescue = false
 #     DatabaseCleaner.strategy = :transaction
 #   end
 #
+
+require 'database_cleaner/active_record'
+
+#DatabaseCleaner.strategy = :truncation
+
+Before do
+  # Carica i dati di seed prima di ogni scenario
+  #DatabaseCleaner.clean_with(:truncation)
+  load Rails.root.join('db/seeds.rb').to_s
+end
+
+After do
+  #DatabaseCleaner.clean
+end
+
 
 # Possible values are :truncation and :transaction
 # The :transaction strategy is faster, but might give you threading problems.

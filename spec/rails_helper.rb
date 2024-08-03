@@ -30,6 +30,12 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 RSpec.configure do |config|
+
+  # Opzionale: Assicurati che il database di test sia ripristinato prima di eseguire i test
+  config.before(:suite) do
+    ActiveRecord::Migration.maintain_test_schema!
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = Rails.root.join('spec/fixtures')
 
