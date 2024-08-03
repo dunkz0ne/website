@@ -68,7 +68,7 @@ journalists_articles = [
   {
     journalist: 'Andrea De Luca',
     articles: [
-      { title: 'La rinascita degli Atlanta Hawks', content: 'Gli Atlanta Hawks stanno mostrando un grande potenziale nella stagione attuale. Esploriamo le chiavi del loro successo.', draft: false },
+      { title: 'La rinascita degli Atlanta Hawks', content: 'Gli Atlanta Hawks stanno mostrando un grande potenziale nella stagione attuale. Esploriamo le chiavi del loro successo.', draft: true },
       { title: 'Trae Young: Il leader degli Hawks', content: 'Una panoramica sull\'influenza di Trae Young nel gioco degli Hawks e il suo impatto sulla squadra.', draft: false }
     ]
   },
@@ -251,7 +251,7 @@ end
 team_manager_releases.each do |team_manager_releases|
     team_manager = TeamManager.find_by(name: team_manager_releases[:team_manager])
     team_manager_releases[:releases].each do |release|
-        team_manager.releases.create(title: release[:title], content: release[:content])
+        team_manager.releases.create(title: release[:title], content: release[:content], team_id: team_manager.team_id)
     end
 end
 

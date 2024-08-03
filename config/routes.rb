@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :matches
   resources :league
   resources :journalists
+  resources :team_managers
   resources :admin
 
   resources :articles do
@@ -25,7 +26,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :releases
+  resources :releases do
+    member do
+      get 'delete'
+    end
+  end
 
   resources :journalist_requests, only: [:new, :create, :index] do
     member do
