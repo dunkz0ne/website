@@ -53,9 +53,11 @@
 
 <% if (( @article.draft == true and @article.user_id == session[:user_id].to_i ) or ( @article.draft == false )) %>
 
-<% if @article.image.attached? %>
+<div class="container">
+    
+</div>
+
 <%= image_tag @article.image %>
-<% end %>
 <h1><%= @article.title %></h1>
 <p><%= @article.content %></p>
 <p><%= @article.created_at %></p>
