@@ -29,8 +29,8 @@ Rails.application.routes.draw do
 
   resources :journalist_requests, only: [:new, :create, :index] do
     member do
-      post 'approve'
-      delete 'reject'
+      get 'approve'
+      get 'reject'
     end
   end
 

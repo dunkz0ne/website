@@ -210,12 +210,8 @@
               <td><%= truncate(request.user.bio, length: 100) %></td>
               <td><%= request.user.strikes %></td>
               <td>
-                <%= form_with(url: approve_journalist_request_path(request), method: :post, local: true) do %>
-                  <%= submit_tag 'Approva', class: 'btn btn-success' %>
-                <% end %>
-                <%= form_with(url: reject_journalist_request_path(request), method: :delete, local: true) do %>
-                  <%= submit_tag 'Rifiuta', class: 'btn btn-danger' %>
-                <% end %>
+                <%= link_to 'Approve', approve_journalist_request_path(request), method: :get, class: "btn btn-success btn-sm mr-1" %>
+                <%= link_to 'Reject', reject_journalist_request_path(request), method: :get, class: "btn btn-danger btn-sm mr-1" %>
               </td>
             </tr>
           <% end %>
