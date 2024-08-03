@@ -23,10 +23,15 @@ class ReleasesController < ApplicationController
   end
 
   def update
-    if @release.update(release_params)
-      redirect_to @release, notice: 'Release was successfully updated.'
+    if release_params[:image].present?
+      if @release.update(release_params)
+        redirect_to @release, notice: 'Article was successfully updated.'
+      else
+        render :edit
+      end
     else
-      render :edit
+      @release.update(release_params.except(:image))
+      redirect_to @release, notice: 'Article was successfully updated.'
     end
   end
 
@@ -48,7 +53,7 @@ class ReleasesController < ApplicationController
   private
 
   def release_params
-    params.require(:release).permit(:title, :content)
+    params.require(:release).permit(:title, :content, :image)
   end
 
   def authorize_team_manager
