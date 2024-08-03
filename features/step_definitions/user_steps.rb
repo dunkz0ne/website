@@ -2,33 +2,59 @@ Given("I am on the home page") do
   visit root_path
 end
 
-When("I click on {string}") do |button|
-  click_button button
+When("I click on Sign In with Facebook") do
+  click_button('Sign In with Facebook')
 end
 
 When("I submit the registration form") do
-
-  # Verify that you are on the registration page
   expect(page).to have_current_path(new_user_path)
 
-  # Select first team
-  @team = Team.first()
-
+  @team = Team.first
   Rails.logger.debug "Team: #{@team.inspect}"
 
-  # Fill in the form
-  select @team.name, from: 'user_team_id'  # Assicurati che il 'from' corrisponda al name dell'elemento select
+  select @team.name, from: 'user_team_id'
   fill_in 'user_bio', with: 'I am a test'
   attach_file('user_photo', Rails.root.join('features', 'files', 'test_image.png'))
 
-  # Verify that the button to create the user is present
   expect(page).to have_button('Create User')
-
-  #  Click the button to create the user
   click_button('Create User')
 end
 
 Then("I should be on the dashboard page") do
-  # Verify that you are on the dashboard page
+  expect(page).to have_current_path(user_dashboard_path)
+end
+
+Given("I am logged in with Facebook") do
+  # Set up OmniAuth mock
+  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+    provider: 'facebook',
+    uid: '123456',
+    info: {
+      email: 'test@example.com',
+      name: 'Test User'
+    }
+  })
+
+  # Visit the sign in path
+  visit auth_facebook_callback_path
+
+  puts "Current path: #{current_path}"
+
+  if page.has_button?('Create User')
+    click_button('Create User')
+  end
+
+  visit user_dashboard_path
+
+  # Ensure the user is redirected to the dashboard page
+  expect(page).to have_current_path(user_dashboard_path)
+end
+
+Then("print the current path") do
+  puts "Current path: #{current_path}"
+end
+
+Given("I am on the dashboard page") do
+  visit user_dashboard_path
   expect(page).to have_current_path(user_dashboard_path)
 end
