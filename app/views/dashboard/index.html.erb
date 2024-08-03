@@ -253,7 +253,7 @@
                                                             <% if article.image.attached? %>
                                                                 <%= image_tag article.image, id: 'imageArticle' %>
                                                             <% else %>
-                                                                <img src="https://via.placeholder.com/150" id="imageArticle" />
+                                                                <%= image_tag 'nbaLogo.jpg', id: 'imageArticle' %>
                                                             <% end %>
 
                                                         </div>

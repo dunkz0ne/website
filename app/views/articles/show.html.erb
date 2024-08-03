@@ -79,7 +79,11 @@
 										<div class="row">
 											<div class="col">
 												<div class="articleImageContainer">
-													<%= image_tag @article.image, class:"articleImage"%>
+                            						<% if @article.image.present? %>
+														<%= image_tag @article.image, class:"articleImage"%>
+													<% else %>
+														<%= image_tag 'nbaLogo.jpg', class:"articleImage"%>
+													<% end %>
 												</div>
 											</div>
 										</div>
