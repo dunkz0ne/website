@@ -6,7 +6,12 @@ class BannedUser < ApplicationRecord
 
   def self.cleanup_expired_bans
     Rails.logger.info "Starting cleanup of expired bans at #{Time.now}"
-    where('banned_to < ?', Time.now).destroy_all
+    expired_bans = where('banned_to < ?', Time.now)
+    expired_bans.each do |ban|
+      user = ban.user
+      reset_strikes_for_users_with_same_email(user.email)
+    end
+    expired_bans.destroy_all
   end
 
   def self.ban_user!(user, by_admin:, from: Time.now, to: nil, reason: '')

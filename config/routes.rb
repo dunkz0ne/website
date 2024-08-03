@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       get :decrement_strikes
       post :delete
       post :ban_users
+      get :unban
       post :delete_articles
       get 'admin_dashboard'
     end

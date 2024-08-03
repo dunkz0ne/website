@@ -19,8 +19,9 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.minutes do
-  runner "BannedUser.cleanup_expired_bans"
+every 5.minute do
+  command "cd /home/cristian/Desktop/Dunkzone_2/website && bundle exec bin/rails runner -e development 'BannedUser.cleanup_expired_bans' >> /home/cristian/Desktop/Dunkzone_2/website/cron.log 2>&1"
 end
+
 
 # whenever --update-crontab  to update the crontab
