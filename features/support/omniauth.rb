@@ -9,12 +9,7 @@ omniauth_hash = {
   'info' => {
     'name' => 'Test User',
     'email' => 'test@example.com'
-  },
-  'credentials' => {
-    'token' => 'mock_token',
-    'refresh_token' => 'mock_refresh_token'
   }
 }
 
 OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(omniauth_hash)
-
