@@ -1,3 +1,46 @@
 // Place all the styles related to the Articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.articleSectionContainer, .commentSectionContainer{
+    border: 2px solid white;
+    border-radius: 40px;
+}
+
+.articleSectionView{
+    border: 2px solid white;
+    border-radius: 40px;
+    margin: 5vh 2vh 5vh 2vh;
+    padding: 3vh;
+}
+
+.articleImageContainer{
+    text-align: center;
+    padding: 3vh 0vh 3vh 0vh;
+}
+
+.articleImage{
+    border-radius: 40px;
+    border: 2px solid white;   
+    width: 70%;
+}
+
+.commentContainer{
+    margin: 3vh 2vh 3vh 2vh;
+    border-radius: 40px;
+    border: 2px solid white;
+}
+
+
+
+@media (max-width: 1500px) {
+    .iconContainerComment {
+      display: flex;
+      align-items: flex-start;
+      margin-top: 1rem;
+    }
+  
+    .icon-container a {
+      margin-bottom: 0.5rem;
+    }
+  }
