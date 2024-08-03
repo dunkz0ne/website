@@ -46,6 +46,8 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @user = User.find(session[:user_id])
+    @team = Team.find(@user.team_id)
   end
 
   def create
@@ -59,6 +61,9 @@ class ArticlesController < ApplicationController
 
 
   def edit
+    @user = User.find(session[:user_id])
+    @team = Team.find(@user.team_id)
+
   end
 
   def update

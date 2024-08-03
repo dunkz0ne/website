@@ -66,11 +66,7 @@
     <div class="container infoContainer">
         <div class="row infoContainerRow" >
             <div class="col" style="justify-content: center; display:flex;">
-                <% if @user.type == "Journalist" %>
-                    <div class="container" style="display: flex; flex-direction:column; justify-content: start; ">
-                <% else %>
-                    <div class="container" style="display: flex; flex-direction:column; justify-content: space-between;">
-                <% end %>
+                <div class="container" style="display: flex; flex-direction:column; justify-content: space-between;">
                     <div class="row">
                         <div class="col" style="justify-content: center; display:flex;">
                             <div class="matchSection" style="background-color: <%= @team.color %>;">
@@ -120,29 +116,27 @@
                                         </div>
                                     </div>
                                     <% @articles.each do |article| %>
-                                    <div class="row" style="align-items: center;">
-                                        <div class="col">
-                                            <div class="newsArticle">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-4">
-                                                            <% if article.image.attached? %>
-                                                                <%= image_tag article.image, id: 'imageArticle' %>
-                                                            <% else %>
-                                                                <img src="https://via.placeholder.com/150" id="imageArticle" />
-                                                            <% end %>
-
-                                                        </div>
-                                                        <div class="col-8" style="align-content: center; text-align:left;">
-                                                            <div class="articleTitle"><%= link_to article.title, article_path(article), style: "color: white;" %></div>
-                                                            <div class="authorInfo"><%= link_to article.user.name, user_path(article.user), style: "color: white;" %> - <%= article.created_at %></div>
+                                        <%= link_to article_path(article), class: "row article-row", style: "align-items: center; display: block; text-decoration: none; color: inherit;" do %>
+                                            <div class="col">
+                                                <div class="newsArticle">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-4">
+                                                                <% if article.image.attached? %>
+                                                                    <%= image_tag article.image, id: 'imageArticle' %>
+                                                                <% else %>
+                                                                    <img src="https://via.placeholder.com/150" id="imageArticle" />
+                                                                <% end %>
+                                                            </div>
+                                                            <div class="col-8" style="align-content: center; text-align:left;">
+                                                                <div class="articleTitle"><%= article.title %></div>
+                                                                <div class="authorInfo"><%= article.user.name %> - <%= article.created_at %></div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
-                                        </div>
-                                    </div>
+                                        <% end %>
                                     <% end %>
                                     <div class="row" style="align-items: center;">
                                         <div class="col" style="display: flex; justify-content:center;">
@@ -214,6 +208,55 @@
                             <% end %>
                         </div>
                     </div>
+                    <% if @user.type == 'Journalist' %>
+
+                        <div class="row mt-5">
+                            <div class="col">
+                                <div class="articleSection" style="background-color: <%= @team.color %>;">
+                                    <div class="container-fluid" style="padding: 0;">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="boxTitle">
+                                                    <span class="sectionTitle">Latest News</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% @articles.take(1).each do |article| %>
+                                            <%= link_to article_path(article), class: "row article-row", style: "align-items: center; display: block; text-decoration: none; color: inherit;" do %>
+                                                <div class="col">
+                                                    <div class="newsArticle">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-4">
+                                                                    <% if article.image.attached? %>
+                                                                        <%= image_tag article.image, id: 'imageArticle' %>
+                                                                    <% else %>
+                                                                        <img src="https://via.placeholder.com/150" id="imageArticle" />
+                                                                    <% end %>
+                                                                </div>
+                                                                <div class="col-8" style="align-content: center; text-align:left;">
+                                                                    <div class="articleTitle"><%= article.title %></div>
+                                                                    <div class="authorInfo"><%= article.user.name %> - <%= article.created_at %></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <% end %>
+                                        <% end %>
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col" style="display: flex; justify-content:center;">
+                                                <div class="newsDetails">
+                                                    <%= active_link_to 'More', articles_path , active: :exclusive, class: 'matchDetails', id:'matchDets' %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+
 
                 </div>
                 
@@ -233,7 +276,8 @@
                                     </div>
                                     
                                 </div>
-                                <% @matches_schedule.take(3).each do |match, index|  %>
+                                <% numMatches = @user.type == 'Journalist' ? 4 : 3 %>
+                                <% @matches_schedule.take(numMatches).each do |match, index|  %>
                                     <div class="row" style="align-items: center;">
                                         <div class="col" style="margin: 5vh 3vh 1vh 3vh;">
                                             <div class="container pastMatchContainer" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">

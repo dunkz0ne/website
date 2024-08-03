@@ -51,7 +51,7 @@
     </nav>
   </div>
 
-<% if (( @article.draft.to_i == 1 and @article.user_id == session[:user_id].to_i ) or ( @article.draft.to_i == 0 )) %>
+<% if (( @article.draft == true and @article.user_id == session[:user_id].to_i ) or ( @article.draft == false )) %>
 
 <% if @article.image.attached? %>
 <%= image_tag @article.image %>
