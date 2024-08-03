@@ -51,10 +51,6 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.new(article_params)
-
-    if params[:article][:image].blank?
-      @article.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'nbaLogo.jpg')), filename: 'nbaLogo.jpg', content_type: 'image/jpeg')
-    end
     
     if @article.save
       redirect_to @article, notice: 'Article was successfully created.'
@@ -71,16 +67,16 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.find(params[:id])
 
-    if params[:article][:image].blank? && !@article.image.attached?
-      @article.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'nbaLogo.jpg')), filename: 'nbaLogo.jpg', content_type: 'image/jpeg')
-    end
-
-    if @article.update(article_params)
-      redirect_to @article, notice: 'Article was successfully updated.'
+    if article_params[:image].present?
+      if @article.update(article_params)
+        redirect_to @article, notice: 'Article was successfully updated.'
+      else
+        render :edit
+      end
     else
-      render :edit
+      @article.update(article_params.except(:image))
+      redirect_to @article, notice: 'Article was successfully updated.'
     end
   end
 

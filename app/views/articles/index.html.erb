@@ -61,10 +61,15 @@
                     <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
                         <div class="row">
                             <% if article.image.attached? %>
-                            <div class="col-4">
-                                <%= image_tag article.image, style: "width: 100%; height: 100%; border-radius: 5px;" %>
-                            </div>
+                                <div class="col-4">
+                                    <%= image_tag article.image, style: "width: 100%; height: 100%; border-radius: 5px;" %>
+                                </div>
+                            <% else %>
+                                <div class="col-4">
+                                    <%= image_tag 'nbaLogo.jpg', style: "width: 100%; height: 100%; border-radius: 5px;" %>
+                                </div>
                             <% end %>
+
                             <div class="col-8">
                                 <h5 class="card-title"><%= article.title %></h5>
                                 <p class="card-text">by <%= link_to article.user.name, user_path(article.user), style: 'color: white;' %></p>
@@ -98,10 +103,15 @@
                     <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
                         <div class="row">
                             <% if release.image.attached? %>
-                            <div class="col-4">
-                                <%= image_tag release.image, style: "width: 100%; height: 100%; border-radius: 5px;" %>
-                            </div>
+                                <div class="col-4">
+                                    <%= image_tag release.image, style: "width: 100%; height: 100%; border-radius: 5px;" %>
+                                </div>
+                            <% else %>
+                                <div class="col-4">
+                                    <%= image_tag 'nbaLogoTeam.png', style: "width: 100%; height: 100%; border-radius: 5px;" %>
+                                </div>
                             <% end %>
+
                             <div class="col-8">
                                 <h5 class="card-title"><%= release.title %></h5>
                                 <p class="card-text">by <%= link_to release.user.name, user_path(release.user), style: 'color: white;' %> for <%= link_to @team.name, @team, style: "color: white;" %></p>
@@ -134,9 +144,13 @@
             <div class="card-body" style="background-color: <%= @other_articles_teams[index].color %>; border-radius: 20px; padding: 2rem;">
                 <div class="row">
                     <% if article.image.attached? %>
-                    <div class="col-4">
-                        <%= image_tag article.image, style: "width: 100%; height: 100%; border-radius: 5px;" %>
-                    </div>
+                        <div class="col-4">
+                            <%= image_tag article.image, style: "width: 100%; height: 100%; border-radius: 5px;" %>
+                        </div>
+                    <% else %>
+                        <div class="col-4">
+                            <%= image_tag 'nbaLogo.jpg', style: "width: 100%; height: 100%; border-radius: 5px;" %>
+                        </div>
                     <% end %>
                     <div class="col-8">
                         <h5 class="card-title"><%= article.title %></h5>
