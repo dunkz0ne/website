@@ -1,3 +1,9 @@
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
 <div class="container" style="color: black">
     <h1>Matches</h1>
     <h2>Playoffs</h2>

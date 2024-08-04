@@ -88,6 +88,7 @@ class MatchesController < ApplicationController
       begin
         match_data = JSON.parse(response.body)
       rescue JSON::ParserError
+        flash[:alert] = "Match not found"
         redirect_to matches_path(number: 3)
         return
       end
