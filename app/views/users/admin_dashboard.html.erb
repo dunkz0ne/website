@@ -197,7 +197,8 @@
           <tr>
             <th>Username</th>
             <th>Email</th>
-            <th>Bio</th>
+            <th>Joined</th>
+            <th>Certificate</th>
             <th>Strikes</th>
             <th>Actions</th>
           </tr>
@@ -205,9 +206,10 @@
         <tbody>
           <% @journalist_requests.each do |request| %>
             <tr>
-              <td><%= request.user.name %></td>
+              <td><%= "#{request.user.name} #{request.created_at.strftime('%d/%m/%Y')}" %></td>
               <td><%= request.user.email%></td>
-              <td><%= truncate(request.user.bio, length: 100) %></td>
+              <td><%= User.find_by(email: request.user.email).created_at.strftime("%B %d, %Y") %></td>
+              <td><%= link_to 'Certificate', rails_blob_path(request.certificate, disposition: "attachment"), target: "_blank" %></td>
               <td><%= request.user.strikes %></td>
               <td>
                 <%= link_to 'Approve', approve_journalist_request_path(request), method: :get, class: "btn btn-success btn-sm mr-1" %>
