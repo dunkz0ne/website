@@ -240,7 +240,7 @@ end
 journalists_articles.each do |journalist_articles|
     journalist = Journalist.find_by(name: journalist_articles[:journalist])
     journalist_articles[:articles].each do |article|
-        journalist.articles.create(title: article[:title], content: article[:content], draft: article[:draft])
+        journalist.articles.create(title: article[:title], content: article[:content], draft: article[:draft], team_id: journalist.team_id)
     end
 end
 
