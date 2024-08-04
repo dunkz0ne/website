@@ -261,7 +261,7 @@ end
 u = User.create!(name: 'Silvia Russo', email: 'silvia.russo@worldnews.com', team_id: 10, provider: 'github')
 u1 = User.first();
 
-certificate_path = Rails.root.join('db','Among-Us-Logo.png')
+certificate_path = Rails.root.join('db','Among-Us.pdf')
 
 if File.exist?(certificate_path)
   journalist_request = JournalistRequest.create!(
