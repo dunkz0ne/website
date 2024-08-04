@@ -137,39 +137,82 @@
             <% end %>
         </div>
     </div>
+    
 
-    <h1>Other articles</h1>
-    <% @other_articles.each_with_index do |article, index| %>
-        <div class="card" style="border-radius: 20px; margin: 2rem;">
-            <div class="card-body" style="background-color: <%= @other_articles_teams[index].color %>; border-radius: 20px; padding: 2rem;">
-                <div class="row">
-                    <% if article.image.attached? %>
-                        <div class="col-4">
-                            <%= image_tag article.image, style: "width: 100%; height: 100%; border-radius: 5px;" %>
+    <h1 class="mt-5">Other articles</h1>
+    <div class="otherArticlesSection">
+        <% @other_articles.each_with_index do |article, index| %>
+            <% color = @other_articles_teams[index].color %>
+            <div class="card" style="border-radius: 20px; margin: 2rem;">
+                <div class="card-body" style="background-color: <%= color %>; border-radius: 20px; padding: 2rem;">
+                    
+                    <div class="row">
+                        <% if article.image.attached? %>
+                            <div class="col-4">
+                                <%= image_tag article.image, style: "width: 100%; height: 100%; border-radius: 5px;" %>
+                            </div>
+                        <% else %>
+                            <div class="col-4">
+                                <%= image_tag 'nbaLogo.jpg', style: "width: 100%; height: 100%; border-radius: 5px;" %>
+                            </div>
+                        <% end %>
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title"><%= article.title %></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="card-text">by <%= link_to article.user.name, user_path(article.user), style: 'color: white;' %></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="card-text"><%= article.created_at.strftime("%B %d, %Y at %I:%M %p") %></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col fade-bottom" id="article-<%= article.id %>">
+                                    <p style="font-size: 15px !important; margin: 0 !important; position: relative; max-height: 15vh; overflow: hidden;"><%= article.content %></p>
+                                </div>
+                            </div>
                         </div>
-                    <% else %>
-                        <div class="col-4">
-                            <%= image_tag 'nbaLogo.jpg', style: "width: 100%; height: 100%; border-radius: 5px;" %>
-                        </div>
-                    <% end %>
-                    <div class="col-8">
-                        <h5 class="card-title"><%= article.title %></h5>
-                        <p class="card-text">by <%= link_to article.user.name, user_path(article.user), style: 'color: white;' %></p>
-                        <p class="card-text"><%= article.created_at.strftime("%B %d, %Y at %I:%M %p") %></p>
                     </div>
+                    <div class="row">
+                        <%= link_to 'Read More', article_path(article), class: "btn btn-light mt-4" %>
+                        <% if article.user.id == session[:user_id].to_i %>
+                            <%= link_to 'Edit', edit_article_path(article), class: "btn btn-light mt-2" %>
+                            <%= link_to 'Delete', delete_article_path(article), class: "btn btn-light mt-2" %>
+                        <% end %>
+                    </div>
+                    
                 </div>
-                <div class="row">
-                    <%= link_to 'Read More', article_path(article), class: "btn btn-light mt-4" %>
-                    <% if article.user.id == session[:user_id].to_i %>
-                        <%= link_to 'Edit', edit_article_path(article), class: "btn btn-light mt-2" %>
-                        <%= link_to 'Delete', delete_article_path(article), class: "btn btn-light mt-2" %>
-                    <% end %>
-                </div>
-                
             </div>
-        </div>
-    <% end %>
+        <% end %>
+    </div>
+   
 </div>
 
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const articles = <%= raw @other_articles.map { |article| { id: article.id, color: @other_articles_teams[@other_articles.index(article)].color } }.to_json %>;
 
+        articles.forEach(article => {
+            const element = document.getElementById(`article-${article.id}`);
+            if (element) {
+                const gradientDiv = document.createElement('div');
+                gradientDiv.style.position = 'absolute';
+                gradientDiv.style.top = '0';
+                gradientDiv.style.left = '0';
+                gradientDiv.style.width = '100%';
+                gradientDiv.style.height = '100%';
+                gradientDiv.style.background = `linear-gradient(to bottom, ${article.color}00, ${article.color})`;
+                gradientDiv.style.pointerEvents = 'none'; // Ensure it doesn't interfere with text selection or clicks
+                element.appendChild(gradientDiv);
+                element.style.position = 'relative'; // Ensure the parent element is positioned relatively
+            }
+        });
+    });
+</script>
