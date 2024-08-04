@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_journalist, only: [:new, :create]
   before_action :authorize_owner, only: [:edit, :update, :delete]
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def index
     @user = User.find(session[:user_id])
@@ -33,7 +34,7 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
     @team = Team.find(@article.team_id)
-    @current_user_team = Team.find(current_user.team_id) 
+    @current_user_team = Team.find(current_user.team_id)
     @is_saved = Save.where(user_id: session[:user_id], article_id: @article.id).first
 
     @comments = Comment.where(article_id: @article.id).order(created_at: :desc)
@@ -51,7 +52,7 @@ class ArticlesController < ApplicationController
   def create
     article_params_with_team_id = article_params.merge(team_id: current_user.team_id)
     @article = current_user.articles.new(article_params_with_team_id)
-    
+
     if @article.save
       redirect_to @article, notice: 'Article was successfully created.'
     else
@@ -122,6 +123,11 @@ class ArticlesController < ApplicationController
     unless @article.user_id == current_user.id || current_user.is_a?(Admin)
       redirect_to articles_path, alert: 'You are not authorized to perform this action.'
     end
+  end
+
+  def record_not_found
+    flash[:alert] = "L'articolo con ID #{params[:id]} non è stato trovato."
+    redirect_to articles_path
   end
 
 end
