@@ -12,6 +12,9 @@ class UsersController < ApplicationController
 
     if @user.type == 'Journalist'
       @articles = Article.where(user_id: @user.id, draft: false).order(created_at: :desc)
+      @articles.each do |article|
+        article.team = Team.find(article.team_id)
+      end
     end
 
     if @user.type == 'TeamManager'

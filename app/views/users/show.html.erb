@@ -148,7 +148,7 @@
         <div class="articleList" style="display: contents;">
           <% @articles.each do |article| %>
             <div class="card" style="border-radius: 20px; margin: 2rem; width:40%;">
-                <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
+                <div class="card-body" style="background-color: <%= article.team.color %>; border-radius: 20px; padding: 2rem;">
                     <div class="row">
                         <% if article.image.attached? %>
                         <div class="col-4">

@@ -9,14 +9,13 @@ class ArticlesController < ApplicationController
     @user = User.find(session[:user_id])
     @team = Team.find(@user.team_id)
 
-    @team_journalist = Journalist.where(team_id: @team.id)
-    @articles = Article.where(user_id: @team_journalist.ids, draft: false).order(created_at: :desc)
+    @articles = Article.where(team_id: @team.id, draft: false).order(created_at: :desc)
 
     @articles.each do |article|
       article.user = User.find(article.user_id)
     end
 
-    @releases = Release.where(team_id: current_user.team_id).order(created_at: :desc)
+    @releases = Release.where(team_id: @team.id).order(created_at: :desc)
 
     @releases.each do |release|
       release.user = User.find(release.user_id)
@@ -26,14 +25,14 @@ class ArticlesController < ApplicationController
     @other_articles_teams = []
     @other_articles.each do |article|
       article.user = User.find(article.user_id)
-      @other_articles_teams << Team.find(article.user.team_id)
+      @other_articles_teams << Team.find(article.team_id)
     end
 
   end
 
   def show
     @article = Article.find(params[:id])
-    @team = Team.find(@article.user.team_id)
+    @team = Team.find(@article.team_id)
     @current_user_team = Team.find(current_user.team_id) 
     @is_saved = Save.where(user_id: session[:user_id], article_id: @article.id).first
 
@@ -50,7 +49,8 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = current_user.articles.new(article_params)
+    article_params_with_team_id = article_params.merge(team_id: current_user.team_id)
+    @article = current_user.articles.new(article_params_with_team_id)
     
     if @article.save
       redirect_to @article, notice: 'Article was successfully created.'
