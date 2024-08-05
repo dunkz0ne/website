@@ -50,6 +50,9 @@ Rails.application.routes.draw do
     end
   end
 
+  match "/404", to: redirect('/404.html'), via: :all
+  match "/500", to: redirect('/500.html'), via: :all
+
   get 'become_journalist', to: 'users#become_journalist'
   get 'become_team_manager', to: 'users#become_team_manager'
   get 'become_admin', to: 'users#become_admin'
