@@ -52,7 +52,7 @@
   </div>
 
 
-    <div class="container articleSectionContainer" style="background-color: <%= @team.color %>;">
+    <div class="container articleSectionContainer" style="margin-bottom: 10vh;background-color: <%= @team.color %>;">
 		<div class="row">
 			<div class="col">
 				<div>
@@ -77,17 +77,6 @@
 												<div class="articleTitleContainer">
 													<h1 class="articleTitle"><%= @article.title %></h1>
 												</div>
-											</div>
-											<div class="col-1">
-												<% if @is_saved %>
-													<%= link_to unsave_article_path(@article), method: :post, style:"color:white; text-decoration:none;" do %>
-                                                    	<i class="fa-solid fa-bookmark" style="font-size: 2.5rem;"></i>
-                                                	<% end %>
-												<% else %>
-													<%= link_to save_article_path(@article), method: :post, style:"color:white; text-decoration:none;" do %>
-                                                    	<i class="fa-regular fa-bookmark" style="font-size: 2.5rem;"></i>
-                                                	<% end %>
-												<% end %>
 											</div>
 										</div>
 										<div class="row">
