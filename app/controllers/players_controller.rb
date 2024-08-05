@@ -5,7 +5,7 @@ class PlayersController < ApplicationController
   def show
 
     @user = User.find(session[:user_id]) if session[:user_id]
-    @team = Team.where(id: @user.team_id).first if @user
+    @current_user_team = Team.where(id: @user.team_id).first
 
     @player = params[:id]
 
@@ -22,6 +22,7 @@ class PlayersController < ApplicationController
 
     @player_data = player_data['resultSets'][0]['rowSet'].map { |player| {id: player[0], first_name: player[1], last_name: player[2], display_first_last: player[3], display_last_comma_first: player[4], display_fi_last: player[5], player_slug: player[6], birthdate: player[7], school: player[8], country: player[9], last_affiliation: player[10], height: player[11], weight: player[12], season_exp: player[13], jersey: player[14], position: player[15], roster_status: player[16], games_played_current_season_flag: player[17], team_id: player[18], team_name: player[19], team_abbreviation: player[20], team_code: player[21], team_city: player[22], player_code: player[23], from_year: player[24], to_year: player[25], dleague_flag: player[26], nba_flag: player[27], games_played_flag: player[28], draft_year: player[29], draft_round: player[30], draft_number: player[31], greatest_75_flag: player[32]} }[0]
 
+    @team = Team.where(api: @player_data[:team_id]).first
 
     url = URI.parse("http://localhost:5001/api/players/#{@player}/career")
     response = Net::HTTP.get_response(url)
