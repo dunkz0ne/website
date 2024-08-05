@@ -175,8 +175,8 @@
                                                         </div>
                                                     </div>
 
-
                                                     <% @standings.each_with_index do |team, index| %>
+                                                        <%= link_to team_url(id: team[:team_id]), style: 'color: white; text-decoration: none;' do %>
                                                         <% full_team_name = team[:team_city] + ' ' + team[:team_name] %>
                                                         <% conference = team[:conference] == 'East' ? 'eastern' : 'western' %>
                                                         <% if @team.name == full_team_name %>
@@ -205,6 +205,7 @@
                                                                 <% end %>
                                                                 <div class="col-1" style="text-align: center;"><span class="standingContentText"><%= team[:win_pct] %> </span></div>
                                                             </div>
+                                                    <% end %>
                                                     <% end %>
                                                 </div>
                                             </div>
