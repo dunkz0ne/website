@@ -1,20 +1,20 @@
 
 <div id="homePage" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
 
-<style>
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
+    <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
 
-    ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;
-        border-radius: 10px;
-    }
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;
+            border-radius: 10px;
+        }
 
-    ::-webkit-scrollbar-thumb {
-        -webkit-box-shadow: inset 20px 0 6px <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;
-    }
-</style>
+        ::-webkit-scrollbar-thumb {
+            -webkit-box-shadow: inset 20px 0 6px <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;
+        }
+    </style>
 
     <div id="Navbar">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: <%= @team.color %>;">
@@ -66,7 +66,7 @@
     <div class="container infoContainer">
         <div class="row infoContainerRow" >
             <div class="col" style="justify-content: center; display:flex;">
-                <div class="container" style="display: flex; flex-direction:column; justify-content: space-between;">
+                <div class="container" style="display: flex; flex-direction:column;">
                     <div class="row">
                         <div class="col" style="justify-content: center; display:flex;">
                             <div class="matchSection" style="background-color: <%= @team.color %>;">
@@ -103,100 +103,59 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-5">
-                        <div class="col" style="justify-content: center; display:flex;">
-                            <% if @user.type != "Journalist" %>
-                            <div class="articleSection" style="background-color: <%= @team.color %>;">
-                                <div class="container-fluid" style="padding: 0;">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="boxTitle">
-                                                <span class="sectionTitle">Latest News</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <% @articles.each do |article| %>
-                                        <%= link_to article_path(article), class: "row article-row", style: "align-items: center; display: block; text-decoration: none; color: inherit;" do %>
+                    <% if @user.type == "Journalist" %>
+                        <div class="row mt-5">
+                            <div class="col" style="justify-content: center; display:flex;">
+                                <div class="articleSection" style="background-color: <%= @team.color %>;">
+                                    <div class="container-fluid" style="padding: 0;">
+                                        <div class="row">
                                             <div class="col">
-                                                <div class="newsArticle">
-                                                    <div class="container">
-                                                        <div class="row">
-                                                            <div class="col-4">
-                                                                <% if article.image.attached? %>
-                                                                    <%= image_tag article.image, id: 'imageArticle' %>
-                                                                <% else %>
-                                                                    <%= image_tag 'nbaLogo.jpg', id: 'imageArticle' %>
-                                                                <% end %>
-                                                            </div>
-                                                            <div class="col-8" style="align-content: center; text-align:left;">
-                                                                <div class="articleTitle"><%= article.title %></div>
-                                                                <div class="authorInfo"><%= article.user.name %> - <%= article.created_at %></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <div class="boxTitle">
+                                                    <span class="sectionTitle">Post an article!</span>
                                                 </div>
                                             </div>
-                                        <% end %>
-                                    <% end %>
-                                    <div class="row" style="align-items: center;">
-                                        <div class="col" style="display: flex; justify-content:center;">
-                                            <div class="newsDetails">
-                                                <%= active_link_to 'More', articles_path , active: :exclusive, class: 'matchDetails', id:'matchDets' %>
-                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <% elsif @user.type == "Journalist" %>
-                            <div class="articleSection" style="background-color: <%= @team.color %>;">
-                                <div class="container-fluid" style="padding: 0;">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="boxTitle">
-                                                <span class="sectionTitle">Post an article!</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="align-items: center;">
-                                        <div class="col">
-                                            <div class="newsArticleJournalist">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#draftModal" style="margin-bottom: 2vh; width:30vh;">
-                                                                Drafts
-                                                            </button>
-                                                            <div class="modal fade" id="draftModal" tabindex="-1" aria-labelledby="draftModalLabel" aria-hidden="true" >
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content" style="background-color: <%= @team.color %>;">
-                                                                        <div class="modal-header">
-                                                                            <h1 class="modal-title fs-5" id="draftModalLabel">Your Drafts</h1>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <% @drafts.each do |draft| %>
-                                                                                <div class="row" style="justify-content: center; align-items:center;">
-                                                                                    <div class="col-8">
-                                                                                        <h5><%= draft.title %></h5>
-                                                                                        <p><%= draft.content %></p>
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col">
+                                                <div class="newsArticleJournalist">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#draftModal" style="margin-bottom: 2vh; width:30vh;">
+                                                                    Drafts
+                                                                </button>
+                                                                <div class="modal fade" id="draftModal" tabindex="-1" aria-labelledby="draftModalLabel" aria-hidden="true" >
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content" style="background-color: <%= @team.color %>;">
+                                                                            <div class="modal-header">
+                                                                                <h1 class="modal-title fs-5" id="draftModalLabel">Your Drafts</h1>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <% @drafts.each do |draft| %>
+                                                                                    <div class="row" style="justify-content: center; align-items:center;">
+                                                                                        <div class="col-8">
+                                                                                            <h5><%= draft.title %></h5>
+                                                                                            <p><%= draft.content %></p>
+                                                                                        </div>
+                                                                                        <div class="col-4" style="text-align: center;">
+                                                                                            <%= link_to 'Edit', edit_article_path(draft), class: "btn btn-light" %>
+                                                                                            <%= link_to 'X', delete_article_path(draft), data: { confirm: 'Are you sure?' }, class: "btn btn-light" %>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="col-4" style="text-align: center;">
-                                                                                        <%= link_to 'Edit', edit_article_path(draft), class: "btn btn-light" %>
-                                                                                        <%= link_to 'X', delete_article_path(draft), data: { confirm: 'Are you sure?' }, class: "btn btn-light" %>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <hr>
-                                                                            <% end %>
+                                                                                    <hr>
+                                                                                <% end %>
+                                                                            </div>
+                                                                        
                                                                         </div>
-                                                                    
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <%= link_to 'New Article', new_article_path, class: "btn btn-light", style: "width:30vh;" %>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <%= link_to 'New Article', new_article_path, class: "btn btn-light", style: "width:30vh;" %>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -205,82 +164,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <% elsif @user.type == "TeamManager" %>
-                            <div class="articleSection" style="background-color: <%= @team.color %>;">
-                                <div class="container-fluid" style="padding: 0;">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="boxTitle">
-                                                <span class="sectionTitle">The Job</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="align-items: center;">
-                                        <div class="col">
-                                            <div class="newsArticle">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-8" style="align-content: center; text-align:left;">
-                                                            <div class="articleTitle">Release</div>
-                                                                <%= link_to 'New Release', new_release_path, class: "btn btn-light" %>
-
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <% else %>
-                            <div class="articleSection" style="background-color: <%= @team.color %>;">
-                                <div class="container-fluid" style="padding: 0;">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="boxTitle">
-                                                <span class="sectionTitle">Latest News</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <% @articles.each do |article| %>
-                                    <div class="row" style="align-items: center;">
-                                        <div class="col">
-                                            <div class="newsArticle">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-4">
-                                                            <% if article.image.attached? %>
-                                                                <%= image_tag article.image, id: 'imageArticle' %>
-                                                            <% else %>
-                                                                <%= image_tag 'nbaLogo.jpg', id: 'imageArticle' %>
-                                                            <% end %>
-
-                                                        </div>
-                                                        <div class="col-8" style="align-content: center; text-align:left;">
-                                                            <div class="articleTitle"><%= link_to article.title, article_path(article), style: "color: white;" %></div>
-                                                            <div class="authorInfo"><%= link_to article.user.name, user_path(article.user), style: "color: white;" %> - <%= article.created_at %></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <% end %>
-                                    <div class="row" style="align-items: center;">
-                                        <div class="col" style="display: flex; justify-content:center;">
-                                            <div class="newsDetails">
-                                                <%= active_link_to 'More', articles_path , active: :exclusive, class: 'matchDetails', id:'matchDets' %>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <% end %>
-                        </div>
-                    </div>
-                    <% if @user.type == 'Journalist' %>
+                        </div>  
 
                         <div class="row mt-5">
                             <div class="col">
@@ -327,11 +211,131 @@
                                 </div>
                             </div>
                         </div>
+                    <% elsif @user.type == "TeamManager" %>
+                        <div class="row mt-5">
+                            <div class="col">
+                                <div class="articleSection" style="background-color: <%= @team.color %>;">
+                                    <div class="container-fluid" style="padding: 0;">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="boxTitle">
+                                                    <span class="sectionTitle">Post a team release!</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col">
+                                                <div class="newsArticle">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-12" style="align-content: center;">
+                                                                <%= link_to 'New Release', new_release_path, class: "btn btn-light", style: "width:30vh;" %>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="col">
+                                <div class="articleSection" style="background-color: <%= @team.color %>;">
+                                    <div class="container-fluid" style="padding: 0;">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="boxTitle">
+                                                    <span class="sectionTitle">Latest News</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% @articles.take(1).each do |article| %>
+                                            <%= link_to article_path(article), class: "row article-row", style: "align-items: center; display: block; text-decoration: none; color: inherit;" do %>
+                                                <div class="col">
+                                                    <div class="newsArticle">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-4">
+                                                                    <% if article.image.attached? %>
+                                                                        <%= image_tag article.image, id: 'imageArticle' %>
+                                                                    <% else %>
+                                                                        <%= image_tag 'nbaLogo.jpg', id: 'imageArticle' %>
+                                                                    <% end %>
+                                                                </div>
+                                                                <div class="col-8" style="align-content: center; text-align:left;">
+                                                                    <div class="articleTitle"><%= article.title %></div>
+                                                                    <div class="authorInfo"><%= article.user.name %> - <%= article.created_at %></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <% end %>
+                                        <% end %>
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col" style="display: flex; justify-content:center;">
+                                                <div class="newsDetails">
+                                                    <%= active_link_to 'More', articles_path , active: :exclusive, class: 'matchDetails', id:'matchDets' %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% else %>
+                        <div class="row">
+                            <div class="col">
+                                <div class="articleSection" style="background-color: <%= @team.color %>;">
+                                    <div class="container-fluid" style="padding: 0;">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="boxTitle">
+                                                    <span class="sectionTitle">Latest News</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% @articles.each do |article| %>
+                                            <div class="row" style="align-items: center;">
+                                                <div class="col">
+                                                    <div class="newsArticle">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-4">
+                                                                    <% if article.image.attached? %>
+                                                                        <%= image_tag article.image, id: 'imageArticle' %>
+                                                                    <% else %>
+                                                                        <%= image_tag 'nbaLogo.jpg', id: 'imageArticle' %>
+                                                                    <% end %>
+
+                                                                </div>
+                                                                <div class="col-8" style="align-content: center; text-align:left;">
+                                                                    <div class="articleTitle"><%= link_to article.title, article_path(article), style: "color: white;" %></div>
+                                                                    <div class="authorInfo"><%= link_to article.user.name, user_path(article.user), style: "color: white;" %> - <%= article.created_at %></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% end %>
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col" style="display: flex; justify-content:center;">
+                                                <div class="newsDetails">
+                                                    <%= active_link_to 'More', articles_path , active: :exclusive, class: 'matchDetails', id:'matchDets' %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <% end %>
-
-
                 </div>
-                
             </div>
             <div class="col" style="justify-content: center; display:flex;">
                 <div class="row infoContainerMatchesRow">
@@ -386,9 +390,7 @@
                         </div>
                     </div>
                 </div>
-                        
             </div>
         </div>
-       
     </div>
 </div>

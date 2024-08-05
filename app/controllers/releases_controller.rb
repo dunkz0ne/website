@@ -17,21 +17,25 @@ class ReleasesController < ApplicationController
 
   def new
     @release = Release.new
+    @user = User.find(session[:user_id])
+    @team = Team.find(@user.team_id)
   end
 
   def edit
+    @user = User.find(session[:user_id])
+    @team = Team.find(@user.team_id)
   end
 
   def update
     if release_params[:image].present?
       if @release.update(release_params)
-        redirect_to @release, notice: 'Article was successfully updated.'
+        redirect_to @release, notice: 'Release was successfully updated.'
       else
         render :edit
       end
     else
       @release.update(release_params.except(:image))
-      redirect_to @release, notice: 'Article was successfully updated.'
+      redirect_to @release, notice: 'Release was successfully updated.'
     end
   end
 
