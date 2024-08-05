@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
       release.user = User.find(release.user_id)
     end
 
-    @other_articles = Article.where(draft: false).order(created_at: :desc).limit(5)
+    @other_articles = Article.where(draft: false).where.not(team_id: @team.id).order(created_at: :desc).limit(5)
     @other_articles_teams = []
     @other_articles.each do |article|
       article.user = User.find(article.user_id)
