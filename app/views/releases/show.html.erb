@@ -52,9 +52,71 @@
   </div>
 
 
-<% if @article.image.attached? %>
-<%= image_tag @article.image %>
-<% end %>
-<h1><%= @article.title %></h1>
-<p><%= @article.content %></p>
-<p><%= @article.created_at %></p>
+    <div class="container articleSectionContainer" style="background-color: <%= @team.color %>;">
+		<div class="row">
+			<div class="col">
+				<div>
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<div class="articleSectionView" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
+									<div class="container">
+										<div class="row">
+											<div class="col">
+												<div class="articleImageContainer">
+                            						<% if @article.image.present? %>
+														<%= image_tag @article.image, class:"articleImage"%>
+													<% else %>
+														<%= image_tag 'nbaLogoTeam.png', class:"articleImage"%>
+													<% end %>
+												</div>
+											</div>
+										</div>
+										<div class="row" style="align-items:center;">
+											<div class="col-11">
+												<div class="articleTitleContainer">
+													<h1 class="articleTitle"><%= @article.title %></h1>
+												</div>
+											</div>
+											<div class="col-1">
+												<% if @is_saved %>
+													<%= link_to unsave_article_path(@article), method: :post, style:"color:white; text-decoration:none;" do %>
+                                                    	<i class="fa-solid fa-bookmark" style="font-size: 2.5rem;"></i>
+                                                	<% end %>
+												<% else %>
+													<%= link_to save_article_path(@article), method: :post, style:"color:white; text-decoration:none;" do %>
+                                                    	<i class="fa-regular fa-bookmark" style="font-size: 2.5rem;"></i>
+                                                	<% end %>
+												<% end %>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<div class="articleAuthorContainer">
+													<h4 class="articleAuthor">By <%= @article.user.name %> - <%= @article.created_at.strftime("%d/%m/%Y") %></h4>
+												</div>
+											</div>
+										<div class="row">
+											<div class="col">
+												<div class="articleContentContainer" style="text-align: justify;">
+													<%= simple_format(@article.content, style: "font-size: 15px !important;")%>
+												</div>
+											</div>
+										</div>
+										<% if @article.user.id == session[:user_id].to_i %>
+											<div class="row">
+												<div class="col">
+														<%= link_to 'Edit', edit_article_path(@article), class: "btn btn-light" %>
+														<%= link_to 'Delete', delete_article_path(@article), class: "btn btn-light" %>
+												</div>
+											</div>
+										<% end %>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</div>
