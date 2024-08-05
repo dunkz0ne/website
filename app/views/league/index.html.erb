@@ -258,6 +258,8 @@
                                                     </div>
 
                                                     <% @leaders.take(15).each_with_index do |player, index| %>
+                                                        <%= link_to player_url(id: player[:player_id]), style: 'color: white; text-decoration: none;' do %>
+
                                                         <% if @team.name.titleize.include?(player[:team].titleize) %>
                                                             <div class="row playerContentTextRow" style="align-items: center; border: 1px solid white; flex-direction:row;">
                                                         <% else %>
@@ -272,6 +274,7 @@
                                                                 <div class="col-1" style="text-align: center;"><span class="playerContentText"><%= player[:stl] %> </span></div>
                                                                 <div class="col-1" style="text-align: center;"><span class="playerContentText"><%= player[:blk] %> </span></div>
                                                             </div>
+                                                    <% end %>
                                                     <% end %>
                                                 </div>
                                             </div>
