@@ -9,8 +9,10 @@ class SessionController < ApplicationController
       name = params[:name]
       email = params[:email]
       password = params[:password]
-      user = User.exists_with_email?(email)
-      if user
+      user_exist = User.exists_with_email?(email)
+      # Find user by email and check
+      if user_exist
+        user = User.find_by(provider: 'email', email: email)
         if user&.authenticate(password)
           user = User.find_by(provider: 'email', email: email)
           session[:user_id] = user.id
@@ -18,6 +20,7 @@ class SessionController < ApplicationController
           flash[:notice] = 'Logged in!'
           redirect_to user_dashboard_path
         end
+      # Create new user
       else
         uid = Random.rand(1000000000)
         session[:user_id] = uid
