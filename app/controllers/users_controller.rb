@@ -94,8 +94,13 @@ class UsersController < ApplicationController
       return
     end
 
-    # Crea l'utente con le informazioni di autenticazione e il team selezionato
-    @user = User.find_or_create_from_omniauth(auth_info, team_id, bio, photo)
+    if auth_info[:provider] == 'email'
+      # Crea l'utente con le informazioni di autenticazione fornite tramite email
+      @user = User.create(id: auth_info[:uid], email: 'example@example.com', password: 'securepassword', name: auth_info[:name], team_id: team_id, bio: bio, photo: photo)
+    else
+      # Crea l'utente con le informazioni di autenticazione fornite tramite oauth
+      @user = User.find_or_create_from_omniauth(auth_info, team_id, bio, photo)
+    end
 
     respond_to do |format|
       if @user.save

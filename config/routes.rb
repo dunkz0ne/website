@@ -63,6 +63,9 @@ Rails.application.routes.draw do
   get '/auth/failure' => 'session#fail'
   get '/session/destroy' => 'session#destroy'
 
+  get 'session/new'
+  post 'session/create', to: 'session#create'
+
   root 'home#index'
 
 end

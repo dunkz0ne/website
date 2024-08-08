@@ -1,0 +1,23 @@
+<h1>Sign Up</h1>
+
+<%= form_with url: session_create_path, method: :post do |form| %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Continue' %>
+  </div>
+<% end %>
