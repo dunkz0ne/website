@@ -1,12 +1,33 @@
-<div class="container">
-    <h1>Summary</h1>
-    <%= @match_summary %>
-    <h1>Officials</h1>
-    <%= @match_officials %>
-    <h1>Linescore Home</h1>
-    <%= @match_linescore_home %>
-    <h1>Linescore Away</h1>
-    <%= @match_linescore_away %>
-    <h1>Match last meeting</h1>
-    <%= @match_last_meeting %>
+<div id="detailspage" style="background-color: match_summary[6].color;">
+    <div id="MatchInfo-container">
+        <h1 id="matchdetailstext"> Match Details</h1>
+        <%= @match_summary %>
+    </div>
+    <div id="referee-container">
+        <div class="refereetext">
+            <h1>Officials</h1>
+        </div>
+        <% official = @match_officials.first %> 
+         <div id="refereedetails">
+            <strong>Name:</strong> <%= official[:first_name] %><br>
+            <strong>Last Name:</strong><%= official[:last_name] %><br>
+            <strong>Numero di Maglia:</strong> <%= official[:jersey_number] %>
+        </div>
+    </div>
+
+    <div id="LinescoreHome-container">
+        <h1 id="LhomeText">Linescore Home</h1>
+        <%= @match_linescore_home %>
+    </div>
+
+    <div id="LinescoreAway-container">
+        <h1 id="LawayText">Linescore Away</h1>
+        <%= @match_linescore_away %>
+    </div>
+
+    <div id="LastMeeting-container">
+        <h1 id="lastMeetingtext">Match last meeting</h1>
+        <%= @match_last_meeting %>
+    </div>
+
 </div>

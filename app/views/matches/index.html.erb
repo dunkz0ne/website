@@ -1,28 +1,151 @@
-<div class="container" style="color: black">
-    <h1>Matches</h1>
-    <h2>Playoffs</h2>
-    <% @playoffs_schedule.each do |game| %>
-        <div style="text-align: center;">
-            <%= link_to match_path(id: game[:game_id]) do %>
-                <h3><img width="100px" src="https://cdn.nba.com/logos/nba/<%= game[:home_team].api %>/primary/L/logo.svg" /> <%= game[:home_team].name %> <%= game[:home_points] %> - <%= game[:away_points] %> <%= game[:away_team].name %> <img width="100px" src="https://cdn.nba.com/logos/nba/<%= game[:away_team].api %>/primary/L/logo.svg" /></h3>
-                <p style="text-align: center;"><%= game[:game_date] %></p>
-            <% end %>
-        </div>
-    <% end %>
+<div id="MatchPage" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
+    <div id="Navbar">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: <%= @team.color %>;">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav navItems">
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-people-group"></i>
+                        <%= active_link_to 'Team', "/teams/#{@team.id}", active: :exclusive, class: 'navElement' %>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-basketball"></i>
+                        <%= active_link_to 'Matches', matches_url(number: 3), active: :exclusive, class: 'navElement' %>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-newspaper"></i>
+                        <%= active_link_to 'News', articles_url, active: :exclusive, class: 'navElement' %>
+                    </li>
+                    <li>
+                        <%= active_link_to(user_dashboard_path) do %>
+                        <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
+                        <% end %>
+                    </li>
 
-    <% if @n_playoffs < params[:number].to_i %>
-        <h2>Regular Season</h2>
-    <% end %>
-    <% @regular_schedule.each do |game| %>
-        <div style="text-align: center;">
-            <%= link_to match_path(id: game[:game_id]) do %>
-            <h3><img width="100px" src="https://cdn.nba.com/logos/nba/<%= game[:home_team].api %>/primary/L/logo.svg" /> <%= game[:home_team].name %> <%= game[:home_points] %> - <%= game[:away_points] %> <%= game[:away_team].name %> <img width="100px" src="https://cdn.nba.com/logos/nba/<%= game[:away_team].api %>/primary/L/logo.svg" /></h3>
-            <p style="text-align: center;"><%= game[:game_date] %></p>
-            <% end %>
-        </div>
-    <% end %>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-trophy"></i>
+                        <%= active_link_to 'League', '/league', active: :exclusive, class: 'navElement' %>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-cart-shopping"></i>
+                        <%= active_link_to 'Shop', "https://www.nbastore.eu/en/#{@team.name.downcase.gsub(' ', '-')}", active: :exclusive, class: 'navElement' %>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>  
+                    </li>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
 
-    <%= link_to matches_url(number: (params[:number].to_i + 3) ) do %>
-    <button>Show more</button>
-    <% end %>
+    <div id="row">
+        <div class="col" style="justify-content: center; display:flex;">
+            <div class="matchSection" style="background-color: <%= @team.color %>;">
+                <div class="container-fluid" style="padding: 0;">
+                    <div class="row">
+                        <div class="col">
+                            <div class="boxTitle">
+                                <span class="sectionTitle">Featured Match</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="align-items: center;">
+                        <div class="col">
+                            <img class="logoTeam" src="https://cdn.nba.com/logos/nba/<%= @matches_schedule[0][:home_team].api %>/primary/L/logo.svg" />
+                            <div class="teamName"><%= @matches_schedule[0][:home_team].name %></div>
+                        </div>
+                        <div class="col">
+                            <div class="matchInfo">
+                                <div class="matchDateTime"><%= @matches_schedule[0][:game_date] %></div>
+                                <div class="matchPoints"><%= @matches_schedule[0][:home_points] %> - <%= @matches_schedule[0][:away_points] %></div>
+                                <%= link_to  match_path(id: @matches_schedule[0][:game_id]), class: "matchLink" do %>
+                                <div class="matchDetails" id="matchDets">
+                                    Details               
+                                </div>
+                                <% end %>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <img class="logoTeam" src="https://cdn.nba.com/logos/nba/<%= @matches_schedule[0][:away_team].api %>/primary/L/logo.svg" />
+                            <div class="teamName"><%= @matches_schedule[0][:away_team].name %></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="NextMatches-container" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
+        <div id="NextMatchesText">
+            <h1>
+                <%= image_tag("calendar.png") %>
+                Next Matches - <%= @team.name %>
+                <%= image_tag("calendar.png") %>
+            </h1>
+            <h1 id="soon">
+                COMING SOON...
+            </h1>
+        </div>
+    </div>
+
+    <div id="outer-container">
+        <div id="past-matches-container" style="background-color: <%= @team.color %>;">
+            <h1 id="past-matches-text">Past Matches</h1>
+            <% @playoffs_schedule.take(2) do |game| %>
+                <div style="text-align: center;">
+                    <%= link_to match_path(id: game[:game_id]) do %>
+                        <h3><img width="100px" src="https://cdn.nba.com/logos/nba/<%= game[:home_team].api %>/primary/L/logo.svg" /> <%= game[:home_team].name %> <%= game[:home_points] %> - <%= game[:away_points] %> <%= game[:away_team].name %> <img width="100px" src="https://cdn.nba.com/logos/nba/<%= game[:away_team].api %>/primary/L/logo.svg" /></h3>
+                        <p style="text-align: center;"><%= game[:game_date] %></p>
+                    <% end %>
+                </div>
+            <% end %>
+
+            <% if @n_playoffs < params[:number].to_i %>
+            <% end %>
+
+            <div id="matches-container">
+                <% @regular_schedule[1..].each do |game| %>
+                    <div id="singlematch-container" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
+                        <%= link_to match_path(id: game[:game_id]) do %>
+                            <div class="match">
+                                <h3>
+                                    <img width="100px" src="https://cdn.nba.com/logos/nba/<%= game[:home_team].api %>/primary/L/logo.svg" />
+                                    <%= game[:home_team].name %>
+                                </h3>
+                                <div class="score">
+                                    <h1><%= game[:home_points] %>-<%= game[:away_points] %></h1>
+                                    <p style="text-align: center;"><%= game[:game_date] %></p>
+                                </div>
+                                <h3>
+                                    <img width="100px" src="https://cdn.nba.com/logos/nba/<%= game[:away_team].api %>/primary/L/logo.svg" />
+                                    <%= game[:away_team].name %>
+                                </h3>
+                                <div class="details">
+                                    <div>
+                                        <%= image_tag("detailsicon.png") %>
+                                    </div>
+                                </div>
+                            </div>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+
+            <div id="show-more-button-container">
+                <%= link_to matches_url(number: (params[:number].to_i + 3) ) do %>
+                    <button>Show more</button>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
 </div>
+
