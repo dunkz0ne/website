@@ -21,14 +21,16 @@
     <%= form.text_field :bio, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :team_id %>
-    <% if user.persisted? %>
-      <%= form.select :team_id, options_from_collection_for_select(Team.all, :id, :name, user.team_id), class: "form-select" %>
-    <% else %>
-    <%= form.select :team_id, options_from_collection_for_select(Team.all, :id, :name), class: "form-select" %>
-    <% end %>
-  </div>
+  <% if user.type != "TeamManager"%>
+    <div class="field">
+      <%= form.label :team_id %>
+      <% if user.persisted? %>
+        <%= form.select :team_id, options_from_collection_for_select(Team.all, :id, :name, user.team_id), class: "form-select" %>
+      <% else %>
+      <%= form.select :team_id, options_from_collection_for_select(Team.all, :id, :name), class: "form-select" %>
+      <% end %>
+    </div>
+  <% end %>
 
   <hr>
 
