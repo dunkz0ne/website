@@ -12,7 +12,3 @@ When("I click on the league link") do
     puts "League link is not present on the page"
   end
 end
-
-Then("I should be on the league page") do
-  expect(page).to have_current_path(league_index_path)
-end

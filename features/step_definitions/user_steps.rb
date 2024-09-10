@@ -46,7 +46,3 @@ Given("I am logged in with Facebook") do
   # Ensure the user is redirected to the dashboard page
   expect(page).to have_current_path(user_dashboard_path)
 end
-
-Then("print the current path") do
-  puts "Current path: #{current_path}"
-end
