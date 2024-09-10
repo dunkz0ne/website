@@ -8,8 +8,8 @@ end
 
 When("I submit the form") do
   # Fill in and submit the form
-  find('#comment_content').set('This is the comment of the test article.')
-  find('#commentForm > div > div:nth-child(3) > div.col > div > button.btn.btn-primary').click
+  fill_in 'comment[content]', with: 'This is the comment of the test article.'
+  click_button 'Post ➤'
 end
 
 Then("I should view the comment") do
@@ -18,8 +18,8 @@ Then("I should view the comment") do
 end
 
 And("click on like and save button") do
-  find('#comments > div > a:nth-child(5)').click
-  find('#comments > div > a:nth-child(6)').click
+  find('#comments > div > div > div > div > div.row > div:nth-child(4) > a').click
+  find('#comments > div > div > div > div > div.row > div:nth-child(3) > a').click
 end
 
 When("I visit profile page") do
