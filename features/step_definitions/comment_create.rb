@@ -7,10 +7,9 @@ Given("I am on article page") do
 end
 
 When("I submit the form") do
-  expect(page).to have_content('Content')
   # Fill in and submit the form
-  fill_in 'Content', with: 'This is the comment of the test article.'
-  find('input[type="submit"]').click
+  find('#comment_content').set('This is the comment of the test article.')
+  find('#commentForm > div > div:nth-child(3) > div.col > div > button.btn.btn-primary').click
 end
 
 Then("I should view the comment") do
