@@ -46,36 +46,38 @@
         </nav>
     </div>
 
-    <div id="row">
-        <div class="col" style="justify-content: center; display:flex;">
-            <div class="matchSection" style="background-color: <%= @team.color %>;">
-                <div class="container-fluid" style="padding: 0;">
-                    <div class="row">
-                        <div class="col">
-                            <div class="boxTitle">
-                                <span class="sectionTitle">Featured Match</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="align-items: center;">
-                        <div class="col">
-                            <img class="logoTeam" src="https://cdn.nba.com/logos/nba/<%= @matches_schedule[0][:home_team].api %>/primary/L/logo.svg" />
-                            <div class="teamName"><%= @matches_schedule[0][:home_team].name %></div>
-                        </div>
-                        <div class="col">
-                            <div class="matchInfo">
-                                <div class="matchDateTime"><%= @matches_schedule[0][:game_date] %></div>
-                                <div class="matchPoints"><%= @matches_schedule[0][:home_points] %> - <%= @matches_schedule[0][:away_points] %></div>
-                                <%= link_to  match_path(id: @matches_schedule[0][:game_id]), class: "matchLink" do %>
-                                <div class="matchDetails" id="matchDets">
-                                    Details               
+    <div class="container">
+        <div class="row">
+            <div class="col" style="justify-content: center; display:flex;">
+                <div class="matchSection" style="background-color: <%= @team.color %>;">
+                    <div class="container-fluid" style="padding: 0;">
+                        <div class="row">
+                            <div class="col">
+                                <div class="boxTitle">
+                                    <span class="sectionTitle">Featured Match</span>
                                 </div>
-                                <% end %>
                             </div>
                         </div>
-                        <div class="col">
-                            <img class="logoTeam" src="https://cdn.nba.com/logos/nba/<%= @matches_schedule[0][:away_team].api %>/primary/L/logo.svg" />
-                            <div class="teamName"><%= @matches_schedule[0][:away_team].name %></div>
+                        <div class="row" style="align-items: center;">
+                            <div class="col-lg-4">
+                                <img class="logoTeamMatches" src="https://cdn.nba.com/logos/nba/<%= @matches_schedule_regular[0][:home_team].api %>/primary/L/logo.svg" />
+                                <div class="teamNameMatches"><%= @matches_schedule_regular[0][:home_team].name %></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="matchInfo">
+                                    <div class="matchPoints" style="font-size: 3rem;"><%= @matches_schedule_regular[0][:home_points] %> - <%= @matches_schedule_regular[0][:away_points] %></div>
+                                    <div class="matchDateTime" style="font-size: 2vh;"><%= @matches_schedule_regular[0][:game_date] %></div>
+                                    <%= link_to  match_path(id: @matches_schedule_regular[0][:game_id]), class: "matchLink" do %>
+                                    <div class="matchDetails" id="matchDets" style="font-size: 2vh;margin: 2vh auto;width: 15vh;">
+                                        Details               
+                                    </div>
+                                    <% end %>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <img class="logoTeamMatches" src="https://cdn.nba.com/logos/nba/<%= @matches_schedule_regular[0][:away_team].api %>/primary/L/logo.svg" />
+                                <div class="teamNameMatches"><%= @matches_schedule_regular[0][:away_team].name %></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -83,69 +85,130 @@
         </div>
     </div>
 
-    <div id="NextMatches-container" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
-        <div id="NextMatchesText">
-            <h1>
-                <%= image_tag("calendar.png") %>
-                Next Matches - <%= @team.name %>
-                <%= image_tag("calendar.png") %>
-            </h1>
-            <h1 id="soon">
-                COMING SOON...
-            </h1>
+    <div class="container" style="margin-top: 10vh;">
+        <div class="row">
+            <div class="col" style="justify-content: center; display:flex;">
+                <div class="matchSection" style="background-color: <%= @team.color %>;">
+                    <div class="container-fluid" style="padding: 0;">
+                        <div class="row">
+                            <div class="col">
+                                <div class="boxTitle">
+                                    <span class="sectionTitle">Next Matches - <%= @team.name %></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="align-items: center;">
+                            <div class="col">
+                                <h1 style="margin-top: 3vh;">
+                                    Coming soon...
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div id="outer-container">
-        <div id="past-matches-container" style="background-color: <%= @team.color %>;">
-            <h1 id="past-matches-text">Past Matches</h1>
-            <% @playoffs_schedule.take(2) do |game| %>
-                <div style="text-align: center;">
-                    <%= link_to match_path(id: game[:game_id]) do %>
-                        <h3><img width="100px" src="https://cdn.nba.com/logos/nba/<%= game[:home_team].api %>/primary/L/logo.svg" /> <%= game[:home_team].name %> <%= game[:home_points] %> - <%= game[:away_points] %> <%= game[:away_team].name %> <img width="100px" src="https://cdn.nba.com/logos/nba/<%= game[:away_team].api %>/primary/L/logo.svg" /></h3>
-                        <p style="text-align: center;"><%= game[:game_date] %></p>
-                    <% end %>
-                </div>
-            <% end %>
-
-            <% if @n_playoffs < params[:number].to_i %>
-            <% end %>
-
-            <div id="matches-container">
-                <% @regular_schedule[1..].each do |game| %>
-                    <div id="singlematch-container" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
-                        <%= link_to match_path(id: game[:game_id]) do %>
-                            <div class="match">
-                                <h3>
-                                    <img width="100px" src="https://cdn.nba.com/logos/nba/<%= game[:home_team].api %>/primary/L/logo.svg" />
-                                    <%= game[:home_team].name %>
-                                </h3>
-                                <div class="score">
-                                    <h1><%= game[:home_points] %>-<%= game[:away_points] %></h1>
-                                    <p style="text-align: center;"><%= game[:game_date] %></p>
+    <div class="container" style="margin-top: 10vh;">
+        <div class="row">
+            <div class="col" style="justify-content: center; display:flex;">
+                <div class="matchSection" style="background-color: <%= @team.color %>; padding-bottom: 1vh;">
+                    <div class="container-fluid" style="padding: 0;">
+                        <div class="row">
+                            <div class="col">
+                                <div class="boxTitle">
+                                    <span class="sectionTitle">Past Matches </span>
                                 </div>
-                                <h3>
-                                    <img width="100px" src="https://cdn.nba.com/logos/nba/<%= game[:away_team].api %>/primary/L/logo.svg" />
-                                    <%= game[:away_team].name %>
-                                </h3>
-                                <div class="details">
-                                    <div>
-                                        <%= image_tag("detailsicon.png") %>
+                            </div>
+                        </div>
+                        
+                        <% if @n_playoffs != 0 %>
+
+                            <div class="row mt-3 mb-3">
+                                <div class="col">
+                                    <h3 style="text-align: left;" class="mx-5">Playoffs</h3>
+                                </div>
+                            </div>
+
+                            <% @playoffs_schedule.each do |game| %>
+                                <div class="row" style="padding: 0 3vh; margin: 2vh 0 2vh 0">
+                                    <div class="col">
+                                        <div class="container">
+                                            <div class="row match" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
+                                                <div class="col-4">
+                                                    <img style="width:7vh" src="https://cdn.nba.com/logos/nba/<%= game[:home_team].api %>/primary/L/logo.svg" />
+                                                    <span style="font-size: 2.5vh;"><%= game[:home_team].name %></span>
+                                                </div>
+                                                <div class="col-2">
+                                                    <span style="justify-content: center; font-size:2.5vh"><%= game[:home_points] %>-<%= game[:away_points] %></span>
+                                                    <p style="text-align: center; margin:0;"><%= game[:game_date] %></p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <img style="width:7vh" src="https://cdn.nba.com/logos/nba/<%= game[:away_team].api %>/primary/L/logo.svg" />
+                                                    <span style="font-size: 2.5vh;"><%= game[:away_team].name %></span>
+                                                </div>
+                                                <div class="col-2">
+                                                    <%= link_to match_path(id: game[:game_id]) do %>
+                                                        <%= image_tag("detailsicon.png") %>
+                                                    <% end %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% end %>
+
+                        <% end %>
+                            
+                        <div class="row mt-3 mb-3 pt-3">
+                            <div class="col">
+                                <h3 style="text-align: left;" class="mx-5">Regular Season</h3>
+                            </div>
+                        </div>
+
+                        <% @regular_schedule.each do |game| %>
+                            <div class="row" style="padding: 0 3vh; margin: 2vh 0 2vh 0">
+                                <div class="col">
+                                    <div class="container">
+                                        <div class="row match" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
+                                            <div class="col-4">
+                                                <img style="width:7vh" src="https://cdn.nba.com/logos/nba/<%= game[:home_team].api %>/primary/L/logo.svg" />
+                                                <span style="font-size: 2.5vh;"><%= game[:home_team].name %></span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span style="justify-content: center; font-size:2.5vh"><%= game[:home_points] %>-<%= game[:away_points] %></span>
+                                                <p style="text-align: center; margin:0;"><%= game[:game_date] %></p>
+                                            </div>
+                                            <div class="col-4">
+                                                <img style="width:7vh" src="https://cdn.nba.com/logos/nba/<%= game[:away_team].api %>/primary/L/logo.svg" />
+                                                <span style="font-size: 2.5vh;"><%= game[:away_team].name %></span>
+                                            </div>
+                                            <div class="col-2">
+                                                <%= link_to match_path(id: game[:game_id]) do %>
+                                                    <%= image_tag("detailsicon.png") %>
+                                                <% end %>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         <% end %>
-                    </div>
-                <% end %>
-            </div>
 
-            <div id="show-more-button-container">
-                <%= link_to matches_url(number: (params[:number].to_i + 3) ) do %>
-                    <button>Show more</button>
-                <% end %>
+
+                        <div class="row mt-3 mb-3">
+                            <div class="col">
+                                <%= link_to matches_url(number: (params[:number].to_i + 3) ) do %>
+                                        <button id="show-more" class="btn btn-primary mx-5">Show More</button>
+                                <% end %>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-</div>
 
