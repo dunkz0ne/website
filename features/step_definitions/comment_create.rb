@@ -18,8 +18,8 @@ Then("I should view the comment") do
 end
 
 And("click on like and save button") do
-  find('#comments > div > div > div > div > div.row > div:nth-child(4) > a').click
-  find('#comments > div > div > div > div > div.row > div:nth-child(3) > a').click
+  find('#comments > div > div > div > div > div.row > div:nth-child(4) > a > i').click
+  find('#comments > div > div > div > div > div.row > div:nth-child(3) > a > i').click
 end
 
 When("I visit profile page") do
