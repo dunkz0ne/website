@@ -2,6 +2,7 @@
 class JournalistRequestsController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin!, only: [:index, :approve, :reject]
+  rescue_from ActionController::ParameterMissing, with: :handle_missing_params
 
   def new
     if not current_user.type?
@@ -17,12 +18,12 @@ class JournalistRequestsController < ApplicationController
       @journalist_request.user = current_user
 
       if @journalist_request.save
-        redirect_to root_path, notice: "Richiesta inviata con successo."
+        redirect_to user_dashboard_path, notice: "Request sent successfully."
       else
-        render :new
+        render :new, notice: "Error sending request."
       end
     else
-      redirect_to user_dashboard_path, notice: "Non puoi fare richieste da giornalista."
+      redirect_to user_dashboard_path, notice: "You can't make journalist requests."
     end
   end
 
@@ -51,5 +52,10 @@ class JournalistRequestsController < ApplicationController
 
   def authenticate_admin!
     redirect_to root_path, alert: "Accesso negato." unless current_user.type == 'Admin'
+  end
+
+  def handle_missing_params
+    flash[:alert] = "No certificate attached"
+    redirect_to new_journalist_request_path
   end
 end

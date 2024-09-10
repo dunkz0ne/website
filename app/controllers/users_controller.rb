@@ -12,6 +12,9 @@ class UsersController < ApplicationController
 
     if @user.type == 'Journalist'
       @articles = Article.where(user_id: @user.id, draft: false).order(created_at: :desc)
+      @articles.each do |article|
+        article.team = Team.find(article.team_id)
+      end
     end
 
     if @user.type == 'TeamManager'
@@ -159,6 +162,11 @@ class UsersController < ApplicationController
   def become_admin
     current_user.become_admin!
     redirect_to root_path, notice: 'You are now an admin.'
+  end
+
+  def become_team_manager
+    current_user.become_team_manager!
+    redirect_to root_path, notice: 'You are now a team manager.'
   end
 
   # Method to increment the strikes of a user

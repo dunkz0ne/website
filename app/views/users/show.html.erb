@@ -143,19 +143,230 @@
   <% if @user.type == "Journalist" %>
   <div id="articleList" class="container mt-5">
     <h1>Articles</h1>
-    <% @articles.each do |article| %>
-      <div class="card" style="border-radius: 20px; margin: 2rem;">
-          <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
-              <div class="row">
-                  <% if article.image.attached? %>
-                  <div class="col-4">
-                      <%= image_tag article.image, style: "width: 100%; height: 100%; border-radius: 5px;" %>
+    <div class="container">
+      <div class="row" style="justify-content: center;">
+        <% if @articles.length < 1 and @user.id == session[:user_id].to_i %>
+        <div style="text-align: center;">
+          <h3>You have not posted any articles</h3>
+          <p>Create one on your <%= link_to 'Dashboard', user_dashboard_url, style: 'color: white;' %></p>
+        </div>
+        <% elsif @articles.length < 1 %>
+        <div style="text-align: center;">
+          <h3><%= @user.name %> has not posted any articles</h3>
+        </div>        
+        <% else %>
+        <div class="articleList" >
+          
+          <% @articles.each do |article| %>
+            <div class="card" style="border-radius: 20px; margin-top: 2rem;">
+              <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
+                  
+                  <div class="row">
+                      <% if article.image.attached? %>
+                          <div class="col-4">
+                              <%= image_tag article.image, style: "width: 100%; height: 100%; border-radius: 5px;" %>
+                          </div>
+                      <% else %>
+                          <div class="col-4">
+                              <%= image_tag 'nbaLogo.jpg', style: "width: 100%; height: 100%; border-radius: 5px;" %>
+                          </div>
+                      <% end %>
+                      <div class="col-8">
+                          <div class="row">
+                              <div class="col">
+                                  <h5 class="card-title"><%= article.title %></h5>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col">
+                                  <p class="card-text">by <%= link_to article.user.name, user_path(article.user), style: 'color: white;' %></p>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col">
+                                  <p class="card-text"><%= article.created_at.strftime("%B %d, %Y at %I:%M %p") %></p>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col fade-bottom" id="articleOwned-<%= article.id %>">
+                                  <p class="coolCardText" ><%= article.content %></p>
+                              </div>
+                          </div>
+                      </div>
                   </div>
+                  <div class="row">
+                      <%= link_to 'Read More', article_path(article), class: "btn btn-light mt-4" %>
+                      <% if article.user.id == session[:user_id].to_i %>
+                          <%= link_to 'Edit', edit_article_path(article), class: "btn btn-light mt-2" %>
+                          <%= link_to 'Delete', delete_article_path(article), class: "btn btn-light mt-2" %>
+                      <% end %>
+                  </div>
+                  
+              </div>
+        </div>
+
+          <% end %>
+          
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @user.type == "TeamManager" %>
+  <div class="container mt-5" id="releaseList">
+    <h1>Releases</h1>
+    <% if @releases.length < 1 and @user.id == session[:user_id].to_i %>
+      <div style="text-align: center;">
+        <h3>You have not posted any releases</h3>
+        <p>Create one on your <%= link_to 'Dashboard', user_dashboard_url, style: 'color: white;' %></p>
+      </div>
+    <% elsif @releases.length < 1 %>
+      <div style="text-align: center;">
+        <h3><%= @user.name %> has not posted any releases</h3>
+      </div>        
+    <% else %>
+      <% @releases.each do |release| %>
+        <div class="card" style="border-radius: 20px; margin-top: 2rem;">
+          <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
+              
+              <div class="row">
+                  <% if release.image.attached? %>
+                      <div class="col-4">
+                          <%= image_tag release.image, style: "width: 100%; height: 100%; border-radius: 5px;" %>
+                      </div>
+                  <% else %>
+                      <div class="col-4">
+                          <%= image_tag 'nbaLogo.jpg', style: "width: 100%; height: 100%; border-radius: 5px;" %>
+                      </div>
                   <% end %>
                   <div class="col-8">
-                      <h5 class="card-title"><%= article.title %></h5>
-                      <p class="card-text">by <%= link_to article.user.name, user_path(article.user), style: 'color: white;' %></p>
-                      <p class="card-text"><%= article.created_at.strftime("%B %d, %Y at %I:%M %p") %></p>
+                      <div class="row">
+                          <div class="col">
+                              <h5 class="card-title"><%= release.title %></h5>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col">
+                              <p class="card-text">by <%= link_to release.user.name, user_path(release.user), style: 'color: white;' %></p>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col">
+                              <p class="card-text"><%= release.created_at.strftime("%B %d, %Y at %I:%M %p") %></p>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col fade-bottom" id="release-<%= release.id %>">
+                              <p class="coolCardText" ><%= release.content %></p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <%= link_to 'Read More', release_path(release), class: "btn btn-light mt-4" %>
+                  <% if release.user.id == session[:user_id].to_i %>
+                      <%= link_to 'Edit', edit_release_path(release), class: "btn btn-light mt-2" %>
+                      <%= link_to 'Delete', delete_release_path(release), class: "btn btn-light mt-2" %>
+                  <% end %>
+              </div>
+              
+          </div>
+        </div>
+
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <div class="container mt-5">
+    <h1>Comments</h1>
+    <% if @comments.length < 1 and @user.id == session[:user_id].to_i %>
+      <div style="text-align: center;">
+        <h3>You have not posted any comments</h3>
+        <p>Create one on the <%= link_to 'News', articles_path, style: 'color: white;' %> section</p>
+      </div>
+    <% elsif @comments.length < 1 %>
+      <div style="text-align: center;">
+        <h3><%= @user.name %> has not posted any comments</h3>
+      </div>        
+    <% else %>
+    <% @comments.each do |comment| %>
+      <div class="card" style="border-radius: 20px; margin-top: 2rem; margin-bottom: 2rem;">
+          <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
+            <div class="container">
+              <div class="row" style="align-items: center;">
+                <div class="col-3">
+                  <i class="fa-solid fa-user" style="font-size:2em; margin-right: 0.8vh;"></i>
+                  <span class="card-text"><%= link_to comment.user.name, user_path(comment.user), style:"color:white; text-decoration:none; font-size: 1.5rem;" %></span>
+                </div>
+                <div class="col-2">
+                  <span class="card-text"><%= comment.created_at.strftime("%d/%m/%Y") %></span>
+                </div>
+                <div class="col-4">
+                  <span class="card-text"><%= comment.likes.length %></span>
+                  <i class="fa-solid fa-heart"></i>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="card-text" style="margin: 3vh 0 3vh 0"><%= comment.content%></div>
+                </div>
+              </div>
+            </div>
+              <div>on <%= link_to comment.article.title, article_path(comment.article), style: 'color: white;' %></div>
+          </div>
+      </div>
+
+    <% end %>
+    <% end %>
+
+  </div>
+
+  <% if @saved_articles %>
+    <div id="savedList" class="container mt-5">
+      <h1>Saved Articles</h1>
+      <% if @saved_articles.length < 1 %>
+      <div style="text-align: center;">
+        <h3>You have not saved any articles</h3>
+        <p>Explore the <%= link_to 'News', articles_path, style: 'color: white;' %> section</p>
+      </div>
+      <% else %>
+      <% @saved_articles.each do |article| %>
+        <div class="card" style="border-radius: 20px; margin-top: 2rem;">
+          <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
+              
+              <div class="row">
+                  <% if article.image.attached? %>
+                      <div class="col-4">
+                          <%= image_tag article.image, style: "width: 100%; height: 100%; border-radius: 5px;" %>
+                      </div>
+                  <% else %>
+                      <div class="col-4">
+                          <%= image_tag 'nbaLogo.jpg', style: "width: 100%; height: 100%; border-radius: 5px;" %>
+                      </div>
+                  <% end %>
+                  <div class="col-8">
+                      <div class="row">
+                          <div class="col">
+                              <h5 class="card-title"><%= article.title %></h5>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col">
+                              <p class="card-text">by <%= link_to article.user.name, user_path(article.user), style: 'color: white;' %></p>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col">
+                              <p class="card-text"><%= article.created_at.strftime("%B %d, %Y at %I:%M %p") %></p>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col fade-bottom" id="article-<%= article.id %>">
+                              <p class="coolCardText" ><%= article.content %></p>
+                          </div>
+                      </div>
                   </div>
               </div>
               <div class="row">
@@ -167,42 +378,9 @@
               </div>
               
           </div>
-      </div>
-
-    <% end %>
-  </div>
-  <% end %>
-
-  <% if @user.type == "TeamManager" %>
-  <div class="container mt-5" id="releaseList">
-    <h1>Releases</h1>
-    <% @releases.each do |release| %>
-      <div class="card" style="border-radius: 20px; margin-top: 2rem; margin-bottom: 2rem;">
-          <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
-              <h5 class="card-title"><%= release.title %></h5>
-              <p class="card-text"><%= release.content %></p>
-              <p class="card-text"><%= release.created_at %></p>
-              <%= link_to 'Read More', release_path(release), class: "btn btn-light" %>
-          </div>
-      </div>
-
-    <% end %>
-  <% end %>
-
-  <% if @saved_articles %>
-    <div id="savedList" class="container mt-5">
-      <h1>Saved Articles</h1>
-      <% @saved_articles.each do |article| %>
-        <div class="card" style="border-radius: 20px; margin-top: 2rem; margin-bottom: 2rem;">
-            <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
-                <h5 class="card-title"><%= article.title %></h5>
-                <p class="card-text"><%= article.content %></p>
-                <p class="card-text">by <%= link_to article.user.name, user_path(article.user), style: 'color: white;' %></p>
-                <p class="card-text"><%= article.created_at %></p>
-                <%= link_to 'Read More', article_path(article), class: "btn btn-light" %>
-            </div>
         </div>
       <% end %>
+    <% end %>
     </div>
   <% end %>
 
@@ -210,18 +388,105 @@
   <% if @saved_comments %>
   <div class="container mt-5">
     <h1>Saved Comments</h1>
+    <% if @saved_comments.length < 1 %>
+      <div style="text-align: center;">
+        <h3>You have not saved any comments</h3>
+        <p>Explore the <%= link_to 'News', articles_path, style: 'color: white;' %> section</p>
+      </div>       
+    <% else %>
     <% @saved_comments.each do |comment| %>
       <div class="card" style="border-radius: 20px; margin-top: 2rem; margin-bottom: 2rem;">
           <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
-              <p class="card-text"><%= comment.content %></p>
-              <p class="card-text"><%= comment.created_at %></p>
-              <p class="card-text">by <%= link_to comment.user.name, user_path(comment.user) %></p>
-              <p class="card-text">Likes: <%= comment.likes.length %></p>
-              <p class="card-text">on <%= link_to comment.article.title, article_path(comment.article) %></p>
+            <div class="container">
+              <div class="row" style="align-items: center;">
+                <div class="col-3">
+                  <i class="fa-solid fa-user" style="font-size:2em; margin-right: 0.8vh;"></i>
+                  <span class="card-text"><%= link_to comment.user.name, user_path(comment.user), style:"color:white; text-decoration:none; font-size: 1.5rem;" %></span>
+                </div>
+                <div class="col-2">
+                  <span class="card-text"><%= comment.created_at.strftime("%d/%m/%Y") %></span>
+                </div>
+                <div class="col-4">
+                  <span class="card-text"><%= comment.likes.length %></span>
+                  <i class="fa-solid fa-heart"></i>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="card-text" style="margin: 3vh 0 3vh 0"><%= comment.content%></div>
+                </div>
+              </div>
+            </div>
+              <div>on <%= link_to comment.article.title, article_path(comment.article), style: 'color: white;' %></div>
           </div>
       </div>
       <% end %>
+    <% end %>
   </div>
   <% end %>
 
 </div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const savedArticles = <%= raw @saved_articles.map { |article| { id: article.id, color: @team.color } }.to_json %>;
+        
+        savedArticles.forEach(article => {
+            const element = document.getElementById(`article-${article.id}`);
+            if (element) {
+                const gradientDiv = document.createElement('div');
+                gradientDiv.style.position = 'absolute';
+                gradientDiv.style.top = '0';
+                gradientDiv.style.left = '0';
+                gradientDiv.style.width = '100%';
+                gradientDiv.style.height = '100%';
+                gradientDiv.style.background = `linear-gradient(to bottom, ${article.color}00, ${article.color})`;
+                gradientDiv.style.pointerEvents = 'none'; // Ensure it doesn't interfere with text selection or clicks
+                element.appendChild(gradientDiv);
+                element.style.position = 'relative'; // Ensure the parent element is positioned relatively
+            }
+        });
+
+        <% if @user.type == "TeamManager" %>
+          const releases = <%= raw @releases.map { |release| { id: release.id, color: @team.color } }.to_json %>;
+          releases.forEach(release => {
+              const element = document.getElementById(`release-${release.id}`);
+              if (element) {
+                  const gradientDiv = document.createElement('div');
+                  gradientDiv.style.position = 'absolute';
+                  gradientDiv.style.top = '0';
+                  gradientDiv.style.left = '0';
+                  gradientDiv.style.width = '100%';
+                  gradientDiv.style.height = '100%';
+                  gradientDiv.style.background = `linear-gradient(to bottom, ${release.color}00, ${release.color})`;
+                  gradientDiv.style.pointerEvents = 'none'; // Ensure it doesn't interfere with text selection or clicks
+                  element.appendChild(gradientDiv);
+                  element.style.position = 'relative'; // Ensure the parent element is positioned relatively
+              }
+          });
+        <% end %>
+
+        <% if @user.type == "Journalist" %>
+          const articles = <%= raw @articles.map { |article| { id: article.id, color: @team.color } }.to_json %>;
+          articles.forEach(article => {
+              const element = document.getElementById(`articleOwned-${article.id}`);
+              if (element) {
+                  const gradientDiv = document.createElement('div');
+                  gradientDiv.style.position = 'absolute';
+                  gradientDiv.style.top = '0';
+                  gradientDiv.style.left = '0';
+                  gradientDiv.style.width = '100%';
+                  gradientDiv.style.height = '100%';
+                  gradientDiv.style.background = `linear-gradient(to bottom, ${article.color}00, ${article.color})`;
+                  gradientDiv.style.pointerEvents = 'none'; // Ensure it doesn't interfere with text selection or clicks
+                  element.appendChild(gradientDiv);
+                  element.style.position = 'relative'; // Ensure the parent element is positioned relatively
+              }
+          });
+        <% end %>
+
+
+        
+    });
+</script>

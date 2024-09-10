@@ -23,12 +23,14 @@
 
   <div class="field">
     <%= form.label :team_id %>
+    <% if user.persisted? %>
+      <%= form.select :team_id, options_from_collection_for_select(Team.all, :id, :name, user.team_id), class: "form-select" %>
+    <% else %>
     <%= form.select :team_id, options_from_collection_for_select(Team.all, :id, :name), class: "form-select" %>
+    <% end %>
   </div>
 
-  
-<hr>
-  
+  <hr>
 
   <div class="actions" style="text-align: right;">
     <%= form.submit class: "btn btn-light" %>

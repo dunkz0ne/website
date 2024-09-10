@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :matches
   resources :league
   resources :journalists
+  resources :team_managers
   resources :admin
 
   resources :articles do
@@ -25,7 +26,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :releases
+  resources :releases do
+    member do
+      get 'delete'
+    end
+  end
 
   resources :journalist_requests, only: [:new, :create, :index] do
     member do
@@ -45,6 +50,9 @@ Rails.application.routes.draw do
       get 'admin_dashboard'
     end
   end
+
+  match "/404", to: redirect('/404.html'), via: :all
+  match "/500", to: redirect('/500.html'), via: :all
 
   get 'become_journalist', to: 'users#become_journalist'
   get 'become_team_manager', to: 'users#become_team_manager'
