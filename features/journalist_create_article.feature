@@ -1,6 +1,5 @@
 Feature: Journalist create an article
 
-  @requires_login
   Scenario: Journalist logged create an article
     Given I am logged in with Facebook
     And I am a Journalist

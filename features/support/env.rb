@@ -60,12 +60,12 @@ require 'database_cleaner/active_record'
 
 Before do
   # Carica i dati di seed prima di ogni scenario
-  #DatabaseCleaner.clean_with(:truncation)
+  DatabaseCleaner.clean_with(:truncation)
   load Rails.root.join('db/seeds.rb').to_s
 end
 
 After do
-  #DatabaseCleaner.clean
+  DatabaseCleaner.clean
 end
 
 
