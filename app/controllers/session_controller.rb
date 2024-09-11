@@ -12,7 +12,7 @@ class SessionController < ApplicationController
       user = User.find_by(email: email) # Search for user by email
 
       if user && user.provider != 'email' # User exists but is not an email user
-        flash[:alert] = 'Account already exists with Facebook.'
+        flash[:alert] = 'Account already exists with' + user.provider + '.'
         return redirect_to root_path
       elsif user && user.authenticate(password) # User exists and password is correct, create session
         session[:user_id] = user.id
