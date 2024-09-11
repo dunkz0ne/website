@@ -4,7 +4,6 @@
     color: white !important;
   }
 
-
 </style>
 
 <div class="admin">
@@ -94,10 +93,18 @@
               <td><%= user.comments.count %></td>
               <td><%= user.strikes %></td>
               <td>
-                <%= link_to "+", increment_strikes_user_path(user), class: "btn btn-success btn-sm" %>
-                <%= link_to "-", decrement_strikes_user_path(user), class: "btn btn-danger btn-sm" %>
+                <% if user.strikes == 3 %>
+                  <button class="btn btn-success btn-sm" disabled>+</button>
+                <% else %>
+                  <%= link_to "+", increment_strikes_user_path(user), class: "btn btn-success btn-sm" %>
+                <% end %>
+                <% if user.strikes == 0 %>
+                  <button class="btn btn-success btn-sm" disabled>-</button>
+                <% else %>
+                  <%= link_to "-", decrement_strikes_user_path(user), class: "btn btn-danger btn-sm" %>
+                <% end %>
                 <% if is_banned %>
-                  <%= link_to 'Unban', unban_user_path(user), class: "btn btn-warning btn-sm"%>
+                  <%= link_to 'Unban', unban_user_path(user), class: "btn btn-warning btn-sm" %>
                 <% end %>
               </td>
             </tr>
@@ -107,6 +114,7 @@
       <%= form.submit 'Ban Users', class: 'btn btn-danger mt-3' %>
     <% end %>
   </div>
+
 
   <div class="container mt-5" id="releaseList">
     <h1 class="mb-4">Latest Comments</h1>

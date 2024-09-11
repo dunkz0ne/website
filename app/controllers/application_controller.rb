@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user!
-    if !session[:user_id] && request.path != root_path
+    current_user
+    if !session[:user_id] && @current_user.nil? && request.path != root_path
       redirect_to root_path, notice: 'You need to sign in first.'
     end
   end
