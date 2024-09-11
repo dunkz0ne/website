@@ -11,7 +11,10 @@ class SessionController < ApplicationController
       password = params[:password]
       user = User.find_by(email: email) # Search for user by email
 
-      if user && user.authenticate(password) # User exists and password is correct, create session
+      if user && user.provider != 'email' # User exists but is not an email user
+        flash[:alert] = 'Account already exists with Facebook.'
+        return redirect_to root_path
+      elsif user && user.authenticate(password) # User exists and password is correct, create session
         session[:user_id] = user.id
         session[:user_created] = true
         flash[:notice] = 'Logged in!'
@@ -24,6 +27,7 @@ class SessionController < ApplicationController
           handle_new_user_flow(name, email, password)
         end
       end
+
     else # Omniauth login
       handle_omniauth_login
     end
