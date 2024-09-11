@@ -46,10 +46,10 @@ class SessionController < ApplicationController
   # Handle new user flow
   def handle_new_user_flow(name, email, password)
     if User.exists_with_email?(email)
-      flash[:alert] = 'Invalid password or account does not exist.'
-      render root_path
+      flash[:alert] = 'Account does exist.'
+      redirect_to session_new_path
     else
-      uid = SecureRandom.uuid # Random id
+      uid = SecureRandom.uuid
       session[:user_id] = uid
       session[:auth_info] = {
         provider: 'email',
@@ -85,7 +85,7 @@ class SessionController < ApplicationController
           name: auth.info.name,
           email: auth.info.email
         }
-        redirect_to new_user_path, notice: 'Please complete sign-up.'
+        redirect_to new_user_path, notice: 'Please complete sign-up.' # Redirect to form to complete sign-up
       end
     end
   end

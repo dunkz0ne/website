@@ -1,23 +1,48 @@
 <h1>Sign Up</h1>
 
-<%= form_with url: session_create_path, method: :post do |form| %>
+<% if notice.present? %>
+  <div class="alert alert-info">
+    <%= notice %>
+  </div>
+<% end %>
+
+<% if flash[:alert].present? %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<%= form_with url: session_create_path, method: :post, html: { id: 'sign-up-form' } do |form| %>
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control", required: true %>
   </div>
 
   <div class="field">
     <%= form.label :email %>
-    <%= form.email_field :email %>
+    <%= form.email_field :email, class: "form-control", required: true %>
   </div>
 
   <div class="field">
     <%= form.label :password %>
-    <%= form.password_field :password %>
+    <%= form.password_field :password, class: "form-control", required: true, pattern: "(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}", title: "Password must be at least 8 characters long and contain a combination of letters, numbers, and special characters." %>
+    <small class="text-muted">Password must be at least 8 characters long and contain a combination of letters, numbers, and special characters.</small>
   </div>
 
   <div class="actions">
-    <%= form.submit 'Continue' %>
+    <%= form.submit 'Continue', class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<script>
+  document.getElementById('sign-up-form').addEventListener('submit', function(event) {
+    const password = document.querySelector('input[name="password"]').value;
+    const pattern = new RegExp('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$');
+
+    if (!pattern.test(password)) {
+      alert('Password does not meet the required criteria.');
+      event.preventDefault();
+    }
+  });
+</script>
