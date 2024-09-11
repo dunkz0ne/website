@@ -60,7 +60,7 @@ journalists = [
   { name: 'Stefano Ferrari', email: 'stefano.ferrari@newsnet.com', team_id: 7, provider: 'email', password_digest: SecureRandom.hex },
   { name: 'Francesca Greco', email: 'francesca.greco@daily.com', team_id: 8, provider: 'email', password_digest: SecureRandom.hex },
   { name: 'Paolo Rinaldi', email: 'paolo.rinaldi@headlines.com', team_id: 9, provider: 'email', password_digest: SecureRandom.hex },
-  { name: 'Silvia Russo', email: 'silvia.russo@worldnews.com', team_id: 10, provider: 'email', password_digest: SecureRandom.hex }
+  { name: 'Silvia Russo', email: 'silvia.russo@worldnews.com', team_id: 10, provider: 'email', password_digest: SecureRandom.hex}
 ]
 
 # Create articles
@@ -137,7 +137,7 @@ journalists_articles = [
   }
 ]
 
-
+# Create team managers
 team_managers = [
   { name: 'Giovanni Bernardi', email: 'giovanni.bernardi@team.com', team_id: 1, provider: 'linkedin', password_digest: SecureRandom.hex },
   { name: 'Federica Romano', email: 'federica.romano@team.com', team_id: 2, provider: 'twitter', password_digest: SecureRandom.hex },
@@ -257,9 +257,9 @@ end
 
 
 
-# Creazione di un utente generico
-u = User.create!(name: 'Silvia Russo', email: 'silvia.russo@worldnews.com', password_digest: SecureRandom.hex, team_id: 10, provider: 'github')
-u1 = User.first();
+# Journalist requests
+u = User.first();
+u1 = User.second();
 
 certificate_path = Rails.root.join('db','Among-Us-Logo.png')
 

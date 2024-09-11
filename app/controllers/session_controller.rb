@@ -9,7 +9,7 @@ class SessionController < ApplicationController
       name = params[:name]
       email = params[:email]
       password = params[:password]
-      user = User.find_by(provider: 'email', email: email) # Search for user by email
+      user = User.find_by(email: email) # Search for user by email
 
       if user && user.authenticate(password) # User exists and password is correct, create session
         session[:user_id] = user.id
@@ -38,7 +38,7 @@ class SessionController < ApplicationController
 
   # Fail oauth login
   def fail
-    redirect_to root_path
+    redirect_to root_path, alert: 'Facebook login failed or was canceled.'
   end
 
   private
@@ -49,7 +49,7 @@ class SessionController < ApplicationController
       flash[:alert] = 'Invalid password or account does not exist.'
       render root_path
     else
-      uid = Random.rand(1000000000) # Random id
+      uid = SecureRandom.uuid # Random id
       session[:user_id] = uid
       session[:auth_info] = {
         provider: 'email',
@@ -65,28 +65,30 @@ class SessionController < ApplicationController
   # Handle omniauth login
   def handle_omniauth_login
     auth = request.env['omniauth.auth']
-    user = User.find_by(provider: auth.provider, id: auth.uid)
+    user = User.find_by(email: auth.info.email) # Search for user by email
 
-    if user
-      session[:user_id] = user.id
-      session[:user_created] = true
-      flash[:notice] = 'Logged in!'
-      redirect_to user_dashboard_path
+    # Check for denied permissions or any other OmniAuth errors
+    if request.env['omniauth.error'] || request.params['error'] == 'access_denied'
+      redirect_to root_path, alert: 'Facebook login was canceled or an error occurred.'
     else
-      session[:user_id] = auth.uid
-      session[:auth_info] = {
-        provider: auth.provider,
-        uid: auth.uid,
-        name: auth.info.name,
-        email: auth.info.email
-      }
-      redirect_to new_user_path, notice: 'Please complete sign-up.'
+    # User exists, create session
+      if user
+        session[:user_id] = user.id
+        session[:user_created] = true
+        flash[:notice] = 'Logged in!'
+        redirect_to user_dashboard_path
+      else
+        session[:user_id] = auth.uid
+        session[:auth_info] = {
+          provider: auth.provider,
+          uid: auth.uid,
+          name: auth.info.name,
+          email: auth.info.email
+        }
+        redirect_to new_user_path, notice: 'Please complete sign-up.'
+      end
     end
   end
 
-  private
-    # Only allow a list of trusted parameters through.
-    def session_params
-      params.require(:session).permit(:name, :email, :password)
-    end
+
 end
