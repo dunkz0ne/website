@@ -10,6 +10,12 @@
         </div>
       <% end %>
 
+      <% if flash[:alert].present? %>
+        <div class="alert alert-danger">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+
       <div class="btn-group my-3">
         <%= link_to 'Become a Journalist', become_journalist_path, method: :patch, class: 'btn btn-primary' %>
         <%= link_to 'Become an Admin', become_admin_path, method: :patch, class: 'btn btn-secondary' %>

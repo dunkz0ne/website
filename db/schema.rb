@@ -140,13 +140,13 @@ ActiveRecord::Schema.define(version: 2024_08_08_102837) do
     t.string "name", null: false
     t.string "email"
     t.integer "team_id", null: false
-    t.string "provider"
+    t.string "provider", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "bio"
     t.string "type"
     t.integer "strikes", default: 0, null: false
-    t.string "password_digest"
+    t.string "password_digest", default: ""
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
