@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2024_08_04_100625) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "admin_id", null: false
     t.index ["admin_id"], name: "index_banned_users_on_admin_id"
-    t.index ["user_email"], name: "index_banned_users_on_user_email"
+    t.index ["user_email"], name: "index_banned_users_on_user_email", unique: true
   end
 
   create_table "comments", force: :cascade do |t|

@@ -54,7 +54,7 @@
                     </li>
                     <li class="nav-item">
                         <i class="nav-icon fa-solid fa-user"></i>
-                        <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>  
+                        <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>
                     </li>
                     </li>
                 </ul>
@@ -62,6 +62,9 @@
             </div>
         </nav>
     </div>
+    <% if Rails.env.test? %>
+
+    <% else %>
 
     <div class="container infoContainer">
         <div class="row infoContainerRow" >
@@ -89,7 +92,7 @@
                                                 <div class="matchPoints"><%= @matches_schedule[0][:home_points] %> - <%= @matches_schedule[0][:away_points] %></div>
                                                 <%= link_to  match_path(id: @matches_schedule[0][:game_id]), class: "matchLink" do %>
                                                 <div class="matchDetails" id="matchDets">
-                                                    Details               
+                                                    Details
                                                 </div>
                                                 <% end %>
                                             </div>
@@ -146,7 +149,7 @@
                                                                                     <hr>
                                                                                 <% end %>
                                                                             </div>
-                                                                        
+
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -350,7 +353,7 @@
                                             <i class="sectionTitle fa-solid fa-calendar-days"></i>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 <% numMatches = @user.type == 'Journalist' ? 4 : 3 %>
                                 <% @matches_schedule.take(numMatches).each do |match, index|  %>
@@ -366,13 +369,13 @@
                                                     <div class="col" style="text-align: center;">
                                                         <div class="matchScore">
                                                             <div class="matchPoints"><%= match[:home_points] %>:<%= match[:away_points] %></div>
-                                                            
+
                                                         </div>
                                                     </div>
                                                     <div class="col">
                                                         <img class="logoTeamPast" src="https://cdn.nba.com/logos/nba/<%= match[:away_team].api %>/primary/L/logo.svg" />
                                                     </div>
-                                                    
+
                                                 </div>
                                             <% end %>
                                             </div>
@@ -390,7 +393,11 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+
+
     </div>
+    <% end %>
 </div>

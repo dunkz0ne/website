@@ -8,6 +8,6 @@ class CreateBannedUsers < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    add_index :banned_users, :user_email
+    add_index :banned_users, :user_email, unique: true
   end
 end

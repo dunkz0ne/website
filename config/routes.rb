@@ -34,8 +34,8 @@ Rails.application.routes.draw do
 
   resources :journalist_requests, only: [:new, :create, :index] do
     member do
-      post 'approve'
-      delete 'reject'
+      get 'approve'
+      get 'reject'
     end
   end
 
@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       get :decrement_strikes
       post :delete
       post :ban_users
+      get :unban
       post :delete_articles
       get 'admin_dashboard'
     end

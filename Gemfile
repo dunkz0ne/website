@@ -30,6 +30,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 gem 'figaro'
 
+gem 'whenever', require: false
+
 gem 'countries'
 
 gem 'canard', '~> 0.6.2.pre'
@@ -67,7 +69,7 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   gem 'cucumber-rails', require: false
-  gem 'database_cleaner'
+  gem 'database_cleaner-active_record'
   gem 'rspec-rails'
 end
 
