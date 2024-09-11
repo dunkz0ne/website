@@ -1,4 +1,10 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:facebook]
+
 
   # Validations
   validates :team_id, presence: true
@@ -18,7 +24,7 @@ class User < ApplicationRecord
   has_many :save_comments, foreign_key: 'user_id'
   has_many :banned_users, foreign_key: :user_email, primary_key: :email
   has_many :banned_users_as_admin, class_name: 'BannedUser', foreign_key: 'admin_id'
-  has_secure_password
+  #has_secure_password
 
   # Set the inheritance column to type
   self.inheritance_column = :type
@@ -42,9 +48,17 @@ class User < ApplicationRecord
         user.email = auth_info[:email]
         user.team_id = team_id
         user.bio = bio
-        user.password_digest = SecureRandom.hex
         user.photo.attach(photo)
         user.save!
+    end
+  end
+
+  def self.from_omniauth(auth)
+    user = where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
+      u.provider = auth.provider
+      u.email = auth.info.email
+      u.username = auth.info.name
+      u.password = Devise.friendly_token[0, 20]
     end
   end
 
