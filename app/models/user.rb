@@ -6,7 +6,6 @@ class User < ApplicationRecord
   validates :strikes, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 3 }
   validates :name, presence: true
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validate :password_strength_if_email_provider
 
   # Relationships
   has_one :team
@@ -82,19 +81,6 @@ class User < ApplicationRecord
     def ban_if_necessary
       if strikes >= 3
         update(banned: true) # Ban the user
-      end
-    end
-
-    # Custom validation method
-    def password_strength_if_email_provider
-      if provider == 'email'
-        if password.blank?
-          errors.add(:password, "can't be blank")
-        elsif password.length < 8
-          errors.add(:password, "must be at least 8 characters long")
-        elsif !password.match?(/(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/)
-          errors.add(:password, "must contain a combination of letters, numbers, and special characters")
-        end
       end
     end
 
