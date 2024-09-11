@@ -76,6 +76,13 @@ class User < ApplicationRecord
     banned_users.where('banned_from <= ? AND (banned_to IS NULL OR banned_to >= ?)', Time.now, Time.now).exists?
   end
 
+  # Method to reset the strikes of users with the same email
+  def reset_strikes_for_users_with_same_email(email)
+    Rails.logger.info "Starting cleanup of strikes"
+    users_with_same_email = User.where(email: email)
+    users_with_same_email.update_all(strikes: 0)
+  end
+
   private
 
     # Method to validate the team ID
@@ -91,5 +98,4 @@ class User < ApplicationRecord
         update(banned: true) # Ban the user
       end
     end
-
 end

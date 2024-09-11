@@ -180,6 +180,9 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     # If the user has 3 strikes, he will be banned
     if @user.strikes == 3
+      #Not incrementing strikes if user is already banned
+    elsif @user.strikes >= 2
+      @user.increment!(:strikes)
       @user.ban!(by_admin: @current_user)
     else
       @user.increment!(:strikes)
@@ -224,10 +227,10 @@ class UsersController < ApplicationController
 
   # Method to unban a user
   def unban
-    user = User.find(params[:id])
-    if user.banned_users.present?
-      user.banned_users.destroy_all
-      reset_strikes_for_users_with_same_email(user.email)
+    @user = User.find(params[:id])
+    if @user.banned_users.present?
+      @user.banned_users.destroy_all
+      @user.reset_strikes_for_users_with_same_email(@user.email)
     end
     redirect_to admin_dashboard_user_path(@current_user), notice: 'User unbanned.'
   end
@@ -236,9 +239,9 @@ class UsersController < ApplicationController
     article_ids = params[:article_ids]
 
     if article_ids.present?
-      articles = Article.where(id: article_ids)
-      articles.each do |article|
-      article.delete
+      @articles = Article.where(id: article_ids)
+      @articles.each do |article|
+        @article.delete
       end
       flash[:notice] = "Selected articles have been deleted."
     else
@@ -289,11 +292,5 @@ class UsersController < ApplicationController
       unless @current_user.type == 'Admin'
         redirect_to root_path, alert: 'Non sei autorizzato ad accedere a questa pagina.'
       end
-    end
-
-    # Method to reset the strikes of users with the same email
-    def reset_strikes_for_users_with_same_email(email)
-      users_with_same_email = User.where(email: email)
-      users_with_same_email.update_all(strikes: 0)
     end
 end
