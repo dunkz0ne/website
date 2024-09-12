@@ -1,3 +1,45 @@
+<% if current_user %>  
+  <%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :photo %>
+    <%= form.file_field :photo, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bio %>
+    <%= form.text_field :bio, class: "form-control" %>
+  </div>
+
+  <% if user.type != "TeamManager"%>
+    <div class="field">
+      <%= form.label :team_id %>
+      <% if user.persisted? %>
+        <%= form.select :team_id, options_from_collection_for_select(Team.all, :id, :name, user.team_id), class: "form-select" %>
+      <% else %>
+      <%= form.select :team_id, options_from_collection_for_select(Team.all, :id, :name), class: "form-select" %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <hr>
+
+  <div class="actions" style="text-align: right;">
+    <%= form.submit class: "btn btn-light" %>
+  </div>
+<% end %>
+<% else %>
     <div id="userFormPage" style="background-color: black;padding-top: 20vh;padding-bottom: 30vh;">
         <div class="container">
             <div class="row">
@@ -284,6 +326,6 @@
         filter: blur(5px);
     }
 </style>
-
+<% end %>
 
 

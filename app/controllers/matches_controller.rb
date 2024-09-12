@@ -98,7 +98,7 @@ class MatchesController < ApplicationController
     end
 
     def show
-      @user = User.find(session[:user_id]) if session[:user_id]
+      @user = current_user
       @team = Team.find(@user.team_id) if @user
 
       @match = params[:id]
