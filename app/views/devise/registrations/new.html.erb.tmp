@@ -4,7 +4,6 @@
       <div class="col-md-8">
 
         <!-- Display Devise error messages -->
-        <%= devise_error_messages! %>
 
         <div class="card">
           <div class="card-header">

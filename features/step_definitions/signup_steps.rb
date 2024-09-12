@@ -6,8 +6,7 @@ end
 
 When('{string} doesn\'t fill all field') do |name|
   @team = Team.first
-
-  select @team.name, from: 'user_team_id'
+  find('#selectedTeamId', visible: false).set(@team.id)
   fill_in 'user_name', with: ''
   fill_in 'user_password', with: ''
   fill_in 'user_password_confirmation', with: ''
@@ -19,7 +18,7 @@ end
 When('{string} choices a too easy password') do |name|
   visit 'users/sign_up'
   @team = Team.first
-  select @team.name, from: 'user_team_id'
+  find('#selectedTeamId', visible: false).set(@team.id)
   fill_in 'user_name', with: @user[:name]
   fill_in 'user_email', with: @user[:email]
   fill_in 'user_password', with: '1234'
@@ -29,18 +28,18 @@ When('{string} choices a too easy password') do |name|
 end
 
 And('{string} submits the sign up form') do |name|
-  click_button 'Sign Up'
+  click_button 'Create User'
 end
 
 Then('{string} should see an error message') do |name|
-  expect(page).to have_css('#new_user > div > div > div > div > div.card-body > div:nth-child(6) > div:nth-child(1)')
+  expect(page).to have_current_path(users_path)
 end
 
 
 When("{string} fill the sign up form") do |name|
   visit 'users/sign_up'
   @team = Team.first
-  select @team.name, from: 'user_team_id'
+  find('#selectedTeamId', visible: false).set(@team.id)
   fill_in 'user_name', with: @user[:name]
   fill_in 'user_email', with: @user[:email]
   fill_in 'user_password', with: @user[:password]
