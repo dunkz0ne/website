@@ -1,4 +1,4 @@
-<div id="MatchPage" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
+<div id="MatchPage" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>; padding-bottom:8vh">
     <div id="Navbar">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: <%= @team.color %>;">
             <div class="container-fluid">
