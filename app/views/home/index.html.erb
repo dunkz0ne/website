@@ -23,6 +23,9 @@
       </div>
 
       <%= button_to 'Join Us', new_user_session_path, method: :get, class: 'btn btn-primary' %>
+
+      <!-- Sign Out Button -->
+      <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-lg w-100 my-3', aria: { label: 'Sign Out' } %>
     </div>
   </div>
 </div>

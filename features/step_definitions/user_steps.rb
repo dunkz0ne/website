@@ -40,9 +40,7 @@ Given("I am logged in with Facebook") do
 
   select(Team.first.name, from: 'user_team_id')
 
-  if page.has_button?('Complete Registration')
-    click_button('Complete Registration')
-  end
+  click_button('Complete Registration')
 
   visit user_dashboard_path
 

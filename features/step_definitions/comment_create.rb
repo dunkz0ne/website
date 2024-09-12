@@ -6,7 +6,7 @@ Given("I am on article page") do
   expect(page).to have_current_path(article_path(@article))
 end
 
-When("I submit the form") do
+When("I submit the comment form") do
   # Fill in and submit the form
   fill_in 'comment[content]', with: 'This is the comment of the test article.'
   click_button 'Post ➤'
