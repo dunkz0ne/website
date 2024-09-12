@@ -1,10 +1,12 @@
- 
+
+
     <div id="userFormPage" style="background-color: black;padding-top: 20vh;padding-bottom: 30vh;">
         <div class="container">
             <div class="row">
                 <div class="col">
                     <div class="content landingTitle" style="text-align: left;margin-left: 4vh;padding-bottom: 3vh;">
                         J<span style="color: orange;">o</span>in the <span style="color: red;">z</span><span style="color: blue;">o</span>ne
+
 
                     </div>
                 </div>
@@ -16,7 +18,6 @@
                             <div class="col">
                                 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :post, class: "form-horizontal" }) do |form| %>
                                     <div class="content">
-                                        <%= devise_error_messages! %>
 
                                         <%= form.hidden_field :provider, value: 'email' %>
 
@@ -51,15 +52,15 @@
                                                 <%= form.password_field :password_confirmation, class: "form-control" %>
                                             </div>
 
-                                        
+
                                             <div id="teamSelectorButton" class="teamSelector" data-bs-toggle="modal" data-bs-target="#teamSelectorModal" style="margin-top: 3vh; margin-bottom:1vh;cursor:pointer; border: 2px solid; width:40%; height:6vh; display:flex; border-radius:40px; justify-content: center;align-items: center;">Choose your Team!</div>
-                                        
+
                                     </div>
-                                    
+
 
                                     <hr>
 
-                                    
+
 
                                     <div class="modal fade" id="teamSelectorModal" tabindex="-1" aria-labelledby="teamSelectorModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" style="max-width: 1800px;">
@@ -262,12 +263,12 @@
 
         };
 
-        teamImages.forEach(image => {   
+        teamImages.forEach(image => {
             image.addEventListener('click', function() {
                 const teamId = this.dataset.teamId;
                 selectedTeamIdInput.value = teamId;
                 console.log("Selected Team ID: " + selectedTeamIdInput.value);
-                
+
                 if (teamLogos[teamId]) {
                     logoSection.src = teamLogos[teamId];
                 } else {
@@ -298,5 +299,3 @@
         filter: blur(5px);
     }
 </style>
-
-

@@ -17,9 +17,18 @@
         </div>
         <div class="row">
             <div class="col" style="display: flex; justify-content:center;">
-                <%= form_tag('/auth/facebook', method: 'post', class: 'my-3') do %>
+                <%= form_tag('/users/auth/facebook', method: 'post', class: 'my-3') do %>
                     <button class="buttonLanding" style="width: 38vh; margin-top:3vh">
                         Sign in with Facebook!
+                    </button>
+                <% end %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="display: flex; justify-content:center;">
+                <%= form_tag('/users/auth/google_oauth2', method: 'post', class: 'my-3') do %>
+                    <button class="buttonLanding" style="width: 38vh; margin-top:3vh">
+                        Sign in with Google!
                     </button>
                 <% end %>
             </div>
@@ -61,14 +70,3 @@
 </style>
 
 <h2 class="text-center my-4">CIAO BELLI</h2>
-
-
-
-
-
-
-
-
-
-
-

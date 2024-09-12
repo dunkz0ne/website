@@ -111,6 +111,12 @@
                           <%= link_to 'Admin Dashboard', admin_dashboard_user_path, class: "btn btn-light" %>
                         <% end %>
 
+                        <div class="row mt-3">
+                          <div class="col">
+                            <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-danger', aria: { label: 'Sign Out' } %>
+                          </div>
+                        </div>
+
 
                         <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true" >
                           <div class="modal-dialog">
@@ -163,7 +169,7 @@
             <div class="card" style="border-radius: 20px; margin-top: 2rem;">
 
               <div class="card-body" style="background-color: <%= article.team.color %>; border-radius: 20px; padding: 2rem;">
-                  
+
                   <div class="row">
                       <% if article.image.attached? %>
                           <div class="col-4">
@@ -434,7 +440,7 @@
     document.addEventListener("DOMContentLoaded", function() {
 
         const savedArticles = <%= raw (@saved_articles || []).map { |article| { id: article.id, color: article.team.color } }.to_json %>;
-        
+
         savedArticles.forEach(article => {
             const element = document.getElementById(`article-${article.id}`);
             if (element) {

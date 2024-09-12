@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: "Your session has expired. Please sign in again."
   end
 
+  rescue_from ActiveRecord::StatementInvalid do
+    redirect_to root_path, alert: "An error has occurred. Please try again."
+  end
+
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:provider, :name, :bio, :photo, :team_id])

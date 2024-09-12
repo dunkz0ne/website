@@ -28,6 +28,7 @@ gem 'active_link_to' # For active links
 
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
 gem 'figaro'
@@ -85,5 +86,3 @@ gem 'redis-rails'
 
 # Use Active Record session store
 gem 'activerecord-session_store'
-
-

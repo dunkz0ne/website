@@ -3,8 +3,9 @@ Given("I am on the home page") do
   click_button('Join Us')
 end
 
-When("I click on Sign In with Facebook") do
-  click_button('Sign In with Facebook')
+When('I click on Sign In with {string}') do |provider|
+  click_button('Sign In with '+ provider)
+
 end
 
 When("I submit the registration form") do
@@ -24,9 +25,9 @@ Then("I should be on the dashboard page") do
   expect(page).to have_current_path(user_dashboard_path)
 end
 
-Given("I am logged in with Facebook") do
+Given('I am logged in with {string}') do |provider|
   # Set up OmniAuth mock
-  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+  OmniAuth.config.mock_auth[:provider] = OmniAuth::AuthHash.new({
     provider: 'facebook',
     uid: '123456',
     info: {

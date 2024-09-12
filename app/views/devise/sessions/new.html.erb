@@ -25,6 +25,13 @@
         </button>
       <% end %>
 
+      <!-- Google Login Button -->
+      <%= form_tag('/users/auth/google_oauth2', method: 'post', class: 'my-3') do %>
+        <button class="btn btn-primary btn-lg w-100" type="submit" aria-label="Sign in with Google">
+          <i class="fab fa-google"></i> Sign In with Google
+        </button>
+      <% end %>
+
       <!-- Sign In Form -->
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { method: :post }) do |f| %>
         <div class="form-group my-3">
@@ -55,7 +62,9 @@
       </a>
 
       <!-- Sign Out Button -->
-      <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-lg w-100 my-3', aria: { label: 'Sign Out' } %>
+      <% if user_signed_in? %>
+        <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-lg w-100 my-3', aria: { label: 'Sign Out' } %>
+      <% end %>
     </div>
   </div>
 </div>
