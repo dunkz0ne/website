@@ -11,7 +11,7 @@ class ReleasesController < ApplicationController
     @article = Release.find(params[:id])
     @author = User.find(@article.user_id)
     @user = User.find(@article.user_id)
-    @current_user_team = Team.find(@current_user.team_id)
+    @current_user_team = Team.find(current_user.team_id)
     @team = Team.find(@article.team_id)
   end
 

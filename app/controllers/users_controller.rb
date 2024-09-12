@@ -146,7 +146,7 @@ class UsersController < ApplicationController
   def delete
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to user_path(@current_user), notice: 'User deleted.'
+    redirect_to user_path(current_user), notice: 'User deleted.'
   end
 
   # Only allow a list of trusted parameters through.
@@ -183,13 +183,13 @@ class UsersController < ApplicationController
       #Not incrementing strikes if user is already banned
     elsif @user.strikes >= 2
       @user.increment!(:strikes)
-      @user.ban!(by_admin: @current_user)
+      @user.ban!(by_admin: current_user)
     else
       @user.increment!(:strikes)
     end
-    redirect_to admin_dashboard_user_path(@current_user), notice: 'Strikes incremented.'
+    redirect_to admin_dashboard_user_path(current_user), notice: 'Strikes incremented.'
   rescue => e
-    redirect_to admin_dashboard_user_path(@current_user), alert: e.message
+    redirect_to admin_dashboard_user_path(current_user), alert: e.message
   end
 
   # Method to decrement the strikes of a user
@@ -200,9 +200,9 @@ class UsersController < ApplicationController
     else
       raise "Strikes cannot be negative."
     end
-    redirect_to admin_dashboard_user_path(@current_user), notice: 'Strikes decremented.'
+    redirect_to admin_dashboard_user_path(current_user), notice: 'Strikes decremented.'
   rescue => e
-    redirect_to admin_dashboard_user_path(@current_user), alert: e.message
+    redirect_to admin_dashboard_user_path(current_user), alert: e.message
   end
 
   # Method to ban a user
@@ -215,14 +215,14 @@ class UsersController < ApplicationController
     if user_ids.present?
       users = User.where(id: user_ids)
       users.each do |user|
-        user.ban!(by_admin: @current_user, from: from, to: to, reason: reason)
+        user.ban!(by_admin: current_user, from: from, to: to, reason: reason)
       end
       flash[:notice] = "Selected users have been banned."
     else
       flash[:alert] = "No users selected for banning."
     end
 
-    redirect_to admin_dashboard_user_path(@current_user), notice: 'Users banned.'
+    redirect_to admin_dashboard_user_path(current_user), notice: 'Users banned.'
   end
 
   # Method to unban a user
@@ -232,7 +232,7 @@ class UsersController < ApplicationController
       @user.banned_users.destroy_all
       @user.reset_strikes_for_users_with_same_email(@user.email)
     end
-    redirect_to admin_dashboard_user_path(@current_user), notice: 'User unbanned.'
+    redirect_to admin_dashboard_user_path(current_user), notice: 'User unbanned.'
   end
 
   def delete_articles
@@ -247,7 +247,7 @@ class UsersController < ApplicationController
     else
       flash[:alert] = "No articles selected for deletion."
     end
-    redirect_to admin_dashboard_user_path(@current_user), notice: 'Articles Deleted.'
+    redirect_to admin_dashboard_user_path(current_user), notice: 'Articles Deleted.'
   end
 
   def admin_dashboard
@@ -289,7 +289,7 @@ class UsersController < ApplicationController
 
     # Method to ensure that the user is an admin
     def ensure_admin!
-      unless @current_user.type == 'Admin'
+      unless current_user.type == 'Admin'
         redirect_to root_path, alert: 'Non sei autorizzato ad accedere a questa pagina.'
       end
     end

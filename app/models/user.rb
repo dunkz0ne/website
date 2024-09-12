@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :team_id, presence: true
   validates :strikes, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 3 }
   validates :name, presence: true
-  #validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   # Relationships
   has_one :team
