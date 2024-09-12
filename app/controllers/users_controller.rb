@@ -97,8 +97,14 @@ class UsersController < ApplicationController
       return
     end
 
-    # Crea l'utente con le informazioni di autenticazione e il team selezionato
-    @user = User.find_or_create_from_omniauth(auth_info, team_id, bio, photo)
+    if auth_info[:provider] == 'email'
+      # Crea l'utente con le informazioni di autenticazione fornite tramite email
+      @user = User.create(email: auth_info[:email], password: auth_info[:password], provider: 'email', name: auth_info[:name], team_id: team_id, bio: bio, photo: photo)
+      session[:user_id] = @user.id
+    else
+      # Crea l'utente con le informazioni di autenticazione fornite tramite oauth
+      @user = User.find_or_create_from_omniauth(auth_info, team_id, bio, photo)
+    end
 
     respond_to do |format|
       if @user.save
@@ -177,6 +183,9 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     # If the user has 3 strikes, he will be banned
     if @user.strikes == 3
+      #Not incrementing strikes if user is already banned
+    elsif @user.strikes >= 2
+      @user.increment!(:strikes)
       @user.ban!(by_admin: @current_user)
     else
       @user.increment!(:strikes)
@@ -219,13 +228,23 @@ class UsersController < ApplicationController
     redirect_to admin_dashboard_user_path(@current_user), notice: 'Users banned.'
   end
 
+  # Method to unban a user
+  def unban
+    @user = User.find(params[:id])
+    if @user.banned_users.present?
+      @user.banned_users.destroy_all
+      @user.reset_strikes_for_users_with_same_email(@user.email)
+    end
+    redirect_to admin_dashboard_user_path(@current_user), notice: 'User unbanned.'
+  end
+
   def delete_articles
     article_ids = params[:article_ids]
 
     if article_ids.present?
-      articles = Article.where(id: article_ids)
-      articles.each do |article|
-      article.delete
+      @articles = Article.where(id: article_ids)
+      @articles.each do |article|
+        @article.delete
       end
       flash[:notice] = "Selected articles have been deleted."
     else

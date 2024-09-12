@@ -4,9 +4,8 @@
     color: white !important;
   }
 
-
 </style>
-  
+
 <div class="admin">
   <div id="Navbar">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: <%= @team.color %>;">
@@ -46,7 +45,7 @@
                     </li>
                     <li class="nav-item">
                         <i class="nav-icon fa-solid fa-user"></i>
-                        <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>  
+                        <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>
                     </li>
                     </li>
                 </ul>
@@ -94,8 +93,19 @@
               <td><%= user.comments.count %></td>
               <td><%= user.strikes %></td>
               <td>
-                <%= link_to "+", increment_strikes_user_path(user), class: "btn btn-success btn-sm" %>
-                <%= link_to "-", decrement_strikes_user_path(user), class: "btn btn-danger btn-sm" %>
+                <% if user.strikes == 3 %>
+                  <button class="btn btn-success btn-sm" disabled>+</button>
+                <% else %>
+                  <%= link_to "+", increment_strikes_user_path(user), class: "btn btn-success btn-sm" %>
+                <% end %>
+                <% if user.strikes == 0 %>
+                  <button class="btn btn-success btn-sm" disabled>-</button>
+                <% else %>
+                  <%= link_to "-", decrement_strikes_user_path(user), class: "btn btn-danger btn-sm" %>
+                <% end %>
+                <% if is_banned %>
+                  <%= link_to 'Unban', unban_user_path(user), class: "btn btn-warning btn-sm" %>
+                <% end %>
               </td>
             </tr>
           <% end %>
@@ -104,6 +114,7 @@
       <%= form.submit 'Ban Users', class: 'btn btn-danger mt-3' %>
     <% end %>
   </div>
+
 
   <div class="container mt-5" id="releaseList">
     <h1 class="mb-4">Latest Comments</h1>
@@ -131,7 +142,6 @@
               <td><%= truncate(comment.content, length: 100) %></td>
               <td>
               <%= link_to 'Delete Comment', delete_article_comment_path(article_id: comment.article.id, id: comment.id), method: :get, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure you want to delete this comment?' } %>
-
               </td>
             </tr>
           <% end %>
@@ -195,7 +205,8 @@
           <tr>
             <th>Username</th>
             <th>Email</th>
-            <th>Bio</th>
+            <th>Joined</th>
+            <th>Certificate</th>
             <th>Strikes</th>
             <th>Actions</th>
           </tr>
@@ -203,10 +214,12 @@
         <tbody>
           <% @journalist_requests.each do |request| %>
             <tr>
-              <td><%= request.user.name %></td>
+              <td><%= "#{request.user.name} #{request.created_at.strftime('%d/%m/%Y')}" %></td>
               <td><%= request.user.email%></td>
-              <td><%= truncate(request.user.bio, length: 100) %></td>
+              <td><%= User.find_by(email: request.user.email).created_at.strftime("%B %d, %Y") %></td>
+              <td><%= link_to 'Certificate', rails_blob_path(request.certificate, disposition: "attachment"), target: "_blank" %></td>
               <td><%= request.user.strikes %></td>
+
               <td style="display: flex;">
                 <%= form_with(url: approve_journalist_request_path(request), method: :post, local: true) do %>
                   <%= submit_tag 'Approve', class: 'btn btn-success adminButtonActions' %>
@@ -214,6 +227,7 @@
                 <%= form_with(url: reject_journalist_request_path(request), method: :delete, local: true) do %>
                   <%= submit_tag 'Reject', class: 'btn btn-danger adminButtonActions' %>
                 <% end %>
+
               </td>
             </tr>
           <% end %>

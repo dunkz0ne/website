@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_04_100625) do
+ActiveRecord::Schema.define(version: 2024_08_08_102837) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2024_08_04_100625) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "admin_id", null: false
     t.index ["admin_id"], name: "index_banned_users_on_admin_id"
-    t.index ["user_email"], name: "index_banned_users_on_user_email"
+    t.index ["user_email"], name: "index_banned_users_on_user_email", unique: true
   end
 
   create_table "comments", force: :cascade do |t|
@@ -138,14 +138,16 @@ ActiveRecord::Schema.define(version: 2024_08_04_100625) do
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
-    t.string "email"
+    t.string "email", null: false
     t.integer "team_id", null: false
-    t.string "provider"
+    t.string "provider", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "bio"
     t.string "type"
     t.integer "strikes", default: 0, null: false
+    t.string "password_digest", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

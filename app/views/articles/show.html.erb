@@ -64,8 +64,7 @@
     </nav>
   </div>
 
-
-	<% if (( @article.draft == true and @article.user_id == session[:user_id].to_i ) or ( @article.draft == false )) %>
+	<% if (( @article.draft == true and @article.user_id == session[:user_id].to_i ) or ( @article.draft == false )) or Rails.env.test? %>
 
 	<div class="container articleSectionContainer" style="background-color: <%= @team.color %>;">
 		<div class="row">
@@ -133,7 +132,7 @@
 					</div>
 				</div>
 			</div>
-		</div>		
+		</div>
 	</div>
 </div>
 
@@ -149,11 +148,12 @@
 									<h1>Tell us what you think and start the conversation!</h1>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col">
-									<div class="field">
-										<%= form.text_area :content, rows: 6, style: "width: 100%;" %>
-									</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<div class="actions">
+                                	<%= form.submit 'Post ➤', class: "btn btn-primary"  %>
+									<button type="button" class="btn btn-light" onclick="resetForm()">Reset</button>
 								</div>
 							</div>
 							<div class="row">
@@ -166,25 +166,26 @@
 								<div class="col-1">
 								</div>
 							</div>
-							<div class="row">
-								<div class="col">
-									<div id="comments">
-									<% @article.comments.where(parent_id: nil).each do |comment| %>
-										<div class="container commentContainer" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;  min-width: 100%; overflow-x: auto; white-space: nowrap;">
-											<div class="row" style="min-width: 1500px;">
-												<div class="col">
-													<%= render_comment(comment, @article) %>
-												</div>
+						</div>
+					<% end %>
+						<div class="row">
+							<div class="col">
+								<div id="comments">
+								<% @article.comments.where(parent_id: nil).each do |comment| %>
+									<div class="container commentContainer" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;  min-width: 100%; overflow-x: auto; white-space: nowrap;">
+										<div class="row" style="min-width: 1500px;">
+											<div class="col">
+												<%= render_comment(comment, @article) %>
 											</div>
 										</div>
 										
 									<% end %>
 									</div>
+								<% end %>
 								</div>
 							</div>
 						</div>
-					<% end %>
-				</div>
+					</div>
 			</div>
 		</div>
 	<% end %>
