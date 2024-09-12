@@ -11,6 +11,38 @@
     justify-content: center !important;
 }
 
+#landingPage{
+    background-color: black;
+    padding-bottom: 10vh;
+}
+
+#teamSelectorButton{
+    @media screen and (max-width: 1200px) {
+        width: 30vh !important;
+    }
+
+}
+
+
+.landingTitle{
+    font-size: 3rem;
+    color: white;
+    text-align: center;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+
+.buttonLanding{
+    background-color: black;
+    font-size: 1.5rem;
+    padding: 1vh 2vh 1vh 2vh;
+    border-radius: 40px;
+    color: white;
+    width: 20vh;
+    text-align: center;
+    border: 2px solid;
+}
+
 .navItems{
     align-items: center;
 }
