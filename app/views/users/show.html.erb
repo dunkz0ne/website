@@ -430,7 +430,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const savedArticles = <%= raw @saved_articles.map { |article| { id: article.id, color: article.team.color } }.to_json %>;
+        const savedArticles = <%= raw (@saved_articles || []).map { |article| { id: article.id, color: article.team.color } }.to_json %>;
         
         savedArticles.forEach(article => {
             const element = document.getElementById(`article-${article.id}`);
