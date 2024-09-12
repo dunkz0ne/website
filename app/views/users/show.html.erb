@@ -93,6 +93,7 @@
                       <div class="profileBio mt-2">
                         <%= @user.bio %>
                       </div>
+                      <% if current_user.id == @user.id %>
                       <div class="editProfile">
                         <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editModal">
                           Edit Profile
@@ -126,6 +127,7 @@
                           </div>
                         </div>
                       </div>
+                      <% end %>
                     </div>
 
                   </div>
@@ -323,7 +325,7 @@
     <% end %>
 
   </div>
-
+  <% if current_user.id == @user.id %>
   <% if @saved_articles %>
     <div id="savedList" class="container mt-5">
       <h1>Saved Articles</h1>
@@ -424,7 +426,7 @@
     <% end %>
   </div>
   <% end %>
-
+  <% end %>
 </div>
 
 

@@ -12,9 +12,7 @@
         </div>
         <div class="row">
             <div class="col" style="display: flex; justify-content:center;">
-                <div id="joinUsButton" class="buttonLanding" style="cursor: pointer;">
-                    Join us!
-                </div>
+                <%= button_to 'Join Us', new_user_session_path, method: :get, class: 'buttonLanding', id: 'joinUsButton', style: 'cursor: pointer;' %>
             </div>
         </div>
         <div class="row">
@@ -34,24 +32,6 @@
                 J<span style="color: orange;">o</span>in the <span style="color: red;">z</span><span style="color: blue;">o</span>ne
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <%= form_with url: session_create_path, method: :post do |form| %>
-                    <div class="field">
-                        <%= form.label :email %>
-                        <%= form.email_field :email %>
-                    </div>
-
-                    <div class="field">
-                        <%= form.label :password %>
-                        <%= form.password_field :password %>
-                    </div>
-
-                    <div class="actions">
-                        <%= form.submit 'Sign In' %>
-                    </div>
-                <% end %>
-            </div>
     </div>
 </div>
 
@@ -82,32 +62,7 @@
 
 <h2 class="text-center my-4">CIAO BELLI</h2>
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-sm-8 text-center">
 
-      <% if notice.present? %>
-        <div class="alert alert-info">
-          <%= notice %>
-        </div>
-      <% end %>
-
-      <% if flash[:alert].present? %>
-        <div class="alert alert-danger">
-          <%= flash[:alert] %>
-        </div>
-      <% end %>
-
-      <div class="btn-group my-3">
-        <%= link_to 'Become a Journalist', become_journalist_path, method: :patch, class: 'btn btn-primary' %>
-        <%= link_to 'Become an Admin', become_admin_path, method: :patch, class: 'btn btn-secondary' %>
-        <%= link_to 'Become a Team Manager', become_team_manager_path, class: 'btn btn-dark' %>
-      </div>
-
-      <%= button_to 'Join Us', new_user_session_path, method: :get, class: 'btn btn-primary' %>
-    </div>
-  </div>
-</div>
 
 
 

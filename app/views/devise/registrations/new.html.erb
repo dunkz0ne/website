@@ -1,70 +1,302 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :post, class: "form-horizontal" }) do |f| %>
-  <div class="container my-4">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
+ 
+    <div id="userFormPage" style="background-color: black;padding-top: 20vh;padding-bottom: 30vh;">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="content landingTitle" style="text-align: left;margin-left: 4vh;padding-bottom: 3vh;">
+                        J<span style="color: orange;">o</span>in the <span style="color: red;">z</span><span style="color: blue;">o</span>ne
 
-        <!-- Display Devise error messages -->
-        <%= devise_error_messages! %>
-
-        <div class="card">
-          <div class="card-header">
-            <h4 class="mb-0">Sign Up</h4>
-          </div>
-          <div class="card-body">
-
-            <%= f.hidden_field :provider, value: 'email' %>
-
-            <!-- Name Field -->
-            <div class="form-group">
-              <%= f.label :name, class: "form-label" %>
-              <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Full Name" %>
+                    </div>
+                </div>
             </div>
+            <div class="row">
+                <div class="col">
+                    <div class="container" style="background: #2B2B2B; border-radius:40px; padding: 4vh">
+                        <div class="row">
+                            <div class="col">
+                                <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :post, class: "form-horizontal" }) do |form| %>
+                                    <div class="content">
+                                        <%= devise_error_messages! %>
 
-            <!-- Photo Field -->
-            <div class="form-group">
-              <%= f.label :photo, class: "form-label" %>
-              <%= f.file_field :photo, class: "form-control" %>
+                                        <%= form.hidden_field :provider, value: 'email' %>
+
+                                        <div class="field">
+                                            <%= form.label :name %>
+                                            <%= form.text_field :name, class: "form-control" %>
+                                        </div>
+
+                                        <div class="field">
+                                            <%= form.label :photo %>
+                                            <%= form.file_field :photo, class: "form-control" %>
+                                        </div>
+
+                                        <div class="field">
+                                            <%= form.label :bio %>
+                                            <%= form.text_field :bio, class: "form-control", rows: 3 %>
+                                        </div>
+
+
+                                            <div class="field">
+                                                <%= form.label :email %>
+                                                <%= form.email_field :email, class: "form-control" %>
+                                            </div>
+
+                                            <div class="field">
+                                                <%= form.label :password %>
+                                                <%= form.password_field :password, autocomplete: "off", class: "form-control" %>
+                                            </div>
+
+                                            <div class="field">
+                                                <%= form.label :password_confirmation %>
+                                                <%= form.password_field :password_confirmation, class: "form-control" %>
+                                            </div>
+
+                                        
+                                            <div id="teamSelectorButton" class="teamSelector" data-bs-toggle="modal" data-bs-target="#teamSelectorModal" style="margin-top: 3vh; margin-bottom:1vh;cursor:pointer; border: 2px solid; width:40%; height:6vh; display:flex; border-radius:40px; justify-content: center;align-items: center;">Choose your Team!</div>
+                                        
+                                    </div>
+                                    
+
+                                    <hr>
+
+                                    
+
+                                    <div class="modal fade" id="teamSelectorModal" tabindex="-1" aria-labelledby="teamSelectorModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" style="max-width: 1800px;">
+                                            <div class="modal-content" style="background: none; border:none">
+                                                <div class="container-fluid">
+                                                    <div class="row" style="justify-content: space-around;">
+                                                        <div class="col-md-12 col-lg-5">
+                                                            <div class="landingTitle">EAST</div>
+                                                            <div class="container" style="background: #5f5f5f96;padding: 3vh; text-align:center; border-radius: 40px;">
+                                                                <div class="row">
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg', id: 'imageTeam1', class: 'team-image', data: { team_id: 1 , api:1610612737 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg', id: 'imageTeam2', class: 'team-image', data: { team_id: 2 , api:1610612738 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg', id: 'imageTeam3', class: 'team-image', data: { team_id: 3 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg', id: 'imageTeam4', class: 'team-image', data: { team_id: 4 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg', id: 'imageTeam5', class: 'team-image', data: { team_id: 5 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg', id: 'imageTeam6', class: 'team-image', data: { team_id: 6 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg', id: 'imageTeam20', class: 'team-image', data: { team_id: 20 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg', id: 'imageTeam9', class: 'team-image', data: { team_id: 9 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg', id: 'imageTeam22', class: 'team-image', data: { team_id: 22 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg', id: 'imageTeam17', class: 'team-image', data: { team_id: 17 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg', id: 'imageTeam30', class: 'team-image', data: { team_id: 30 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg', id: 'imageTeam12', class: 'team-image', data: { team_id: 12 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg', id: 'imageTeam23', class: 'team-image', data: { team_id: 23 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg', id: 'imageTeam16', class: 'team-image', data: { team_id: 16 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg', id: 'imageTeam28', class: 'team-image', data: { team_id: 28 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 col-lg-5">
+                                                            <div class="landingTitle">WEST</div>
+                                                            <div class="container" style="background: #5f5f5f96;padding: 3vh; text-align:center; border-radius: 40px;">
+                                                                <div class="row">
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg', id: 'imageTeam10', class: 'team-image', data: { team_id: 10 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg', id: 'imageTeam21', class: 'team-image', data: { team_id: 21 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg', id: 'imageTeam8', class: 'team-image', data: { team_id: 8 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg', id: 'imageTeam13', class: 'team-image', data: { team_id: 13 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg', id: 'imageTeam14', class: 'team-image', data: { team_id: 14 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg', id: 'imageTeam15', class: 'team-image', data: { team_id: 15 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg', id: 'imageTeam18', class: 'team-image', data: { team_id: 18 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg', id: 'imageTeam7', class: 'team-image', data: { team_id: 7 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg', id: 'imageTeam24', class: 'team-image', data: { team_id: 24 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg', id: 'imageTeam18', class: 'team-image', data: { team_id: 18 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg', id: 'imageTeam26', class: 'team-image', data: { team_id: 26 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg', id: 'imageTeam11', class: 'team-image', data: { team_id: 11 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg', id: 'imageTeam18', class: 'team-image', data: { team_id: 18 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg', id: 'imageTeam27', class: 'team-image', data: { team_id: 27 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                    <div class="col-4" data-bs-dismiss="modal">
+                                                                        <%= image_tag('https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg', id: 'imageTeam25', class: 'team-image', data: { team_id: 25 }, style: "width:7rem; cursor: pointer;") %>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <%= form.hidden_field :team_id, id: 'selectedTeamId' %>
+
+
+                                    <div class="actions contnet" style="text-align: right;">
+                                        <%= form.submit class: "btn btn-light content" %>
+                                    </div>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col content" style="text-align: center;">
+                    <%= image_tag('logo.png', id: 'imageTeam', style: "width:25rem") %>
+                </div>
             </div>
-
-            <!-- Bio Field -->
-            <div class="form-group">
-              <%= f.label :bio, class: "form-label" %>
-              <%= f.text_area :bio, class: "form-control", rows: 3, placeholder: "Tell us about yourself" %>
-            </div>
-
-            <!-- Email Field -->
-            <div class="form-group">
-              <%= f.label :email, class: "form-label" %>
-              <%= f.email_field :email, class: "form-control", placeholder: "Email Address" %>
-            </div>
-
-            <!-- Password Field -->
-            <div class="form-group">
-              <%= f.label :password, class: "form-label" %>
-              <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password" %>
-            </div>
-
-            <!-- Password Confirmation Field -->
-            <div class="form-group">
-              <%= f.label :password_confirmation, class: "form-label" %>
-              <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm Password" %>
-            </div>
-
-            <!-- Team Selection Field -->
-            <div class="form-group">
-              <%= f.label :team_id, class: "form-label" %>
-              <%= f.select :team_id, options_from_collection_for_select(Team.all, :id, :name, @user.team_id), class: "form-select" %>
-            </div>
-
-            <!-- Submit Button -->
-            <div class="form-group">
-              <%= f.submit "Sign Up", class: "btn btn-primary btn-block" %>
-            </div>
-
-          </div>
         </div>
-
-      </div>
     </div>
-  </div>
-<% end %>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const teamSelectorButton = document.getElementById('teamSelectorButton');
+        const content = document.querySelectorAll('.content');
+        const logoSection = document.getElementById('imageTeam');
+
+        teamSelectorButton.addEventListener('click', function() {
+            content.forEach(element => {
+                element.classList.add('blurred');
+            });
+        });
+
+        const teamImages = document.querySelectorAll('.team-image');
+        const selectedTeamIdInput = document.getElementById('selectedTeamId');
+
+        const teamLogos = {
+            1: 'https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg',
+            2: 'https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg',
+            3: 'https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg',
+            4: 'https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg',
+            5: 'https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg',
+            6: 'https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg',
+            7: 'https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg',
+            8: 'https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg',
+            9: 'https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg',
+            10: 'https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg',
+            11: 'https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg',
+            12: 'https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg',
+            13: 'https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg',
+            14: 'https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg',
+            15: 'https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg',
+            16: 'https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg',
+            17: 'https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg',
+            18: 'https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg',
+            19: 'https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg',
+            20: 'https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg',
+            21: 'https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg',
+            22: 'https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg',
+            23: 'https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg',
+            24: 'https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg',
+            25: 'https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg',
+            26: 'https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg',
+            27: 'https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg',
+            28: 'https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg',
+            29: 'https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg',
+            30: 'https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg'
+
+        };
+
+        teamImages.forEach(image => {   
+            image.addEventListener('click', function() {
+                const teamId = this.dataset.teamId;
+                selectedTeamIdInput.value = teamId;
+                console.log("Selected Team ID: " + selectedTeamIdInput.value);
+                
+                if (teamLogos[teamId]) {
+                    logoSection.src = teamLogos[teamId];
+                } else {
+                    console.error("Logo URL not found for team ID: " + teamId);
+                }
+
+                // Optionally, close the modal after selection
+                const modal = bootstrap.Modal.getInstance(document.getElementById('teamSelectorModal'));
+                modal.hide();
+                content.forEach(element => {
+                    element.classList.remove('blurred');
+                });
+            });
+        });
+
+        const modalElement = document.getElementById('teamSelectorModal');
+        modalElement.addEventListener('hidden.bs.modal', function () {
+            content.forEach(element => {
+                element.classList.remove('blurred');
+            });
+        });
+
+    });
+</script>
+
+<style>
+    .blurred {
+        filter: blur(5px);
+    }
+</style>
+
+
