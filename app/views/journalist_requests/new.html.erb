@@ -1,27 +1,59 @@
-<% if flash[:alert] %>
-  <div class="alert alert-danger">
-    <%= flash[:alert] %>
-  </div>
-<% end %>
+<div id="Become a journalist" style="height: 100vh; background-color: <%= Team.find_by(id: current_user.team_id).color %>;">
+  
+  <div id="Navbar">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: <%= Team.find_by(id: current_user.team_id).color %>;">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav navItems">
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-people-group"></i>
+                        <%= active_link_to 'Team', "/teams/#{@team.id}", active: :exclusive, class: 'navElement' %>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-basketball"></i>
+                        <%= active_link_to 'Matches', matches_url(number: 3), active: :exclusive, class: 'navElement' %>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-newspaper"></i>
+                        <%= active_link_to 'News', articles_url, active: :exclusive, class: 'navElement' %>
+                    </li>
+                    <li>
+                        <%= active_link_to(user_dashboard_path) do %>
+                        <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
+                        <% end %>
+                    </li>
 
-<%= form_with model: @journalist_request, local: true do |form| %>
-  <% if @journalist_request.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@journalist_request.errors.count, "errore") %> proibisce questa richiesta:</h2>
-      <ul>
-        <% @journalist_request.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :certificate %>
-    <%= form.file_field :certificate %>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-trophy"></i>
+                        <%= active_link_to 'League', '/league', active: :exclusive, class: 'navElement' %>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-cart-shopping"></i>
+                        <%= active_link_to 'Shop', "https://www.nbastore.eu/en/#{@team.name.downcase.gsub(' ', '-')}", active: :exclusive, class: 'navElement' %>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <%= active_link_to 'Profile', user_path(id: current_user.id), active: :exclusive, class: 'navElement' %>
+                    </li>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
   </div>
-
-  <div class="actions">
-    <%= form.submit "Invia Richiesta" %>
+  <div class="container">
+      <div class="row">
+          <div class="col">
+              <div class="articleForm">
+                  <h1>Become a journalist</h1>
+                  <%= render 'form', journalist_request: @journalist_request %>
+              </div>
+          </div>
+      </div>
   </div>
-<% end %>
+</div>
