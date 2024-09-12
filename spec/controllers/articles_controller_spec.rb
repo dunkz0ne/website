@@ -3,13 +3,12 @@ require 'rails_helper'
 
 RSpec.describe ArticlesController, type: :controller do
   let(:team) { Team.create(name: 'Atlanta Hawks', color: '#E03A3E', api: '1610612737') }
-  let(:user) { User.create(name: 'Mario', email: 'mario@gmail.com', team_id: team.id, provider: 'facebook', password_digest: SecureRandom.hex) }
+  let(:user) {  User.create(name: 'Mario', email: 'mario@gmail.com', team_id: team.id, provider: 'facebook', password: 'password123', password_confirmation: 'password123') }
   let(:article) { Article.create(title: 'Test Title', content: 'Test content', user_id: user.id, team_id: user.team_id, draft: false) }
 
   before do
     allow(controller).to receive(:authenticate_user!).and_return(true)
     allow(controller).to receive(:current_user).and_return(user)
-    session[:user_id] = user.id
   end
 
   describe "GET #index" do
@@ -29,7 +28,7 @@ RSpec.describe ArticlesController, type: :controller do
   end
 
 
-  
+
 
   describe "PATCH/PUT #update" do
     it "updates the article and redirects to the show page" do
@@ -40,5 +39,5 @@ RSpec.describe ArticlesController, type: :controller do
     end
   end
 
-  
+
 end

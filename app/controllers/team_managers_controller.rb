@@ -7,7 +7,7 @@ class TeamManagersController < ApplicationController
   end
 
   def show
-    redirect_to user_path(session[:user_id])
+    redirect_to user_path(current_user)
   end
 
   def new
@@ -29,7 +29,7 @@ class TeamManagersController < ApplicationController
   end
 
   def update
-    @team_manager = User.find_by(id: session[:user_id])
+    @team_manager = current_user
     respond_to do |format|
       if @team_manager.update(team_manager_params)
         format.html { redirect_to @team_manager, notice: "Journalist was successfully updated." }
@@ -42,7 +42,7 @@ class TeamManagersController < ApplicationController
   end
 
   def destroy
-    @team_manager = Journalist.find_by(journalist_id: session[:user_id])
+    @team_manager = current_user
     @team_manager.destroy
     respond_to do |format|
       format.html { redirect_to team_manager_url, notice: "Journalist was successfully destroyed." }

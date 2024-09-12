@@ -26,8 +26,10 @@ gem 'color' # For colorizing cards
 
 gem 'active_link_to' # For active links
 
+gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
+
 gem 'figaro'
 
 gem 'whenever', require: false
@@ -68,7 +70,7 @@ group :test do
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '~> 3.0'
   gem 'database_cleaner-active_record'
   gem 'rspec-rails'
 

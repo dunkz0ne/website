@@ -1,6 +1,8 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
+require 'securerandom'
+
 # Create teams
 teams = [
     { name: 'Atlanta Hawks', color: '#E03A3E', api: '1610612737' },
@@ -35,32 +37,46 @@ teams = [
     { name: 'Washington Wizards', color: '#002B5C', api: '1610612764' }
 ]
 
-# Create users
+# Crea gli utenti
 users = [
-    { name: 'Cristian Apostol', email: 'cristian@gmail.com', team_id: 5, provider: 'facebook', password_digest: SecureRandom.hex },
-    { name: 'Pietro Costanzi Fantini', email: 'pietro@cf.com', team_id: 1, provider: 'facebook', password_digest: SecureRandom.hex },
-    { name: 'Luca Rossi', email: 'luca.rossi@gmail.com', team_id: 2, provider: 'google', password_digest: SecureRandom.hex },
-    { name: 'Elena Neri', email: 'elena.neri@gmail.com', team_id: 5, provider: 'linkedin', password_digest: SecureRandom.hex },
-    { name: 'Marco Gentile', email: 'marco.gentile@yahoo.com', team_id: 3, provider: 'google', password_digest: SecureRandom.hex },
-    { name: 'Sara Colombo', email: 'sara.colombo@gmail.com', team_id: 4, provider: 'github', password_digest: SecureRandom.hex },
-    { name: 'Giulia Bianchi', email: 'giulia.bianchi@yahoo.com', team_id: 3, provider: 'email', password_digest: SecureRandom.hex  },
-    { name: 'Alessandro Verdi', email: 'alessandro.verdi@hotmail.com', team_id: 4, provider: 'email', password_digest: SecureRandom.hex  },
-    { name: 'Maria Ferrari', email: 'maria.ferrari@gmail.com', team_id: 2, provider: 'email', password_digest: SecureRandom.hex },
-    { name: 'Francesco Russo', email: 'francesco.russo@outlook.com', team_id: 1, provider: 'email' , password_digest: SecureRandom.hex }
+  { name: 'Cristian Apostol', email: 'cristian@gmail.com', team_id: 5, provider: 'facebook' },
+  { name: 'Pietro Costanzi Fantini', email: 'pietro@cf.com', team_id: 1, provider: 'facebook' },
+  { name: 'Luca Rossi', email: 'luca.rossi@gmail.com', team_id: 2, provider: 'google' },
+  { name: 'Elena Neri', email: 'elena.neri@gmail.com', team_id: 5, provider: 'linkedin' },
+  { name: 'Marco Gentile', email: 'marco.gentile@yahoo.com', team_id: 3, provider: 'google' },
+  { name: 'Sara Colombo', email: 'sara.colombo@gmail.com', team_id: 4, provider: 'github' },
+  { name: 'Giulia Bianchi', email: 'giulia.bianchi@yahoo.com', team_id: 3, provider: 'email' },
+  { name: 'Alessandro Verdi', email: 'alessandro.verdi@hotmail.com', team_id: 4, provider: 'email' },
+  { name: 'Maria Ferrari', email: 'maria.ferrari@gmail.com', team_id: 2, provider: 'email' },
+  { name: 'Francesco Russo', email: 'francesco.russo@outlook.com', team_id: 1, provider: 'email' }
 ]
 
 # Create journalists
 journalists = [
-  { name: 'Andrea De Luca', email: 'andrea.deluca@news.com', team_id: 1, provider: 'linkedin', password_digest: SecureRandom.hex },
-  { name: 'Valentina Mariani', email: 'valentina.mariani@journal.com', team_id: 2, provider: 'twitter', password_digest: SecureRandom.hex },
-  { name: 'Roberto Conti', email: 'roberto.conti@media.com', team_id: 3, provider: 'facebook', password_digest: SecureRandom.hex },
-  { name: 'Chiara Galli', email: 'chiara.galli@press.com', team_id: 4, provider: 'google', password_digest: SecureRandom.hex },
-  { name: 'Matteo Ricci', email: 'matteo.ricci@reporter.com', team_id: 5, provider: 'github', password_digest: SecureRandom.hex },
-  { name: 'Laura Lombardi', email: 'laura.lombardi@editor.com', team_id: 6, provider: 'twitter', password_digest: SecureRandom.hex },
-  { name: 'Stefano Ferrari', email: 'stefano.ferrari@newsnet.com', team_id: 7, provider: 'email', password_digest: SecureRandom.hex },
-  { name: 'Francesca Greco', email: 'francesca.greco@daily.com', team_id: 8, provider: 'email', password_digest: SecureRandom.hex },
-  { name: 'Paolo Rinaldi', email: 'paolo.rinaldi@headlines.com', team_id: 9, provider: 'email', password_digest: SecureRandom.hex },
-  { name: 'Silvia Russo', email: 'silvia.russo@worldnews.com', team_id: 10, provider: 'email', password_digest: SecureRandom.hex}
+  { name: 'Andrea De Luca', email: 'andrea.deluca@news.com', team_id: 1, provider: 'linkedin'},
+  { name: 'Valentina Mariani', email: 'valentina.mariani@journal.com', team_id: 2, provider: 'twitter' },
+  { name: 'Roberto Conti', email: 'roberto.conti@media.com', team_id: 3, provider: 'facebook' },
+  { name: 'Chiara Galli', email: 'chiara.galli@press.com', team_id: 4, provider: 'google' },
+  { name: 'Matteo Ricci', email: 'matteo.ricci@reporter.com', team_id: 5, provider: 'github' },
+  { name: 'Laura Lombardi', email: 'laura.lombardi@editor.com', team_id: 6, provider: 'twitter' },
+  { name: 'Stefano Ferrari', email: 'stefano.ferrari@newsnet.com', team_id: 7, provider: 'email' },
+  { name: 'Francesca Greco', email: 'francesca.greco@daily.com', team_id: 8, provider: 'email' },
+  { name: 'Paolo Rinaldi', email: 'paolo.rinaldi@headlines.com', team_id: 9, provider: 'email' },
+  { name: 'Silvia Russo', email: 'silvia.russo@worldnews.com', team_id: 10, provider: 'email'}
+]
+
+# Create team managers
+team_managers = [
+  { name: 'Giovanni Bernardi', email: 'giovanni.bernardi@team.com', team_id: 1, provider: 'linkedin' },
+  { name: 'Federica Romano', email: 'federica.romano@team.com', team_id: 2, provider: 'twitter' },
+  { name: 'Luigi Conti', email: 'luigi.conti@team.com', team_id: 3, provider: 'facebook' },
+  { name: 'Elisa Marchetti', email: 'elisa.marchetti@team.com', team_id: 4, provider: 'google' },
+  { name: 'Marco Esposito', email: 'marco.esposito@team.com', team_id: 5, provider: 'github' },
+  { name: 'Sabrina Ricci', email: 'sabrina.ricci@team.com', team_id: 6, provider: 'email' },
+  { name: 'Matteo Bianchi', email: 'matteo.bianchi@team.com', team_id: 7, provider: 'email' },
+  { name: 'Alice Neri', email: 'alice.neri@team.com', team_id: 8, provider: 'email' },
+  { name: 'Paolo Moretti', email: 'paolo.moretti@team.com', team_id: 9, provider: 'email' },
+  { name: 'Sara Lombardi', email: 'sara.lombardi@team.com', team_id: 10, provider: 'email' }
 ]
 
 # Create articles
@@ -135,20 +151,6 @@ journalists_articles = [
       { title: 'Steph Curry: Il cuore dei Warriors', content: 'Steph Curry continua a essere il fulcro dell\'offensiva dei Warriors con prestazioni straordinarie.', draft: false }
     ]
   }
-]
-
-# Create team managers
-team_managers = [
-  { name: 'Giovanni Bernardi', email: 'giovanni.bernardi@team.com', team_id: 1, provider: 'linkedin', password_digest: SecureRandom.hex },
-  { name: 'Federica Romano', email: 'federica.romano@team.com', team_id: 2, provider: 'twitter', password_digest: SecureRandom.hex },
-  { name: 'Luigi Conti', email: 'luigi.conti@team.com', team_id: 3, provider: 'facebook', password_digest: SecureRandom.hex },
-  { name: 'Elisa Marchetti', email: 'elisa.marchetti@team.com', team_id: 4, provider: 'google', password_digest: SecureRandom.hex },
-  { name: 'Marco Esposito', email: 'marco.esposito@team.com', team_id: 5, provider: 'github', password_digest: SecureRandom.hex },
-  { name: 'Sabrina Ricci', email: 'sabrina.ricci@team.com', team_id: 6, provider: 'email', password_digest: SecureRandom.hex },
-  { name: 'Matteo Bianchi', email: 'matteo.bianchi@team.com', team_id: 7, provider: 'email', password_digest: SecureRandom.hex },
-  { name: 'Alice Neri', email: 'alice.neri@team.com', team_id: 8, provider: 'email', password_digest: SecureRandom.hex },
-  { name: 'Paolo Moretti', email: 'paolo.moretti@team.com', team_id: 9, provider: 'email', password_digest: SecureRandom.hex },
-  { name: 'Sara Lombardi', email: 'sara.lombardi@team.com', team_id: 10, provider: 'email', password_digest: SecureRandom.hex }
 ]
 
 team_manager_releases = [
@@ -230,11 +232,15 @@ teams.each do |team|
 end
 
 users.each do |user|
-    User.create(name: user[:name], email: user[:email], password_digest: user[:password_digest], team_id: user[:team_id], provider: user[:provider])
+    User.create( name: user[:name], email: user[:email], team_id: user[:team_id], provider: user[:provider], password: 'password123', password_confirmation: 'password123')
 end
 
 journalists.each do |journalist|
-    Journalist.create(name: journalist[:name], email: journalist[:email], password_digest: journalist[:password_digest], team_id: journalist[:team_id], provider: journalist[:provider])
+    Journalist.create(name: journalist[:name], email: journalist[:email], team_id: journalist[:team_id], provider: journalist[:provider], password: 'password123', password_confirmation: 'password123')
+end
+
+team_managers.each do |team_manager|
+    TeamManager.create(name: team_manager[:name], email: team_manager[:email], team_id: team_manager[:team_id], provider: team_manager[:provider], password: 'password123', password_confirmation: 'password123')
 end
 
 journalists_articles.each do |journalist_articles|
@@ -244,18 +250,12 @@ journalists_articles.each do |journalist_articles|
     end
 end
 
-team_managers.each do |team_manager|
-    TeamManager.create(name: team_manager[:name], email: team_manager[:email], password_digest: team_manager[:password_digest], team_id: team_manager[:team_id], provider: team_manager[:provider])
-end
-
 team_manager_releases.each do |team_manager_releases|
     team_manager = TeamManager.find_by(name: team_manager_releases[:team_manager])
     team_manager_releases[:releases].each do |release|
         team_manager.releases.create(title: release[:title], content: release[:content], team_id: team_manager.team_id)
     end
 end
-
-
 
 # Journalist requests
 u = User.first();

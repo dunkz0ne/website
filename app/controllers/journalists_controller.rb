@@ -7,7 +7,7 @@ class JournalistsController < ApplicationController
   end
 
   def show
-    redirect_to user_path(session[:user_id])
+    redirect_to user_path(current_user)
   end
 
   def new
@@ -29,7 +29,7 @@ class JournalistsController < ApplicationController
   end
 
   def update
-    @journalist = User.find_by(id: session[:user_id])
+    @journalist = current_user
     respond_to do |format|
       if @journalist.update(journalist_params)
         format.html { redirect_to @journalist, notice: "Journalist was successfully updated." }
@@ -42,7 +42,7 @@ class JournalistsController < ApplicationController
   end
 
   def destroy
-    @journalist = Journalist.find_by(journalist_id: session[:user_id])
+    @journalist = current_user
     @journalist.destroy
     respond_to do |format|
       format.html { redirect_to journalists_url, notice: "Journalist was successfully destroyed." }

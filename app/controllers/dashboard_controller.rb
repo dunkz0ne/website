@@ -2,8 +2,14 @@ class DashboardController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @user = User.find(session[:user_id]) if session[:user_id]
+        @user = current_user
+        if @user.nil?
+            redirect_to root_path, alert: "You must be logged in to access this page."
+            return
+        end
         @team = Team.where(id: @user.team_id).first if @user
+
+        
 
         if Rails.env.test?
             @matches_schedule = []

@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
     def index
-      @user = User.find(session[:user_id]) if session[:user_id]
+      @user = current_user
       @team = Team.find(@user.team_id) if @user
 
       # PLAYOFFS

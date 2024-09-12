@@ -17,12 +17,12 @@ class ReleasesController < ApplicationController
 
   def new
     @release = Release.new
-    @user = User.find(session[:user_id])
+    @user = current_user
     @team = Team.find(@user.team_id)
   end
 
   def edit
-    @user = User.find(session[:user_id])
+    @user = current_user
     @team = Team.find(@user.team_id)
   end
 

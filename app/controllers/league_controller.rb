@@ -3,7 +3,7 @@ class LeagueController < ApplicationController
     url = URI.parse("http://localhost:5001/api/league/standings")
     response = Net::HTTP.get_response(url)
 
-    @user = User.find(session[:user_id]) if session[:user_id]
+    @user = current_user
     @team = Team.where(id: @user.team_id).first if @user
 
     standings_data_raw = JSON.parse(response.body) # ["LeagueID", "SeasonID", "TeamID", "TeamCity", "TeamName", "Conference", "ConferenceRecord", "PlayoffRank", "ClinchIndicator", "Division", "DivisionRecord", "DivisionRank", "WINS", "LOSSES", "WinPCT", "LeagueRank", "Record", "HOME", "ROAD", "L10", "Last10Home", "Last10Road", "OT", "ThreePTSOrLess", "TenPTSOrMore", "LongHomeStreak", "strLongHomeStreak", "LongRoadStreak", "strLongRoadStreak", "LongWinStreak", "LongLossStreak", "CurrentHomeStreak", "strCurrentHomeStreak", "CurrentRoadStreak", "strCurrentRoadStreak", "CurrentStreak", "strCurrentStreak", "ConferenceGamesBack", "DivisionGamesBack", "ClinchedConferenceTitle", "ClinchedDivisionTitle", "ClinchedPlayoffBirth", "EliminatedConference", "EliminatedDivision", "AheadAtHalf", "BehindAtHalf", "TiedAtHalf", "AheadAtThird", "BehindAtThird", "TiedAtThird", "Score100PTS", "OppScore100PTS", "OppOver500", "LeadInFGPCT", "LeadInReb", "FewerTurnovers", "PointsPG", "OppPointsPG", "DiffPointsPG", "vsEast", "vsAtlantic", "vsCentral", "vsSoutheast", "vsWest", "vsNorthwest", "vsPacific", "vsSouthwest", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "PreAS", "PostAS"]

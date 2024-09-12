@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
 
-  resources :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'users/registrations'
+  }
+
+  # Definiamo la rotta personalizzata per la registrazione incompleta all'interno dello scope di devise
+  devise_scope :user do
+    get 'complete_registration', to: 'users/registrations#complete_registration', as: :complete_registration
+    post 'complete_registration', to: 'users/registrations#finish_registration'
+  end
+
+  resources :users, only: [:show]
   resources :teams
   resources :players
   resources :matches
@@ -59,13 +70,6 @@ Rails.application.routes.draw do
   get 'become_admin', to: 'users#become_admin'
 
   get '/user/dashboard/' => 'dashboard#index'
-
-  get '/auth/facebook/callback' => 'session#create'
-  get '/auth/failure' => 'session#fail'
-  get '/session/destroy' => 'session#destroy'
-
-  get 'session/new'
-  post 'session/create', to: 'session#create'
 
   root 'home#index'
 

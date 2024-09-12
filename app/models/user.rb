@@ -1,11 +1,16 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:facebook]
+
 
   # Validations
   validates :team_id, presence: true
-  validate :team_must_exist
   validates :strikes, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 3 }
   validates :name, presence: true
-  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  #validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   # Relationships
   has_one :team
@@ -18,7 +23,6 @@ class User < ApplicationRecord
   has_many :save_comments, foreign_key: 'user_id'
   has_many :banned_users, foreign_key: :user_email, primary_key: :email
   has_many :banned_users_as_admin, class_name: 'BannedUser', foreign_key: 'admin_id'
-  has_secure_password
 
   # Set the inheritance column to type
   self.inheritance_column = :type
@@ -37,16 +41,43 @@ class User < ApplicationRecord
   def self.find_or_create_from_omniauth(auth_info, team_id, bio, photo)
     where(id: auth_info[:uid]).first_or_create do |user|
         user.provider = auth_info[:provider]
-        user.id = auth_info[:uid]
-        user.name = auth_info[:name]
-        user.email = auth_info[:email]
+        user.id = auth_info.info[:uid]
+        user.name = auth_info.info[:name]
+        user.email = auth_info.info[:email]
         user.team_id = team_id
         user.bio = bio
-        user.password_digest = SecureRandom.hex
         user.photo.attach(photo)
+        user.password = Devise.friendly_token[0, 20]
         user.save!
     end
   end
+
+  # Method to ban a user for 60 seconds
+  def ban!(by_admin:, from: Time.now, to: nil, reason: '')
+    # For testing
+    to ||= from + 60.seconds
+    banned_user = BannedUser.find_by(user_email: self.email)
+
+    if banned_user
+      banned_user.update(banned_to: to)
+    else
+      BannedUser.ban_user!(self, by_admin: by_admin, from: from, to: to, reason: reason)
+    end
+  end
+
+  # Method to check if a user is banned
+  def banned?
+    banned_users.where('banned_from <= ? AND (banned_to IS NULL OR banned_to >= ?)', Time.now, Time.now).exists?
+  end
+
+  # Method to reset the strikes of users with the same email
+  def reset_strikes_for_users_with_same_email(email)
+    Rails.logger.info "Starting cleanup of strikes"
+    users_with_same_email = User.where(email: email)
+    users_with_same_email.update_all(strikes: 0)
+  end
+
+  # Debug methods
 
   def become_journalist!
     self.update(type: 'Journalist')
@@ -60,42 +91,4 @@ class User < ApplicationRecord
     self.update(type: 'Admin')
   end
 
-  def ban!(by_admin:, from: Time.now, to: nil, reason: '')
-    # For testing
-    to ||= from + 60.seconds
-    banned_user = BannedUser.find_by(user_email: self.email)
-
-    if banned_user
-      banned_user.update(banned_to: to)
-    else
-      BannedUser.ban_user!(self, by_admin: by_admin, from: from, to: to, reason: reason)
-    end
-  end
-
-  def banned?
-    banned_users.where('banned_from <= ? AND (banned_to IS NULL OR banned_to >= ?)', Time.now, Time.now).exists?
-  end
-
-  # Method to reset the strikes of users with the same email
-  def reset_strikes_for_users_with_same_email(email)
-    Rails.logger.info "Starting cleanup of strikes"
-    users_with_same_email = User.where(email: email)
-    users_with_same_email.update_all(strikes: 0)
-  end
-
-  private
-
-    # Method to validate the team ID
-    def team_must_exist
-      unless Team.exists?(self.team_id)
-        errors.add(:team_id, "must be a valid team ID")
-      end
-    end
-
-    # Method to ban a user if necessary
-    def ban_if_necessary
-      if strikes >= 3
-        update(banned: true) # Ban the user
-      end
-    end
 end

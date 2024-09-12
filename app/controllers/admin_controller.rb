@@ -3,11 +3,11 @@ class AdminController < ApplicationController
   before_action :ensure_admin!
 
   def show
-    redirect_to user_path(session[:user_id])
+    redirect_to user_path(current_user)
   end
 
   def update
-    @admin = User.find_by(id: session[:user_id])
+    @admin = current_user
     respond_to do |format|
       if @admin.update(admin_params)
         format.html { redirect_to @admin, notice: "Admin was successfully updated." }

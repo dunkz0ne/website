@@ -55,7 +55,7 @@
                 </li>
                 <li class="nav-item">
                     <i class="nav-icon fa-solid fa-user"></i>
-                    <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>
+                    <%= active_link_to 'Profile', user_path(id: current_user.id), active: :exclusive, class: 'navElement' %>
                 </li>
                 </li>
             </ul>
@@ -64,7 +64,7 @@
     </nav>
   </div>
 
-	<% if (( @article.draft == true and @article.user_id == session[:user_id].to_i ) or ( @article.draft == false )) or Rails.env.test? %>
+	<% if (( @article.draft == true and @article.user_id == current_user.id.to_i ) or ( @article.draft == false )) or Rails.env.test? %>
 
 	<div class="container articleSectionContainer" style="background-color: <%= @team.color %>;">
 		<div class="row">
@@ -136,16 +136,20 @@
 	</div>
 </div>
 
-	<% if (@article.draft == false) %>
-
-		<div class="container commentSectionContainer" style="margin-top: 12vh; padding: 5vh; background-color: <%= @team.color %>; " >
-			<div class="row">
-				<div class="col">
-					<%= form_with(model: [ @article, @article.comments.build ], id:"commentForm", local: true) do |form| %>
-						<div class="container" style=" min-width: 100%; overflow-x: auto; white-space: nowrap;">
-							<div class="row" style="min-width: 1500px;">
-								<div class="col">
-									<h1>Tell us what you think and start the conversation!</h1>
+<div class="container commentSectionContainer" style="margin-top: 12vh; padding: 5vh; background-color: <%= @team.color %>; " >
+		<div class="row">
+			<div class="col">
+				<%= form_with(model: [ @article, @article.comments.build ], id:"commentForm", local: true) do |form| %>
+					<div class="container" style=" min-width: 100%; overflow-x: auto; white-space: nowrap;">
+						<div class="row" style="min-width: 1500px;">
+							<div class="col">
+								<h1>Tell us what you think and start the conversation!</h1>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<div class="field">
+									<%= form.text_area :content, rows: 6, style: "width: 100%;" %>
 								</div>
 							</div>
 						</div>
@@ -156,15 +160,7 @@
 									<button type="button" class="btn btn-light" onclick="resetForm()">Reset</button>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col">
-									<div class="actions">
-										<button type="button" class="btn btn-primary" onclick="submitForm()">Post ➤</button>
-										<button type="button" class="btn btn-light" onclick="resetForm()">Reset</button>
-									</div>
-								</div>
-								<div class="col-1">
-								</div>
+							<div class="col-1">
 							</div>
 						</div>
 					<% end %>
@@ -178,17 +174,17 @@
 												<%= render_comment(comment, @article) %>
 											</div>
 										</div>
-										
-									<% end %>
 									</div>
+
 								<% end %>
 								</div>
 							</div>
 						</div>
 					</div>
+				
 			</div>
 		</div>
-	<% end %>
+	</div>
 
 <script>
     function submitForm() {

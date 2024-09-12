@@ -38,7 +38,7 @@
                 <li>
                     <%= active_link_to(user_dashboard_path) do %>
                     <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @current_user_team.api %>/primary/L/logo.svg" />
-                    <% end %>                
+                    <% end %>
                 </li>
 
                 <li class="nav-item">
@@ -53,7 +53,7 @@
                 </li>
                 <li class="nav-item">
                     <i class="nav-icon fa-solid fa-user"></i>
-                    <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>
+                    <%= active_link_to 'Profile', user_path(id: current_user.id), active: :exclusive, class: 'navElement' %>
                 </li>
                 </li>
             </ul>
@@ -93,11 +93,14 @@
                       <div class="profileBio mt-2">
                         <%= @user.bio %>
                       </div>
-                      <% if session[:user_id].to_i == @user.id.to_i %>
                       <div class="editProfile">
                         <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editModal">
                           Edit Profile
                         </button>
+
+                        <% if @user.provider == 'email' %>
+                          <%= link_to 'Change Password', edit_user_registration_path, class: "btn btn-light" %>
+                        <% end %>
 
                         <% if not @user.type? %>
                           <%= link_to 'Become a Journalist', new_journalist_request_path, class: "btn btn-light" %>
@@ -123,9 +126,6 @@
                           </div>
                         </div>
                       </div>
-
-
-                      <% end %>
                     </div>
 
                   </div>
@@ -145,7 +145,7 @@
     <h1>Articles</h1>
     <div class="container">
       <div class="row" style="justify-content: center;">
-        <% if @articles.length < 1 and @user.id == session[:user_id].to_i %>
+        <% if @articles.length < 1 and @user.id == current_user.id.to_i %>
         <div style="text-align: center;">
           <h3>You have not posted any articles</h3>
           <p>Create one on your <%= link_to 'Dashboard', user_dashboard_url, style: 'color: white;' %></p>
@@ -153,12 +153,13 @@
         <% elsif @articles.length < 1 %>
         <div style="text-align: center;">
           <h3><%= @user.name %> has not posted any articles</h3>
-        </div>        
+        </div>
         <% else %>
         <div class="articleList" >
-          
+
           <% @articles.each do |article| %>
             <div class="card" style="border-radius: 20px; margin-top: 2rem;">
+
               <div class="card-body" style="background-color: <%= article.team.color %>; border-radius: 20px; padding: 2rem;">
                   
                   <div class="row">
@@ -196,17 +197,17 @@
                   </div>
                   <div class="row">
                       <%= link_to 'Read More', article_path(article), class: "btn btn-light mt-4" %>
-                      <% if article.user.id == session[:user_id].to_i %>
+                      <% if article.user.id == current_user.id.to_i %>
                           <%= link_to 'Edit', edit_article_path(article), class: "btn btn-light mt-2" %>
                           <%= link_to 'Delete', delete_article_path(article), class: "btn btn-light mt-2" %>
                       <% end %>
                   </div>
-                  
+
               </div>
         </div>
 
           <% end %>
-          
+
         </div>
         <% end %>
       </div>
@@ -217,7 +218,7 @@
   <% if @user.type == "TeamManager" %>
   <div class="container mt-5" id="releaseList">
     <h1>Releases</h1>
-    <% if @releases.length < 1 and @user.id == session[:user_id].to_i %>
+    <% if @releases.length < 1 and @user.id == current_user.id.to_i %>
       <div style="text-align: center;">
         <h3>You have not posted any releases</h3>
         <p>Create one on your <%= link_to 'Dashboard', user_dashboard_url, style: 'color: white;' %></p>
@@ -225,12 +226,12 @@
     <% elsif @releases.length < 1 %>
       <div style="text-align: center;">
         <h3><%= @user.name %> has not posted any releases</h3>
-      </div>        
+      </div>
     <% else %>
       <% @releases.each do |release| %>
         <div class="card" style="border-radius: 20px; margin-top: 2rem;">
           <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
-              
+
               <div class="row">
                   <% if release.image.attached? %>
                       <div class="col-4">
@@ -266,12 +267,12 @@
               </div>
               <div class="row">
                   <%= link_to 'Read More', release_path(release), class: "btn btn-light mt-4" %>
-                  <% if release.user.id == session[:user_id].to_i %>
+                  <% if release.user.id == current_user.id.to_i %>
                       <%= link_to 'Edit', edit_release_path(release), class: "btn btn-light mt-2" %>
                       <%= link_to 'Delete', delete_release_path(release), class: "btn btn-light mt-2" %>
                   <% end %>
               </div>
-              
+
           </div>
         </div>
 
@@ -281,7 +282,7 @@
 
   <div class="container mt-5">
     <h1>Comments</h1>
-    <% if @comments.length < 1 and @user.id == session[:user_id].to_i %>
+    <% if @comments.length < 1 and @user.id == current_user.id.to_i %>
       <div style="text-align: center;">
         <h3>You have not posted any comments</h3>
         <p>Create one on the <%= link_to 'News', articles_path, style: 'color: white;' %> section</p>
@@ -289,7 +290,7 @@
     <% elsif @comments.length < 1 %>
       <div style="text-align: center;">
         <h3><%= @user.name %> has not posted any comments</h3>
-      </div>        
+      </div>
     <% else %>
     <% @comments.each do |comment| %>
       <div class="card" style="border-radius: 20px; margin-top: 2rem; margin-bottom: 2rem;">
@@ -335,7 +336,6 @@
       <% @saved_articles.each do |article| %>
         <div class="card" style="border-radius: 20px; margin-top: 2rem;">
           <div class="card-body" style="background-color: <%= article.team.color %>; border-radius: 20px; padding: 2rem;">
-              
               <div class="row">
                   <% if article.image.attached? %>
                       <div class="col-4">
@@ -371,12 +371,12 @@
               </div>
               <div class="row">
                   <%= link_to 'Read More', article_path(article), class: "btn btn-light mt-4" %>
-                  <% if article.user.id == session[:user_id].to_i %>
+                  <% if article.user.id == current_user.id.to_i %>
                       <%= link_to 'Edit', edit_article_path(article), class: "btn btn-light mt-2" %>
                       <%= link_to 'Delete', delete_article_path(article), class: "btn btn-light mt-2" %>
                   <% end %>
               </div>
-              
+
           </div>
         </div>
       <% end %>
@@ -392,7 +392,7 @@
       <div style="text-align: center;">
         <h3>You have not saved any comments</h3>
         <p>Explore the <%= link_to 'News', articles_path, style: 'color: white;' %> section</p>
-      </div>       
+      </div>
     <% else %>
     <% @saved_comments.each do |comment| %>
       <div class="card" style="border-radius: 20px; margin-top: 2rem; margin-bottom: 2rem;">
@@ -430,6 +430,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+
         const savedArticles = <%= raw (@saved_articles || []).map { |article| { id: article.id, color: article.team.color } }.to_json %>;
         
         savedArticles.forEach(article => {
@@ -487,6 +488,6 @@
         <% end %>
 
 
-        
+
     });
 </script>
