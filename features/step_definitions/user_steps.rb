@@ -12,12 +12,12 @@ When("I submit the registration form") do
 
   @team = Team.first
 
-  select @team.name, from: 'user_team_id'
+  find('#selectedTeamId', visible: false).set(@team.id)
   fill_in 'user_bio', with: 'I am a test'
   attach_file('user_photo', Rails.root.join('features', 'files', 'test_image.png'))
 
-  expect(page).to have_button('Complete Registration')
-  click_button('Complete Registration')
+  expect(page).to have_button('Create User')
+  click_button('Create User')
 end
 
 Then("I should be on the dashboard page") do
@@ -38,9 +38,8 @@ Given("I am logged in with Facebook") do
   # Visit the sign in path
   visit user_facebook_omniauth_callback_path
 
-  select(Team.first.name, from: 'user_team_id')
-
-  click_button('Complete Registration')
+  find('#selectedTeamId', visible: false).set('1')
+  click_button('Create User')
 
   visit user_dashboard_path
 
