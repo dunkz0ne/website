@@ -159,7 +159,7 @@
           
           <% @articles.each do |article| %>
             <div class="card" style="border-radius: 20px; margin-top: 2rem;">
-              <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
+              <div class="card-body" style="background-color: <%= article.team.color %>; border-radius: 20px; padding: 2rem;">
                   
                   <div class="row">
                       <% if article.image.attached? %>
@@ -334,7 +334,7 @@
       <% else %>
       <% @saved_articles.each do |article| %>
         <div class="card" style="border-radius: 20px; margin-top: 2rem;">
-          <div class="card-body" style="background-color: <%= @team.color %>; border-radius: 20px; padding: 2rem;">
+          <div class="card-body" style="background-color: <%= article.team.color %>; border-radius: 20px; padding: 2rem;">
               
               <div class="row">
                   <% if article.image.attached? %>
@@ -430,7 +430,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const savedArticles = <%= raw @saved_articles.map { |article| { id: article.id, color: @team.color } }.to_json %>;
+        const savedArticles = <%= raw @saved_articles.map { |article| { id: article.id, color: article.team.color } }.to_json %>;
         
         savedArticles.forEach(article => {
             const element = document.getElementById(`article-${article.id}`);
@@ -468,7 +468,7 @@
         <% end %>
 
         <% if @user.type == "Journalist" %>
-          const articles = <%= raw @articles.map { |article| { id: article.id, color: @team.color } }.to_json %>;
+          const articles = <%= raw @articles.map { |article| { id: article.id, color: article.team.color } }.to_json %>;
           articles.forEach(article => {
               const element = document.getElementById(`articleOwned-${article.id}`);
               if (element) {

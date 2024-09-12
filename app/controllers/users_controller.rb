@@ -65,6 +65,9 @@ class UsersController < ApplicationController
       end
       @saved = Save.where(user_id: session[:user_id])
       @saved_articles = Article.where(id: @saved.pluck(:article_id))
+      @saved_articles.each do |article|
+        article.team = Team.find(article.team_id)
+      end
     end
 
   end
