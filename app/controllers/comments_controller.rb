@@ -1,14 +1,18 @@
 class CommentsController < ApplicationController
   def create
-    @article = Article.find(params[:article_id])
-    @comment = @article.comments.build(comment_params)
-    @comment.user = current_user
-    @comment.parent_id = params[:parent_id] if params[:parent_id]
+    if not current_user.banned?
+      @article = Article.find(params[:article_id])
+      @comment = @article.comments.build(comment_params)
+      @comment.user = current_user
+      @comment.parent_id = params[:parent_id] if params[:parent_id]
 
-    if @comment.save
-      redirect_to @article, notice: 'New comment added.'
+      if @comment.save
+        redirect_to @article, notice: 'New comment added.'
+      else
+        redirect_to @article, alert: 'Error adding comment.'
+      end
     else
-      redirect_to @article, alert: 'Error adding comment.'
+      redirect_to article_path(id: params[:article_id]), alert: 'You are banned. You cannot comment.'
     end
   end
 
@@ -17,7 +21,7 @@ class CommentsController < ApplicationController
     @like = Like.new(comment_id: @comment.id, user_id: current_user.id)
     @like.save
     redirect_to article_path(id: @comment.article_id), notice: 'Liked comment'
-    
+
   end
 
   def unlike

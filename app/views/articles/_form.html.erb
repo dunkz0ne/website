@@ -10,27 +10,39 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
+  <div class="form-group" style="margin-bottom: 4vh; margin-top: 4vh;">
+    <%= form.label :image, class: "form-label" %>
+    <%= form.file_field :image, class: "form-control" %>
+    <div class="invalid-feedback">
+      Please provide an image.
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="form-group" style="margin-bottom: 4vh;">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control", placeholder: "Enter the title", required: true %>
+    <div class="invalid-feedback">
+      Please provide a title.
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+  <div class="form-group" style="margin-bottom: 4vh;">
+    <%= form.label :content, class: "form-label" %>
+    <%= form.text_area :content, class: "form-control", rows: 5, placeholder: "Write your article content here...", required: true %>
+    <div class="invalid-feedback">
+      Please provide the content.
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :draft %>
-    <%= form.check_box :draft %>
+  <div class="form-group" style="margin-bottom: 2vh;">
+    <%= form.label :draft, class: "form-label" %>
+    <%= form.check_box :draft, class: "form-check-input" %>
+    <div class="invalid-feedback">
+      Please provide the draft status.
+    </div>
   </div>
- 
-  <div class="actions">
-    <%= form.submit %>
+
+  <div class="form-group" >
+    <%= form.submit article.persisted? ? "Update Article" : "Create Article", class: "btn btn-primary" %>
   </div>
 <% end %>

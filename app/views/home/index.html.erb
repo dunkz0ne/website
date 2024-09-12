@@ -10,15 +10,39 @@
         </div>
       <% end %>
 
+      <% if flash[:alert].present? %>
+        <div class="alert alert-danger">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+
       <div class="btn-group my-3">
         <%= link_to 'Become a Journalist', become_journalist_path, method: :patch, class: 'btn btn-primary' %>
         <%= link_to 'Become an Admin', become_admin_path, method: :patch, class: 'btn btn-secondary' %>
+        <%= link_to 'Become a Team Manager', become_team_manager_path, class: 'btn btn-dark' %>
       </div>
+
+      <%= form_with url: session_create_path, method: :post do |form| %>
+        <div class="field">
+          <%= form.label :email %>
+          <%= form.email_field :email %>
+        </div>
+
+        <div class="field">
+          <%= form.label :password %>
+          <%= form.password_field :password %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit 'Sign In' %>
+        </div>
+      <% end %>
+
+      <a class="btn btn-primary my-4" style="color: white;" href="/session/new">Sign Up</a>
 
       <%= form_tag('/auth/facebook', method: 'post', class: 'my-3') do %>
         <button class="btn btn-primary" type="submit">Sign In with Facebook</button>
       <% end %>
-
       <a class="btn btn-danger my-3" style="color: white;" href="/session/destroy">Sign Out</a>
     </div>
   </div>

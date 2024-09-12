@@ -20,7 +20,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 gem 'color' # For colorizing cards
 
@@ -30,9 +30,15 @@ gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 gem 'figaro'
 
+gem 'whenever', require: false
+
 gem 'countries'
 
 gem 'canard', '~> 0.6.2.pre'
+
+group :development do
+  gem 'rails-erd'
+end
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -62,6 +68,11 @@ group :test do
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner-active_record'
+  gem 'rspec-rails'
+
+  gem 'rails-controller-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

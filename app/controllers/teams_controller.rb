@@ -5,6 +5,7 @@ require 'json'
 class TeamsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_team, only: %i[ show edit update destroy ]
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   # GET /teams or /teams.json
   def index
@@ -46,5 +47,10 @@ class TeamsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def team_params
       params.require(:team).permit(:name, :color, :api)
+    end
+
+    def record_not_found
+      flash[:alert] = "Record not found"
+      redirect_to "/teams/#{current_user.team_id}"
     end
 end

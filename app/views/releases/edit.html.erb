@@ -1,0 +1,74 @@
+<div id="newArticle" style="height: 100vh; background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;">
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            -webkit-box-shadow: inset 20px 0 6px <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;
+        }
+    </style>
+
+    <div id="Navbar">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: <%= @team.color %>;">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav navItems">
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-people-group"></i>
+                        <%= active_link_to 'Team', "/teams/#{@team.id}", active: :exclusive, class: 'navElement' %>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-basketball"></i>
+                        <%= active_link_to 'Matches', matches_url(number: 3), active: :exclusive, class: 'navElement' %>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-newspaper"></i>
+                        <%= active_link_to 'News', articles_url, active: :exclusive, class: 'navElement' %>
+                    </li>
+                    <li>
+                        <%= active_link_to(user_dashboard_path) do %>
+                        <img id="logoTeamNav" src="https://cdn.nba.com/logos/nba/<%= @team.api %>/primary/L/logo.svg" />
+                        <% end %>
+                    </li>
+
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-trophy"></i>
+                        <%= active_link_to 'League', '/league', active: :exclusive, class: 'navElement' %>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-cart-shopping"></i>
+                        <%= active_link_to 'Shop', "https://www.nbastore.eu/en/#{@team.name.downcase.gsub(' ', '-')}", active: :exclusive, class: 'navElement' %>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>  
+                    </li>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- app/views/articles/new.html.erb -->
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="articleForm">
+                <%= render 'form', user: @user %>
+            </div>
+        </div>
+    </div>
+</div>

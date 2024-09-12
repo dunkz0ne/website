@@ -1,5 +1,5 @@
 class JournalistsController < ApplicationController
-  
+
   before_action :authenticate_user!
 
   def index
@@ -7,11 +7,7 @@ class JournalistsController < ApplicationController
   end
 
   def show
-    if User.find_by(id: session[:user_id]).type == "journalist"
-      @journalist = Journalist.find_by(journalist_id: session[:user_id])
-    else
-      redirect_to user_dashboard_path
-    end
+    redirect_to user_path(session[:user_id])
   end
 
   def new
@@ -33,7 +29,7 @@ class JournalistsController < ApplicationController
   end
 
   def update
-    @journalist = Journalist.find_by(journalist_id: session[:user_id])
+    @journalist = User.find_by(id: session[:user_id])
     respond_to do |format|
       if @journalist.update(journalist_params)
         format.html { redirect_to @journalist, notice: "Journalist was successfully updated." }

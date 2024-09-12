@@ -3,9 +3,16 @@ class LeagueController < ApplicationController
     url = URI.parse("http://localhost:5001/api/league/standings")
     response = Net::HTTP.get_response(url)
 
+    @user = User.find(session[:user_id]) if session[:user_id]
+    @team = Team.where(id: @user.team_id).first if @user
+
     standings_data_raw = JSON.parse(response.body) # ["LeagueID", "SeasonID", "TeamID", "TeamCity", "TeamName", "Conference", "ConferenceRecord", "PlayoffRank", "ClinchIndicator", "Division", "DivisionRecord", "DivisionRank", "WINS", "LOSSES", "WinPCT", "LeagueRank", "Record", "HOME", "ROAD", "L10", "Last10Home", "Last10Road", "OT", "ThreePTSOrLess", "TenPTSOrMore", "LongHomeStreak", "strLongHomeStreak", "LongRoadStreak", "strLongRoadStreak", "LongWinStreak", "LongLossStreak", "CurrentHomeStreak", "strCurrentHomeStreak", "CurrentRoadStreak", "strCurrentRoadStreak", "CurrentStreak", "strCurrentStreak", "ConferenceGamesBack", "DivisionGamesBack", "ClinchedConferenceTitle", "ClinchedDivisionTitle", "ClinchedPlayoffBirth", "EliminatedConference", "EliminatedDivision", "AheadAtHalf", "BehindAtHalf", "TiedAtHalf", "AheadAtThird", "BehindAtThird", "TiedAtThird", "Score100PTS", "OppScore100PTS", "OppOver500", "LeadInFGPCT", "LeadInReb", "FewerTurnovers", "PointsPG", "OppPointsPG", "DiffPointsPG", "vsEast", "vsAtlantic", "vsCentral", "vsSoutheast", "vsWest", "vsNorthwest", "vsPacific", "vsSouthwest", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "PreAS", "PostAS"]
     @standings = standings_data_raw['resultSets'][0]['rowSet'].map { |team| { team_id: team[2], team_city: team[3], team_name: team[4], conference: team[5], conference_record: team[6], playoff_rank: team[7], clinch_indicator: team[8], division: team[9], division_record: team[10], division_rank: team[11], wins: team[12], losses: team[13], win_pct: team[14], league_rank: team[15], record: team[16], home: team[17], road: team[18], l10: team[19], last_10_home: team[20], last_10_road: team[21], ot: team[22], three_pts_or_less: team[23], ten_pts_or_more: team[24], long_home_streak: team[25], str_long_home_streak: team[26], long_road_streak: team[27], str_long_road_streak: team[28], long_win_streak: team[29], long_loss_streak: team[30], current_home_streak: team[31], str_current_home_streak: team[32], current_road_streak: team[33], str_current_road_streak: team[34], current_streak: team[35], str_current_streak: team[36], conference_games_back: team[37], division_games_back: team[38], clinched_conference_title: team[39], clinched_division_title: team[40], clinched_playoff_birth: team[41], eliminated_conference: team[42], eliminated_division: team[43], ahead_at_half: team[44], behind_at_half: team[45], tied_at_half: team[46], ahead_at_third: team[47], behind_at_third: team[48], tied_at_third: team[49], score_100_pts: team[50], opp_score_100_pts: team[51], opp_over_500: team[52], lead_in_fg_pct: team[53], lead_in_reb: team[54], fewer_turnovers: team[55], points_pg: team[56], opp_points_pg: team[57], diff_points_pg: team[58], vs_east: team[59], vs_atlantic: team[60]} }
 
+    @standings.each do |team|
+      team[:team_id_api] = team[:team_id]
+      team[:team_id] = Team.where(api: team[:team_id_api]).first.id
+    end
 
     url = URI.parse("http://localhost:5001/api/league/leaders")
     response = Net::HTTP.get_response(url)

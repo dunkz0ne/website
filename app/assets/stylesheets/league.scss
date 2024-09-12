@@ -1,0 +1,98 @@
+#leaguePage{
+    cursor: default;
+}
+
+#standingsTitle{
+    border: none !important;
+}
+
+#topPlayerTitle{
+    border: none !important;
+}
+
+.standingsContainer{
+    border-radius: 20px;
+}
+
+.standingsSection, .tpSection{
+    border: 2px solid;
+    border-radius: 40px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10vh;
+}
+
+.standingContainerRow, .playerContentTextRow{
+    @media (max-width:990px) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.standingsContent, .tpContent{
+    border: white solid 2px;
+    border-radius: 20px;
+    margin: 5vh 0 5vh;
+    width: 90%;
+}
+
+
+.standingTableTitle{
+    display: block;
+    font-size: 1.4rem;
+    margin: 2vh 0;
+}
+
+.titleRow{
+    justify-content: center;
+    align-items: center;
+}
+
+
+.standingContentTextRow, .playerContentTextRow{
+    justify-content: center;
+    margin: 0.5vh 0 0.5vh 0;
+    padding: 1vh 0 1vh 0;
+}
+
+.winIcon{
+    background: green;
+    padding: 0.5vh;
+    border: 2px solid white;
+    border-radius: 8px;
+}
+
+.lossIcon{
+    background: red;
+    padding: 0.5vh;
+    border: 2px solid white;
+    border-radius: 8px;
+}
+
+.standingContentText, .playerContentText{
+    font-size: 1.4rem;
+}
+
+
+.playoffPass{
+    background: green;
+    padding: 0.5vh;
+    border: 2px solid white;
+    border-radius: 8px;
+}
+
+/* Style for the first 6 rows */
+.first-six {
+    background: #00800076;
+    align-items: center;
+}
+
+/* Style for rows 7 to 10 */
+.seven-to-ten {
+    background: #00800045;
+    align-items: center;
+}
+
+.yourTeam {
+    border: 1px solid white;
+}

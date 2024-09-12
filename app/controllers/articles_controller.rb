@@ -4,38 +4,37 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_journalist, only: [:new, :create]
   before_action :authorize_owner, only: [:edit, :update, :delete]
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def index
     @user = User.find(session[:user_id])
     @team = Team.find(@user.team_id)
 
-    @team_journalist = Journalist.where(team_id: @team.id)
-    @articles = Article.where(user_id: @team_journalist.ids, draft: false).order(created_at: :desc)
+    @articles = Article.where(team_id: @team.id, draft: false).order(created_at: :desc)
 
     @articles.each do |article|
       article.user = User.find(article.user_id)
     end
 
-    @team_manager = TeamManager.where(team_id: @user.team_id)
-    @releases = Release.where(user_id: @team_manager.ids)
+    @releases = Release.where(team_id: @team.id).order(created_at: :desc)
 
     @releases.each do |release|
       release.user = User.find(release.user_id)
     end
 
-    @other_articles = Article.where(draft: false).order(created_at: :desc).limit(5)
+    @other_articles = Article.where(draft: false).where.not(team_id: @team.id).order(created_at: :desc).limit(5)
     @other_articles_teams = []
     @other_articles.each do |article|
       article.user = User.find(article.user_id)
-      @other_articles_teams << Team.find(article.user.team_id)
+      @other_articles_teams << Team.find(article.team_id)
     end
 
   end
 
   def show
     @article = Article.find(params[:id])
-    @team = Team.find(@article.user.team_id)
-    @current_user_team = Team.find(current_user.team_id) 
+    @team = Team.find(@article.team_id)
+    @current_user_team = Team.find(current_user.team_id)
     @is_saved = Save.where(user_id: session[:user_id], article_id: @article.id).first
 
     @comments = Comment.where(article_id: @article.id).order(created_at: :desc)
@@ -46,10 +45,14 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @user = User.find(session[:user_id])
+    @team = Team.find(@user.team_id)
   end
 
   def create
-    @article = current_user.articles.new(article_params)
+    article_params_with_team_id = article_params.merge(team_id: current_user.team_id)
+    @article = current_user.articles.new(article_params_with_team_id)
+
     if @article.save
       redirect_to @article, notice: 'Article was successfully created.'
     else
@@ -59,9 +62,13 @@ class ArticlesController < ApplicationController
 
 
   def edit
+    @user = User.find(session[:user_id])
+    @team = Team.find(@user.team_id)
+
   end
 
   def update
+
     if article_params[:image].present?
       if @article.update(article_params)
         redirect_to @article, notice: 'Article was successfully updated.'
@@ -116,6 +123,11 @@ class ArticlesController < ApplicationController
     unless @article.user_id == current_user.id || current_user.is_a?(Admin)
       redirect_to articles_path, alert: 'You are not authorized to perform this action.'
     end
+  end
+
+  def record_not_found
+    flash[:alert] = "L'articolo con ID #{params[:id]} non è stato trovato."
+    redirect_to articles_path
   end
 
 end
