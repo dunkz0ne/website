@@ -7,8 +7,7 @@ class JournalistsController < ApplicationController
   end
 
   def show
-    @joirnalist = current_user
-    redirect_to @journalist
+    redirect_to user_path(current_user)
   end
 
   def new

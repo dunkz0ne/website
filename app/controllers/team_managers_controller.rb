@@ -7,8 +7,7 @@ class TeamManagersController < ApplicationController
   end
 
   def show
-    @team_manager = current_user
-    redirect_to @team_manager
+    redirect_to user_path(current_user)
   end
 
   def new

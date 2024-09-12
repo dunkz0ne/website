@@ -3,7 +3,7 @@ class AdminController < ApplicationController
   before_action :ensure_admin!
 
   def show
-    @admin = current_user
+    redirect_to user_path(current_user)
   end
 
   def update
