@@ -66,7 +66,7 @@
       </div>
     <% end %>
     <%= form_with url: ban_users_user_path, method: :post, local: true do |form| %>
-      <table class="table table-striped table-bordered mt-3">
+      <table class="table table-striped table-bordered mt-3 table-rounded">
         <thead>
           <tr>
             <th>Select</th>
@@ -80,33 +80,39 @@
           </tr>
         </thead>
         <tbody>
-          <% @users.each do |user| %>
-            <% is_banned = user.banned_users.any? { |ban| ban.banned_from <= Time.now && (ban.banned_to.nil? || ban.banned_to >= Time.now) } %>
-            <tr class="<%= 'banned-user' if is_banned %>">
-              <td>
-                <%= check_box_tag 'user_ids[]', user.id, false, disabled: is_banned %>
-              </td>
-              <td><%= user.name %></td>
-              <td><%= is_banned ? 'Banned' : (user.type.present? ? user.type : 'User') %></td>
-              <td><%= user.created_at.strftime("%B %d, %Y") %></td>
-              <td><%= user.articles.count %></td>
-              <td><%= user.comments.count %></td>
-              <td><%= user.strikes %></td>
-              <td>
-                <% if user.strikes == 3 %>
-                  <button class="btn btn-success btn-sm" disabled>+</button>
-                <% else %>
-                  <%= link_to "+", increment_strikes_user_path(user), class: "btn btn-success btn-sm" %>
-                <% end %>
-                <% if user.strikes == 0 %>
-                  <button class="btn btn-success btn-sm" disabled>-</button>
-                <% else %>
-                  <%= link_to "-", decrement_strikes_user_path(user), class: "btn btn-danger btn-sm" %>
-                <% end %>
-                <% if is_banned %>
-                  <%= link_to 'Unban', unban_user_path(user), class: "btn btn-warning btn-sm" %>
-                <% end %>
-              </td>
+          <% if @users.any? %>
+            <% @users.each do |user| %>
+              <% is_banned = user.banned_users.any? { |ban| ban.banned_from <= Time.now && (ban.banned_to.nil? || ban.banned_to >= Time.now) } %>
+              <tr class="<%= 'banned-user' if is_banned %>">
+                <td>
+                  <%= check_box_tag 'user_ids[]', user.id, false, disabled: is_banned %>
+                </td>
+                <td><%= user.name %></td>
+                <td><%= is_banned ? 'Banned' : (user.type.present? ? user.type : 'User') %></td>
+                <td><%= user.created_at.strftime("%B %d, %Y") %></td>
+                <td><%= user.articles.count %></td>
+                <td><%= user.comments.count %></td>
+                <td><%= user.strikes %></td>
+                <td>
+                  <% if user.strikes == 3 %>
+                    <button class="btn btn-success btn-sm" disabled>+</button>
+                  <% else %>
+                    <%= link_to "+", increment_strikes_user_path(user), class: "btn btn-success btn-sm" %>
+                  <% end %>
+                  <% if user.strikes == 0 %>
+                    <button class="btn btn-success btn-sm" disabled>-</button>
+                  <% else %>
+                    <%= link_to "-", decrement_strikes_user_path(user), class: "btn btn-danger btn-sm" %>
+                  <% end %>
+                  <% if is_banned %>
+                    <%= link_to 'Unban', unban_user_path(user), class: "btn btn-warning btn-sm" %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan="8" class="text-center">No users found</td>
             </tr>
           <% end %>
         </tbody>
@@ -114,7 +120,6 @@
       <%= form.submit 'Ban Users', class: 'btn btn-danger mt-3' %>
     <% end %>
   </div>
-
 
   <div class="container mt-5" id="releaseList">
     <h1 class="mb-4">Latest Comments</h1>
@@ -127,7 +132,7 @@
     <% end %>
 
     <%= form_with url: delete_articles_user_path, method: :post, local: true do |form| %>
-      <table class="table table-striped table-bordered mt-3">
+      <table class="table table-striped table-bordered mt-3 table-rounded">
         <thead class="thead-dark">
           <tr>
             <th>Author</th>
@@ -136,13 +141,19 @@
           </tr>
         </thead>
         <tbody>
-          <% @comments.each do |comment| %>
+          <% if @comments.any? %>
+            <% @comments.each do |comment| %>
+              <tr>
+                <td><%= comment.user.name %></td>
+                <td><%= truncate(comment.content, length: 100) %></td>
+                <td>
+                  <%= link_to 'Delete Comment', delete_article_comment_path(article_id: comment.article.id, id: comment.id), method: :get, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure you want to delete this comment?' } %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
             <tr>
-              <td><%= comment.user.name %></td>
-              <td><%= truncate(comment.content, length: 100) %></td>
-              <td>
-              <%= link_to 'Delete Comment', delete_article_comment_path(article_id: comment.article.id, id: comment.id), method: :get, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure you want to delete this comment?' } %>
-              </td>
+              <td colspan="3" class="text-center">No comments found</td>
             </tr>
           <% end %>
         </tbody>
@@ -161,7 +172,7 @@
     <% end %>
 
     <%= form_with url: delete_articles_user_path, method: :post, local: true do |form| %>
-      <table class="table table-striped table-bordered mt-3">
+      <table class="table table-striped table-bordered mt-3 table-rounded">
         <thead class="thead-dark">
           <tr>
             <th>Author</th>
@@ -171,23 +182,28 @@
           </tr>
         </thead>
         <tbody>
-          <% @articles.each do |article| %>
+          <% if @articles.any? %>
+            <% @articles.each do |article| %>
+              <tr>
+                <td><%= article.user.name %></td>
+                <td><%= article.title %></td>
+                <td><%= truncate(article.content, length: 100) %></td>
+                <td>
+                  <%= link_to 'Show', article_path(article), class: "btn btn-primary btn-sm mr-1" %>
+                  <%= link_to 'Edit', edit_article_path(article), class: "btn btn-warning btn-sm mr-2" %>
+                  <%= link_to 'Delete', delete_article_path(article), class: "btn btn-danger btn-sm"%>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
             <tr>
-              <td><%= article.user.name %></td>
-              <td><%= article.title %></td>
-              <td><%= truncate(article.content, length: 100) %></td>
-              <td>
-                <%= link_to 'Show', article_path(article), class: "btn btn-primary btn-sm mr-1" %>
-                <%= link_to 'Edit', edit_article_path(article), class: "btn btn-warning btn-sm mr-2" %>
-                <%= link_to 'Delete', delete_article_path(article), class: "btn btn-danger btn-sm"%>
-              </td>
+              <td colspan="4" class="text-center">No articles found</td>
             </tr>
           <% end %>
         </tbody>
       </table>
     <% end %>
   </div>
-
 
   <div class="container mt-5" id="releaseList">
     <h1 class="mb-4">Journalist Request</h1>
@@ -200,7 +216,7 @@
       </div>
     <% end %>
 
-    <table class="table table-striped table-bordered mt-3">
+    <table class="table table-striped table-bordered mt-3 table-rounded">
       <thead class="thead-dark">
         <tr>
           <th>Username</th>
@@ -212,17 +228,23 @@
         </tr>
       </thead>
       <tbody>
-        <% @journalist_requests.each do |journalist_request| %>
+        <% if @journalist_requests.any? %>
+          <% @journalist_requests.each do |journalist_request| %>
+            <tr>
+              <td><%= "#{journalist_request.user.name} #{journalist_request.created_at.strftime('%d/%m/%Y')}" %></td>
+              <td><%= journalist_request.user.email %></td>
+              <td><%= journalist_request.user.created_at.strftime("%B %d, %Y") %></td>
+              <td><%= link_to 'Certificate', rails_blob_path(journalist_request.certificate, disposition: "attachment"), target: "_blank" %></td>
+              <td><%= journalist_request.user.strikes %></td>
+              <td style="display: flex;">
+                <%= button_to 'Approve', delete_journalist_request_path(id: journalist_request.id, accept: true), method: :delete, class: 'btn btn-success adminButtonActions', form_class: 'd-inline' %>
+                <%= button_to 'Reject', delete_journalist_request_path(id: journalist_request.id, accept: false), method: :delete, class: 'btn btn-danger adminButtonActions', form_class: 'd-inline' %>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
           <tr>
-            <td><%= "#{journalist_request.user.name} #{journalist_request.created_at.strftime('%d/%m/%Y')}" %></td>
-            <td><%= journalist_request.user.email %></td>
-            <td><%= journalist_request.user.created_at.strftime("%B %d, %Y") %></td>
-            <td><%= link_to 'Certificate', rails_blob_path(journalist_request.certificate, disposition: "attachment"), target: "_blank" %></td>
-            <td><%= journalist_request.user.strikes %></td>
-            <td style="display: flex;">
-              <%= button_to 'Approve', delete_journalist_request_path(id: journalist_request.id, accept: true), method: :delete, class: 'btn btn-success adminButtonActions', form_class: 'd-inline' %>
-              <%= button_to 'Reject', delete_journalist_request_path(id: journalist_request.id, accept: false), method: :delete, class: 'btn btn-danger adminButtonActions', form_class: 'd-inline' %>
-            </td>
+            <td colspan="6" class="text-center">No journalist requests found</td>
           </tr>
         <% end %>
       </tbody>
