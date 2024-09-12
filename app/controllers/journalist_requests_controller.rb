@@ -31,17 +31,20 @@ class JournalistRequestsController < ApplicationController
     @journalist_requests = JournalistRequest.all
   end
 
-  def approve
-    @journalist_request = JournalistRequest.find(params[:id])
-    @journalist_request.user.update(type: 'Journalist')
-    @journalist_request.destroy
-    redirect_to journalist_requests_path, notice: "Richiesta approvata."
+  def destroy
   end
 
-  def reject
+  def delete
     @journalist_request = JournalistRequest.find(params[:id])
+    if (params[:accept] == 'true')
+      @journalist_request.user.update(type: 'Journalist')
+    end
     @journalist_request.destroy
-    redirect_to journalist_requests_path, notice: "Richiesta rifiutata."
+    if (params[:accept] == 'true')
+      redirect_to admin_dashboard_user_path, notice: "Richiesta approvata."
+    else
+      redirect_to admin_dashboard_user_path, notice: "Richiesta rifiutata."
+    end
   end
 
   private

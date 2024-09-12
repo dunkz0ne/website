@@ -191,6 +191,7 @@
 
   <div class="container mt-5" id="releaseList">
     <h1 class="mb-4">Journalist Request</h1>
+
     <%= form_with url: admin_dashboard_user_path, method: :get, local: true, class: "mb-4" do |form| %>
       <div class="form-group d-flex align-items-center">
         <%= form.label :search_request, "Search Author:", class: "mr-2" %>
@@ -199,44 +200,34 @@
       </div>
     <% end %>
 
-    <%= form_with url: delete_articles_user_path, method: :post, local: true do |form| %>
-      <table class="table table-striped table-bordered mt-3">
-        <thead class="thead-dark">
+    <table class="table table-striped table-bordered mt-3">
+      <thead class="thead-dark">
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Joined</th>
+          <th>Certificate</th>
+          <th>Strikes</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @journalist_requests.each do |journalist_request| %>
           <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Joined</th>
-            <th>Certificate</th>
-            <th>Strikes</th>
-            <th>Actions</th>
+            <td><%= "#{journalist_request.user.name} #{journalist_request.created_at.strftime('%d/%m/%Y')}" %></td>
+            <td><%= journalist_request.user.email %></td>
+            <td><%= journalist_request.user.created_at.strftime("%B %d, %Y") %></td>
+            <td><%= link_to 'Certificate', rails_blob_path(journalist_request.certificate, disposition: "attachment"), target: "_blank" %></td>
+            <td><%= journalist_request.user.strikes %></td>
+            <td style="display: flex;">
+              <%= button_to 'Approve', delete_journalist_request_path(id: journalist_request.id, accept: true), method: :delete, class: 'btn btn-success adminButtonActions', form_class: 'd-inline' %>
+              <%= button_to 'Reject', delete_journalist_request_path(id: journalist_request.id, accept: false), method: :delete, class: 'btn btn-danger adminButtonActions', form_class: 'd-inline' %>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          <% @journalist_requests.each do |request| %>
-            <tr>
-              <td><%= "#{request.user.name} #{request.created_at.strftime('%d/%m/%Y')}" %></td>
-              <td><%= request.user.email%></td>
-              <td><%= User.find_by(email: request.user.email).created_at.strftime("%B %d, %Y") %></td>
-              <td><%= link_to 'Certificate', rails_blob_path(request.certificate, disposition: "attachment"), target: "_blank" %></td>
-              <td><%= request.user.strikes %></td>
-
-              <td style="display: flex;">
-                <%= form_with(url: approve_journalist_request_path(request), method: :post, local: true) do %>
-                  <%= submit_tag 'Approve', class: 'btn btn-success adminButtonActions' %>
-                <% end %>
-                <%= form_with(url: reject_journalist_request_path(request), method: :delete, local: true) do %>
-                  <%= submit_tag 'Reject', class: 'btn btn-danger adminButtonActions' %>
-                <% end %>
-
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% end %>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-
-
 
 <% else %>
 
