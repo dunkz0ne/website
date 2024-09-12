@@ -38,11 +38,8 @@ Given("I am logged in with Facebook") do
   # Visit the sign in path
   visit user_facebook_omniauth_callback_path
 
-  select(Team.first.name, from: 'user_team_id')
-
-  if page.has_button?('Complete Registration')
-    click_button('Complete Registration')
-  end
+  find('#selectedTeamId', visible: false).set('1')
+  click_button('Create User')
 
   visit user_dashboard_path
 
