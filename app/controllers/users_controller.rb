@@ -56,16 +56,14 @@ class UsersController < ApplicationController
       end
     end
 
-    if @user.id.to_i == session[:user_id].to_i
-      @saved = SaveComment.where(user_id: @user.id)
-      @saved_comments = Comment.where(id: @saved.pluck(:comment_id))
-      @saved_comments.each do |saved_comment|
-        saved_comment.article = Article.find(saved_comment.article_id)
-        saved_comment.user = User.find(saved_comment.user_id)
-      end
-      @saved = Save.where(user_id: session[:user_id])
-      @saved_articles = Article.where(id: @saved.pluck(:article_id))
+    @saved = SaveComment.where(user_id: @user.id)
+    @saved_comments = Comment.where(id: @saved.pluck(:comment_id))
+    @saved_comments.each do |saved_comment|
+      saved_comment.article = Article.find(saved_comment.article_id)
+      saved_comment.user = User.find(saved_comment.user_id)
     end
+    @saved = Save.where(user_id: @user.id)
+    @saved_articles = Article.where(id: @saved.pluck(:article_id))
 
   end
 
@@ -75,7 +73,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find_by(id: session[:user_id])
+    @user = User.find_by(id: current_user.id)
   end
 
   # POST /users or /users.json
@@ -117,7 +115,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
-    @user = User.find_by(id: session[:user_id])
+    @user = current_user
     respond_to do |format|
       if user_params[:photo].present?
         if @user.update(team_id: user_params[:team_id], bio: user_params[:bio], photo: user_params[:photo])
@@ -251,7 +249,7 @@ class UsersController < ApplicationController
   end
 
   def admin_dashboard
-    @user = User.find_by(id: session[:user_id])
+    @user = current_user
     @team = Team.find(@user.team_id)
     if @user.type == 'Admin'
 

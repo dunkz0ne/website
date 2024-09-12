@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def index
-    @user = User.find(session[:user_id])
+    @user = current_user
     @team = Team.find(@user.team_id)
 
     @articles = Article.where(team_id: @team.id, draft: false).order(created_at: :desc)
@@ -35,7 +35,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @team = Team.find(@article.team_id)
     @current_user_team = Team.find(current_user.team_id)
-    @is_saved = Save.where(user_id: session[:user_id], article_id: @article.id).first
+    @is_saved = Save.where(user_id: current_user.id, article_id: @article.id).first
 
     @comments = Comment.where(article_id: @article.id).order(created_at: :desc)
     @comments.each do |comment|
@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-    @user = User.find(session[:user_id])
+    @user = current_user
     @team = Team.find(@user.team_id)
   end
 
@@ -62,7 +62,7 @@ class ArticlesController < ApplicationController
 
 
   def edit
-    @user = User.find(session[:user_id])
+    @user = current_user
     @team = Team.find(@user.team_id)
 
   end
@@ -91,7 +91,7 @@ class ArticlesController < ApplicationController
   end
 
   def save
-    @user = User.find(session[:user_id]) if session[:user_id]
+    @user = current_user
     @article = Article.find(params[:id])
     @save = Save.new(user_id: @user.id, article_id: @article.id)
     @save.save
@@ -99,7 +99,7 @@ class ArticlesController < ApplicationController
   end
 
   def unsave
-    @user = User.find(session[:user_id]) if session[:user_id]
+    @user = current_user
     @article = Article.find(params[:id])
     @save = Save.where(user_id: @user.id, article_id: @article.id).first
     @save.destroy

@@ -55,7 +55,7 @@
                 </li>
                 <li class="nav-item">
                     <i class="nav-icon fa-solid fa-user"></i>
-                    <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>
+                    <%= active_link_to 'Profile', user_path(id: current_user.id), active: :exclusive, class: 'navElement' %>
                 </li>
                 </li>
             </ul>
@@ -64,7 +64,7 @@
     </nav>
   </div>
 
-	<% if (( @article.draft == true and @article.user_id == session[:user_id].to_i ) or ( @article.draft == false )) or Rails.env.test? %>
+	<% if (( @article.draft == true and @article.user_id == current_user.id.to_i ) or ( @article.draft == false )) or Rails.env.test? %>
 
 	<div class="container articleSectionContainer" style="background-color: <%= @team.color %>;">
 		<div class="row">
@@ -117,7 +117,7 @@
 												</div>
 											</div>
 										</div>
-										<% if @article.user.id == session[:user_id].to_i %>
+										<% if @article.user.id == current_user.id.to_i %>
 											<div class="row">
 												<div class="col">
 														<%= link_to 'Edit', edit_article_path(@article), class: "btn btn-light" %>
@@ -181,7 +181,7 @@
 							</div>
 						</div>
 					</div>
-				
+
 			</div>
 		</div>
 	</div>

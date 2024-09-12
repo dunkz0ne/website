@@ -9,7 +9,7 @@ RSpec.describe ArticlesController, type: :controller do
   before do
     allow(controller).to receive(:authenticate_user!).and_return(true)
     allow(controller).to receive(:current_user).and_return(user)
-    session[:user_id] = user.id
+    current_user.id = user.id
   end
 
   describe "GET #index" do
@@ -29,7 +29,7 @@ RSpec.describe ArticlesController, type: :controller do
   end
 
 
-  
+
 
   describe "PATCH/PUT #update" do
     it "updates the article and redirects to the show page" do
@@ -40,5 +40,5 @@ RSpec.describe ArticlesController, type: :controller do
     end
   end
 
-  
+
 end

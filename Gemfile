@@ -28,7 +28,6 @@ gem 'active_link_to' # For active links
 
 gem 'devise'
 gem 'omniauth-facebook'
-gem 'omniauth'
 gem 'omniauth-rails_csrf_protection'
 
 gem 'figaro'

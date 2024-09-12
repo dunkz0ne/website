@@ -1,0 +1,35 @@
+<h2 class="text-center my-4">Modifica Password</h2>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form-horizontal" }) do |f| %>
+
+        <!-- Password corrente -->
+        <div class="form-group my-3">
+          <%= f.label :current_password, "Password corrente", class: 'form-label' %>
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "Inserisci password corrente" %>
+        </div>
+
+        <!-- Nuova password -->
+        <div class="form-group my-3">
+          <%= f.label :password, "Nuova password", class: 'form-label' %>
+          <small class="text-muted">(lascia vuoto se non vuoi cambiarla)</small>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Inserisci nuova password" %>
+        </div>
+
+        <!-- Conferma nuova password -->
+        <div class="form-group my-3">
+          <%= f.label :password_confirmation, "Conferma nuova password", class: 'form-label' %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Conferma nuova password" %>
+        </div>
+
+        <!-- Pulsante aggiorna -->
+        <div class="form-group text-center my-4">
+          <%= f.submit "Aggiorna", class: "btn btn-primary w-100" %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

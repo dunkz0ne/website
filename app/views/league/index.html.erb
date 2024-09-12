@@ -44,13 +44,13 @@
                     if (row.getAttribute('data-conference') === selectedConference) {
                         row.style.display = 'flex';
                         row.querySelector('.indexContentText').textContent = relativeIndex;
-                        
+
                         if (relativeIndex <= 6) {
                             row.classList.add('first-six');
                         } else if (relativeIndex >= 7 && relativeIndex <= 10) {
                             row.classList.add('seven-to-ten');
                         }
-                        
+
                         relativeIndex++;
                     } else if (selectedConference === 'all') {
                         row.style.display = 'flex';
@@ -109,7 +109,7 @@
                     </li>
                     <li class="nav-item">
                         <i class="nav-icon fa-solid fa-user"></i>
-                        <%= active_link_to 'Profile', user_path(id: session[:user_id]), active: :exclusive, class: 'navElement' %>  
+                        <%= active_link_to 'Profile', user_path(id: current_user.id), active: :exclusive, class: 'navElement' %>
                     </li>
                     </li>
                 </ul>
@@ -144,7 +144,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                     <div class="row" style="min-width: 1275px; border-top: 2px solid white">

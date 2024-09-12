@@ -408,7 +408,6 @@ DEPENDENCIES
   figaro
   jbuilder (~> 2.7)
   listen (~> 3.3)
-  omniauth
   omniauth-facebook
   omniauth-rails_csrf_protection
   puma (~> 5.0)

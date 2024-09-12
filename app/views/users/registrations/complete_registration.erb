@@ -1,0 +1,27 @@
+<h2>Complete your registration</h2>
+
+<%= form_for @user, url: complete_registration_path do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bio %>
+    <%= f.text_area :bio %>
+  </div>
+
+  <div class="field">
+    <%= f.label :team_id %>
+    <%= f.collection_select :team_id, Team.all, :id, :name, prompt: "Select a team" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :photo %>
+    <%= f.file_field :photo %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Complete Registration" %>
+  </div>
+<% end %>

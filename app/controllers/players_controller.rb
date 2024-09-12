@@ -4,7 +4,7 @@ class PlayersController < ApplicationController
 
   def show
 
-    @user = User.find(session[:user_id]) if session[:user_id]
+    @user = current_user
     @current_user_team = Team.where(id: @user.team_id).first
 
     @player = params[:id]
