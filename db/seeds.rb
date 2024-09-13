@@ -258,14 +258,14 @@ team_manager_releases.each do |team_manager_releases|
 end
 
 # Journalist requests
-u = User.first();
-u1 = User.second();
+request1 = User.find_by(email: 'cristian@gmail.com')
+request2 = User.find_by(email: 'pietro@cf.com')
 
 certificate_path = Rails.root.join('db','Among-Us.pdf')
 
 if File.exist?(certificate_path)
   journalist_request = JournalistRequest.create!(
-    user: u,
+    user: request1,
     certificate: {
       io: File.open(certificate_path),
       filename: 'certificate.pdf',
@@ -278,7 +278,7 @@ end
 
 if File.exist?(certificate_path)
   journalist_request = JournalistRequest.create!(
-    user: u1,
+    user: request2,
     certificate: {
       io: File.open(certificate_path),
       filename: 'certificate.pdf',
@@ -288,3 +288,34 @@ if File.exist?(certificate_path)
 else
   puts "File certificate.pdf non trovato in db"
 end
+
+
+# Create an admin
+admin = Admin.create!(
+  name: 'Admin User',
+  email: 'admin@dunkzone.com',
+  provider: 'email',
+  team_id: 1,
+  password: 'adminpassword',
+  password_confirmation: 'adminpassword'
+)
+
+# Create a team manager
+team_manager = TeamManager.create!(
+  name: 'New Team Manager',
+  email: 'teammanager@example.com',
+  team_id: 1,
+  provider: 'email',
+  password: 'managerpassword',
+  password_confirmation: 'managerpassword'
+)
+
+# Create a journalist
+journalist = Journalist.create!(
+  name: 'New Journalist',
+  email: 'journalist@example.com',
+  team_id: 1,
+  provider: 'email',
+  password: 'journalistpassword',
+  password_confirmation: 'journalistpassword'
+)
