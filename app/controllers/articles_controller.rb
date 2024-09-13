@@ -68,7 +68,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-
     if article_params[:image].present?
       if @article.update(article_params)
         redirect_to @article, notice: 'Article was successfully updated.'

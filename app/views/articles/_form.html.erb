@@ -34,13 +34,15 @@
     </div>
   </div>
 
-  <div class="form-group" style="margin-bottom: 2vh;">
-    <%= form.label :draft, class: "form-label" %>
-    <%= form.check_box :draft, class: "form-check-input" %>
-    <div class="invalid-feedback">
-      Please provide the draft status.
+  <% if current_user.id == @article.user_id %>
+    <div class="form-group" style="margin-bottom: 2vh;">
+      <%= form.label :draft, class: "form-label" %>
+      <%= form.check_box :draft, class: "form-check-input" %>
+      <div class="invalid-feedback">
+        Please provide the draft status.
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="form-group" >
     <%= form.submit article.persisted? ? "Update Article" : "Create Article", class: "btn btn-primary" %>
