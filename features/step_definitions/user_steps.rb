@@ -1,10 +1,11 @@
 Given("I am on the home page") do
   visit root_path
-  click_button('Join Us')
+  click_button('Join us')
 end
 
 When('I click on Sign In with {string}') do |provider|
-  click_button('Sign In with '+ provider)
+  visit root_path
+  find('#'+provider.downcase+'Button').click
 
 end
 

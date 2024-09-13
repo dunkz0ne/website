@@ -58,16 +58,16 @@
                                             <div class="field">
                                                 <%= form.label :password %>
                                                 <div class="input-group">
-                                                    <%= form.password_field :password, id: "password", autocomplete: "off", class: "form-control", pattern: "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title: "Must contain at least one number, one uppercase and lowercase letter, and at least 8 or more characters" %>
-                                                    <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('password')">Show</button>
+                                                    <%= form.password_field :password, id: "user_password", autocomplete: "off", class: "form-control", pattern: "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title: "Must contain at least one number, one uppercase and lowercase letter, and at least 8 or more characters" %>
+                                                    <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('user_password')">Show</button>
                                                 </div>
                                             </div>
 
                                             <div class="field">
                                                 <%= form.label :password_confirmation %>
                                                 <div class="input-group">
-                                                    <%= form.password_field :password_confirmation, id: "password_confirmation", class: "form-control" %>
-                                                    <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('password_confirmation')">Show</button>
+                                                    <%= form.password_field :password_confirmation, id: "user_password_confirmation", class: "form-control" %>
+                                                    <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('user_password_confirmation')">Show</button>
                                                 </div>
                                             </div>
 
