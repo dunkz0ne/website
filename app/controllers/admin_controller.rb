@@ -23,7 +23,7 @@ class AdminController < ApplicationController
     # Ensure the current user is an admin
     def ensure_admin!
       unless current_user.type == 'Admin'
-        redirect_to root_path, alert: 'Non sei autorizzato ad accedere a questa pagina.'
+        redirect_to root_path, alert: 'You are not authorized to access this page.'
       end
     end
 

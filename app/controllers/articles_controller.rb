@@ -1,4 +1,3 @@
-# app/controllers/articles_controller.rb
 class ArticlesController < ApplicationController
 
   before_action :authenticate_user!
@@ -129,7 +128,7 @@ class ArticlesController < ApplicationController
   end
 
   def record_not_found
-    flash[:alert] = "L'articolo con ID #{params[:id]} non è stato trovato."
+    flash[:alert] = "The article with ID #{params[:id]} is not found."
     redirect_to articles_path
   end
 

@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   before_action :ensure_admin!, only: [:increment_strikes, :decrement_strikes]
   helper_method :banned?
 
-  #GET /users/1 or /users/1.json
   def show
     @user = User.find(params[:id])
     @team = Team.find(@user.team_id)
@@ -73,18 +72,13 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  # GET /users/1/edit
   def edit
     @user = User.find_by(id: current_user.id)
   end
 
-  # POST /users or /users.json
   def create
 
-    # Recupera le informazioni di autenticazione dalla sessione
     auth_info = session[:auth_info]
-
-    # Recupera il team selezionato
     team_id = user_params[:team_id]
     bio = user_params[:bio]
     photo = user_params[:photo]
@@ -95,11 +89,9 @@ class UsersController < ApplicationController
     end
 
     if auth_info[:provider] == 'email'
-      # Crea l'utente con le informazioni di autenticazione fornite tramite email
       @user = User.create(email: auth_info[:email], password: auth_info[:password], provider: 'email', name: auth_info[:name], team_id: team_id, bio: bio, photo: photo)
       session[:user_id] = @user.id
     else
-      # Crea l'utente con le informazioni di autenticazione fornite tramite oauth
       @user = User.find_or_create_from_omniauth(auth_info, team_id, bio, photo)
     end
 
@@ -115,7 +107,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1 or /users/1.json
   def update
     @user = current_user
     respond_to do |format|
@@ -142,7 +133,6 @@ class UsersController < ApplicationController
   def destroy
   end
 
-  # DELETE /users/1 or /users/1.json
   def delete
     @user = User.find(params[:id])
     @user.destroy
@@ -155,25 +145,25 @@ class UsersController < ApplicationController
     render json: { valid: team_exists }
   end
 
-  def become_journalist
-    current_user.become_journalist!
-    redirect_to root_path, notice: 'You are now a journalist.'
-  end
+  # def become_journalist
+  #   current_user.become_journalist!
+  #   redirect_to root_path, notice: 'You are now a journalist.'
+  # end
 
-  def become_team_manager
-    current_user.become_team_manager!
-    redirect_to root_path, notice: 'You are now a team manager.'
-  end
+  # def become_team_manager
+  #   current_user.become_team_manager!
+  #   redirect_to root_path, notice: 'You are now a team manager.'
+  # end
 
-  def become_admin
-    current_user.become_admin!
-    redirect_to root_path, notice: 'You are now an admin.'
-  end
+  # def become_admin
+  #   current_user.become_admin!
+  #   redirect_to root_path, notice: 'You are now an admin.'
+  # end
 
-  def become_team_manager
-    current_user.become_team_manager!
-    redirect_to root_path, notice: 'You are now a team manager.'
-  end
+  # def become_team_manager
+  #   current_user.become_team_manager!
+  #   redirect_to root_path, notice: 'You are now a team manager.'
+  # end
 
   # Method to increment the strikes of a user
   def increment_strikes

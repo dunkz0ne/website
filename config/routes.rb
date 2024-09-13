@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  # Definiamo la rotta personalizzata per la registrazione incompleta all'interno dello scope di devise
   devise_scope :user do
     get 'complete_registration', to: 'users/registrations#complete_registration', as: :complete_registration
     post 'complete_registration', to: 'users/registrations#finish_registration'

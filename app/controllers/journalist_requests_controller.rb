@@ -1,4 +1,3 @@
-# app/controllers/journalist_requests_controller.rb
 class JournalistRequestsController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin!, only: [:index, :approve, :reject]

@@ -1,17 +1,17 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
+  # Update the user's password
   def update
     successfully_updated = update_resource(resource, account_update_params)
     if successfully_updated
       sign_out(resource)
-      redirect_to root_path, notice: 'La tua password è stata cambiata. Per favore, effettua nuovamente l\'accesso.'
+      redirect_to root_path, notice: 'Your password has been updated. Please sign in again.'
     else
       render "edit"
     end
   end
 
-  require 'open-uri'
-
+  # Complete the registration
   def complete_registration
     facebook_data = session["devise.facebook_data"]
     google_data = session["devise.google_data"]
@@ -40,8 +40,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-
-
+  # Finish the registration after the form is submitted
   def finish_registration
     facebook_data = session["devise.facebook_data"]
     google_data = session["devise.google_data"]
@@ -60,15 +59,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
     bio = user_params[:bio]
     photo = user_params[:photo]
 
-    # Crea o trova l'utente dall'informazione OAuth
+    # Create the user with the OAuth data
     @user = User.find_or_create_from_omniauth(auth_info, team_id, bio, photo)
 
     if @user.persisted?
-      # Se l'utente è stato salvato correttamente, effettua il login e termina l'azione
+      # If the user is saved, sign in and redirect
       sign_in_and_redirect @user, event: :authentication and return
     else
-      # Se l'utente non è stato salvato, mostra il form di registrazione
-      render :complete_registration
+      # If the user is not saved, render the form again
+      redirect_to complete_registration_path, alert: 'Error during registration'
     end
   end
 
