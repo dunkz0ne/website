@@ -87,7 +87,11 @@ class ArticlesController < ApplicationController
   def delete
     @article = Article.find(params[:id])
     @article.destroy
-    redirect_to articles_url, notice: 'Article was successfully destroyed.'
+    if params[:admin] == 'true'
+      redirect_to admin_dashboard_user_path, notice: 'Article was successfully destroyed.'
+    else
+      redirect_to articles_url, notice: 'Article was successfully destroyed.'
+    end
   end
 
   def save
@@ -109,7 +113,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :draft, :image)
+    params.require(:article).permit(:title, :content, :draft, :image, :admin)
   end
 
   def authorize_journalist
