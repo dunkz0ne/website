@@ -1,6 +1,20 @@
 <div id="landingPage" >
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px white;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: black;
+        }
+    </style>
     <div id="landingPageSection" class="container">
-        <div class="row" style="padding-top: 10vh;">
+        <div class="row">
             <div class="col" style="text-align: center;">
                 <%= image_tag('logo.png', id: 'imageLogoLanding') %>
             </div>
@@ -12,26 +26,33 @@
         </div>
         <div class="row">
             <div class="col" style="display: flex; justify-content:center;">
-                <%= button_to 'Join Us', new_user_session_path, method: :get, class: 'buttonLanding', id: 'joinUsButton', style: 'cursor: pointer;' %>
+                <%= button_to 'Join us', new_user_registration_path, method: :get, class: 'buttonLanding', id: 'joinUsButton', style: 'cursor: pointer;' %>
             </div>
         </div>
         <div class="row">
-            <div class="col" style="display: flex; justify-content:center;">
-                <%= form_tag('/users/auth/facebook', method: 'post', class: 'my-3') do %>
-                    <button class="buttonLanding" style="width: 38vh; margin-top:3vh">
-                        Sign in with Facebook!
-                    </button>
-                <% end %>
+            <div class="col" style="display: flex; justify-content:center;margin-top: 2vh">
+                <%= button_to 'Sign in', new_user_session_path, method: :get, class: 'buttonLanding', id: 'joinUsButton', style: 'cursor: pointer;' %>
             </div>
         </div>
+        <div class="row" style="border-bottom: 2px solid; margin: 0 auto; width:30vh">
+            <div class="col" style="display: flex; justify-content:center;margin-top: 3vh"></div>
+        </div>
         <div class="row">
-            <div class="col" style="display: flex; justify-content:center;">
-                <%= form_tag('/users/auth/google_oauth2', method: 'post', class: 'my-3') do %>
-                    <button class="buttonLanding" style="width: 38vh; margin-top:3vh">
-                        Sign in with Google!
+            <div class="col" style="text-align: right;">
+                <%= form_tag('/users/auth/facebook', method: 'post') do %>
+                    <button id="facebookButton" class="buttonLanding" style="width: 10vh; margin-top:3vh">
+                        <i class="fa-brands fa-facebook"></i>
                     </button>
                 <% end %>
             </div>
+            <div class="col" style="text-align: left;">
+                <%= form_tag('/users/auth/google_oauth2', method: 'post') do %>
+                    <button id="googleButton" class="buttonLanding" style="width: 10vh; margin-top:3vh">
+                        <i class="fa-brands fa-google"></i>
+                    </button>
+                <% end %>
+            </div>
+            <h3 class="text-center my-4" style="color: black;">CIAO BELLI</h3>
         </div>
     </div>
 
@@ -69,4 +90,3 @@
     }
 </style>
 
-<h2 class="text-center my-4">CIAO BELLI</h2>

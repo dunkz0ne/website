@@ -1,70 +1,139 @@
-<h2 class="text-center my-4">CIAO BELLI</h2>
+<div id="signInPage" style="background-color: black;padding-top: 8vh;padding-bottom: 20vh;">
+    <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-sm-8 text-center">
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px white;
+        }
 
-      <% if notice.present? %>
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-          <%= notice %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        ::-webkit-scrollbar-thumb {
+            background-color: black;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="content landingTitle" style="text-align: left;margin-left: 4vh;padding-bottom: 3vh;">
+                    J<span style="color: orange;">o</span>in the <span style="color: red;">z</span><span style="color: blue;">o</span>ne
+                </div>
+            </div>
         </div>
-      <% end %>
+        <div class="row">
+            <div class="col">
+                <div class="container" style="background: #2B2B2B; border-radius:40px; padding: 4vh">
+                        <div class="row">
+                            <div class="col">
+                                <% if notice.present? %>
+                                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                    <%= notice %>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <% end %>
 
-      <% if flash[:alert].present? %>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <%= flash[:alert] %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <% if flash[:alert].present? %>
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <%= flash[:alert] %>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <% end %>
+                                <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { method: :post, onsubmit: "return validateForm()" })  do |form| %>
+                                    <div class="content">
+                                        <div class="form-group">
+                                            <%= form.label :email, class: 'form-label' %>
+                                            <%= form.email_field :email, autofocus: true, class: 'form-control form-control-lg', aria: { describedby: 'emailHelp' }, id: 'email' %>
+                                        </div>
+
+                                        <div class="form-group my-3">
+                                            <%= form.label :password, class: 'form-label' %>
+                                            <div class="input-group">
+                                                <%= form.password_field :password, id: "password", autocomplete: "off", class: 'form-control form-control-lg' %>
+                                                <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('password')">Show</button>
+                                            </div>
+                                        </div>
+
+                                        <% if devise_mapping.rememberable? %>
+                                            <div class="form-check my-3 text-start">
+                                                <%= form.check_box :remember_me, class: 'form-check-input', id: 'rememberMeCheck' %>
+                                                <%= form.label :remember_me, class: 'form-check-label', for: 'rememberMeCheck' %>
+                                            </div>
+                                        <% end %>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="actions contnet" style="text-align: right;">
+                                        <%= form.submit "Sign In", class: 'btn btn-primary btn-lg w-100', aria: { label: "Sign In" } %>
+                                    </div>
+                                <% end %>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col" style="text-align: center; margin-top:2vh;">
+                                OR
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <a class="btn btn-success btn-lg w-100 my-4" href="sign_up" role="button">
+                                    <i class="fas fa-user-plus"></i> Sign Up
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <%= form_tag('/users/auth/facebook', method: 'post') do %>
+                                    <button class="btn btn-primary btn-lg w-100" type="submit" aria-label="Sign in with Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                    </button>
+                                <% end %>
+                            </div>
+                            <div class="col">
+                                <%= form_tag('/users/auth/google_oauth2', method: 'post') do %>
+                                    <button class="btn btn-danger btn-lg w-100" type="submit" aria-label="Sign in with Google">
+                                    <i class="fab fa-google"></i>
+                                    </button>
+                                <% end %>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col content" style="text-align: center; display:flex; align-items:center; justify-content:end">
+                <%= image_tag('logo.png', id: 'imageTeam', style: "width:35rem") %>
+            </div>
         </div>
-      <% end %>
-
-      <!-- Facebook Login Button -->
-      <%= form_tag('/users/auth/facebook', method: 'post', class: 'my-3') do %>
-        <button class="btn btn-primary btn-lg w-100" type="submit" aria-label="Sign in with Facebook">
-          <i class="fab fa-facebook-f"></i> Sign In with Facebook
-        </button>
-      <% end %>
-
-      <!-- Google Login Button -->
-      <%= form_tag('/users/auth/google_oauth2', method: 'post', class: 'my-3') do %>
-        <button class="btn btn-primary btn-lg w-100" type="submit" aria-label="Sign in with Google">
-          <i class="fab fa-google"></i> Sign In with Google
-        </button>
-      <% end %>
-
-      <!-- Sign In Form -->
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { method: :post }) do |f| %>
-        <div class="form-group my-3">
-          <%= f.label :email, class: 'form-label' %>
-          <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg', aria: { describedby: 'emailHelp' } %>
-        </div>
-
-        <div class="form-group my-3">
-          <%= f.label :password, class: 'form-label' %>
-          <%= f.password_field :password, autocomplete: "off", class: 'form-control form-control-lg' %>
-        </div>
-
-        <% if devise_mapping.rememberable? %>
-          <div class="form-check my-3 text-start">
-            <%= f.check_box :remember_me, class: 'form-check-input', id: 'rememberMeCheck' %>
-            <%= f.label :remember_me, class: 'form-check-label', for: 'rememberMeCheck' %>
-          </div>
-        <% end %>
-
-        <div class="form-group my-3">
-          <%= f.submit "Sign In", class: 'btn btn-primary btn-lg w-100', aria: { label: "Sign In" } %>
-        </div>
-      <% end %>
-
-      <!-- Sign Up Button -->
-      <a class="btn btn-success btn-lg w-100 my-4" href="sign_up" role="button">
-        <i class="fas fa-user-plus"></i> Sign Up
-      </a>
-
-      <!-- Sign Out Button -->
-      <% if user_signed_in? %>
-        <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-lg w-100 my-3', aria: { label: 'Sign Out' } %>
-      <% end %>
     </div>
-  </div>
 </div>
+
+
+
+<script>
+
+    function togglePasswordVisibility(fieldId) {
+        var field = document.getElementById(fieldId);
+        var button = field.nextElementSibling;
+        if (field.type === "password") {
+            field.type = "text";
+            button.textContent = "Hide";
+        } else {
+            field.type = "password";
+            button.textContent = "Show";
+        }
+    }
+
+    function validateForm() {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        if (!email || !password) {
+            alert('Please fill out both email and password fields.');
+            return false;
+        }
+
+        return true;
+    }
+
+
+</script>

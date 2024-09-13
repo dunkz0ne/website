@@ -13,7 +13,7 @@
 
 #landingPage{
     background-color: black;
-    padding-bottom: 10vh;
+    padding-bottom: 2vh;
 }
 
 #teamSelectorButton{
@@ -41,6 +41,24 @@
     width: 20vh;
     text-align: center;
     border: 2px solid;
+}
+
+.buttonLanding:hover{
+    background-color: white;
+    color: black;
+    transition: background-color 0.3s ease, color 0.3s ease; // Ensure transition is also on hover
+}
+
+#googleButton:hover{
+    background-color: #EA4335;
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease; // Ensure transition is also on hover
+}
+
+#facebookButton:hover{
+    background-color: #4267B2;
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease; // Ensure transition is also on hover
 }
 
 .navItems{

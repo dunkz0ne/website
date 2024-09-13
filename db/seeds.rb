@@ -84,71 +84,251 @@ journalists_articles = [
   {
     journalist: 'Andrea De Luca',
     articles: [
-      { title: 'La rinascita degli Atlanta Hawks', content: 'Gli Atlanta Hawks stanno mostrando un grande potenziale nella stagione attuale. Esploriamo le chiavi del loro successo.', draft: true },
-      { title: 'Trae Young: Il leader degli Hawks', content: 'Una panoramica sull\'influenza di Trae Young nel gioco degli Hawks e il suo impatto sulla squadra.', draft: false }
+      { title: 'La rinascita degli Atlanta Hawks', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: true },
+      { title: 'Trae Young: Il leader degli Hawks', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false }
     ]
   },
   {
     journalist: 'Valentina Mariani',
     articles: [
-      { title: 'Il ritorno dei Boston Celtics', content: 'Un\'analisi su come i Celtics stanno cercando di tornare tra le squadre top della NBA.', draft: false },
-      { title: 'Jayson Tatum: Una stella nascente', content: 'Esploriamo la crescita e l\'impatto di Jayson Tatum sui Boston Celtics.', draft: false }
+      { title: 'Il ritorno dei Boston Celtics', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia..', draft: false },
+      { title: 'Jayson Tatum: Una stella nascente', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false }
     ]
   },
   {
     journalist: 'Roberto Conti',
     articles: [
-      { title: 'Brooklyn Nets: Una potenza in crescita', content: 'Con stelle come Kevin Durant e Kyrie Irving, i Nets stanno costruendo una squadra formidabile.', draft: false },
-      { title: 'La strategia offensiva dei Nets', content: 'Come i Brooklyn Nets stanno dominando con il loro gioco offensivo.', draft: false }
+      { title: 'Brooklyn Nets: Una potenza in crescita', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false },
+      { title: 'La strategia offensiva dei Nets', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false }
     ]
   },
   {
     journalist: 'Chiara Galli',
     articles: [
-      { title: 'La metamorfosi dei Charlotte Hornets', content: 'Un\'analisi delle recenti modifiche e del progresso dei Charlotte Hornets.', draft: false },
-      { title: 'LaMelo Ball: Il futuro degli Hornets', content: 'Il giovane LaMelo Ball sta emergendo come una delle stelle del futuro per Charlotte.', draft: false }
+      { title: 'La metamorfosi dei Charlotte Hornets', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false },
+      { title: 'LaMelo Ball: Il futuro degli Hornets', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false }
     ]
   },
   {
     journalist: 'Matteo Ricci',
     articles: [
-      { title: 'Chicago Bulls: Ritorno alla gloria?', content: 'Un\'analisi dei Chicago Bulls e delle loro possibilità di ritornare ai vertici.', draft: false },
-      { title: 'La crescita di Zach LaVine', content: 'Esploriamo il ruolo chiave di Zach LaVine e la sua crescita come giocatore.', draft: false }
+      { title: 'Chicago Bulls: Ritorno alla gloria?', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false },
+      { title: 'La crescita di Zach LaVine', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false }
     ]
   },
   {
     journalist: 'Laura Lombardi',
     articles: [
-      { title: 'Cleveland Cavaliers: Una nuova era', content: 'Con giovani talenti e nuove strategie, i Cavaliers stanno cercando di costruire una nuova era di successo.', draft: false },
-      { title: 'Il contributo di Darius Garland', content: 'Darius Garland sta emergendo come uno dei giocatori chiave per i Cleveland Cavaliers.', draft: false }
+      { title: 'Cleveland Cavaliers: Una nuova era', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false },
+      { title: 'Il contributo di Darius Garland', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false }
     ]
   },
   {
     journalist: 'Stefano Ferrari',
     articles: [
-      { title: 'Dallas Mavericks: Luka Dončić e il suo impatto', content: 'L\'incredibile impatto di Luka Dončić sui Dallas Mavericks e le loro prospettive future.', draft: false },
-      { title: 'Strategie difensive dei Mavericks', content: 'Un\'analisi di come i Mavericks stanno migliorando la loro difesa.', draft: false }
+      { title: 'Dallas Mavericks: Luka Dončić e il suo impatto', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false },
+      { title: 'Strategie difensive dei Mavericks', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false }
     ]
   },
   {
     journalist: 'Francesca Greco',
     articles: [
-      { title: 'Denver Nuggets: La forza del collettivo', content: 'Esploriamo come i Nuggets stiano costruendo una squadra forte grazie al gioco di squadra.', draft: false },
-      { title: 'Nikola Jokić: Il pilastro dei Nuggets', content: 'L\'importanza di Nikola Jokić per i Denver Nuggets e il suo ruolo di leader.', draft: false }
+      { title: 'Denver Nuggets: La forza del collettivo', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false },
+      { title: 'Nikola Jokić: Il pilastro dei Nuggets', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia..', draft: false }
     ]
   },
   {
     journalist: 'Paolo Rinaldi',
     articles: [
-      { title: 'Detroit Pistons: Costruire per il futuro', content: 'I Pistons stanno cercando di costruire una squadra per il futuro con giovani talenti promettenti.', draft: false },
-      { title: 'Il ruolo di Cade Cunningham', content: 'Cade Cunningham sta emergendo come un giocatore chiave per il futuro dei Pistons.', draft: false }
+      { title: 'Detroit Pistons: Costruire per il futuro', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false },
+      { title: 'Il ruolo di Cade Cunningham', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false }
     ]
   },
   {
     journalist: 'Silvia Russo',
     articles: [
-      { title: 'Golden State Warriors: Un ritorno dominante', content: 'I Warriors stanno ritornando al loro livello di gioco dominante. Analizziamo i motivi.', draft: false },
-      { title: 'Steph Curry: Il cuore dei Warriors', content: 'Steph Curry continua a essere il fulcro dell\'offensiva dei Warriors con prestazioni straordinarie.', draft: false }
+      { title: 'Golden State Warriors: Un ritorno dominante', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false },
+      { title: 'Steph Curry: Il cuore dei Warriors', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.', draft: false }
     ]
   }
 ]
@@ -157,71 +337,251 @@ team_manager_releases = [
   {
     team_manager: 'Giovanni Bernardi',
     releases: [
-      { title: 'Aggiornamenti sugli Atlanta Hawks', content: 'Gli Atlanta Hawks annunciano i nuovi sviluppi della squadra, inclusi gli infortuni e le ultime strategie.' },
-      { title: 'Atlanta Hawks: Piani per la Stagione', content: 'Una dichiarazione sui piani futuri degli Atlanta Hawks e gli obiettivi per la stagione in corso.' }
+      { title: 'Aggiornamenti sugli Atlanta Hawks', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' },
+      { title: 'Atlanta Hawks: Piani per la Stagione', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' }
     ]
   },
   {
     team_manager: 'Federica Romano',
     releases: [
-      { title: 'Novità dai Boston Celtics', content: 'I Boston Celtics rilasciano un comunicato sui cambiamenti nel roster e le nuove acquisizioni.' },
-      { title: 'Piano di Rinnovamento dei Celtics', content: 'Discussione sul piano di rinnovamento della squadra per migliorare le prestazioni in campo.' }
+      { title: 'Novità dai Boston Celtics', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' },
+      { title: 'Piano di Rinnovamento dei Celtics', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' }
     ]
   },
   {
     team_manager: 'Luigi Conti',
     releases: [
-      { title: 'Brooklyn Nets: Stato della Squadra', content: 'Un aggiornamento sulla condizione attuale della squadra e dei giocatori dei Brooklyn Nets.' },
-      { title: 'Nuove Strategie dei Nets', content: 'Il management dei Nets discute le nuove strategie implementate per migliorare il gioco.' }
+      { title: 'Brooklyn Nets: Stato della Squadra', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' },
+      { title: 'Nuove Strategie dei Nets', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' }
     ]
   },
   {
     team_manager: 'Elisa Marchetti',
     releases: [
-      { title: 'Charlotte Hornets: Comunicato Ufficiale', content: 'Dichiarazione ufficiale dei Charlotte Hornets su recenti sviluppi e iniziative della squadra.' },
-      { title: 'Hornets: Focus sullo Sviluppo Giovanile', content: 'La squadra evidenzia il loro impegno nel sviluppo dei giovani talenti.' }
+      { title: 'Charlotte Hornets: Comunicato Ufficiale', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' },
+      { title: 'Hornets: Focus sullo Sviluppo Giovanile', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' }
     ]
   },
   {
     team_manager: 'Marco Esposito',
     releases: [
-      { title: 'Chicago Bulls: Comunicato Stampa', content: 'I Chicago Bulls discutono i loro piani per la stagione e le nuove strategie.' },
-      { title: 'Focus sui Nuovi Acquisti dei Bulls', content: 'Presentazione dei nuovi giocatori acquisiti dai Bulls e il loro potenziale impatto.' }
+      { title: 'Chicago Bulls: Comunicato Stampa', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' },
+      { title: 'Focus sui Nuovi Acquisti dei Bulls', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' }
     ]
   },
   {
     team_manager: 'Sabrina Ricci',
     releases: [
-      { title: 'Cleveland Cavaliers: Notizie dal Front Office', content: 'Aggiornamenti dal front office dei Cavaliers riguardo le condizioni della squadra e dei giocatori.' },
-      { title: 'Cavaliers: Strategia di Costruzione per il Futuro', content: 'La squadra discute le loro strategie per costruire un futuro solido e competitivo.' }
+      { title: 'Cleveland Cavaliers: Notizie dal Front Office', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' },
+      { title: 'Cavaliers: Strategia di Costruzione per il Futuro', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' }
     ]
   },
   {
     team_manager: 'Matteo Bianchi',
     releases: [
-      { title: 'Dallas Mavericks: Comunicato Stampa', content: 'Il management dei Mavericks annuncia gli ultimi aggiornamenti e le strategie per la stagione.' },
-      { title: 'Luka Dončić e il Futuro dei Mavericks', content: 'Discussione sull\'importanza di Luka Dončić per il futuro della squadra.' }
+      { title: 'Dallas Mavericks: Comunicato Stampa', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia..' },
+      { title: 'Luka Dončić e il Futuro dei Mavericks', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' }
     ]
   },
   {
     team_manager: 'Alice Neri',
     releases: [
-      { title: 'Denver Nuggets: Aggiornamenti Ufficiali', content: 'Dichiarazione ufficiale sui recenti sviluppi nella squadra dei Nuggets.' },
-      { title: 'Nikola Jokić: La Star dei Nuggets', content: 'Il management parla dell\'importanza di Nikola Jokić e della sua leadership nella squadra.' }
+      { title: 'Denver Nuggets: Aggiornamenti Ufficiali', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia..' },
+      { title: 'Nikola Jokić: La Star dei Nuggets', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' }
     ]
   },
   {
     team_manager: 'Paolo Moretti',
     releases: [
-      { title: 'Detroit Pistons: Comunicato dal Front Office', content: 'Il front office dei Pistons discute le recenti mosse e le prospettive future.' },
-      { title: 'Pistons: Strategie di Ricostruzione', content: 'Discussione sui piani di ricostruzione e le prospettive per il futuro della squadra.' }
+      { title: 'Detroit Pistons: Comunicato dal Front Office', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia..' },
+      { title: 'Pistons: Strategie di Ricostruzione', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' }
     ]
   },
   {
     team_manager: 'Sara Lombardi',
     releases: [
-      { title: 'Golden State Warriors: Dichiarazione Ufficiale', content: 'Dichiarazione ufficiale sui recenti successi e sfide per i Golden State Warriors.' },
-      { title: 'Strategie Future dei Warriors', content: 'Discussione sulle strategie future della squadra per mantenere il loro successo.' }
+      { title: 'Golden State Warriors: Dichiarazione Ufficiale', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' },
+      { title: 'Strategie Future dei Warriors', content: 'Ad excepteur irure sit magna aliqua pariatur magna deserunt velit dolore amet. Irure irure aliqua do reprehenderit eiusmod culpa ipsum duis aliquip reprehenderit. Sunt labore nisi dolore aliquip fugiat quis enim aliquip et consequat id nisi.
+Est tempor tempor nostrud occaecat velit veniam elit sunt quis amet aliquip sint aute. Nostrud nostrud pariatur ea mollit id voluptate pariatur irure fugiat qui labore enim. Laboris qui adipisicing et ad officia in velit sunt. Anim irure consectetur nulla incididunt enim ut.
+
+Deserunt non laborum id esse consequat. Qui minim sint id cupidatat magna excepteur enim incididunt amet excepteur adipisicing irure. Ea duis cupidatat ipsum fugiat sit. Ad ut deserunt mollit ut. Ad duis minim laborum aute. Consectetur nostrud officia in non ipsum eiusmod aliquip laborum culpa magna minim. Voluptate aliquip exercitation cupidatat sit quis culpa velit.
+
+Ea ullamco labore aliquip officia voluptate laboris officia ut ad in Lorem quis qui veniam. Incididunt amet minim labore ad eiusmod deserunt ea aute excepteur non nisi labore. Cillum sint nulla aute veniam occaecat cupidatat ea pariatur magna sint nisi. Velit nisi ut minim dolore anim nostrud proident.
+
+Non elit voluptate fugiat enim officia qui. Excepteur esse sit fugiat mollit laborum incididunt cillum. Cupidatat voluptate eiusmod exercitation tempor deserunt adipisicing occaecat ut aliquip.
+
+Labore tempor nulla laboris elit incididunt laboris amet eiusmod. Culpa ullamco incididunt est eiusmod amet ex quis eu. Aliqua nisi anim veniam nostrud sit sunt esse duis. Irure mollit veniam id qui labore laboris ex. Incididunt tempor officia id et Lorem cillum nisi et nulla dolore. Velit exercitation adipisicing minim aliqua amet officia Lorem elit quis cupidatat laborum nisi consectetur. Ipsum do deserunt dolor excepteur do commodo deserunt cupidatat excepteur tempor velit officia.' }
     ]
   }
 ]
