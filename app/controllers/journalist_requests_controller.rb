@@ -6,6 +6,7 @@ class JournalistRequestsController < ApplicationController
   def new
     if not current_user.type?
       @journalist_request = JournalistRequest.new
+      @team = Team.find_by(id: current_user.team_id)
     else
       redirect_to user_dashboard_path, notice: "Non puoi fare richieste da giornalista."
     end

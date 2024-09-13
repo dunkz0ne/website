@@ -1,0 +1,25 @@
+<%= form_with model: @journalist_request, local: true do |form| %>
+  <% if @journalist_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@journalist_request.errors.count, "errore") %> proibisce questa richiesta:</h2>
+      <ul>
+        <% @journalist_request.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :certificate , class: "form-label"%>
+    <%= form.file_field :certificate , class: "form-control"%>
+    <div class="invalid-feedback">
+      Please provide the content.
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Invia Richiesta" %>
+  </div>
+
+<% end %>
