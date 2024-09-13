@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user
-  protect_from_forgery with: :exception
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  protect_from_forgery with: :exception # Prevent CSRF attacks by raising an exception.
+  before_action :configure_permitted_parameters, if: :devise_controller? # Devise strong parameters
+
+  def after_sign_out_path_for(resource_or_scope)
+    root_path # Redirect to root path after sign out
+  end
 
   def after_sign_in_path_for(user)
     user_dashboard_path # Redirect on user dashboard
