@@ -46,13 +46,17 @@
             </div>
         </nav>
   </div>
-  <div class="container">
+  <div class="container" style="text-align: center;">
       <div class="row">
           <div class="col">
+              <%if JournalistRequest.find_by(user_id: current_user.id).nil?%>
               <div class="articleForm">
                   <h1>Become a journalist</h1>
                   <%= render 'form', journalist_request: @journalist_request %>
               </div>
+              <%else%>
+                  <h2>Your request has been already submitted</h2>
+              <%end%>
           </div>
       </div>
   </div>
