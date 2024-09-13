@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     post 'complete_registration', to: 'users/registrations#finish_registration'
   end
 
-  resources :users, only: [:show]
   resources :teams
   resources :players
   resources :matches
@@ -52,7 +51,7 @@ Rails.application.routes.draw do
     member do
       get :increment_strikes
       get :decrement_strikes
-      post :delete
+      get 'delete'
       post :ban_users
       get :unban
       post :delete_articles

@@ -24,6 +24,8 @@ class User < ApplicationRecord
   has_many :banned_users, foreign_key: :user_email, primary_key: :email
   has_many :banned_users_as_admin, class_name: 'BannedUser', foreign_key: 'admin_id'
 
+  before_destroy :purge_photo
+
   # Set the inheritance column to type
   self.inheritance_column = :type
 
@@ -91,4 +93,9 @@ class User < ApplicationRecord
     self.update(type: 'Admin')
   end
 
+  private
+
+  def purge_photo
+    photo.purge_later if photo.attached?
+  end
 end
