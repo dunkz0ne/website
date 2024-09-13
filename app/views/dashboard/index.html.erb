@@ -135,19 +135,25 @@
                                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                             </div>
                                                                             <div class="modal-body">
-                                                                                <% @drafts.each do |draft| %>
+                                                                                <% if @drafts.length==0 %>
                                                                                     <div class="row" style="justify-content: center; align-items:center;">
-                                                                                        <div class="col-8">
-                                                                                            <h5><%= draft.title %></h5>
-                                                                                            <p><%= draft.content %></p>
-                                                                                        </div>
-                                                                                        <div class="col-4" style="text-align: center;">
-                                                                                            <%= link_to 'Edit', edit_article_path(draft), class: "btn btn-light" %>
-                                                                                            <%= link_to 'X', delete_article_path(draft), data: { confirm: 'Are you sure?' }, class: "btn btn-light" %>
-                                                                                        </div>
+                                                                                        <h5>You have not created any drafts yet</h5>
                                                                                     </div>
-                                                                                    <hr>
-                                                                                <% end %>
+                                                                                <%else%>
+                                                                                    <% @drafts.each do |draft| %>
+                                                                                        <div class="row" style="justify-content: center; align-items:center;">
+                                                                                            <div class="col-8">
+                                                                                                <h5><%= draft.title %></h5>
+                                                                                                <p><%= draft.content %></p>
+                                                                                            </div>
+                                                                                            <div class="col-4" style="text-align: center;">
+                                                                                                <%= link_to 'Edit', edit_article_path(draft), class: "btn btn-light" %>
+                                                                                                <%= link_to 'X', delete_article_path(draft), data: { confirm: 'Are you sure?' }, class: "btn btn-light" %>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <hr>
+                                                                                    <% end %>
+                                                                                <%end%>
                                                                             </div>
 
                                                                         </div>
