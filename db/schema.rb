@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_09_13_195733) do
+ActiveRecord::Schema.define(version: 2024_09_11_184956) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2024_09_13_195733) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+    t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2024_09_13_195733) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_journalist_requests_on_user_id", unique: true
+    t.index ["user_id"], name: "index_journalist_requests_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -157,16 +157,16 @@ ActiveRecord::Schema.define(version: 2024_09_13_195733) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "articles", "teams"
-  add_foreign_key "articles", "users", on_delete: :cascade
-  add_foreign_key "banned_users", "users", column: "admin_id", on_delete: :cascade
-  add_foreign_key "comments", "articles", on_delete: :cascade
-  add_foreign_key "comments", "users", on_delete: :cascade
-  add_foreign_key "journalist_requests", "users", on_delete: :cascade
+  add_foreign_key "articles", "users"
+  add_foreign_key "banned_users", "users", column: "admin_id"
+  add_foreign_key "comments", "articles"
+  add_foreign_key "comments", "users"
+  add_foreign_key "journalist_requests", "users"
   add_foreign_key "releases", "teams"
-  add_foreign_key "releases", "users", on_delete: :cascade
+  add_foreign_key "releases", "users"
   add_foreign_key "save_comments", "comments"
-  add_foreign_key "save_comments", "users", on_delete: :cascade
+  add_foreign_key "save_comments", "users"
   add_foreign_key "saves", "articles"
-  add_foreign_key "saves", "users", on_delete: :cascade
+  add_foreign_key "saves", "users"
   add_foreign_key "users", "teams"
 end
