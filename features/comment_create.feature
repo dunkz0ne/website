@@ -1,7 +1,7 @@
 Feature: User create a comment, like and save it
 
   Scenario: User logged create a comment, like and save it
-    Given I am logged in with "facebook"
+    Given I am logged in with "Facebook"
     And I am on article page
     When I submit the comment form
     Then I should view the comment
