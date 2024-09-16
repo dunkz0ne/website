@@ -41,14 +41,16 @@ class User < ApplicationRecord
 
   # Find or create a user with the given omniauth data
   def self.find_or_create_from_omniauth(auth_info, team_id, bio, photo)
-    where(email: auth_info.dig("info", "email")).first_or_create do |user|
-      user.provider = auth_info["provider"]
-      user.id = auth_info["uid"]
-      user.name = auth_info.dig("info", "name")
-      user.team_id = team_id
-      user.bio = bio
-      user.photo.attach(photo) if photo.present?
-      user.password = Devise.friendly_token[0, 20]
+    where(email: auth_info.info[:email]).first_or_create do |user|
+        user.provider = auth_info[:provider]
+        user.id = auth_info.info[:uid]
+        user.name = auth_info.info[:name]
+        user.email = auth_info.info[:email]
+        user.team_id = team_id
+        user.bio = bio
+        user.photo.attach(photo)
+        user.password = Devise.friendly_token[0, 20]
+        user.save!
     end
   end
 
