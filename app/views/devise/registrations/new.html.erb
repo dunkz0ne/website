@@ -35,6 +35,22 @@
                                 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :post, class: "form-horizontal" }) do |form| %>
                                     <div class="content">
 
+                                        <% devise_error_messages! %>
+
+                                        <% if notice.present? %>
+                                            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                            <%= notice %>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        <% end %>
+
+                                        <% if flash[:alert].present? %>
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <%= flash[:alert] %>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        <% end %>
+
                                         <%= form.hidden_field :provider, value: 'email' %>
 
                                         <div class="field">
@@ -227,7 +243,7 @@
             28: 'https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg',
             29: 'https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg',
             30: 'https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg'
-                     
+
 
         };
 
