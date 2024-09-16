@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get 'complete_registration', to: 'users/registrations#complete_registration', as: :complete_registration
-    post 'complete_registration', to: 'users/registrations#finish_registration'
+    post 'complete_registration', to: 'users/registrations#finish_registration', as: :finish_registration
   end
 
   resources :teams
