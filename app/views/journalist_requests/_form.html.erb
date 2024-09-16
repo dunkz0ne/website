@@ -10,16 +10,24 @@
     </div>
   <% end %>
 
+  <hr> 
+  <div>
+    <h5>The professional qualification certificate for journalists certifies the necessary skills to practice the profession, issued after an exam or a recognized course. It is required for registration with the national journalism body or association.</h5>
+  </div>
+  <br>
+
+
   <div class="field">
     <%= form.label :certificate , class: "form-label"%>
-    <%= form.file_field :certificate , class: "form-control"%>
+    <%= form.file_field :certificate , class: "form-control", id:"fileInput"%>
+    <label for="fileInput" class="custom-file-label">Upload File</label>
     <div class="invalid-feedback">
       Please provide the content.
     </div>
   </div>
 
   <div class="actions">
-    <%= form.submit "Invia Richiesta" %>
+    <%= form.submit "Send request" %>
   </div>
 
 <% end %>
