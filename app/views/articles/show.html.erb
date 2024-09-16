@@ -3,6 +3,9 @@
 		width: 10px;
 	}
 
+	body {
+		background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;
+	}
 
 	::-webkit-scrollbar-track {
 		-webkit-box-shadow: inset 0 0 6px <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;
@@ -110,9 +113,9 @@
 													<h4 class="articleAuthor">By <%= @article.user.name %> - <%= @article.created_at.strftime("%d/%m/%Y") %></h4>
 												</div>
 											</div>
-										<div class="row">
+                                        <div class="row" style="align-items:center;">
 											<div class="col">
-												<div class="articleContentContainer" style="text-align: justify;">
+												<div class="articleContentContainer" style="word-wrap: break-word; word-break: break-word;">
 													<%= simple_format(@article.content, style: "font-size: 15px !important;")%>
 												</div>
 											</div>
@@ -139,49 +142,52 @@
 <div class="container commentSectionContainer" style="margin-top: 12vh; padding: 5vh; background-color: <%= @team.color %>; " >
 		<div class="row">
 			<div class="col">
-				<%= form_with(model: [ @article, @article.comments.build ], id:"commentForm", local: true) do |form| %>
-					<div class="container" style=" min-width: 100%; overflow-x: auto; white-space: nowrap;">
-						<div class="row" style="min-width: 1500px;">
-							<div class="col">
-								<h1>Tell us what you think and start the conversation!</h1>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col">
-								<div class="field">
-									<%= form.text_area :content, rows: 6, style: "width: 100%;" %>
+				<% if current_user.banned? %>
+					<h1>You are banned from commenting</h1>
+				<% else %>
+					<%= form_with(model: [ @article, @article.comments.build ], id:"commentForm", local: true) do |form| %>
+						<div class="container" >
+							<div class="row" style="min-width: 1500px;">
+								<div class="col">
+									<h1>Tell us what you think and start the conversation!</h1>
 								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col">
-								<div class="actions">
-                                	<%= form.submit 'Post ➤', class: "btn btn-primary"  %>
-									<button type="button" class="btn btn-light" onclick="resetForm()">Reset</button>
+							<div class="row">
+								<div class="col">
+									<div class="field">
+										<%= form.text_area :content, rows: 6, style: "width: 100%;" %>
+									</div>
 								</div>
 							</div>
-							<div class="col-1">
+							<div class="row">
+								<div class="col">
+									<div class="actions">
+										<%= form.submit 'Post ➤', class: "btn btn-primary"  %>
+										<button type="button" class="btn btn-light" onclick="resetForm()">Reset</button>
+									</div>
+								</div>
+								<div class="col-1">
+								</div>
 							</div>
-						</div>
 					<% end %>
-						<div class="row">
-							<div class="col">
-								<div id="comments">
-								<% @article.comments.where(parent_id: nil).each do |comment| %>
-									<div class="container commentContainer" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;  min-width: 100%; overflow-x: auto; white-space: nowrap;">
-										<div class="row" style="min-width: 1500px;">
-											<div class="col">
-												<%= render_comment(comment, @article) %>
-											</div>
+				<% end %>
+					<div class="row">
+						<div class="col">
+							<div id="comments">
+							<% @article.comments.where(parent_id: nil).each do |comment| %>
+								<div class="container commentContainer" style="background-color: <%= Color::RGB.by_hex(@team.color.delete('#')).darken_by(80).html %>;  min-width: 100%; overflow-x: auto; white-space: nowrap;">
+									<div class="row" style="min-width: 1500px;">
+										<div class="col">
+											<%= render_comment(comment, @article) %>
 										</div>
 									</div>
-
-								<% end %>
 								</div>
+
+							<% end %>
 							</div>
 						</div>
 					</div>
-				
+				</div>
 			</div>
 		</div>
 	</div>
@@ -202,5 +208,5 @@
 </script>
 
 <% else %>
-<h1>Article not found</h1>
+<h1 style="text-align: center">Article not found</h1>
 <% end %>

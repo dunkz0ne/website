@@ -45,7 +45,7 @@ module CommentsHelper
 					end
 				end)
       end)
-      concat(content_tag(:p, comment.content, style: "margin-top: 1vh; font-size: 1.2em;"))
+      concat(content_tag(:p, comment.content, style: "margin-top: 1vh; font-size: 1.2em; word-wrap: break-word; white-space:normal; width: 75%; word-break: break-all;"))
 
       concat(content_tag(:div, class: "reply-form") do
         form_with(model: [comment.article, comment.article.comments.build], local: true) do |form|
