@@ -10,8 +10,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       session["devise.facebook_data"] = request.env["omniauth.auth"]
       if session["devise.facebook_data"].info.email.blank?
         redirect_to new_user_registration_path, Alert: 'Check your Facebook privacy settings and allow email sharing.'
+      else
+        redirect_to complete_registration_path, notice: 'Please complete sign-up.'
       end
-      redirect_to complete_registration_path, notice: 'Please complete sign-up.'
     end
   end
 
@@ -24,10 +25,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       # Save the data in the session so we can use it in the form
       session["devise.google_data"] = request.env["omniauth.auth"]
+      Rails.logger.info session["devise.google_data"]
       if session["devise.google_data"].info.email.blank?
         redirect_to new_user_registration_path, Alert: 'Check your Google privacy settings and allow email sharing.'
+      else
+        redirect_to complete_registration_path, notice: 'Please complete sign-up.'
       end
-      redirect_to complete_registration_path, notice: 'Please complete sign-up.'
     end
   end
 
