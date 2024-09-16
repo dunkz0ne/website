@@ -25,7 +25,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       # Save the data in the session so we can use it in the form
       session["devise.google_data"] = request.env["omniauth.auth"]
-      Rails.logger.info session["devise.google_data"]
       if session["devise.google_data"].info.email.blank?
         redirect_to new_user_registration_path, Alert: 'Check your Google privacy settings and allow email sharing.'
       else

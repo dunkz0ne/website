@@ -84,3 +84,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Use Redis for caching
 gem 'redis-rails'
 
+# Use Active Record session store
+gem 'activerecord-session_store'
