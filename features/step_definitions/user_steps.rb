@@ -5,6 +5,28 @@ end
 
 When('I click on Sign In with {string}') do |provider|
   visit root_path
+
+  # Set up OmniAuth mock
+  if provider == 'Facebook'
+    OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+      provider: 'facebook',
+      uid: '374543',
+      info: {
+        email: 'test@example.com',
+        name: 'Test User'
+      }
+    })
+  elsif provider == 'Google'
+    OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+      provider: 'google_oauth2',
+      uid: '374543',
+      info: {
+        email: 'test@example.com',
+        name: 'Test User'
+      }
+    })
+  end
+
   find('#'+provider.downcase+'Button').click
 
 end
@@ -28,23 +50,40 @@ end
 
 Given('I am logged in with {string}') do |provider|
   # Set up OmniAuth mock
-  OmniAuth.config.mock_auth[:provider] = OmniAuth::AuthHash.new({
-    provider: 'facebook',
-    uid: '123456',
-    info: {
-      email: 'test@example.com',
-      name: 'Test User'
-    }
-  })
+  if provider == 'Facebook'
+    OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+      provider: 'facebook',
+      uid: '374543',
+      info: {
+        email: 'test@example.com',
+        name: 'Test User'
+      }
+    })
+  elsif provider == 'Google'
+    OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+      provider: 'google_oauth2',
+      uid: '374543',
+      info: {
+        email: 'test@example.com',
+        name: 'Test User'
+      }
+    })
+  end
 
-  # Visit the sign in path
-  visit user_facebook_omniauth_callback_path
+  # Visit the OmniAuth callback URL
+  if provider == 'Facebook'
+    visit "users/auth/facebook/callback"
+  elsif provider == 'Google'
+    visit "users/auth/google_oauth2/callback"
+  end
 
-  find('#selectedTeamId', visible: false).set('1')
-  click_button('Create User')
-
-  visit user_dashboard_path
+  # Perform any additional actions needed for your application
+  if has_selector?('#selectedTeamId', visible: false)
+    find('#selectedTeamId', visible: false).set('1')
+    click_button('Create User')
+  end
 
   # Ensure the user is redirected to the dashboard page
+  visit user_dashboard_path
   expect(page).to have_current_path(user_dashboard_path)
 end
