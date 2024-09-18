@@ -31,7 +31,8 @@ When('I click on Sign In with {string}') do |provider|
 
 end
 
-When("I submit the registration form") do
+And("I submit the registration form") do
+
   expect(page).to have_current_path(complete_registration_path)
 
   @team = Team.first

@@ -7,10 +7,9 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get 'complete_registration', to: 'users/registrations#complete_registration', as: :complete_registration
-    post 'complete_registration', to: 'users/registrations#finish_registration'
+    post 'complete_registration', to: 'users/registrations#finish_registration', as: :finish_registration
   end
 
-  resources :users, only: [:show]
   resources :teams
   resources :players
   resources :matches
@@ -52,7 +51,7 @@ Rails.application.routes.draw do
     member do
       get :increment_strikes
       get :decrement_strikes
-      post :delete
+      get 'delete'
       post :ban_users
       get :unban
       post :delete_articles

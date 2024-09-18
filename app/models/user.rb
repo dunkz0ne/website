@@ -24,6 +24,8 @@ class User < ApplicationRecord
   has_many :banned_users, foreign_key: :user_email, primary_key: :email
   has_many :banned_users_as_admin, class_name: 'BannedUser', foreign_key: 'admin_id'
 
+  before_destroy :purge_photo
+
   # Set the inheritance column to type
   self.inheritance_column = :type
 
@@ -39,7 +41,7 @@ class User < ApplicationRecord
 
   # Find or create a user with the given omniauth data
   def self.find_or_create_from_omniauth(auth_info, team_id, bio, photo)
-    where(id: auth_info[:uid]).first_or_create do |user|
+    where(email: auth_info.info[:email]).first_or_create do |user|
         user.provider = auth_info[:provider]
         user.id = auth_info.info[:uid]
         user.name = auth_info.info[:name]
@@ -91,4 +93,9 @@ class User < ApplicationRecord
     self.update(type: 'Admin')
   end
 
+  private
+
+  def purge_photo
+    photo.purge_later if photo.attached?
+  end
 end

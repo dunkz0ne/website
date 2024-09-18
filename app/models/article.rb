@@ -8,4 +8,12 @@ class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   has_one_attached :image
+
+  before_destroy :cleanup_image
+
+  private
+  
+  def cleanup_image
+    image.purge if image.attached?
+  end
 end

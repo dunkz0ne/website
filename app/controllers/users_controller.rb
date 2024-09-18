@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :ensure_admin!, only: [:increment_strikes, :decrement_strikes]
+  before_action :ensure_admin!, only: [:increment_strikes, :decrement_strikes, :delete]
   helper_method :banned?
 
   def show
@@ -135,8 +135,9 @@ class UsersController < ApplicationController
 
   def delete
     @user = User.find(params[:id])
+    JournalistRequest.where(user_id: @user.id).destroy_all
     @user.destroy
-    redirect_to user_path(current_user), notice: 'User deleted.'
+    redirect_to admin_dashboard_user_path(current_user), notice: 'User was successfully deleted.'
   end
 
   # Only allow a list of trusted parameters through.

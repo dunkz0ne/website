@@ -53,6 +53,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
                 else
                   nil
                 end
+                
+    # Handle the case where no OAuth data is present
+    if auth_info.nil?
+      redirect_to complete_registration_path, alert: 'No OAuth data found, please try again.' and return
+    end
 
     # Data from the form
     team_id = user_params[:team_id]
