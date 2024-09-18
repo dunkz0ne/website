@@ -5,6 +5,28 @@ end
 
 When('I click on Sign In with {string}') do |provider|
   visit root_path
+
+  # Set up OmniAuth mock
+  if provider == 'Facebook'
+    OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+      provider: 'facebook',
+      uid: '374543',
+      info: {
+        email: 'test@example.com',
+        name: 'Test User'
+      }
+    })
+  elsif provider == 'Google'
+    OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+      provider: 'google_oauth2',
+      uid: '374543',
+      info: {
+        email: 'test@example.com',
+        name: 'Test User'
+      }
+    })
+  end
+
   find('#'+provider.downcase+'Button').click
 
 end

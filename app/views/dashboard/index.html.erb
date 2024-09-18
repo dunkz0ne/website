@@ -215,38 +215,43 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <% @articles.each do |article| %>
-                                        <div class="row" style="align-items: center;">
-                                            <div class="col">
-                                                <div class="newsArticle">
-                                                    <div class="container">
-                                                        <div class="row">
-                                                            <div class="col-4">
-                                                                <% if article.image.attached? %>
-                                                                    <%= image_tag article.image, id: 'imageArticle' %>
-                                                                <% else %>
-                                                                    <%= image_tag 'nbaLogo.jpg', id: 'imageArticle' %>
-                                                                <% end %>
+                                    <% if @articles.empty? %> 
+                                        <h5 style="text-align: center; margin-top:2vh">No articles yet</h5>
+                                    <% else %>
+                                        <% @articles.each do |article| %>
+                                            <div class="row" style="align-items: center;">
+                                                <div class="col">
+                                                    <div class="newsArticle">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-4">
+                                                                    <% if article.image.attached? %>
+                                                                        <%= image_tag article.image, id: 'imageArticle' %>
+                                                                    <% else %>
+                                                                        <%= image_tag 'nbaLogo.jpg', id: 'imageArticle' %>
+                                                                    <% end %>
 
-                                                            </div>
-                                                            <div class="col-8" style="align-content: center; text-align:left;">
-                                                                <div class="articleTitle"><%= link_to article.title, article_path(article), style: "color: white;" %></div>
-                                                                <div class="authorInfo"><%= link_to article.user.name, user_path(article.user), style: "color: white;" %> - <%= article.created_at %></div>
+                                                                </div>
+                                                                <div class="col-8" style="align-content: center; text-align:left;">
+                                                                    <div class="articleTitle"><%= link_to article.title, article_path(article), style: "color: white;" %></div>
+                                                                    <div class="authorInfo"><%= link_to article.user.name, user_path(article.user), style: "color: white;" %> - <%= article.created_at %></div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% end %>
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col" style="display: flex; justify-content:center;">
+                                                <div class="newsDetails">
+                                                    <%= active_link_to 'More', articles_path , active: :exclusive, class: 'matchDetails', id:'matchDets' %>
                                                 </div>
                                             </div>
                                         </div>
                                     <% end %>
-                                    <div class="row" style="align-items: center;">
-                                        <div class="col" style="display: flex; justify-content:center;">
-                                            <div class="newsDetails">
-                                                <%= active_link_to 'More', articles_path , active: :exclusive, class: 'matchDetails', id:'matchDets' %>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

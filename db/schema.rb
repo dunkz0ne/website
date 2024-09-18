@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2024_09_16_155902) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_journalist_requests_on_user_id"
+    t.index ["user_id"], name: "index_journalist_requests_on_user_id", unique: true
   end
 
   create_table "likes", force: :cascade do |t|

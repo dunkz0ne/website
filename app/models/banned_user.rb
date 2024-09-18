@@ -12,9 +12,9 @@ class BannedUser < ApplicationRecord
       return
     end
     expired_bans.find_each(batch_size: 100) do |ban|
-      user = User.find_by(email: ban.user_email)
-      if user && user.strikes == 3
-        user.reset_strikes_for_users_with_same_email(user.email)
+      @user = User.find_by(email: ban.user_email)
+      if @user && @user.strikes == 3
+        @user.reset_strikes_for_users_with_same_email(ban.user_email)
       end
     end
     # Destroy expired bans in one batch operation
